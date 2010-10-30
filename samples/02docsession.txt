@@ -1,0 +1,10 @@
+>>> import registration, sys
+>>> params = {"name":"Petr", "email":"encukou@gmail.com"}
+>>> print registration.buildURL(params)
+http://cs.joensuu.fi/~pviktor/python/signup?name=Petr&...
+>>> print registration.buildURL.__doc__ 
+Build an URL from a dictionary of parameters.
+<BLANKLINE>
+    Returns string.
+<BLANKLINE>
+>>> # Exit with Ctrl+D or Ctrl+Z

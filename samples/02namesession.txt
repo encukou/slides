@@ -1,0 +1,3 @@
+>>> import registration
+>>> registration.__name__
+'registration'

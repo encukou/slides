@@ -1,0 +1,58 @@
+>>> d = {"name":"Petr", "program":"IMPIT"}
+>>> d
+{'program': 'IMPIT', 'name': 'Petr'}
+>>> d["name"]
+'Petr'
+>>> d["program"]
+'IMPIT'
+>>> d["Petr"]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'Petr'
+
+>>> d = dict(name="Petr", program="IMPIT")
+>>> d
+{'program': 'IMPIT', 'name': 'Petr'}
+
+>>> d
+{'program': 'IMPIT', 'name': 'Petr'}
+>>> d["program"] = "Computer science" 
+>>> d
+{'program': 'Computer science', 'name': 'Petr'}
+>>> d["eyes"] = "blue"
+>>> d
+{'eyes': 'blue', 'program': 'Computer science',
+'name': 'Petr'}
+
+>>> d
+{'eyes': 'blue', 'program': 'Computer science',
+'name': 'Petr'}
+>>> d["age"] = 24
+>>> d
+{'age': 24, 'eyes': 'blue',
+'program': 'Computer science', 'name': 'Petr'}
+>>> d[2] = "two"
+>>> d
+{2: 'two', 'age': 24, 'eyes': 'blue',
+'program': 'Computer science', 'name': 'Petr'}
+
+>>> d
+{2: 'two', 'age': 24, 'eyes': 'blue',
+'program': 'Computer science', 'name': 'Petr'}
+>>> del d[2] 
+>>> d
+{'age': 24, 'eyes': 'blue',
+'program': 'Computer science', 'name': 'Petr'}
+>>> d.clear() 
+>>> d
+{}
+
+>>> d = {"name":"Petr", "program":"IMPIT"}
+>>> d.keys()
+['program', 'name']
+>>> d.values()
+['IMPIT', 'Petr']
+>>> d.items()
+[('program', 'IMPIT'), ('name', 'Petr')]
+
+

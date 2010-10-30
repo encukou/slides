@@ -1,0 +1,69 @@
+>>> string = "Hello"
+>>> h, e, l1, l2, o = string
+>>> h, e, l1, l2, o
+('H', 'e', 'l', 'l', 'o')
+>>> 'spam ' * 5
+'spam spam spam spam spam '
+
+>>> string = 'Hello World'
+>>> string.lower()
+'hello world'
+>>> string.upper()
+'HELLO WORLD'
+>>> string.capitalize()
+'Hello world'
+>>> string.startswith('Hell')
+True
+>>> string.endswith('North')
+False
+>>> string.replace(' ', ", ")
+'Hello, World'
+>>> string.partition('l')
+('He', 'l', 'lo World')
+>>> '   spacious   '.strip()
+'spacious'
+
+>>> k = "id"
+>>> v = "543"
+>>> "%s=%s" % (k, v) 
+'id=543'
+
+>>> "{0}={1}".format(k, v)
+'id=543'
+
+>>> uid = "sa"
+>>> pwd = "secret"
+>>> print pwd + " is not a good password for " + uid
+secret is not a good password for sa
+>>> print "{0} is not a good password for {1}".format(
+...     pwd, uid) 
+secret is not a good password for sa
+
+>>> userCount = 6
+>>> print "Users connected: %d" % (userCount, )
+Users connected: 6
+>>> print "Users connected: " + userCount
+Traceback (most recent call last):
+  File "<interactive input>", line 1, in ?
+TypeError: cannot concatenate 'str' and 'int' objects
+
+>>> print "Today's stock price: %f" % 50.4625   
+Today's stock price: 50.462500
+>>> print "Today's stock price: %.2f" % 50.4625 
+Today's stock price: 50.46
+>>> print "Change since yesterday: %+.2f" % 1.5 
+Change since yesterday: +1.50
+
+>>> print "Today's stock price: {0}".format(50.4625)
+Today's stock price: 50.4625
+>>> print "Today's stock price: {0:.2f}".format(50.4625)
+Today's stock price: 50.46
+>>> print "Change since yesterday: {0:+.2f}".format(1.5)
+Change since yesterday: +1.50
+
+>>> string = "one;two;three"
+>>> li = string.split(";")
+>>> li
+['one', 'two', 'three']
+>>> ",".join(li)
+'one,two,three'
