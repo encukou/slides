@@ -1,0 +1,272 @@
+\documentclass[reference]{pyslides}
+
+\title{Operators \& Statements}
+\pyslidenumber{5}
+\date{November 2010}
+
+\usepackage{upquote}
+
+\newcommand\im[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{3.5cm}}
+\newcommand\nim{\par\hspace{3.5cm}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\section{}
+
+\begin{frame}[fragile]{Python Operators and Statements}
+
+These slides mention \emph{all} of Python's operators and statements.
+
+\bigskip
+
+Most are explained; for the rest we need to learn a bit more of Python.
+
+\end{frame}
+
+\section{Operators}
+
+\begin{frame}[fragile]{Numeric Operators}
+\bigskip
+
+\im{+ - * /} These do what you'd expect
+\im{x // y} Floor division (divide, then round)
+\im{x \% y} Modulus (remainder operator)
+\im{x ** y} Power/exponentiation ($x^y$)
+
+\bigskip\bigskip
+
+{\small
+The \verb+/+ and \verb+%+ will round down if used with two integers. Use the
+following special import to make them return floats:
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{\PYZus{}\PYZus{}future\PYZus{}\PYZus{}} \PY{k+kn}{import} \PY{n}{division}
+\end{Verbatim}
+{\small (This is one of the errors Python 3 fixes)}
+}
+\end{frame}
+
+\begin{frame}[fragile]{Comparison Operators}
+\im{< <= => >} Less than, less than or equal, etc.
+\im{x == y} Equality (objects have same contents)
+\im{x is y} Identity (is it the same object?)
+\im{x != y} Negated equality
+\im{x is not y} Negated identity
+
+\bigskip
+
+\begin{itemize}
+\item Always use \verb$==$, not \verb$is$, for numbers, strings, tuples and other immutable objects
+\item Use \verb$is$, not \verb$==$, when comparing to \verb+None+ (or \verb+True+, \verb+False+)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Logical Operators}
+\im{x and y} True when both operands are true
+\im{x or y} At least one operand is true
+\im{not x} Negation
+
+\bigskip
+
+\begin{itemize}
+\item \verb$and$ and \verb$or$ are short-circuiting (only evaluate as much as is needed)
+\item \verb$and$ and \verb$or$ actually return one of their operands:
+    \begin{itemize}
+        \item \verb$x or y$: \verb$x if x else y$
+        \item \verb$x and y$: \verb$y if x else x$
+        \item A useful idiom is \verb$(var or 'default')$
+    \end{itemize}
+\item \verb$not$ returns \verb$True$ or \verb$False$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Bitwise Operators}
+\im{x | y} Bitwise or; set union
+\im{x {\textasciicircum} y} Bitwise xor; set symmetric difference
+\im{x \& y} Bitwise and; set intersection
+\im{x << y} Bitwise right shift
+\im{x >> y} Bitwise left shift
+\im{{\texttildelow}x} Bitwise inverse
+
+\bigskip
+
+\begin{itemize}
+\item Don't use on numbers unless you have a reason (cryptography).
+\item Useful on sets.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Containers}
+\im{x in y} Inclusion (Is \verb+x+ in \verb+y+?)
+\im{x not in y} Negated inclusion
+\im{x[y]} Subscription
+\im{x[i:j]} Slicing
+\im{x[i:j:s]} Slicing with a step
+
+\bigskip
+
+In slicing, \verb+i+, \verb+j+, or \verb+s+ can be left out and default to (0, -1, 1), respectively.
+\end{frame}
+
+\begin{frame}[fragile]{Special operators}
+\im{f(params)} Call
+\im{x.attr} Attribute access
+\im{x if c else y} Inline if
+\im{`x`} Representation (use the repr() function)
+\im{[f(x) for x in l if c(x)]} \hspace{6em} List comprehension
+
+\bigskip
+To be covered later:
+
+\im{lambda p: x} Lambda function
+\im{(yield x)} Coroutine-style yield
+\im{(f(x) for x in l if c(x))} \hspace{6em} Generator comprehension
+\end{frame}
+
+
+\section{Simple Statements}
+
+\begin{frame}[fragile]{Assignment}
+\im{x = y} Assign the \emph{value} of \verb+y+ to the \emph{name} \verb+x+.
+
+
+
+\bigskip
+
+\verb+x+ does not have to be just a variable name:
+
+\im{x.attr = y} Attribute assignment
+\im{x[3] = y} Subscript assignment
+\im{x[3:5] = t} Slice assignment*
+\im{x[3:9:2] = t} Extended slice assignment*$^\dagger$
+\im{a, b, c = t} Multiple assignment*$^\dagger$
+
+{\small*\verb+t+ must be \emph{iterable}}
+
+{\small$^\dagger$in these cases \verb+t+ has to have the same length as what was there before}
+
+\bigskip
+
+\im{x = y = z} Assign value of \verb+z+ to both \verb+x+ and \verb+y+
+\im{a, b = b, a} Swap values (a common idiom)
+
+\end{frame}
+
+\begin{frame}[fragile]{Extended Assignment}
+\im{x += y} Add the value \verb+y+ to \verb+x+
+\im{x -= y} Subtract the value \verb+y+ to \verb+x+
+
+And similarly \verb$-=$, \verb$*=$, \verb$/=$, \verb$//=$, \verb$%=$, \verb$**=$, \verb$<<=$, \verb$>>=$ \verb$&=$ \verb$^=$, \verb$|=$.
+
+\bigskip
+
+C programmers might note that there is no \verb-x++- operator.
+\end{frame}
+
+\begin{frame}[fragile]{Importing and Printing}
+\im{import m} Import module \verb+m+ into variable \verb+m+
+\im{from m import x} Import \verb+m.x+ into variable \verb+x+
+\smallskip
+\im{import m as y} Import \verb+m+ into \verb+y+
+\im{from m import x as y} \hspace{3em} Import \verb+m.x+ into \verb+y+
+
+\bigskip\bigskip
+
+\im{print x, y, z} Print the values to standard output
+\im{print x, y, z,} Print without a final newline
+\im{print>>file, x} Print to the given file
+
+{\small(In Python 3, print is a function)}
+\end{frame}
+
+\begin{frame}[fragile]{Miscellaneous simple statements}
+\im{raise e} Raise an exception
+\im{return x} Exit current function, returning \verb+x+
+\im{return} Exit current function, returning \verb+None+
+\im{del x} Delete the \emph{name} \verb+x+
+\im{pass} Do nothing (use for empty blocks)
+
+\bigskip
+
+\im{assert x} Raise AssertionError if \verb+x+ is false
+\im{assert x, s} \verb+s+ becomes the AssertionError's message
+
+\bigskip
+
+\im{break} Break out of the current loop
+\im{continue} Continue the current loop
+\im{exec s} Execute the string as Python code (ugly!)
+\end{frame}
+
+\section{Compound Statements}
+
+\begin{frame}[fragile]{Branching: if}
+\input "|./highlight.py samples/05if.py fontsize=!small no"
+\end{frame}
+
+\begin{frame}[fragile]{Looping: for}
+\input "|./highlight.py samples/05for.py fontsize=!small no"
+
+\bigskip
+{\small
+An \emph{iterable} can be a list, tuple, string, dictionary, file, generator, etc.
+
+For a dictionary, the \emph{keys} are iterated over. Use the items() method for (key, value) tuples.
+
+For files, the lines are iterated over.
+}
+\end{frame}
+
+\begin{frame}[fragile]{Looping: while}
+\input "|./highlight.py samples/05while.py fontsize=!small no"
+
+\bigskip
+
+C programmers might note that there is no do-while.
+\end{frame}
+
+\begin{frame}[fragile]{Terminating a loop}
+\input "|./highlight.py samples/05for2.py fontsize=!small no"
+\end{frame}
+
+\begin{frame}[fragile]{Handling exceptions: try/except/finally}
+\input "|./highlight.py samples/05try.py fontsize=!small no"
+\end{frame}
+
+\begin{frame}[fragile]{Context: with}
+\input "|./highlight.py samples/05with.py fontsize=!small no"
+
+\bigskip
+
+This is similar to a \verb$try-finally$ statement, but a \emph{context object} specifies the \verb$finally$ clause.
+\end{frame}
+
+\begin{frame}[fragile]{Defining functions: def}
+\input "|./highlight.py samples/05def.py fontsize=!small no"
+
+\bigskip
+
+For the arguments of a function:
+\im{(a, b, c)} Multiple arguments
+\im{(a=None, b=30)} Arguments with default values*
+\im{(*args)} Extra arguments go to the \verb+args+ tuple
+\im{(**kwargs)} Extra keyword arguments $\rightarrow$ \verb+kwargs+ dict
+\im{(a, b=None, *args, **kwargs)} \hspace{8em} Combine in this order
+
+\bigskip
+{\footnotesize * Be careful about mutable objects: the default value is shared!}
+\end{frame}
+
+\begin{frame}[fragile]{Defining classes: class}
+\input "|./highlight.py samples/05class.py fontsize=!small no"
+
+\bigskip
+
+More about classes next time
+\end{frame}
+
+\end{document}

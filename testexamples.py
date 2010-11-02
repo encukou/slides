@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.abspath('.'))
 failed = 0
 
 for filename in glob.glob("*.txt"):
-    result = doctest.testfile(filename, optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS)
+    result = doctest.testfile(filename, optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS, encoding="UTF-8")
     failed += result.failed
 
 exit(failed)

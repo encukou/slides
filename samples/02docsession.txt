@@ -1,4 +1,4 @@
->>> import registration, sys
+>>> import registration
 >>> params = {"name":"Petr", "email":"encukou@gmail.com"}
 >>> print registration.buildURL(params)
 http://cs.joensuu.fi/~pviktor/python/signup?name=Petr&...

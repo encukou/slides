@@ -1,4 +1,4 @@
-\documentclass{pyslides}
+\documentclass[reference]{pyslides}
 
 \title{Native Datatypes}
 \pyslidenumber{3}
@@ -57,6 +57,7 @@ If you work with floats, you might get inexact results.
 
 \begin{frame}[fragile]{Slicing Lists}
 \input "|./highlight.py samples/03list1.txt fontsize=!small,firstline=13,lastline=28 no"
+\input "|./highlight.py samples/03listslice.txt fontsize=!small,firstline=2 no"
 \end{frame}
 
 \begin{frame}[fragile]{Adding to Lists}
@@ -162,7 +163,9 @@ Unlike tuples, they can only contain characters.
 The characters are themselves strings. Watch out for that.
 \end{frame}
 
-# XXX: Defining strings (', ", r, escapes)
+\begin{frame}[fragile]{Defining Strings}
+\input "|./highlight.py samples/03string-def.txt fontsize=!small no"
+\end{frame}
 
 \begin{frame}[fragile]{String Methods}
 \input "|./highlight.py samples/03string1.txt fontsize=!small,firstline=8,lastline=24 no"
@@ -184,7 +187,17 @@ The characters are themselves strings. Watch out for that.
 \input "|./highlight.py samples/03string1.txt fontsize=!small,firstline=64,lastline=999 no"
 \end{frame}
 
-# XXX: Unicode strings
+\begin{frame}[fragile]{Unicode strings}
+To use Unicode in your file, define an encoding in the \emph{first} or second line of the file.
+
+\bigskip
+
+\input "|./highlight.py samples/03unicode.txt fontsize=!small no"
+
+\bigskip
+
+{\small (In Python 3, all strings are unicode by default)}
+\end{frame}
 
 \section{Other types}
 
@@ -193,7 +206,7 @@ The characters are themselves strings. Watch out for that.
 \end{frame}
 
 \begin{frame}[fragile]{Booleans}
-\input "|./highlight.py samples/03others1.txt fontsize=!small,firstline=13 no"
+\input "|./highlight.py samples/03others1.txt fontsize=!small,firstline=12 no"
 \end{frame}
 
 \section{Working with types}

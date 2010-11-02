@@ -1,7 +1,7 @@
 \ProvidesClass{pyslides}
 \LoadClass{beamer}
 
-\usepackage[utf8]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage{url}
 \usepackage{pgf}
 \usepackage{tikz}
@@ -129,6 +129,10 @@
 \useoutertheme{shadow}
 \usecolortheme{whale}
 \usecolortheme{orchid}
+
+\DeclareOptionBeamer{reference}{\setbeamercolor{structure}{fg=red!20!yellow!95!blue!90!black}}
+\ProcessOptionsBeamer
+
 
 \setbeamerfont{block title}{size={}}
 

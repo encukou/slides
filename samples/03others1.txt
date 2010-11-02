@@ -5,9 +5,8 @@
 None
 
 >>> def function():
-...     print "This function returns nothing"
+...     """This function returns nothing"""
 >>> print function()
-This function returns nothing
 None
 
 >>> x = True
