@@ -37,12 +37,16 @@ Python provides integers, floating-point numbers and complex numbers.
 \begin{frame}[fragile]{Number Gotchas}
 Be careful when dividing two integers: the result is an integer, so the answer will be rounded down.
 \input "|./highlight.py samples/03numbers1.txt fontsize=!small,firstline=16,lastline=19 no"
-(This is fixed in Python 3, so don't rely on it)
+(Fixed in Python 3, use \verb+//+ if you need this behavior.)
 
 \bigskip
 
 If you work with floats, you might get inexact results.
 \input "|./highlight.py samples/03numbers1.txt fontsize=!small,firstline=21,lastline=999 no"
+
+\bigskip
+
+{\small (The standard library provides Fraction and Decimal numbers you can use to get around these limitations.)}
 \end{frame}
 
 \section{Lists}
@@ -86,21 +90,15 @@ If you work with floats, you might get inexact results.
 \end{frame}
 
 \begin{frame}[fragile]{Assigning Tuples to Variables}
-\input "|./highlight.py samples/03tuple1.txt fontsize=!small,firstline=25,lastline=32 no"
+\input "|./highlight.py samples/03tuple1.txt fontsize=!small,firstline=24,lastline=32 no"
 \end{frame}
 
 \begin{frame}[fragile]{Parentheses are Optional}
-\input "|./highlight.py samples/03tuple1.txt fontsize=!small,firstline=34,lastline=41 no"
+\input "|./highlight.py samples/03tuple1.txt fontsize=!small,firstline=33,lastline=41 no"
 \end{frame}
 
-\begin{frame}[fragile]{Uses of Tuples}
-Returning two values from a function:
+\begin{frame}[fragile]{Returning Two Values}
 \input "|./highlight.py samples/03return2.py fontsize=!small,lastline=4 no"
-
-\bigskip
-
-Indexing dictionaries by two values:
-\input "|./highlight.py samples/03return2.py fontsize=!small,firstline=6 no"
 \end{frame}
 
 \section{Dictionaries}
@@ -133,6 +131,8 @@ This means you cannot use lists and dictionaries.
 
 You can use tuples, as long they only contain hashable objects.
 
+\input "|./highlight.py samples/03return2.py fontsize=!small,firstline=6 no"
+
 \bigskip
 
 The \emph{values} of a dictionary can be of any type.
@@ -162,6 +162,8 @@ Unlike tuples, they can only contain characters.
 The characters are themselves strings. Watch out for that.
 \end{frame}
 
+# XXX: Defining strings (', ", r, escapes)
+
 \begin{frame}[fragile]{String Methods}
 \input "|./highlight.py samples/03string1.txt fontsize=!small,firstline=8,lastline=24 no"
 \end{frame}
@@ -182,15 +184,27 @@ The characters are themselves strings. Watch out for that.
 \input "|./highlight.py samples/03string1.txt fontsize=!small,firstline=64,lastline=999 no"
 \end{frame}
 
+# XXX: Unicode strings
+
+\section{Other types}
+
+\begin{frame}[fragile]{None}
+\input "|./highlight.py samples/03others1.txt fontsize=!small,lastline=11 no"
+\end{frame}
+
+\begin{frame}[fragile]{Booleans}
+\input "|./highlight.py samples/03others1.txt fontsize=!small,firstline=13 no"
+\end{frame}
+
 \section{Working with types}
 
 \begin{frame}[fragile]{Converting types}
 The name of a type acts as a conversion function.
-\input "|./highlight.py samples/03converting.txt fontsize=!small,firstline=1,lastline=8 no"
+\input "|./highlight.py samples/03converting.txt fontsize=!small no"
 
 \bigskip
 
-Note that some of the type names are abbreviations.
+Note the names Python uses.
 \end{frame}
 
 \begin{frame}[fragile]{List Comprehensions}

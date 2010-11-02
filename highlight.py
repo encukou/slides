@@ -5,13 +5,14 @@ from pygments.lexers import PythonLexer, PythonConsoleLexer
 from pygments.formatters import LatexFormatter
 from pygments.style import Style
 import pygments
-from pygments.token import Generic
+from pygments.token import Generic, Comment
 
 class CustomStyle(Style):
     default_style = 'default'
     styles = dict(pygments.styles.get_style_by_name('default').styles)
     styles.update({
         Generic.Traceback:    '#f00',
+        Generic.Output:       '#668',
     })
 
 def makeLexer(file):

@@ -1,0 +1,572 @@
+\documentclass[10pt]{article}
+
+\usepackage{textcomp}
+\usepackage[pdfborder={0,0,0}]{hyperref}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{mdwlist}
+\usepackage{upquote}
+\usepackage[utf8]{inputenc}
+
+\usepackage{tgheros}
+\renewcommand*\familydefault{\sfdefault}
+
+\usepackage[top=0.5cm,left=0.5cm,right=0.5cm,bottom=0.5cm]{geometry}
+
+\newcommand\x{$x$}
+\newcommand\y{$x$}
+\newcommand\z{$x$}
+\renewcommand\t[1]{\par\hspace{0ex}\rlap{\tt #1}\hspace{3.5cm}}
+\newcommand\n{}
+
+\definecolor{silver}{rgb}{0.9999,0.9999,0.9999}
+\def\<#1>{{\tt#1}}
+
+\newcommand\magic[1]{\_\_#1\_\_}
+
+\setlength\parindent{0pt}
+
+\newenvironment{items}{\begin{itemize*}\setlength\itemsep{0pt}\setlength\parskip{0pt}\setlength\parsep{0pt}}{\end{itemize*}}
+
+\begin{document}
+
+\section{Statements}
+
+\subsection{Simple statements}
+
+\t{a = b} Assign the value of \<b> to the name \<a>.
+\t{a, b, c = t = e} Assign the value of \<e> to \<t>, and its 3 elements to \<a>, \<b>, and \<c>.
+\t{a += 1} Add 1 to \<a>. Similarly \<-=>, \<*=>, \</=>, \<//=>, \<\%>, \<**=>, \<{>>=}>, \<{<<=}> \<\&=> \<\textasciicircum=>, \<|=>
+\t{assert x} Raise an AssertionError if x is false
+\t{pass} Do nothing
+\t{del x} Remove the variable \<x>. Similarly \<del a.b> for removing attributes, \<del x[k]>, etc
+\t{raise e} Raise the exception \<e>.
+\t{import m} Import the module \<m>, assign it to the variable \<m>.
+\t{from m import x} Import \<x> from the module \<m>, and assign it to the variable \<x>.
+\t{from m import x as y} \hspace{1em} Import \<x> from the module \<m>, and assign it to the variable \<y>.
+\t{global x} Mark \<x> as global; assignments to it will be made to the module-level variable.
+\t{print x} Print out \<x>. (In Python 3, this becomes a function)
+\t{exec x} Execute Python code given by \<x>. (In Python 3, this becomes a function)
+\t{break} Terminate a for or while loop
+\t{continue} Terminate the current pass through a for/while loop, go to the next one
+\t{return x} Exit the current function, returning x
+\t{return} Exit the current function, returning None
+\\Also any expression is a statement.
+
+\subsection{Compound statements}
+
+\begin{multicols}{2}
+\subsubsection{Branching: if}
+\begin{verbatim}
+if c1:
+    print 'c1 was true'
+elif c2:
+    print 'c2 was true, c1 was not'
+else:
+    print 'neither was true'
+\end{verbatim}\columnbreak
+\subsubsection{Context: with}
+The \verb+with+ statement is used to introduce \emph{context}.
+For example with a file, it will be closed after the block is done.
+\begin{verbatim}
+with open('filename') as f:
+    print f.read()
+# f will be closed here
+\end{verbatim}\end{multicols}
+
+
+\subsubsection{Looping: for/while}
+\begin{multicols}{2}
+\begin{verbatim}
+for x in some_list:
+    print x
+
+for key, value in dictionary.items():
+    print key, value
+\end{verbatim}\columnbreak
+\begin{verbatim}
+response = ask_for_input()
+while response != 'yes':
+    print 'You need to agree'
+    response = ask_for_input()
+\end{verbatim}\end{multicols}
+The loop constructs may also have an \<else> clause, which executes after the loop is finished (if not terminated by break, return, raise, etc.)
+
+\begin{multicols}{2}
+\subsubsection{Exception handling: try/except/finally}
+\begin{verbatim}
+try:
+    do_dangerous_stuff()
+except KeyError, e:
+    print "Key not found:", e
+except Exception:
+    print "Exception occured"
+else:
+    print "No exception occured"
+finally:
+    print "This executes either way"
+\end{verbatim}\columnbreak
+\subsubsection{Functions and Classes: def, class}
+\begin{verbatim}
+def func(argument1, argument2):
+    return 'value'
+
+def generator(argument, argument2)
+    yield 'value'
+
+class C(superclass):
+    def __init__(self, argument1, argument2):
+        print "Do initialization"
+    def method(self, argument1, argument2):
+        print "method called"
+\end{verbatim}\end{multicols}
+
+\pagebreak
+\section{Operators}
+
+\begin{multicols}{2}
+\subsection{General}
+
+\begin{items}
+\item Boolean \<and> \<or> (short-circuiting), \<not>.
+\item Comparison~~~\<{<}>~~~\<{>}>~~~\<{<=}>~~~\<{>=}>~~~\<==>~~~\<!=>,~~~\<is>,~~~\<is not>. \\You can use \<x < y < z>
+\item Numeric~~~\<+>~~~\<->~~~\<*>~~~\</>~~~\<//>~~~\<\%>~~~\<**>
+\item Containers \<in>, \<not in>
+\item Bitwise \<|> \<\textasciicircum> \<\&> \<{<<}> \<{>>}> \<$\sim$>
+\end{items}
+
+\columnbreak
+\subsection{Indexing}
+
+\begin{items}
+\item Sequences: \<li[i]> (with integers, negative=from end)
+\item Dicts: \<d[k]> (with any hashable type)
+\item Sequence slices: \<li[start:stop:step]> ([::] is [0:-1:1])
+\item Deleting: \<del li[i]>, \<del li[i:j:s]>, \<del d[k]>
+\item Replacing: \<li[i] = new\_value>
+\item Replacing slices: \<li[i:j] = new\_sublist>
+\end{items}
+\end{multicols}
+\subsection{Special operators}
+\t{func(argument)} Call
+\t{obj.attr} Attribute access
+\t{(yield x)} Yield \<x> from a generator; the value is whatewer was passed to send()
+\t{lambda p: e} Lambda “mini-function” (roughly equivalent to \<def \_func(p): return e>)
+\t{x if c else y} Evaluate either \<x> or \<y>, depending on condition
+\t{[f(x) for x in lst if c(x)]} \hspace{5em} List containing f(x) for each element x of the iterable lst that satisfies condition c(x)
+\t{(f(x) for x in lst if c(x))} \hspace{5em} Same as above, but is an iterator instead of a list
+\t{\textasciigrave x\textasciigrave} Equivalent to \<repr(x)>. Not recommended.
+
+
+\section{Native Datatypes}
+
+\subsection{Numeric types}
+
+Immutable, hashable
+
+\begin{multicols}{2}
+\begin{itemize}\setlength\itemsep{0pt}\setlength\parskip{0pt}\setlength\parsep{0pt}
+\item int: 12, 1234567890987654321, 0o711, 0x4f5
+\item float: 1.2, 1.3e8
+\item complex: 3+5j
+\item long (large integers)
+\par {\tt type(int(4e80)) is long}
+\item bool: \<True> or \<False> (using as numbers is bad!)
+\end{itemize}
+
+\columnbreak
+\t{abs(x)}
+\\\<import math> for working with numbers, \<cmath> for complex
+\t{math.sin(x)} \n \<math.cos(x)>
+\t{math.log(x, base)} \<math.sqrt(x)>
+
+\t{math.pi} \n \<math.e>
+
+\end{multicols}
+
+\subsection{Strings}
+
+Immutable, hashable
+
+\begin{itemize}\setlength\itemsep{0pt}\setlength\parskip{0pt}\setlength\parsep{0pt}
+\item str: \<"abc">, \<\textquotesingle abc\textquotesingle>, \<"""abc""">, \<\textquotesingle\textquotesingle\textquotesingle abc\textquotesingle\textquotesingle\textquotesingle>
+\item unicode: \<u"abc">, etc.
+\end{itemize}
+
+If using unicode characters in the source, specify an encoding in the first line:
+\verb+# Encoding: UTF-8+
+
+In Python 3, all strings are Unicode (unles given as \<b"abc">), and the default encoding is UTF-8.
+
+Escaped characters (\<\textbackslash n>, \<\textbackslash t>, \<\textbackslash \textquotesingle>, \<\textbackslash ">, etc.)
+are interpreted, unless the string is \verb+r+ (\<r"\textbackslash">)
+
+\begin{multicols}{2}
+\subsection{Interpolation}
+
+\t{"..\%s.." \% value} \n Substitute str(value) into the string
+\t{"\%s, \%s" \% (a, b)} \n Substitute str(a) and str(b)
+\t{"\%.2f" \% 3.5} \n Formatting; see Python docs
+
+\subsection{Formatting}
+\verb|"{0} {c.imag}".format("abc", c=3+2j)|
+
+\verb|"{val:.3f}".format(val=3.1415926)|
+
+\verb|"{lst[1]}".format(lst=[0, 1, 2])|
+\end{multicols}
+
+\subsection{Dictionaries}
+
+Dictionaries are mutable. Dictionary keys must be hashable.
+
+Dictionary elements are not ordered.
+
+\begin{itemize}\setlength\itemsep{0pt}\setlength\parskip{0pt}\setlength\parsep{0pt}
+\item dict: \verb+{}+, \verb+{'one': 1, 'two': 2}+, \verb+dict(one=1, two=2)+, \verb+dict([('one', 1), ('two', 2)])+
+\end{itemize}
+
+\begin{multicols}{2}
+\t{d.get(key, default=None)}
+\t{d.clear()}
+\t{d.has\_key(key)}
+\t{d.setdefault(key, default=None)}
+\par\verb}d.items()},
+\verb}d.keys()},
+\verb}d.values()}
+\\\verb}d.iteritems()} etc.
+\t{d.popitem()}
+\t{d.update(other)}
+\end{multicols}
+
+\subsection{Sequences}
+
+Tuples are immutable. Tuples are hashable iff they only contain hashable objects.
+
+Lists are mutable.
+
+\begin{itemize}\setlength\itemsep{0pt}\setlength\parskip{0pt}\setlength\parsep{0pt}
+\item list: \<[]>, \<[1, 2, 3]>, \<[1, 2, 3, ]>
+\item tuple:  \<()>, \<(1, )>, \<(1, 2, 3)>
+\end{itemize}
+
+
+\begin{multicols}{2}
+\t{s + t} \n concatenation
+\t{s * n, n * s} \n $n$ copies concatenated
+
+\t{len(s)} \n
+\t{min(s, key=f)}
+\t{max(s, key=f)}
+\t{sorted(s, key=f)} \n  sorted according to key function
+\end{multicols}
+
+\subsubsection{Mutable sequences}
+
+\begin{multicols}{3}
+\t{s.append(x)}
+\t{s.extend(x)}
+\t{s.count(x)}
+\t{s.insert(i, x)}
+\t{s.pop(i=-1)}
+\t{s.remove(x)}
+\t{s.reverse()}
+\\{\tt s.sort(key=?, reverse=False)}
+\\{\tt s.index(x, start, stop)}
+\end{multicols}
+
+
+A key function should take an item of the sequence as argument, and return the sort key (use a tuple for sorting by more criteria).
+{\tt sort(people, key=lambda p: (p.lastName, p.firstName))}
+
+\subsection{Sets}
+
+Sets are mutable; frozensets are like tuples. Set elements must be hashable.
+
+Set elements are not ordered.
+
+
+\begin{itemize}\setlength\itemsep{0pt}\setlength\parskip{0pt}\setlength\parsep{0pt}
+\item set: \<set([1, 2, 3])>
+\item frozenset \<frozenset([1, 2, 3])>
+\end{itemize}
+
+\begin{multicols}{2}
+\verb>s.isdisjoint(other)>
+\t{s <= other} \n \verb+s.issubset(other)+
+\t{s >= other} \n \verb+s.issuperset(other)+
+\t{s | other | ...} \n \verb>s.union(other, ...)>
+\t{s \& other \& ...} \n \verb>s.intersection(other, ...)>
+\t{s - other - ...} \n \verb>s.difference(other, ...)>
+\t{s {\textasciicircum} other} \n \verb>s.symmetric_difference(other)>
+
+\columnbreak
+
+\t{s |= other | ...} \n \verb>s.update(other, ...)>
+
+similarly \&=, -=, \textasciicircum= (\verb>s.intersection_update(other)>, etc.)
+
+\t{s.discard(elem)} Remove if exists
+\t{s.pop()} \n Remove \& return arbitrary element
+
+\verb>s.add(elem)>
+
+\verb>s.remove(elem)>
+
+\verb>s.clear()>
+\end{multicols}
+
+\subsection{Files}
+
+Iterating over a file yields the lines in the file.
+
+\t{open(filename, mode="r")}
+
+Mode is "r" (read), "w" (write) or "a" (append); add "b" for binary.
+
+\begin{multicols}{2}
+\t{f.read()} \n Read everything
+\t{f.read(size)} \n Read up to $size$ bytes
+\t{f.readline()} \n Read a line
+\t{f.close()} \n Close the file
+\end{multicols}
+
+\subsection{Iterators}
+Any sequence, file, function with \<yield>, etc. may be iterated over. \<for> calls these functions automatically.
+\t{it = iter(x)} \n Return an iterator over $x$
+\t{it.next()} \n Return the next value in an iterator, or raise \<StopIteration>
+
+\subsection{None}
+Immutable, hashable
+
+None is similar to NULL in C++/Java. It represents a missing value
+
+It is the default return value of functions (missing \<return>, or \<return> with no value).
+
+\pagebreak
+\section{Magic Methods}
+Define these in your own class to gain specific functionality.
+\begin{multicols}{2}
+\subsection{Basics}
+\t{C.\magic{init}()} \n Initialize the object
+\subsection{Conversion}
+\t{c.\magic{str}()} \n \verb+str(c)+
+\t{c.\magic{repr}()} \n \verb+repr(c)+
+\t{c.\magic{format}(spec)} \n \verb+"{0:spec}".format(c)+
+\t{c.\magic{complex}()} \n \verb+complex(c)+
+\t{c.\magic{int}()} \n \verb+abs()+
+\t{c.\magic{float}()} \n \verb+abs()+
+\t{c.\magic{nonzero}()} \n Boolean value
+\subsection{Iteration}
+\t{c.\magic{iter}()} \n \verb+iter(c)+
+\t{c.\magic{reversed}()} \n Reverse iterator
+\subsection{Attribute access}
+\t{c.\magic{getattr}(a)} \n \verb+c.a+, fallback
+\t{c.\magic{getattribute}(a)} \n \hspace{1ex}\verb+c.a+, unconditional
+\t{c.\magic{setattr}(a, v)} \n \verb+c.a = v+
+\t{c.\magic{delattr}(a)} \n \verb+del c.a+
+\t{c.\magic{dir}()} \n List attributes (for dir())
+\subsection{Calling}
+\t{c.\magic{call}(...)} \n \verb+c(...)+
+\subsection{Emulating sets}
+\t{c.\magic{contains}(e)} \n \verb+e in c+
+\t{c.\magic{len}()} \n Length (for len())
+\subsection{Emulating dictionaries}
+\t{c.\magic{getitem}(x)} \n \verb+c[x]+
+\t{c.\magic{setitem}(x, v)} \n \verb+c[x] = v+
+\t{c.\magic{delitem}(x)} \n \verb+del c[x]+
+\t{c.\magic{missing}(x)} \n \verb+c[x]+ if \verb+c not in x+
+\subsection{Emulating numbers}
+\t{c.\magic{add}(x)} \n \verb-c + x-
+\t{c.\magic{sub}(x)} \n \verb+c - x+
+\t{c.\magic{mul}(x)} \n \verb+c * x+
+\t{c.\magic{div}(x)} \n \verb+c / x+
+\t{c.\magic{mod}(x)} \n \verb+c % x+
+\t{c.\magic{floordiv}(x)} \n \verb+c // x+
+\t{c.\magic{divmod}(x)} \n \verb+divmod(c, x)+
+\t{c.\magic{pow}(x)} \n \verb+c ** x+
+\t{c.\magic{rshift}(x)} \n \verb+c >> x+
+\t{c.\magic{lshift}(x)} \n \verb+c << x+
+\t{c.\magic{and}(x)} \n \verb+c & x+
+\t{c.\magic{xor}(x)} \n \verb+c ^ x+
+\t{c.\magic{or}(x)} \n \verb+c | x+
+\smallskip
+\t{c.\magic{radd}(x)} \n \verb-x + c-
+\par etc.
+\smallskip
+\t{c.\magic{iadd}(x)} \n \verb-c += x-
+\par etc.
+\smallskip
+\t{c.\magic{neg}(x)} \n \verb+-c+
+\t{c.\magic{pos}()} \n \verb-+c-
+\t{c.\magic{abs}()} \n \verb+abs(c)+
+\t{c.\magic{invert}()} \n \verb+~c+
+\t{c.\magic{round}(n)} \n \verb+round(c, n)+
+\t{c.\magic{index}()} \n \verb+lst[c]+
+\t{c.\magic{oct}()} \n \verb+oct(c)+
+\t{c.\magic{hex}()} \n \verb+hex(c)+
+\t{c.\magic{coerce}(o)} \n (c, o) converted to common type
+\subsection{Comparisons}
+\t{c.\magic{lt}(o)} \n \verb+c < o+
+\t{c.\magic{gt}(o)} \n \verb+c > o+
+\t{c.\magic{le}(o)} \n \verb+c <= o+
+\t{c.\magic{ge}(o)} \n \verb+c >= o+
+\t{c.\magic{eq}(o)} \n \verb+c == o+
+\t{c.\magic{ne}(o)} \n \verb+c != o+
+\subsection{Context handlers}
+\t{c.\magic{enter}(o)} \n \verb+with c:+ (entry)
+\t{c.\magic{exit}(o)} \n \verb+with c:+ (exit)
+\subsection{Low-level stuff}
+Read the documentation!
+\t{C.\magic{new}(params)} \n Override object construction
+\t{c.\magic{del}()} \n Clean up object
+\t{C.\magic{slots}} \n Limit attributes
+\t{c.\magic{hash}()} \n Compute hash value
+\t{C.\magic{metaclass}} \n The class of the class
+\t{C.\magic{instancecheck}(x)} \n \hspace{1em}\verb+isinstance(x, C)+
+\t{C.\magic{subclasscheck}(X)} \n \hspace{1em}\verb+issubclass(X, C)+
+\end{multicols}
+
+\pagebreak
+\section{Good practice}
+
+\begin{items}
+\item Name your variables consistently.
+\item Don't use names of built-in objects.
+\item Indent each block with four spaces.
+\item Write good docstrings.
+\begin{multicols}{3}\small
+\colorbox{silver}{\rlap{Bad}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+def factorial(n):
+    if n > 1:
+        return n * factorial(n - 1)
+    else:
+        return 1
+\end{verbatim}
+\columnbreak
+\colorbox{silver}{\rlap{Better}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+def factorial(n):
+    "compute factorial"
+    if n > 1:
+        return n * factorial(n - 1)
+    else:
+        return 1
+\end{verbatim}
+\columnbreak
+\colorbox{silver}{\rlap{Best}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+def factorial(n):
+    """Return the factorial of n
+
+    n: nonnegative integer
+    """
+    if n > 1:
+        return n * factorial(n - 1)
+    else:
+        return 1
+\end{verbatim}
+\end{multicols}
+
+\item Use language features that apply. For example, iterate over anything iterable.
+\begin{multicols}{3}\small
+\colorbox{silver}{\rlap{Bad}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+result = []
+i = 0
+while i < len(lst):
+    result.append(lst[i] * 2)
+    i += 1
+\end{verbatim}
+\columnbreak
+\colorbox{silver}{\rlap{Better}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+result = []
+for item in lst:
+    result.append(item * 2)
+\end{verbatim}
+\columnbreak
+\colorbox{silver}{\rlap{Best}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+result = [item * 2 for item in lst]
+\end{verbatim}
+\end{multicols}
+
+\item It's better to beg for forgiveness than to ask for permission.
+\begin{multicols}{3}\small
+\colorbox{silver}{\rlap{Bad}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+if 'key' in dictionary:
+    return dictionary[key]
+else:
+    return 'default value'
+\end{verbatim}
+\columnbreak
+\colorbox{silver}{\rlap{Better}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+try:
+    return dictionary[key]
+except Exception:
+    return 'default value'
+\end{verbatim}
+\columnbreak
+\colorbox{silver}{\rlap{Best}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+return dictionary.get(
+        key, 'default value')
+\end{verbatim}
+\end{multicols}
+
+\item Numeric zeroes and empty containers are false
+\begin{multicols}{3}\small
+\colorbox{silver}{\rlap{Bad}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+if length(lst) == 0:
+    print 'Empty'
+\end{verbatim}
+\columnbreak
+\colorbox{silver}{\rlap{Better}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+if length(lst):
+    print 'Empty'
+\end{verbatim}
+\columnbreak
+\colorbox{silver}{\rlap{Best}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+if not lst:
+    print 'Empty'
+\end{verbatim}
+\columnbreak
+\end{multicols}
+
+\item Use the standard library!
+\begin{multicols}{2}\small
+\colorbox{silver}{\rlap{Bad}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+def read_csv_file(file):
+    for line in file:
+        yield line.split(',')
+
+for record in read_csv_file(open('data.csv')):
+    # process record
+\end{verbatim}
+\columnbreak
+\colorbox{silver}{\rlap{Better}\hspace{0.8\columnwidth}}
+\begin{verbatim}
+import csv
+
+for record in csv.reader(open('data.csv')):
+    # process record
+\end{verbatim}
+\columnbreak
+\end{multicols}
+
+\item Follow PEP8 to make your code look perfect.
+\\\url{http://www.python.org/dev/peps/pep-0008/}
+\end{items}
+
+
+\end{document}
+
+

@@ -1,0 +1,16 @@
+>>> import apihelper
+>>> import registration
+>>> apihelper.info(registration)
+buildURL   Build an URL from a dictionary of parameters. Returns string.
+
+>>> li = []
+>>> apihelper.info(li)
+append     L.append(object) -- append object to end
+count      L.count(value) -> integer -- return number of occurrences of value
+extend     L.extend(iterable) -- extend list by appending elements from the iterable
+index      L.index(value, [start, [stop]]) -> integer -- return first index of value. ...
+insert     L.insert(index, object) -- insert object before index
+pop        L.pop([index]) -> item -- remove and return item at index (default last). ...
+remove     L.remove(value) -- remove first occurrence of value. Raises ValueError ...
+reverse    L.reverse() -- reverse *IN PLACE*
+sort       L.sort(cmp=None, key=None, reverse=False) -- stable sort *IN PLACE*; ...

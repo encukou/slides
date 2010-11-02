@@ -1,0 +1,27 @@
+>>> def foo(): print 2
+>>> foo()
+2
+>>> foo.__doc__
+>>> foo.__doc__ is None 
+True
+>>> str(foo.__doc__)
+'None'
+
+>>> import pydoc
+>>> pydoc.help([])
+Help on list object:
+<BLANKLINE>
+class list(object)
+    |  list() -> new empty list
+    |  list(iterable) -> new list initialized from iterable's items
+    |  
+    |  Methods defined here:
+...
+
+>>> help("for")
+The ``for`` statement
+*********************
+<BLANKLINE>
+The ``for`` statement is used to iterate over the elements of a
+sequence (such as a string, tuple or list) or other iterable object:
+...

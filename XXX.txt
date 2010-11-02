@@ -1,0 +1,4 @@
+# XXX: Formal coverage of control structures ... http://docs.python.org/tutorial/controlflow.html (+include exceptions) + Coding style
+# XXX: Classes
+# XXX: Iterators, generators
+# XXX: namespaces, import, packages
