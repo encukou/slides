@@ -9,6 +9,18 @@
 \newcommand\im[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{3.5cm}}
 \newcommand\nim{\par\hspace{3.5cm}}
 
+\newcommand\Pis{\PY{o+ow}{is }}
+\newcommand\Pin{\PY{o+ow}{in }}
+\newcommand\Pnot{\PY{o+ow}{not }}
+\newcommand\Pand{\PY{o+ow}{and }}
+\newcommand\Por{\PY{o+ow}{or }}
+\newcommand\Pif{\PY{o+ow}{if }}
+\newcommand\Pelse{\PY{o+ow}{else }}
+\newcommand\Pfor{\PY{o+ow}{for }}
+\newcommand\Pimport{\PY{k}{import }}
+\newcommand\Pfrom{\PY{k}{from }}
+\newcommand\Pprint{\PY{k}{print }}
+\def\K#1 {\PY{k}{#1} }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -52,9 +64,9 @@ following special import to make them return floats:
 \begin{frame}[fragile]{Comparison Operators}
 \im{< <= => >} Less than, less than or equal, etc.
 \im{x == y} Equality (objects have same contents)
-\im{x is y} Identity (is it the same object?)
+\im{x \Pis y} Identity (is it the same object?)
 \im{x != y} Negated equality
-\im{x is not y} Negated identity
+\im{x \Pis \Pnot y} Negated identity
 
 \bigskip
 
@@ -66,9 +78,9 @@ following special import to make them return floats:
 
 
 \begin{frame}[fragile]{Logical Operators}
-\im{x and y} True when both operands are true
-\im{x or y} At least one operand is true
-\im{not x} Negation
+\im{x \Pand y} True when both operands are true
+\im{x \Por y} At least one operand is true
+\im{\Pnot x} Negation
 
 \bigskip
 
@@ -101,8 +113,8 @@ following special import to make them return floats:
 \end{frame}
 
 \begin{frame}[fragile]{Containers}
-\im{x in y} Inclusion (Is \verb+x+ in \verb+y+?)
-\im{x not in y} Negated inclusion
+\im{x \Pin y} Inclusion (Is \verb+x+ in \verb+y+?)
+\im{x \Pnot \Pin y} Negated inclusion
 \im{x[y]} Subscription
 \im{x[i:j]} Slicing
 \im{x[i:j:s]} Slicing with a step
@@ -115,16 +127,15 @@ In slicing, \verb+i+, \verb+j+, or \verb+s+ can be left out and default to (0, -
 \begin{frame}[fragile]{Special operators}
 \im{f(params)} Call
 \im{x.attr} Attribute access
-\im{x if c else y} Inline if
-\im{`x`} Representation (use the repr() function)
-\im{[f(x) for x in l if c(x)]} \hspace{6em} List comprehension
+\im{x \Pif c \Pelse y} Inline if
+\im{`x`} Representation (use \verb+repr(x)+ instead)
+\im{\K lambda p: x} Lambda function
+\im{[f(x) \Pfor x \Pin l \Pif c(x)]} \hspace{6em} List comprehension
 
 \bigskip
-To be covered later:
 
-\im{lambda p: x} Lambda function
-\im{(yield x)} Coroutine-style yield
-\im{(f(x) for x in l if c(x))} \hspace{6em} Generator comprehension
+\im{(\K yield x)} Coroutine-style yield
+\im{(f(x) \Pfor x \Pin l \Pif c(x))} \hspace{6em} Generator expression
 \end{frame}
 
 
@@ -168,38 +179,39 @@ C programmers might note that there is no \verb-x++- operator.
 \end{frame}
 
 \begin{frame}[fragile]{Importing and Printing}
-\im{import m} Import module \verb+m+ into variable \verb+m+
-\im{from m import x} Import \verb+m.x+ into variable \verb+x+
+\im{\K import m} Import module \verb+m+ into variable \verb+m+
+\im{\K from m \K import x} Import \verb+m.x+ into variable \verb+x+
 \smallskip
-\im{import m as y} Import \verb+m+ into \verb+y+
-\im{from m import x as y} \hspace{3em} Import \verb+m.x+ into \verb+y+
+\im{\K import m \K as y} Import \verb+m+ into \verb+y+
+\im{\K from m \K import x \K as y} \hspace{3em} Import \verb+m.x+ into \verb+y+
 
 \bigskip\bigskip
 
-\im{print x, y, z} Print the values to standard output
-\im{print x, y, z,} Print without a final newline
-\im{print>>file, x} Print to the given file
+\im{\K print x, y, z} Print the values to standard output
+\im{\K print x, y, z,} Print without a final newline
+\im{\K print>>file, x} Print to the given file
 
 {\small(In Python 3, print is a function)}
 \end{frame}
 
 \begin{frame}[fragile]{Miscellaneous simple statements}
-\im{raise e} Raise an exception
-\im{return x} Exit current function, returning \verb+x+
-\im{return} Exit current function, returning \verb+None+
-\im{del x} Delete the \emph{name} \verb+x+
-\im{pass} Do nothing (use for empty blocks)
+\im{\K raise e} Raise an exception
+\im{\K return x} Exit current function, returning \verb+x+
+\im{\K return } Exit current function, returning \verb+None+
+\im{\K del x} Delete the \emph{name} \verb+x+
+\im{\K pass } Do nothing (use for empty blocks)
 
 \bigskip
 
-\im{assert x} Raise AssertionError if \verb+x+ is false
-\im{assert x, s} \verb+s+ becomes the AssertionError's message
+\im{\K assert x} Raise AssertionError if \verb+x+ is false
+\im{\K assert x, s} \verb+s+ becomes the AssertionError's message
 
 \bigskip
 
-\im{break} Break out of the current loop
-\im{continue} Continue the current loop
-\im{exec s} Execute the string as Python code (ugly!)
+\im{\K break } Break out of the current loop
+\im{\K continue } Continue the current loop
+\im{\K yield x} Generator yield
+\im{\K exec s} Execute the string as Python code (ugly!)
 \end{frame}
 
 \section{Compound Statements}
@@ -263,10 +275,6 @@ For the arguments of a function:
 
 \begin{frame}[fragile]{Defining classes: class}
 \input "|./highlight.py samples/05class.py fontsize=!small no"
-
-\bigskip
-
-More about classes next time
 \end{frame}
 
 \end{document}

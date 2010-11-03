@@ -41,10 +41,11 @@ if __name__ == '__main__':
             file = filename[1:]
         else:
             file = open(filename).read()
-        print (pygments.highlight(file, makeLexer(file), makeFormatter(*sys.argv[2:]))
+        rv = (pygments.highlight(file, makeLexer(file), makeFormatter(*sys.argv[2:]))
                 .replace('~', r'{\texttildelow}')
                 .replace("'", r'{\textquotesingle}')
                 .replace('<BLANKLINE>', '')
                 .replace(u'नमस्कार संसार', r'\includegraphics[height=.7em]{helloworldr}', 1)
                 .replace(u'नमस्कार संसार', r'\includegraphics[height=.7em]{helloworldg}', 1)
-            ).encode('utf-8')
+            )
+        print rv.encode('utf-8')
