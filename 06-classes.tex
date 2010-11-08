@@ -1,0 +1,151 @@
+\documentclass{pyslides}
+
+\title{Classes and Objects}
+\pyslidenumber{6}
+\date{November 2010}
+
+\newcommand\im[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{3.5cm}}
+\newcommand\nim{\par\hspace{3.5cm}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\section{}
+
+\begin{frame}[fragile]{Namespaces}
+We will begin with a little bit of theory.
+
+\bigskip
+
+Trying to understand this might make your head spin...
+
+\hfill ... understanding will make you a Python wizard.
+
+\bigskip
+
+If you want to study this later by yourself, look at \href{http://docs.python.org/tutorial/classes.html}{docs.python.org/tutorial/classes.html}.
+\end{frame}
+
+\section{Namespaces}
+
+\begin{frame}[fragile]{Namespaces}
+
+In Python, a \emph{namespace} is basically a dictionary that maps names to values.
+
+Every module has a namespace, called the \emph{module-level} or \emph{global} namespace.
+
+Variables and functions not defined in functions (or classes) live there.
+
+Objects in the global namespace are accessible as \emph{attributes} of the module.
+
+There is also a \emph{built-in} namespace that all modules share.
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Function namespaces: Assigning}
+
+Every function has its own namespace. The function's arguments are automatically added there.
+
+\emph{Assigning} to a variable assigns to the function's namespace.
+
+The \PY{k}{\tt global} keyword can be used to force assignments to the global (module-level) namespace.
+\end{frame}
+
+\begin{frame}[fragile]{Function namespaces: Using}
+
+When you \emph{use} a variable, Python looks in:
+\begin{itemize}
+\item The current function's namespace
+\item The enclosing functions' namespace(s)
+\item The global namespace
+\item The built-in namespace
+\end{itemize}
+
+\bigskip
+
+\input "|./highlight.py 'samples/06funcns.py' fontsize=!small no"
+\end{frame}
+
+
+\begin{frame}[fragile]{Nested Functions}
+\input "|./highlight.py 'samples/06funcinfunc.py' fontsize=!small no"
+\end{frame}
+
+\section{Classes}
+
+\begin{frame}[fragile]{Classes}
+Creating a~\emph{class} also creates an object with its own namespace.
+
+\bigskip
+
+\input "|./highlight.py 'samples/06class1.py' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Instances}
+\emph{Calling} a~class creates an \emph{instance} of the class.
+
+Instance attributes are independent of the class attributes.
+
+But when there is no instance attribute of some name, the class' one is used.
+
+\bigskip
+
+\input "|./highlight.py 'samples/06instantiation.py' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Instances attributes}
+In this example, each {\tt exampleInstance.a} on line 6 is in a different namespace.
+
+\bigskip
+
+\input "|./highlight.py 'samples/06instantiaceex.py' fontsize=!small"
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Methods}
+Functions defined in a class are called \emph{methods}.
+
+If a class' method is looked up by an instance's attribute access, the method is \emph{bound} to the instance.
+
+\input "|./highlight.py 'samples/06methods.txt' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Bound Methods}
+A \emph{bound method} has its first argument set to the instance it is bound to.
+
+\input "|./highlight.py 'samples/06boundmethod.txt' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Unbound Methods}
+An \emph{unbound method} needs an instance as its first argument.
+
+\input "|./highlight.py 'samples/06unboundmethod.txt' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Superclasses}
+A \emph{superclass} of a class is where an attribute is searched for if it's not found in the class.
+
+\input "|./highlight.py 'samples/06superclass.txt' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Metaclasses}
+Metaclasses are \emph{black magic}. Go read about them if this was not enough of an intelectual challenge.
+
+\bigskip
+
+Meanwhile, let's explain classes in a friendly way.
+
+\end{frame}
+
+
+\end{document}

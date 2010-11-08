@@ -19,29 +19,29 @@ KeyError: 'Petr'
 >>> d["program"] = "Computer science" 
 >>> d
 {'program': 'Computer science', 'name': 'Petr'}
->>> d["eyes"] = "blue"
+>>> d["hair"] = "brown"
 >>> d
-{'eyes': 'blue', 'program': 'Computer science',
+{'hair': 'brown', 'program': 'Computer science',
 'name': 'Petr'}
 
 >>> d
-{'eyes': 'blue', 'program': 'Computer science',
+{'hair': 'brown', 'program': 'Computer science',
 'name': 'Petr'}
 >>> d["age"] = 24
 >>> d
-{'age': 24, 'eyes': 'blue',
+{'hair': 'brown', 'age': 24,
 'program': 'Computer science', 'name': 'Petr'}
 >>> d[2] = "two"
 >>> d
-{2: 'two', 'age': 24, 'eyes': 'blue',
+{'hair': 'brown', 2: 'two', 'age': 24,
 'program': 'Computer science', 'name': 'Petr'}
 
 >>> d
-{2: 'two', 'age': 24, 'eyes': 'blue',
+{'hair': 'brown', 2: 'two', 'age': 24,
 'program': 'Computer science', 'name': 'Petr'}
 >>> del d[2] 
 >>> d
-{'age': 24, 'eyes': 'blue',
+{'hair': 'brown', 'age': 24,
 'program': 'Computer science', 'name': 'Petr'}
 >>> d.clear() 
 >>> d

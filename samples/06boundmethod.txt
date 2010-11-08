@@ -1,0 +1,10 @@
+>>> class ExampleClass(object):
+...     a = 1
+...     def getA(self):
+...         return self.a
+>>> exampleInstance = ExampleClass()
+>>> exampleInstance.getA()
+1
+>>> exampleInstance.a = 'something else'
+>>> exampleInstance.getA()
+'something else'

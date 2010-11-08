@@ -1,0 +1,12 @@
+>>> class ExampleClass(object):
+...     def method(self):
+...         print "Hello world!"
+
+>>> ExampleClass.method
+<unbound method ExampleClass.method>
+
+>>> exampleInstance = ExampleClass()
+
+>>> exampleInstance.method
+<bound method ExampleClass.method of ...>
+

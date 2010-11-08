@@ -198,7 +198,7 @@ C programmers might note that there is no \verb-x++- operator.
 \im{\K raise e} Raise an exception
 \im{\K return x} Exit current function, returning \verb+x+
 \im{\K return } Exit current function, returning \verb+None+
-\im{\K del x} Delete the \emph{name} \verb+x+
+\im{\K del x} Delete the \emph{name} \verb+x+ (var, attr, element...)
 \im{\K pass } Do nothing (use for empty blocks)
 
 \bigskip
@@ -210,6 +210,7 @@ C programmers might note that there is no \verb-x++- operator.
 
 \im{\K break } Break out of the current loop
 \im{\K continue } Continue the current loop
+\im{\K global x} Mark \verb+x+ as global
 \im{\K yield x} Generator yield
 \im{\K exec s} Execute the string as Python code (ugly!)
 \end{frame}
@@ -259,6 +260,10 @@ This is similar to a \verb$try-finally$ statement, but a \emph{context object} s
 
 \begin{frame}[fragile]{Defining functions: def}
 \input "|./highlight.py samples/05def.py fontsize=!small no"
+
+\bigskip
+
+{\tt\K def } creates a function and assigns it to the given variable.
 
 \bigskip
 

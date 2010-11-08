@@ -1,0 +1,15 @@
+>>> class Superclass(object):
+...     def methodA(self):
+...         print "A"
+
+>>> class Subclass(Superclass):
+...     def methodB(self):
+...         self.methodA()
+...         print "B"
+
+>>> instance = Subclass()
+>>> instance.methodA()
+A
+>>> instance.methodB()
+A
+B
