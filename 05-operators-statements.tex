@@ -107,13 +107,13 @@ following special import to make them return floats:
 \bigskip
 
 \begin{itemize}
-\item Don't use on numbers unless you have a reason (cryptography).
+\item C programmers: Try not to use them on numbers unless you have a reason (cryptography).
 \item Useful on sets.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Containers}
-\im{x \Pin y} Inclusion (Is \verb+x+ in \verb+y+?)
+\im{x \Pin y} Inclusion (Is \verb+x+ in the container \verb+y+?)
 \im{x \Pnot \Pin y} Negated inclusion
 \im{x[y]} Subscription
 \im{x[i:j]} Slicing
@@ -121,19 +121,19 @@ following special import to make them return floats:
 
 \bigskip
 
-In slicing, \verb+i+, \verb+j+, or \verb+s+ can be left out and default to (0, -1, 1), respectively.
+In slicing, \verb+i+, \verb+j+, or \verb+s+ can be left out and default to (0, end, 1), respectively.
 \end{frame}
 
 \begin{frame}[fragile]{Special operators}
 \im{f(params)} Call
 \im{x.attr} Attribute access
 \im{x \Pif c \Pelse y} Inline if
-\im{`x`} Representation (use \verb+repr(x)+ instead)
 \im{\K lambda p: x} Lambda function
 \im{[f(x) \Pfor x \Pin l \Pif c(x)]} \hspace{6em} List comprehension
 
 \bigskip
 
+\im{`x`} Representation (use \verb+repr(x)+ instead)
 \im{(\K yield x)} Coroutine-style yield
 \im{(f(x) \Pfor x \Pin l \Pif c(x))} \hspace{6em} Generator expression
 \end{frame}
@@ -153,12 +153,12 @@ In slicing, \verb+i+, \verb+j+, or \verb+s+ can be left out and default to (0, -
 \im{x.attr = y} Attribute assignment
 \im{x[3] = y} Subscript assignment
 \im{x[3:5] = t} Slice assignment*
-\im{x[3:9:2] = t} Extended slice assignment*$^\dagger$
-\im{a, b, c = t} Multiple assignment*$^\dagger$
+\im{x[3:9:2] = t} Extended slice assignment*%$^\dagger$
+\im{a, b, c = t} Multiple assignment*%$^\dagger$
 
 {\small*\verb+t+ must be \emph{iterable}}
 
-{\small$^\dagger$in these cases \verb+t+ has to have the same length as what was there before}
+%{\small$^\dagger$in these cases \verb+t+ has to have the same length as what is assigned to}
 
 \bigskip
 
@@ -178,15 +178,17 @@ And similarly \verb$-=$, \verb$*=$, \verb$/=$, \verb$//=$, \verb$%=$, \verb$**=$
 C programmers might note that there is no \verb-x++- operator.
 \end{frame}
 
-\begin{frame}[fragile]{Importing and Printing}
+\begin{frame}[fragile]{Importing}
 \im{\K import m} Import module \verb+m+ into variable \verb+m+
 \im{\K from m \K import x} Import \verb+m.x+ into variable \verb+x+
 \smallskip
 \im{\K import m \K as y} Import \verb+m+ into \verb+y+
+\smallskip
 \im{\K from m \K import x \K as y} \hspace{3em} Import \verb+m.x+ into \verb+y+
+\im{\K from m \K import *} \hspace{3em} Import “everything” from \verb+m+
+\end{frame}
 
-\bigskip\bigskip
-
+\begin{frame}[fragile]{Printing}
 \im{\K print x, y, z} Print the values to standard output
 \im{\K print x, y, z,} Print without a final newline
 \im{\K print>>file, x} Print to the given file
@@ -195,7 +197,6 @@ C programmers might note that there is no \verb-x++- operator.
 \end{frame}
 
 \begin{frame}[fragile]{Miscellaneous simple statements}
-\im{\K raise e} Raise an exception
 \im{\K return x} Exit current function, returning \verb+x+
 \im{\K return } Exit current function, returning \verb+None+
 \im{\K del x} Delete the \emph{name} \verb+x+ (var, attr, element...)
@@ -203,6 +204,7 @@ C programmers might note that there is no \verb-x++- operator.
 
 \bigskip
 
+\im{\K raise e} Raise an exception
 \im{\K assert x} Raise AssertionError if \verb+x+ is false
 \im{\K assert x, s} \verb+s+ becomes the AssertionError's message
 
@@ -242,7 +244,7 @@ For files, the lines are iterated over.
 C programmers might note that there is no do-while.
 \end{frame}
 
-\begin{frame}[fragile]{Terminating a loop}
+\begin{frame}[fragile]{Cheating loops: break/continue}
 \input "|./highlight.py samples/05for2.py fontsize=!small no"
 \end{frame}
 

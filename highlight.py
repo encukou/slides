@@ -42,6 +42,8 @@ if __name__ == '__main__':
         else:
             file = open(filename).read()
         rv = (pygments.highlight(file, makeLexer(file), makeFormatter(*sys.argv[2:]))
+                .replace('`apos*', "'")
+                .replace('*apos`', "'")
                 .replace('~', r'{\texttildelow}')
                 .replace("'", r'{\textquotesingle}')
                 .replace('<BLANKLINE>', '')

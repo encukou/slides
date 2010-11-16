@@ -1,0 +1,17 @@
+>>> class MyList(list):
+...     def __str__(self):
+...         if len(self) > 1:
+...             firstpart = ', '.join(self[:-1])
+...             return firstpart + ', and ' + self[-1]
+...         elif len(self) == 1:
+...             return self[0]
+...         else:
+...             return 'nothing'
+
+>>> lst = MyList(["A", "B", "C", "D"])
+>>> print lst
+A, B, C, and D
+>>> print MyList(["A"])
+A
+>>> print MyList()
+nothing

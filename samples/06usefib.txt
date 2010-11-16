@@ -1,0 +1,11 @@
+>>> from fib import Fib
+
+>>> instance = Fib()  # Call a class to instantiate it
+>>> instance.next()
+0
+>>> instance.next()
+1
+>>> instance.next(), instance.next(), instance.next()
+(1, 2, 3)
+>>> instance.next(), instance.next(), instance.next()
+(5, 8, 13)

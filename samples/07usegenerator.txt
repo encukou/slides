@@ -1,0 +1,27 @@
+>>> from generator import fibonacci
+
+>>> for i in fibonacci(3):
+...     print i
+0
+1
+1
+2
+3
+
+>>> iterator = fibonacci(3)
+>>> iterator
+<generator object fibonacci ...>
+
+>>> iterator.next()
+0
+
+>>> iterator.next()
+1
+
+>>> iterator.next(), iterator.next(), iterator.next()
+(1, 2, 3)
+
+>>> iterator.next()
+Traceback (most recent call last):
+    iterator.next()
+StopIteration

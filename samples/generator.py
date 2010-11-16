@@ -1,0 +1,1 @@
+/home/petr/school/python/slides/samples/07generator.py

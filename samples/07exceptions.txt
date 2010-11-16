@@ -1,0 +1,4 @@
+>>> 1 / 0
+Traceback (most recent call last):
+    1 / 0
+ZeroDivisionError: integer division or modulo by zero

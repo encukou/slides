@@ -1,4 +1,5 @@
->>> def foo(): print 2
+>>> def foo():
+...     print 2
 >>> foo()
 2
 >>> foo.__doc__

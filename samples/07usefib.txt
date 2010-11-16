@@ -1,0 +1,40 @@
+>>> from fib import Fib
+
+>>> instance = Fib(20)  # max = 20
+>>> for i in instance:
+...     print i
+0
+1
+1
+2
+3
+5
+8
+13
+
+>>> list(Fib(50))
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+>>> [i for i in Fib(100000) if i % 2 == 0]
+[0, 2, 8, 34, 144, 610, 2584, 10946, 46368]
+
+>>> instance = Fib()
+>>> instance[3]
+Traceback (most recent call last):
+    instance[3]
+TypeError: 'Fib' object does not support indexing
+
+>>> instance = Fib(3)
+>>> for i in instance:
+...     print i
+0
+1
+1
+2
+3
+>>> for i in instance:
+...     print i
+>>> for i in instance:
+...     print i
+>>> list(instance)
+[]

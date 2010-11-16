@@ -1,0 +1,137 @@
+\documentclass{pyslides}
+
+\title{Iterators \& Generators}
+\pyslidenumber{8}
+\date{November 2010}
+
+\newcommand\im[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{3.5cm}}
+\newcommand\imz[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{1.5cm}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+\section{Iterators}
+
+\begin{frame}[fragile]{What does for do?}
+What does the \texttt{for} statement do, under the hood?
+
+\input "|./highlight.py 'samples/07for.txt' fontsize=!small,lastline=6 no"
+\end{frame}
+
+\begin{frame}[fragile]{1. Get an iterator}
+First, \texttt{for} takes an \emph{iterator} to its argument.
+
+You can do the same using the \emph{iter} function:
+
+\input "|./highlight.py 'samples/07for.txt' fontsize=!small,firstline=8,lastline=10 no"
+\end{frame}
+
+\begin{frame}[fragile]{2. Call the iterator's next() method}
+Second, \texttt{for} calls the iterator's next() method whenever it needs a new value:
+
+\input "|./highlight.py 'samples/07for.txt' fontsize=!small,firstline=12,lastline=17 no"
+\end{frame}
+
+\begin{frame}[fragile]{3. End when StopIteration is raised}
+When a \texttt{StopIteration} exception is raised, \texttt{for} finishes the loop.
+
+\input "|./highlight.py 'samples/07for.txt' fontsize=!small,firstline=19 no"
+\end{frame}
+
+\begin{frame}[fragile]{While equivalent}
+So, the following are roughly equivalent:
+
+\input "|./highlight.py 'samples/07forwhile.py' fontsize=!small,firstline=2 no"
+\end{frame}
+
+\begin{frame}[fragile]{Creating your own iterators}
+To create your own objects that \texttt{for} can iterate over, you need the \texttt{iter} function to return something with a next() method.
+
+\bigskip
+
+If you call \texttt{iter()} on an instance, it calls the \texttt{\magic{iter}} method.
+
+{\small (Just like if you call \texttt{str()}, it calls the \texttt{\magic{str}} method.)}
+\end{frame}
+
+\begin{frame}[fragile]{Fibonacci iterator I}
+Instances of the \texttt{Fib} class from earlier return themselves as their own iterators.
+\input "|./highlight.py 'samples/06fib.py' fontsize=!scriptsize"
+\end{frame}
+
+\begin{frame}[fragile]{Fibonacci iterator II}
+\input "|./highlight.py 'samples/07usefib.txt' fontsize=!small,lastline=13 no"
+
+When you make iterators for \texttt{for}, always be sure that they raise StopIteration at some point!
+\end{frame}
+
+\begin{frame}[fragile]{Like a list}
+Our iterator will work in many cases:
+\bigskip
+\input "|./highlight.py 'samples/07usefib.txt' fontsize=!small,firstline=15,lastline=19 no"
+\end{frame}
+
+\begin{frame}[fragile]{Unlike a list}
+But it is not a \emph{sequence}, like lists are:
+\bigskip
+\input "|./highlight.py 'samples/07usefib.txt' fontsize=!small,firstline=21,lastline=25 no"
+\end{frame}
+
+\begin{frame}[fragile]{Iterators run out}
+\input "|./highlight.py 'samples/07usefib.txt' fontsize=!small,firstline=27 no"
+Once done, our simple iterator will always raise StopIteration. How would you fix it?
+\end{frame}
+
+\begin{frame}[fragile]{Creating a new iterator in \_\_iter\_\_}
+\input "|./highlight.py 'samples/07betterfib.py' fontsize=!small,firstline=18,firstnumber=18"
+Always return a new iterator from \magic{iter} if you want to iterate multiple times:
+\input "|./highlight.py 'samples/07usebetterfib.txt' fontsize=!small,firstline=3 no"
+\end{frame}
+
+\section{Generators}
+
+\begin{frame}[fragile]{Generator Functions}
+There is another way to define iterators:
+\input "|./highlight.py 'samples/07generator.py' fontsize=!small"
+\bigskip
+This is called a \emph{generator function}.
+\input "|./highlight.py 'samples/07usegenerator.txt' fontsize=!small,firstline=3,lastline=9 no"
+\end{frame}
+
+\begin{frame}[fragile]{Calling Generator Functions I}
+Calling a \emph{generator function} creates a \emph{generator iterator}:
+\input "|./highlight.py 'samples/07usegenerator.txt' fontsize=!small,firstline=11,lastline=13 no"
+\bigskip
+Calling the next() method then runs the generator function up to the next \texttt{yield} statement, and returns the yielded value:
+\input "|./highlight.py 'samples/07usegenerator.txt' fontsize=!small,firstline=15,lastline=16 no"
+\bigskip
+Calling next() again will resume the function, and run it to the next \texttt{yield}:
+\input "|./highlight.py 'samples/07usegenerator.txt' fontsize=!small,firstline=18,lastline=19 no"
+\end{frame}
+
+\begin{frame}[fragile]{Calling Generator Functions II}
+And so on...
+\input "|./highlight.py 'samples/07usegenerator.txt' fontsize=!small,firstline=21,lastline=22 no"
+\bigskip
+... until it hits a \texttt{return} (or end of function); then a StopIteration is raised.
+\input "|./highlight.py 'samples/07usegenerator.txt' fontsize=!small,firstline=24,lastline=999 no"
+\end{frame}
+
+\begin{frame}[fragile]{Generator Expresions}
+There's yet a simpler way to define iterators:
+
+\bigskip
+
+\input "|./highlight.py 'samples/08genexp.txt' fontsize=!small no"
+\end{frame}
+
+\begin{frame}[fragile]{Parentheses are optional}
+In many cases, like when the generator expression is the \emph{only} function argument, you can leave out the parentheses.
+
+\bigskip
+
+\input "|./highlight.py '=max(person.age for person in people)' fontsize=!small no"
+\end{frame}
+
+\end{document}

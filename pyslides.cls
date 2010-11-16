@@ -143,6 +143,8 @@
 
 \setbeamertemplate{navigation symbols}{}
 
+\hypersetup{author=Petr Viktorin}
+
 \author{Petr Viktorin}
 \institute{University of Eastern Finland}
 
