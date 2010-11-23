@@ -1,0 +1,127 @@
+\documentclass{pyslides}
+
+\usepackage{multicol}
+
+\title{Packages}
+\pyslidenumber{9}
+\date{November 2010}
+
+\newcommand\im[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{3.5cm}}
+\newcommand\imz[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{1.5cm}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\section{Creating}
+
+\begin{frame}[fragile]{Creating Packages}
+A \emph{package} is a collection of modules.
+
+\bigskip
+
+To create a package, put a file named \texttt{\magic{init}.py} into a directory.
+\end{frame}
+
+\begin{frame}[fragile]{Sound Package Example}
+\begin{columns}[t]
+\begin{column}{4cm}
+\vspace{-0.25cm}
+\begin{Verbatim}[fontsize=\small]
+sound/
+    __init__.py
+    formats/
+        __init__.py
+        wav.py
+        aiff.py
+        au.py
+    effects/
+        __init__.py
+        echo.py
+        surround.py
+        reverse.py
+    filters/
+        __init__.py
+        equalizer.py
+        vocoder.py
+        karaoke.py
+\end{Verbatim}
+\bigskip
+\end{column}
+\begin{column}{6cm}
+To use this package:
+\input "|./highlight.py '=import sound.effects.echo' fontsize=!small no"
+
+or
+
+\input "|./highlight.py '=from sound.effects import echo' fontsize=!small no"
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{\magic{init}.py}
+\input "|./highlight.py '=from sound import effects' fontsize=!small no"
+
+When you import a package, you are importing the coresponding \texttt{\magic{init}.py} module.
+
+This module's variables are available as attributes, as with any other module.
+
+\bigskip
+
+Note that this does not give you the package's submodules (unless \texttt{\magic{init}.py} imports them).
+\end{frame}
+
+\section{Packaging}
+
+\begin{frame}[fragile]{Distributing packages}
+If you want to distribute your package to others, use the \texttt{setuptools} library
+to make it installable and add some information about it.
+
+\bigskip
+
+Look at the library's documentation, or see how other libraries you use do it.
+\end{frame}
+
+\begin{frame}[fragile]{setup.py}
+\input "|./highlight.py 'samples/09setup.py' fontsize=!tiny no"
+\end{frame}
+
+\section{Installing}
+
+\begin{frame}[fragile]{Virtual environment}
+When trying out Python packages, it can be useful to install them to a “virtual environment”:
+\begin{itemize}
+\item You don't have to be a system administrator (root)
+\item If something goes wrong, just delete one folder
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Installing \& Using virtualenv}
+\begin{itemize}
+\item Download \href{http://pypi.python.org/pypi/virtualenv}{pypi.python.org/pypi/virtualenv}
+\item Run \texttt{virtualenv \emph{environment-name}}
+\item Run \texttt{environment-name/bin/activate} to activate
+\end{itemize}
+Packages installed in a virtualenv will only be available in that virtualenv.
+\end{frame}
+
+\begin{frame}[fragile]{PIP}
+\emph{pip installs packages.}
+
+\bigskip
+
+If you use virtualenv, it is installed by default.
+
+Otherwise, download it from \href{http://pypi.python.org/pypi/pip}{pypi.python.org/pypi/pip}.
+
+\bigskip
+
+\begin{itemize}
+\item \texttt{pip install \emph{package} } installs a package
+\item \texttt{pip help } lists all options
+\end{itemize}
+
+\end{frame}
+
+\end{document}
