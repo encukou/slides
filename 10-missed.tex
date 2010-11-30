@@ -1,0 +1,79 @@
+\documentclass{pyslides}
+
+\usepackage{multicol}
+
+\title{Some final slides}
+\pyslidenumber{10}
+\date{November 2010}
+
+\newcommand\im[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{3.5cm}}
+\newcommand\imz[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{1.5cm}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\section{}
+
+\begin{frame}[fragile]{What did we miss?}
+There's always more to learn...
+
+\bigskip
+
+(Or: I forgot to tell you some things)
+
+\bigskip
+
+Anyway, here are Decorators and a few tips
+\end{frame}
+
+\section{Decorators}
+
+\begin{frame}[fragile]{Class method}
+\input "|./highlight.py 'samples/10decorators.py' fontsize=!small"
+\end{frame}
+
+\begin{frame}[fragile]{Static method}
+\input "|./highlight.py 'samples/10decorators2.py' fontsize=!small"
+\end{frame}
+
+\begin{frame}[fragile]{How decorators work}
+A decorator is a function that takes a function, and returns something to replace it.
+
+The following are equivalent:
+
+\input "|./highlight.py 'samples/10decorators-ex.py' fontsize=!small no"
+\end{frame}
+
+\begin{frame}[fragile]{Custom wrapping decorator}
+\input "|./highlight.py 'samples/10decorators3.py' fontsize=!small"
+\end{frame}
+
+\begin{frame}[fragile]{Properties}
+\input "|./highlight.py 'samples/10decorators2a.py' fontsize=!small"
+\end{frame}
+
+\section{Tips \& Tricks}
+
+\begin{frame}[fragile]{List of strings}
+\input "|./highlight.py 'samples/10listofstrings.txt' fontsize=!small"
+\end{frame}
+
+\begin{frame}[fragile]{Good practice}
+\begin{itemize}
+\item Name your variables consistently.
+\item Don't use names of built-in objects.
+\item Indent each block with four spaces.
+\item Write good docstrings.
+\item Use language features that apply. For example, iterate over anything iterable.
+\item It's better to beg for forgiveness than to ask for permission.
+\item Numeric zeroes and empty containers are false
+\item Use the standard library!
+\item Follow PEP8 to make your code look perfect.
+\\\url{http://www.python.org/dev/peps/pep-0008/}
+\end{itemize}
+
+\end{frame}
+
+\end{document}

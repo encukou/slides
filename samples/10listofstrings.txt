@@ -1,0 +1,2 @@
+>>> "John Terry Michael Eric Terry Graham".split()
+['John', 'Terry', 'Michael', 'Eric', 'Terry', 'Graham']
