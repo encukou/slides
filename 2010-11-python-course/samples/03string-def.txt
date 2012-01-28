@@ -1,0 +1,14 @@
+>>> "string", 'string'
+('string', 'string')
+>>> """triple-quoted strings
+... may span multiple lines"""
+'triple-quoted strings\nmay span multiple lines'
+>>> print '''triple-quoted strings
+... may span multiple lines'''
+triple-quoted strings
+may span multiple lines
+>>> print "Escape \n characters: \t, \', \", \', \\."
+Escape
+characters:       , ', ", ', \.
+>>> print r"Not escaped: \t, \', \", \', \\."
+Not escaped: \t, \', \", \', \\.

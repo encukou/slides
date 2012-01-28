@@ -1,0 +1,22 @@
+>>> lst = [1, 2, 3]
+>>> for i in lst:
+...     print i
+1
+2
+3
+
+>>> lst
+[1, 2, 3]
+>>> iterator = iter(lst)
+
+>>> iterator.next()
+1
+>>> iterator.next()
+2
+>>> iterator.next()
+3
+
+>>> iterator.next()
+Traceback (most recent call last):
+    iterator.next()
+StopIteration

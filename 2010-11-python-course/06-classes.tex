@@ -1,0 +1,220 @@
+\documentclass{pyslides}
+
+\title{Classes}
+\pyslidenumber{6}
+\date{November 2010}
+
+\newcommand\im[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{3.5cm}}
+\newcommand\imm[1]{\par\vspace{3pt}\hspace{0ex}\rlap{#1}\hspace{4.5cm}}
+\newcommand\nim{\par\hspace{3.5cm}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\section{Classes}
+
+\begin{frame}[fragile]{Example program}
+Download \texttt{fib.py} from the course page:
+\bigskip
+
+\input "|./highlight.py 'samples/06fib.py' fontsize=!scriptsize"
+\end{frame}
+
+\begin{frame}[fragile]{What's a class?}
+\input "|./highlight.py 'samples/06fib.py' fontsize=!small,lastline=1"
+
+Classes are a mechanism for defining your own objects.
+
+The \texttt{Fib} class defines objects that are able to give Fibonacci numbers:
+
+\input "|./highlight.py 'samples/06usefib.txt' fontsize=!small no"
+\end{frame}
+
+\begin{frame}[fragile]{Methods}
+\input "|./highlight.py 'samples/06fib.py' fontsize=!small,firstline=6,firstnumber=6,lastline=9"
+
+\emph{Methods} of a class are defined as functions that receive the current \emph{instance} as their first argument (usually named \texttt{self}).
+
+\bigskip
+
+\texttt{\magic{init}} is a special method that is called when the class is instantiated: a \emph{constructor}
+
+\end{frame}
+
+\begin{frame}[fragile]{Methods}
+\input "|./highlight.py 'samples/06fib.py' fontsize=!small,firstline=11,firstnumber=11,lastline=16"
+
+\texttt{next} is perfectly normal method that changes instance attributes, and returns a value.
+
+\bigskip
+
+When calling a method, leave the \texttt{self} argument out:
+
+\input "|./highlight.py 'samples/06usefib.txt' fontsize=!small,firstline=4,lastline=5 no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Magic methods}
+There are many “magic methods” that Python calls “behind your back”, like \magic{init} – for example these:
+
+\imm{\magic{init}(self)}        The constructor
+\imm{\magic{str}(self)}         \texttt{str(instance)}
+\imm{\magic{nonzero}(self)}     \texttt{bool(instance)}
+\imm{\magic{getattr}(self, a)}  \texttt{instance.a\_value}
+\imm{\magic{getitem}(self, a)}  \texttt{instance[a]}
+\imm{\magic{call}(self, *args)} \texttt{instance(*args)}
+\imm{\magic{eq}(self, other)}   \texttt{instance == other}
+\imm{\magic{add}(self, other)}  \texttt{instance + other}
+\end{frame}
+
+\begin{frame}[fragile]{Superclasses}
+\input "|./highlight.py 'samples/06fib.py' fontsize=!small,lastline=1"
+
+Classes are \emph{derived} from other classes, \emph{inheriting} their behavior.
+
+\bigskip
+
+If you want nothing special, inherit from \texttt{object}.
+
+If you inherit from something else, then the new class (subclass) will, by default, behave like the one inherited from (superclass).
+
+\bigskip
+
+You can also inherit from multiple classes: separate them by commas.
+
+\end{frame}
+
+\begin{frame}[fragile]{A pretty-printing list}
+\input "|./highlight.py 'samples/06inheritlist.txt' fontsize=!small no"
+\end{frame}
+
+\section{Namespaces}
+
+\begin{frame}[fragile]{Namespaces}
+Understanding the rest of these slides are not necessary to use Python.
+
+\bigskip
+
+{\small (If you want to study this later by yourself, look at \href{http://docs.python.org/tutorial/classes.html}{docs.python.org/tutorial/classes.html}.)}
+\end{frame}
+
+\begin{frame}[fragile]{Namespaces}
+
+In Python, a \emph{namespace} is basically a dictionary that maps variable names to values.
+
+Every module has a namespace, called the \emph{module-level} or \emph{global} namespace.
+
+Variables and functions not defined in functions (or classes) live there.
+
+Objects in the global namespace are accessible as \emph{attributes} of the module.
+
+There is also a \emph{built-in} namespace that all modules share.
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Function namespaces: Assigning}
+
+Every function has its own namespace. The function's arguments are automatically added there.
+
+\emph{Assigning} to a variable assigns to the function's namespace.
+
+\bigskip
+
+The \PY{k}{\tt global} keyword can be used to force assignments to the global (module-level) namespace.
+\end{frame}
+
+\begin{frame}[fragile]{Function namespaces: Using}
+
+When you \emph{use} a variable, Python looks in:
+\begin{itemize}
+\item The current function's namespace
+\item The enclosing functions' namespace(s)
+\item The global namespace
+\item The built-in namespace
+\end{itemize}
+
+\bigskip
+
+\input "|./highlight.py 'samples/06funcns.py' fontsize=!small no"
+\end{frame}
+
+
+\begin{frame}[fragile]{Closures}
+\input "|./highlight.py 'samples/06funcinfunc.py' fontsize=!small no"
+\end{frame}
+
+\section{How classes work}
+
+\begin{frame}[fragile]{Classes}
+Creating a~\emph{class} also creates an object with its own namespace.
+
+\bigskip
+
+\input "|./highlight.py 'samples/06class1.py' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Instances}
+\emph{Calling} a~class creates an \emph{instance} of the class.
+
+Instance attributes are independent of the class attributes.
+
+But when there is no instance attribute of some name, the class' one is used.
+
+\bigskip
+
+\input "|./highlight.py 'samples/06instantiation.py' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Instances attributes}
+In this example, each {\tt exampleInstance.a} on line 6 is in a different namespace.
+
+\bigskip
+
+\input "|./highlight.py 'samples/06instantiaceex.py' fontsize=!small"
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Methods}
+Functions defined in a class are called \emph{methods}.
+
+If a class' method is looked up by an instance's attribute access, the method is \emph{bound} to the instance.
+
+\input "|./highlight.py 'samples/06methods.txt' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Bound Methods}
+A \emph{bound method} has its first argument set to the instance it is bound to.
+
+\input "|./highlight.py 'samples/06boundmethod.txt' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Unbound Methods}
+An \emph{unbound method} needs an instance as its first argument.
+
+\input "|./highlight.py 'samples/06unboundmethod.txt' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Superclasses}
+A \emph{superclass} of a class is where an attribute is searched for if it's not found in the class.
+
+\input "|./highlight.py 'samples/06superclass.txt' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Metaclasses}
+Metaclasses are \emph{classes of classes}.
+
+Go read about them if this was not enough of an intelectual challenge.
+\end{frame}
+
+
+\end{document}

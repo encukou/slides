@@ -1,0 +1,14 @@
+>>> from betterfib import Fib
+
+>>> instance = Fib(3)
+>>> for i in instance:
+...     print i
+0
+1
+1
+2
+3
+>>> list(instance)
+[0, 1, 1, 2, 3]
+>>> list(instance)
+[0, 1, 1, 2, 3]

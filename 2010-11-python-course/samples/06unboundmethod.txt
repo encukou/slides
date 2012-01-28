@@ -1,0 +1,15 @@
+>>> class ExampleClass(object):
+...     a = 1
+...     def getA(self):
+...         return self.a
+>>> exampleInstance = ExampleClass()
+>>> ExampleClass.getA(exampleInstance)
+1
+>>> exampleInstance.a = 'something else'
+>>> ExampleClass.getA(exampleInstance)
+'something else'
+>>> ExampleClass.getA()
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+    ExampleClass.getA()
+TypeError: unbound method getA() must be ...

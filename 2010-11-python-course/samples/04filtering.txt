@@ -1,0 +1,7 @@
+>>> li = ["a", "xyz", "foo", "b", "c", "b", "d", "d"]
+>>> [elem for elem in li if len(elem) > 1]
+['xyz', 'foo']
+>>> [elem for elem in li if elem != "b"]
+['a', 'xyz', 'foo', 'c', 'd', 'd']
+>>> [elem for elem in li if li.count(elem) == 1]
+['a', 'xyz', 'foo', 'c']

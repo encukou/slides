@@ -1,0 +1,1 @@
+/home/petr/school/python/slides/samples/06fib.py

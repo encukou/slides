@@ -1,0 +1,1 @@
+./testexamples.py && pdflatex -shell-escape $1*.tex

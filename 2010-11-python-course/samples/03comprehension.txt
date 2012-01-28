@@ -1,0 +1,25 @@
+>>> li = [1, 9, 8, 4]
+>>> [elem*2 for elem in li]
+[2, 18, 16, 8]
+>>> li
+[1, 9, 8, 4]
+>>> li = [elem*2 for elem in li] 
+>>> li
+[2, 18, 16, 8]
+
+>>> myInfo = { "name": "Petr Viktorin",
+...            "studentno": "185052",
+...            "program": "IMPIT"       }
+>>> myInfo.items()
+[('studentno', '185052'), ('program', 'IMPIT'),
+('name', 'Petr Viktorin')]
+>>> [k for k, v in myInfo.items()]
+['studentno', 'program', 'name']
+>>> [v for k, v in myInfo.items()]
+['185052', 'IMPIT', 'Petr Viktorin']
+>>> ["%s=%s" % (k, v) for k, v in myInfo.items()] 
+['studentno=185052', 'program=IMPIT',
+'name=Petr Viktorin']
+>>> '&'.join(["%s=%s" % (k, v) for k, v in
+... myInfo.items()])
+'studentno=185052&program=IMPIT&name=Petr Viktorin'

@@ -1,0 +1,110 @@
+\documentclass{pyslides}
+
+\title{Installing Python}
+\pyslidenumber{1}
+\date{November 2010}
+
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\section{Course information}
+
+\begin{frame}{Course information}
+\begin{itemize}
+\item Web page: \href{http://cs.joensuu.fi/~pviktor/python}{cs.joensuu.fi/{\texttildelow}pviktor/python}
+\item E-mail: \href{mailto:pviktor@cs.joensuu.fi}{pviktor@cs.joensuu.fi}
+\item 5 sessions of 2 hours each (Tuesday, 16:00--18:00)
+\item 1--2 ECTS credits {\small (check if your program willl accept them!)}
+\item Project {\small (more information later)}
+\end{itemize}
+\end{frame}
+
+\section{What is Python?}
+
+\begin{frame}{The Python programming language}
+\begin{itemize}
+\item A strongly and dynamically typed high-level multi-paradigm programming language
+\item First published in 1991 by Guido van Rossum
+\item Used for
+        \href{http://www.blender.org/education-help/python/}{scripting},
+        \href{http://www.reddit.com/}{Web} \href{http://youtube.com/}{applications},
+        \href{http://www.scipy.org/Cookbook/OptimizationDemo1}{scientific computations},
+        \href{http://www.prairiegames.com/}{games}, ...
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Python implementations}
+There are several interpreters for the Python language:
+\begin{itemize}
+\item CPython, the original one (written in C)
+\item Jython, written in Java {\small (can use Java libraries directly)}
+\item IronPython, written in C\verb/#/
+\item PyPy, written in Python itself
+\item Stackless Python, with some adventurous enhancements
+\end{itemize}
+\bigskip
+We'll be using CPython in this course.
+\end{frame}
+
+\begin{frame}{Version confusion}
+There are two current versions of Python:
+\begin{itemize}
+\item 2.7, which is what we are going to use
+\item 3.1, the “future” version \\ {\small Many improvements, but many libraries aren't yet compatible}
+\end{itemize}
+The school computers use version 2.4 {\small (rather old, but it still works)}
+
+\end{frame}
+
+\section{Installing Python}
+
+\begin{frame}{Installing}
+Windows
+\begin{itemize}
+\item Go to \href{http://python.org/downloads}{python.org/downloads} and download the installer
+\item Install it
+\item Check if python's in your PATH
+\end{itemize}
+Linux
+\begin{itemize}
+\item You already have it
+\item If you don't, use your package manager
+\end{itemize}
+Mac OS X
+\begin{itemize}
+\item You also already have it
+\end{itemize}
+\bigskip
+\end{frame}
+
+\begin{frame}[fragile]{The Interactive Shell}
+Check your installation on a terminal (command prompt, console):
+\begin{verbatim}$ python
+>>> 1 + 1
+2
+>>> print 'hello world'
+hello world
+>>> x = 6
+>>> y = 7
+>>> x * y
+42
+>>> exit()  # or Ctrl+D (Mac/Linux) / Ctrl+Z (Win)\end{verbatim}\gobble{ % This is for doctest:
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/site.py", line 337, in __call__
+  raise SystemExit(code)
+SystemExit: None
+
+}
+\end{frame}
+
+\begin{frame}{Setting up an editor}
+\begin{itemize}
+\item Many editors have Python syntax highlighting and indentation modes or plugins, find them and use them!
+\item Set your editor to indent using 4 spaces
+\bigskip
+\item Now, you're ready for your first program!
+\end{itemize}
+\end{frame}
+
+\end{document}

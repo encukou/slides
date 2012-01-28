@@ -1,0 +1,23 @@
+>>> x = None
+>>> x
+>>> # Nothing got printed!
+>>> print x
+None
+
+>>> def function():
+...     """This function returns nothing"""
+>>> print function()
+None
+
+>>> x = True
+>>> if x: print "yes"
+yes
+
+>>> x = False
+>>> if x: print "yes"
+
+>>> if x is False: print "false"
+false
+
+>>> x = None
+>>> if x is False: print "no"

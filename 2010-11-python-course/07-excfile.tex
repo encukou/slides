@@ -1,0 +1,140 @@
+\documentclass{pyslides}
+
+\title{Exceptions \& File Handling}
+\pyslidenumber{7}
+\date{November 2010}
+
+\newcommand\im[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{3.5cm}}
+\newcommand\imz[1]{\par\vspace{3pt}\hspace{0ex}\rlap{\tt #1}\hspace{1.5cm}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\section{File handling}
+
+\begin{frame}[fragile]{Opening files}
+The open() function opens files. It can take two arguments:
+\bigskip
+\input "|./highlight.py '=open(filename, mode=`apos*r*apos`)' fontsize=!small no"
+\bigskip
+Mode can be:
+\imz{r} Open for reading
+\imz{w} Open for writing
+\imz{a} Open for appending
+
+\smallskip
+
+To which you can add:
+\imz{b} for binary files.
+\imz{+} to allow both reading and writing.
+\imz{U} to convert all newline styles to \verb}\n}.
+
+\bigskip
+
+For example:
+\input "|./highlight.py '=open(`apos*out.dat*apos`, `apos*wb*apos`)' fontsize=!small no"
+
+\end{frame}
+
+\begin{frame}[fragile]{File objects}
+Iterating over a file yields the lines in that file
+
+\bigskip
+
+Using a file in a \verb+with+ block automatically closes it at the end
+
+\bigskip
+
+Useful file methods:
+
+\im{f.read()} Read the contents
+\im{f.readline()} Read one line
+\im{f.read(x)} Read x bytes
+\im{f.write(s)} Write a string to the file
+\im{f.close()} Close the file
+
+\end{frame}
+
+\begin{frame}[fragile]{Other file objects}
+The \verb+sys+ module includes objects for standard input, output and error streams.
+
+\bigskip
+
+\input "|./highlight.py 'samples/07streams.py' fontsize=!small"
+\end{frame}
+
+\begin{frame}[fragile]{Other file-like objects}
+Remember \verb+urllib.urlopen+? It doesn't quite return a file object, but whatever it does return acts like a file.
+\end{frame}
+
+\begin{frame}[fragile]{Parsing something?}
+There's usually a library for your file format: INI, YAML, CSV, MAT, ...
+
+Don't reinvent the wheel.
+\end{frame}
+
+\section{Exceptions}
+
+\begin{frame}[fragile]{When something goes wrong}
+When there is an error or just an unusual state, an \emph{exception} is raised.
+\bigskip
+\input "|./highlight.py 'samples/07exceptions.txt' fontsize=!small,lastline=4"
+\end{frame}
+
+\begin{frame}[fragile]{Handling exceptions}
+Python allows us to handle these exceptions.
+\bigskip
+\input "|./highlight.py 'samples/07exceptions.py' fontsize=!small"
+\end{frame}
+
+\begin{frame}[fragile]{Raising exceptions}
+Python also allows us to raise exceptions.
+\bigskip
+\input "|./highlight.py 'samples/07security.py' fontsize=!small"
+\end{frame}
+
+\begin{frame}[fragile]{Cleanup with finally}
+A \texttt{finally} clause will execute every time.
+\bigskip
+\input "|./highlight.py 'samples/07closefile.py' fontsize=!small"
+\end{frame}
+
+\begin{frame}[fragile]{Context managers}
+Some objects have a \texttt{try/finally} clause “built in”. These can used with the \verb}with} statement:
+\bigskip
+\input "|./highlight.py 'samples/07with.py' fontsize=!small"
+\end{frame}
+
+\begin{frame}[fragile]{Context managers II}
+Context managers are used whenever there's a “begin/end” pair of functions; for example in multi-thread locking
+\bigskip
+\input "|./highlight.py 'samples/07with2.py' fontsize=!small"
+\end{frame}
+
+\begin{frame}[fragile]{What exception to use?}
+There are many standard exceptions: \href{http://docs.python.org/library/exceptions.html}{http://docs.python.org/library/exceptions.html}.
+
+Which one to use?
+
+\bigskip
+
+The rule of thumb:
+\begin{itemize}
+\item Handle the specific exception that's raised when you test
+\item Raise something appropriate – or better yet, make your own exception
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Subclassing Exception}
+\input "|./highlight.py 'samples/08customexc.py' fontsize=!small"
+
+\bigskip
+
+SecurityException is now a subclass of IOError, which itself is a subclas of Exception.
+
+This means \verb+except IOError+ or \verb+except Exception+ will handle it.
+\end{frame}
+
+\end{document}

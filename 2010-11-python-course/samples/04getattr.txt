@@ -1,0 +1,14 @@
+>>> li = ["Larry", "Curly"]
+>>> li.pop
+<built-in method pop of list object ...>
+>>> getattr(li, "pop")
+<built-in method pop of list object ...>
+>>> getattr(li, "append")("Moe") 
+>>> li
+['Larry', 'Curly', 'Moe']
+>>> getattr({}, "clear")
+<built-in method clear of dict object ...>
+>>> getattr((), "pop")
+Traceback (most recent call last):
+  File "<interactive input>", line 1, in ?
+AttributeError: 'tuple' object has no attribute 'pop'

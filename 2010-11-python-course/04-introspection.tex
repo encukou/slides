@@ -1,0 +1,156 @@
+\documentclass{pyslides}
+
+\title{The Power of Introspection}
+\pyslidenumber{4}
+\date{November 2010}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\section{Apihelper}
+
+\begin{frame}[fragile]{apihelper.py}
+Download apihelper.py from the course page.
+\bigskip
+\input "|./highlight.py samples/04introspection.py fontsize=!tiny"
+\end{frame}
+
+\begin{frame}[fragile]{apihelper.py}
+Testing apihelper.py
+\bigskip
+\input "|./highlight.py samples/04introspecttest.txt fontsize=!tiny no"
+\end{frame}
+
+\section{Calling functions}
+
+\begin{frame}[fragile]{Using Optional and Named Arguments}
+Let's look at the function declaration:
+\input "|./highlight.py samples/04introspection.py lastline=1"
+\bigskip
+You can call this in many different ways:
+\input "|./highlight.py samples/04calling.py lastline=7 no"
+\end{frame}
+
+\begin{frame}[fragile]{Using Sequences and Dictionaries}
+\input "|./highlight.py samples/04introspection.py lastline=1"
+\bigskip
+If you have more arguments stored in a list or dict, use stars:
+\input "|./highlight.py samples/04calling.py firstline=9,lastline=13 no"
+\end{frame}
+
+\begin{frame}[fragile]{Declaring Functions with argument lists}
+The same can be used in function definitions:
+\input "|./highlight.py samples/04calling.py firstline=15 no"
+\end{frame}
+
+\section{Built-in functions}
+
+\begin{frame}[fragile]{Built-in functions}
+Several Python functions are so useful, you don't have to import them from a module. We already know some:
+\begin{itemize}
+\item str
+\item list
+\item dict
+\item tuple
+\end{itemize}
+Now we are going to cover:
+\begin{itemize}
+\item type
+\item dir
+\item callable
+\item getattr
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{The type Function}
+\input "|./highlight.py samples/04builtinfuncs.txt lastline=11 no"
+\end{frame}
+
+\begin{frame}[fragile]{The dir Function}
+\input "|./highlight.py samples/04builtinfuncs.txt firstline=13,lastline=27 no"
+\end{frame}
+
+\begin{frame}[fragile]{The callable Function}
+\input "|./highlight.py samples/04builtinfuncs.txt firstline=29,lastline=43 no"
+\end{frame}
+
+\begin{frame}[fragile]{The range Function}
+\input "|./highlight.py samples/04builtinfuncs.txt fontsize=!small,firstline=45,lastline=50 no"
+\end{frame}
+
+\begin{frame}[fragile]{The getattr Function}
+\input "|./highlight.py samples/04getattr.txt fontsize=!small,lastline=14 no"
+\end{frame}
+
+\begin{frame}[fragile]{All built-in functions}
+For all built-in functions, look in the {\tt\magic{builtins}} module:
+\input "|./highlight.py samples/04builtinfuncs.txt fontsize=!small,firstline=52 no"
+\bigskip
+Or use the \href{http://docs.python.org/library/functions.html}{Python manual}.
+\end{frame}
+
+\section{Filtering}
+
+\begin{frame}[fragile]{Filtering list comprehensions}
+We already covered list comprehensions, now we extend the syntax a bit:
+\input "|./highlight.py samples/04filtering.txt fontsize=!small no"
+\end{frame}
+
+\begin{frame}[fragile]{Filtering out special methods}
+Now let's look back at the filtering line in apihelper:
+\input "|./highlight.py samples/04introspection.py fontsize=!scriptsize,firstline=8,lastline=8,firstnumber=8,gobble=4"
+\bigskip
+The usual naming conventions in Python are like this:
+\begin{itemize}
+\item No underscores for normal, “public” attributes: \verb+info+
+\item One underscores for implementation details: \verb+_do_xyz+
+\item Two underscores for hidden, “private” attributes: \verb+__parse+
+\item Two underscores on each side for special attributes defined by Python itself: \verb+__init__+
+\end{itemize}
+In any case, attributes that begin with an underscore are likely to be uninteresting. That's why we filter them out.
+\end{frame}
+
+\section{Lambdas}
+
+\begin{frame}[fragile]{Lambda Functions}
+\input "|./highlight.py samples/04lambda.txt fontsize=!small,lastline=10 no"
+\end{frame}
+
+\begin{frame}[fragile]{Using Lambdas in Sorting}
+\input "|./highlight.py samples/04lambda.txt fontsize=!small,firstline=12,lastline=12 no"
+\input "|./highlight.py samples/04lambda.txt fontsize=!small,firstline=14 no"
+\end{frame}
+
+\section{Wrapping Up}
+
+\begin{frame}[fragile]{apihelper.py}
+\input "|./highlight.py samples/04introspection.py fontsize=!tiny"
+\end{frame}
+
+\begin{frame}[fragile]{Why use str() on the docstring}
+\input "|./highlight.py samples/04wrapup.txt fontsize=!small,lastline=9 no"
+\end{frame}
+
+\begin{frame}[fragile]{Reinventing the wheel}
+Actually, apihelper.py isn't that useful. For exapmle, it only lists methods:
+other things might have docstings as well.
+
+It turns out Python already has a tool that
+does much of the same thing, but better: the pydoc module.
+\bigskip
+\input "|./highlight.py samples/04wrapup.txt fontsize=!scriptsize,firstline=11,lastline=20 no"
+\end{frame}
+
+\begin{frame}[fragile]{Built-in Help}
+Pydoc's help function is built in: you don't actually need to import pydoc.
+
+Also, you can get detailed help on some things that are not Python objects, like statements.
+\bigskip
+\input "|./highlight.py samples/04wrapup.txt fontsize=!scriptsize,firstline=22 no"
+\end{frame}
+
+
+
+\end{document}

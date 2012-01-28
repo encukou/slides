@@ -1,0 +1,10 @@
+>>> # Encoding: UTF-8
+>>> u"I spell ‘naïve’ with a diæresis."
+u'I spell \u2018na\xefve\u2019 with a di\xe6resis.'
+>>> print u"I spell ‘naïve’ with a diæresis."
+I spell ‘naïve’ with a diæresis.
+>>> byte_string = u"नमस्कार संसार".encode('utf-8')
+>>> byte_string
+'\xe0\xa4\xa8\xe0\xa4\xae\xe0\xa4\xb8\xe0\xa5\x8d...'
+>>> print byte_string.decode('utf-8')
+नमस्कार संसार

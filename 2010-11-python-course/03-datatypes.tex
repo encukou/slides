@@ -1,0 +1,242 @@
+\documentclass[reference]{pyslides}
+
+\title{Native Datatypes}
+\pyslidenumber{3}
+\date{November 2010}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\section{}
+
+\begin{frame}[fragile]{Built-In Types}
+One of Python's biggest strengths are its built-in data types. We will cover the important ones here:
+\begin{itemize}
+\item Numbers
+\item Lists
+\item Tuples
+\item Dictionaries
+\item Strings
+\end{itemize}
+\end{frame}
+
+\section{Numbers}
+
+\begin{frame}[fragile]{Numbers}
+Python provides integers, floating-point numbers and complex numbers.
+\input "|./highlight.py samples/03numbers1.txt fontsize=!small,lastline=14 no"
+\end{frame}
+
+\begin{frame}[fragile]{Number Gotchas}
+Be careful when dividing two integers: the result is an integer, so the answer will be rounded down.
+\input "|./highlight.py samples/03numbers1.txt fontsize=!small,firstline=16,lastline=19 no"
+(Fixed in Python 3, use \verb+//+ if you need this behavior.)
+
+\bigskip
+
+If you work with floats, you might get inexact results.
+\input "|./highlight.py samples/03numbers1.txt fontsize=!small,firstline=21,lastline=999 no"
+
+\bigskip
+
+{\small (The standard library provides Fraction and Decimal numbers you can use to get around these limitations.)}
+\end{frame}
+
+\section{Lists}
+
+\begin{frame}[fragile]{Defining Lists}
+\input "|./highlight.py samples/03list1.txt fontsize=!small,lastline=12 no"
+\end{frame}
+
+\begin{frame}[fragile]{Slicing Lists}
+\input "|./highlight.py samples/03list1.txt fontsize=!small,firstline=13,lastline=28 no"
+\input "|./highlight.py samples/03listslice.txt fontsize=!small,firstline=2 no"
+\end{frame}
+
+\begin{frame}[fragile]{Adding to Lists}
+\input "|./highlight.py samples/03list1.txt fontsize=!small,firstline=30,lastline=41 no"
+\end{frame}
+
+\begin{frame}[fragile]{Append vs. Extend}
+\input "|./highlight.py samples/03list1.txt fontsize=!small,firstline=43,lastline=58 no"
+\end{frame}
+
+\begin{frame}[fragile]{Searching Lists}
+\input "|./highlight.py samples/03list1.txt fontsize=!small,firstline=60,lastline=75 no"
+\end{frame}
+
+\begin{frame}[fragile]{Removing from Lists}
+\input "|./highlight.py samples/03list1.txt fontsize=!small,firstline=76,lastline=90 no"
+\end{frame}
+
+\begin{frame}[fragile]{List Operators}
+\input "|./highlight.py samples/03list1.txt fontsize=!small,firstline=92,lastline=280 no"
+\end{frame}
+
+\section{Tuples}
+
+\begin{frame}[fragile]{Defining Tuples}
+\input "|./highlight.py samples/03tuple1.txt fontsize=!small,lastline=11 no"
+\end{frame}
+
+\begin{frame}[fragile]{Tuples are Immutable}
+\input "|./highlight.py samples/03tuple1.txt fontsize=!small,firstline=13,lastline=23 no"
+\end{frame}
+
+\begin{frame}[fragile]{Assigning Tuples to Variables}
+\input "|./highlight.py samples/03tuple1.txt fontsize=!small,firstline=24,lastline=32 no"
+\end{frame}
+
+\begin{frame}[fragile]{Parentheses are Optional}
+\input "|./highlight.py samples/03tuple1.txt fontsize=!small,firstline=33,lastline=41 no"
+\end{frame}
+
+\begin{frame}[fragile]{Returning Two Values}
+\input "|./highlight.py samples/03return2.py fontsize=!small,lastline=4 no"
+\end{frame}
+
+\section{Dictionaries}
+
+\begin{frame}[fragile]{Defining a Dictionary}
+A dictionary is a data type that maps \emph{keys} to \emph{values}.
+\input "|./highlight.py samples/03dict1.txt fontsize=!small,lastline=11 no"
+
+\bigskip
+
+Recent Python versions allow a shorthand syntax:
+\input "|./highlight.py samples/03dict1.txt fontsize=!small,firstline=13,lastline=15 no"
+\end{frame}
+
+\begin{frame}[fragile]{Modifying a Dictionary}
+\input "|./highlight.py samples/03dict1.txt fontsize=!small,firstline=16,lastline=25 no"
+
+\end{frame}
+
+\begin{frame}[fragile]{Mixing Datatypes in a Dictionary}
+\input "|./highlight.py samples/03dict1.txt fontsize=!small,firstline=26,lastline=37 no"
+\end{frame}
+
+\begin{frame}[fragile]{Mixing Datatypes in a Dictionary: Limitations}
+The \emph{keys} in a dictionary must be \emph{hashable}, that is, objects whose value cannot be changed.
+
+\bigskip
+
+This means you cannot use lists and dictionaries.
+
+You can use tuples, as long they only contain hashable objects.
+
+\input "|./highlight.py samples/03return2.py fontsize=!small,firstline=6 no"
+
+\bigskip
+
+The \emph{values} of a dictionary can be of any type.
+
+\end{frame}
+
+\begin{frame}[fragile]{Deleting from a Dictionary}
+\input "|./highlight.py samples/03dict1.txt fontsize=!small,firstline=38,lastline=48 no"
+\end{frame}
+
+\begin{frame}[fragile]{Keys, Values, Items}
+\input "|./highlight.py samples/03dict1.txt fontsize=!small,firstline=50 no"
+\end{frame}
+
+
+\section{Strings}
+
+\begin{frame}[fragile]{Strings}
+Strings are like tuples: immutable sequences.
+
+Unlike tuples, they can only contain characters.
+
+\input "|./highlight.py samples/03string1.txt fontsize=!small,lastline=6 no"
+
+\bigskip
+
+The characters are themselves strings. Watch out for that.
+\end{frame}
+
+\begin{frame}[fragile]{Defining Strings}
+\input "|./highlight.py samples/03string-def.txt fontsize=!small no"
+\end{frame}
+
+\begin{frame}[fragile]{String Methods}
+\input "|./highlight.py samples/03string1.txt fontsize=!small,firstline=8,lastline=24 no"
+\end{frame}
+
+\begin{frame}[fragile]{String Formatting}
+\input "|./highlight.py samples/03string1.txt fontsize=!small,firstline=25,lastline=32 no"
+\end{frame}
+
+\begin{frame}[fragile]{String Formatting vs. Concatenation}
+\input "|./highlight.py samples/03string1.txt fontsize=!small,firstline=34,lastline=48 no"
+\end{frame}
+
+\begin{frame}[fragile]{Formatting Numbers}
+\input "|./highlight.py samples/03string1.txt fontsize=!small,firstline=50,lastline=62 no"
+\end{frame}
+
+\begin{frame}[fragile]{Joining and Splitting}
+\input "|./highlight.py samples/03string1.txt fontsize=!small,firstline=64,lastline=999 no"
+\end{frame}
+
+\begin{frame}[fragile]{Unicode strings}
+To use Unicode in your file, define an encoding in the \emph{first} or second line of the file.
+
+\bigskip
+
+\input "|./highlight.py samples/03unicode.txt fontsize=!small no"
+
+\bigskip
+
+{\small (In Python 3, all strings are unicode by default)}
+\end{frame}
+
+\section{Other types}
+
+\begin{frame}[fragile]{None}
+\input "|./highlight.py samples/03others1.txt fontsize=!small,lastline=11 no"
+\end{frame}
+
+\begin{frame}[fragile]{Booleans}
+\input "|./highlight.py samples/03others1.txt fontsize=!small,firstline=12 no"
+\end{frame}
+
+\begin{frame}[fragile]{Sets}
+Sets are made by from an iterable (list or dict) using the \verb+set()+ function.
+
+Read about them in the Pyhon reference if you need them.
+\end{frame}
+
+\section{Working with types}
+
+\begin{frame}[fragile]{Converting types}
+The name of a type acts as a conversion function.
+\input "|./highlight.py samples/03converting.txt fontsize=!small no"
+
+\bigskip
+
+Note the names Python uses.
+\end{frame}
+
+\begin{frame}[fragile]{List Comprehensions}
+\input "|./highlight.py samples/03comprehension.txt fontsize=!small,firstline=1,lastline=8 no"
+\end{frame}
+
+\begin{frame}[fragile]{Putting It All Together}
+\input "|./highlight.py samples/03comprehension.txt fontsize=!small,firstline=10,lastline=999 no"
+\end{frame}
+
+\begin{frame}[fragile]{Your First Python Program}
+The registration program should now make perfect sense.
+
+\bigskip
+
+\input "|./highlight.py samples/02firstprogram.py fontsize=!tiny"
+
+\bigskip
+\end{frame}
+
+\end{document}

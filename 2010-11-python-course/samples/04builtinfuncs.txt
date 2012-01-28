@@ -1,0 +1,65 @@
+>>> type(1)
+<type 'int'>
+>>> li = []
+>>> type(li)
+<type 'list'>
+>>> import registration
+>>> type(registration)
+<type 'module'>
+>>> import types
+>>> type(registration) == types.ModuleType
+True
+
+>>> li = []
+>>> dir(li)           
+[..., 'append', 'count', 'extend', 'index',
+'insert', 'pop', 'remove', 'reverse', 'sort']
+>>> d = {}
+>>> dir(d)
+[..., 'clear', 'copy', 'fromkeys', 'get',
+'has_key', 'items', 'iteritems', 'iterkeys',
+'itervalues', 'keys', 'pop', 'popitem',
+'setdefault', 'update', 'values']
+>>> import registration
+>>> dir(registration)
+['__builtins__', '__doc__', '__file__',
+'__name__', '__package__',
+'buildURL', 'urllib']
+
+>>> string = 'abc'
+>>> string.join
+<built-in method join of str object ...>
+>>> callable(string) 
+False
+>>> callable(string.join)
+True
+>>> print string.join.__doc__
+S.join(iterable) -> string
+<BLANKLINE>
+    Return a string which is the
+    concatenation of the strings in the
+    iterable.  The separator between
+    elements is S.
+<BLANKLINE>
+
+>>> range(10)
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> range(2, 10)
+[2, 3, 4, 5, 6, 7, 8, 9]
+>>> range(0, 100, 10)
+[0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
+
+>>> from apihelper import info
+>>> import __builtin__
+>>> info(__builtin__, 20)
+ArithmeticError      Base class for arithmetic errors.
+AssertionError       Assertion failed.
+AttributeError       Attribute not found.
+...
+abs                  ...
+all                  ...
+any                  ...
+...
+zip                  ...
+
+

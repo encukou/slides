@@ -1,0 +1,106 @@
+>>> li = ["a", "b", "c", "d", "example"] 
+>>> li
+['a', 'b', 'c', 'd', 'example'] 
+>>> li[0]
+'a'
+>>> li[4]
+'example'
+
+>>> li[-1] 
+'example'
+>>> li[-3] 
+'c'
+
+>>> li
+['a', 'b', 'c', 'd', 'example']
+>>> li[1:3]  
+['b', 'c']
+>>> li[1:-1] 
+['b', 'c', 'd']
+>>> li[0:3]  
+['a', 'b', 'c']
+
+>>> li[:3] 
+['a', 'b', 'c']
+>>> li[3:]  
+['d', 'example']
+>>> li[:]  
+['a', 'b', 'c', 'd', 'example']
+
+>>> li
+['a', 'b', 'c', 'd', 'example']
+>>> li.append("new")
+>>> li
+['a', 'b', 'c', 'd', 'example', 'new']
+>>> li.insert(2, "new")
+>>> li
+['a', 'b', 'new', 'c', 'd', 'example', 'new']
+>>> li.extend(["two", "elements"]) 
+>>> li
+['a', 'b', 'new', 'c', 'd', 'example', 'new', 'two',
+'elements']
+
+>>> otherlist = ['a', 'b', 'c']
+>>> otherlist.extend(['d', 'e', 'f']) 
+>>> otherlist
+['a', 'b', 'c', 'd', 'e', 'f']
+>>> len(otherlist)
+6
+>>> otherlist[-1]
+'f'
+>>> otherlist = ['a', 'b', 'c']
+>>> otherlist.append(['d', 'e', 'f']) 
+>>> otherlist
+['a', 'b', 'c', ['d', 'e', 'f']]
+>>> len(otherlist)
+4
+>>> otherlist[-1]
+['d', 'e', 'f']
+
+>>> li
+['a', 'b', 'new', 'c', 'd', 'example', 'new', 'two',
+'elements']
+>>> li.index("example") 
+5
+>>> li.index("new")
+2
+>>> li.index("old")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: list.index(x): x not in list
+>>> "old" in li
+False
+>>> "d" in li
+True
+
+>>> li.remove("d")
+>>> li
+['a', 'b', 'new', 'c', 'example', 'new', 'two',
+'elements']
+>>> li.remove("new") 
+>>> li
+['a', 'b', 'c', 'example', 'new', 'two', 'elements']
+>>> li.remove("old")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: list.remove(x): x not in list
+>>> li.pop()
+'elements'
+>>> li
+['a', 'b', 'c', 'example', 'new', 'two']
+
+>>> li = ['a', 'b', 'c']
+>>> li = li + ['d', 'e'] 
+>>> li
+['a', 'b', 'c', 'd', 'e']
+>>> li += ['f']
+>>> li
+['a', 'b', 'c', 'd', 'e', 'f']
+>>> li = [1, 2] * 3
+>>> li
+[1, 2, 1, 2, 1, 2]
+
+>>> li.sort()  # Note no return value
+>>> li
+[1, 1, 1, 2, 2, 2]
+
