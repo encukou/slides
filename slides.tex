@@ -40,7 +40,7 @@
     \textcolor{ta2gray}{Petr Viktorin}\\[-0.25cm]
     \textcolor{ta2gray}{\tiny @encukou}
     \sk
-    \textcolor{ta2gray}{\tiny lednové PyVo 2010 – NoSQL}\\[-0.25cm]
+    \textcolor{ta2gray}{\tiny lednové PyVo 2012 – NoSQL}\\[-0.25cm]
     \pause
     \textcolor{ta3gray}{\tiny (co tu vůbec dělám?)}
 }
@@ -132,8 +132,8 @@
         \color{ta3gray}
     \tiny
         \begin{verbatim}
-from sqlalchemy import Table, Column, Integer, String,
-        MetaData, ForeignKey
+from sqlalchemy import (Table, Column, Integer, String,
+        MetaData, ForeignKey)
 metadata = MetaData()
 
 users = Table('users', metadata,
@@ -185,10 +185,10 @@ for row in result:
     \tiny
         \begin{verbatim}
 s1 = select([users])
-s1 = s1.filter(users.name == 'fred')
+s1 = s1.filter(users.c.name == 'fred')
 
 s2 = select([users])
-s2 = s2.filter(users.id >= 3)
+s2 = s2.filter(users.c.id >= 3)
 
 s3 = select([users.c.name, users.c.fullname])
 
@@ -237,7 +237,7 @@ s = select([(users.c.fullname + ", " +
     \begin{tikzpicture}[x=0.5cm,y=0.5cm]
         \draw[tascarletred] (20.5, -2.5) rectangle (0, 4) node[rectangle, anchor=north west]{\tx{1}{SQLAlchemy} \rd{1}{Core}};
         \draw[tascarletred] (20.5, 4.5) rectangle (0, 8.5) node[rectangle, anchor=north west]{\tx{1}{SQLAlchemy} \rd{1}{ORM}};
-        \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=9.5cm,align=center,minimum height=1cm] at (0.5,5) {\centering Object Relational Mapper};
+        \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=9.5cm,align=center,minimum height=1cm] at (0.5,5) {\centering Object-Relational Mapper};
         \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=2cm,align=center,minimum height=1cm] at (0.5,0.5) {\centering Schema, Types};
         \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=2cm,align=center,minimum height=1cm] at (5.5,0.5) {\centering Expression Language};
         \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=4.5cm,align=center,minimum height=1cm] at (10.5,0.5) {\centering Engine};
@@ -256,8 +256,8 @@ s = select([(users.c.fullname + ", " +
     \tiny
         \begin{verbatim}
 from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
-metadata = MetaData()
 
 Base = declarative_base()
 
@@ -268,9 +268,9 @@ class User(Base):
     fullname = Column(String)
 
 class Address(Base):
-    __tablename__ = 'users'
-    id = Column(Integer, primary_key=True),
-    user_id = Column(None, ForeignKey('users.id')),
+    __tablename__ = 'addresses'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(None, ForeignKey('users.id'))
     email_address = Column(String, nullable=False)
     user = relationship("User",
             backref=backref('addresses', order_by=id))
@@ -283,15 +283,21 @@ class Address(Base):
 \begin{frame}[fragile]
     \tx{1}{Unit of Work}
 
-        \color{ta3gray}
+        \color{tagray}
     \tiny
-        \begin{verbatim}
+%         \begin{verbatim}
+% from sqlalchemy import create_engine
+% 
+% engine = create_engine('sqlite:///:memory:', echo=True)
+% Base.metadata.create_all(engine)\end{verbatim}
+\color{ta3gray}
+\begin{verbatim}from sqlalchemy.sql import select
 from sqlalchemy.orm import sessionmaker
 Session = sessionmaker(bind=engine)
 
 session = Session()
 
-ed_user = User('ed', 'Ed Jones', 'edspassword')
+ed_user = User(name='ed', fullname='Ed Jones')
 session.add(ed_user)
 
 session.commit()
@@ -328,8 +334,6 @@ Table('users', MetaData(None),
                     primary_key=True, nullable=False),
             Column('name', String(), table=<users>),
             Column('fullname', String(), table=<users>),
-            Column('password', String(), table=<users>),
-                    schema=None)
 
         \end{verbatim}
 \end{frame}
