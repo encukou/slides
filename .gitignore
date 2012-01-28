@@ -1,0 +1,13 @@
+# Standard-ish TeX ignore list
+*.aux
+*.bbl
+*.log
+*.toc
+*.ttt
+*.blg
+*.bcf
+*.out
+*.pdf
+*.nav
+*.snm
+*.vrb

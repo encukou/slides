@@ -11,6 +11,17 @@
 \newcommand\tx[2]{\alt<#1>{\textcolor{ta3gray}}{\textcolor{ta2gray}}{\uncover<#1->{#2}}}
 \newcommand\rd[2]{\alt<#1>{\textcolor{tascarletred}}{\textcolor{ta3aluminium!50!tascarletred}}{\uncover<#1->{#2}}}
 
+\newcommand\bg[1]{
+\usebackgroundtemplate{
+    \vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil
+    \begin{tikzpicture}
+    \node[opacity=0.05]{
+        \includegraphics[height=\paperheight]{circles/#1}};
+    \end{tikzpicture}
+    \hfil}\vfil}
+}
+}
+
 \begin{document}
 \fontspec{Fertigo Pro}
 
@@ -18,6 +29,8 @@
 \title{SQLAlchemy}
 \author{Petr Viktorin}
 \date{\today}
+
+\bg{Universal_Zero_Contact_Array_by_Notshurly}  % CC BY-SA 3.0
 
 \frame{
     \sk
@@ -32,6 +45,8 @@
     \textcolor{ta3gray}{\tiny (co tu vůbec dělám?)}
 }
 
+\bg{Immortality_Array_by_Notshurly}  % CC BY-SA 3.0
+
 \frame{
     \rd{1}{SQL?}
     \sk
@@ -44,6 +59,8 @@
     \rd{3}{1979}
     \tx{3}{– SQL}
 }
+
+\bg{Immortality_Reversal_Array_by_Notshurly}  % CC BY-SA 3.0
 
 \frame{
     \rd{1}{Problémy}
@@ -60,8 +77,10 @@
     \tx{4}{Pythoní}
     \rd{4}{DBAPI}
     \tx{4}{(PEP 249)}
-    \tx{4}{má stejné problémy}
+    \tx{4}{má podobné problémy}
 }
+
+\bg{SHUT_THE_F__CK_UP_array_by_Notshurly}  % CC BY-SA 3.0
 
 \frame{
     \begin{tikzpicture}
@@ -78,6 +97,8 @@
     \tx{3}{chci používat \rd{3}{relační databáze}!}
 }
 
+\bg{Teleportation__recieving_end_by_Notshurly}  % CC BY-SA 3.0
+
 \frame{
     \tx{1}{
         “\rd{1}{Disproving the myth} of ‘the best database layer is
@@ -92,6 +113,8 @@
     }
 }
 
+\bg{Elemental_Control_Array_by_Notshurly}  % CC BY-SA 3.0
+
 \frame{
     \tx{1}{SQLAlchemy}
     \rd{1}{Core}
@@ -100,6 +123,8 @@
     \sk
     \tx{2}{· Dotazování}
 }
+
+\bg{Projectile_Array_by_Notshurly}  % CC BY-SA 3.0
 
 \begin{frame}[fragile]
     \tx{1}{Definice tabulek}
@@ -124,6 +149,8 @@ addresses = Table('addresses', metadata,
  )
         \end{verbatim}
 \end{frame}
+
+\bg{Philosophers_Stone_Array_by_Notshurly}  % CC BY-SA 3.0
 
 \begin{frame}[fragile]
     \tx{1}{Dotazování}
@@ -193,11 +220,15 @@ s = select([(users.c.fullname + ", " +
     \tx{2}{Dotazy a výrazy jsou \rd{2}{objekty} – dá se s nimi dál pracovat}
 \end{frame}
 
+\bg{Lead_to_Gold_Alchemy_Array_by_Notshurly}  % CC BY-SA 3.0
+
 \frame{
     \tx{1}{Ale počkat, nemělo SQLAlchemy být \rd{1}{ORM}?}
     \sk
     \tx{2}{Object-Relational Mapper}
 }
+
+\bg{Fire_Control_Array_by_Notshurly}  % CC BY-SA 3.0
 
 \frame{
     \tx{1}{Architektura SQLAlchemy}
@@ -206,15 +237,17 @@ s = select([(users.c.fullname + ", " +
     \begin{tikzpicture}[x=0.5cm,y=0.5cm]
         \draw[tascarletred] (20.5, -2.5) rectangle (0, 4) node[rectangle, anchor=north west]{\tx{1}{SQLAlchemy} \rd{1}{Core}};
         \draw[tascarletred] (20.5, 4.5) rectangle (0, 8.5) node[rectangle, anchor=north west]{\tx{1}{SQLAlchemy} \rd{1}{ORM}};
-        \node[rectangle,rounded corners,draw, anchor=south west,text width=9.5cm,align=center,minimum height=1cm] at (0.5,5) {\centering Object Relational Mapper};
-        \node[rectangle,rounded corners,draw, anchor=south west,text width=2cm,align=center,minimum height=1cm] at (0.5,0.5) {\centering Schema, Types};
-        \node[rectangle,rounded corners,draw, anchor=south west,text width=2cm,align=center,minimum height=1cm] at (5.5,0.5) {\centering Expression Language};
-        \node[rectangle,rounded corners,draw, anchor=south west,text width=4.5cm,align=center,minimum height=1cm] at (10.5,0.5) {\centering Engine};
-        \node[rectangle,rounded corners,draw, anchor=south west,text width=2cm,align=center,minimum height=1cm] at (10.5,-2) {\centering Connection Pool};
-        \node[rectangle,rounded corners,draw, anchor=south west,text width=2cm,align=center,minimum height=1cm] at (15.5,-2) {\centering Expression Dialect};
-        \node[rectangle,rounded corners,draw, anchor=south west,text width=2cm,align=center,minimum height=1cm] at (15.5,-5) {\centering DBAPI};
+        \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=9.5cm,align=center,minimum height=1cm] at (0.5,5) {\centering Object Relational Mapper};
+        \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=2cm,align=center,minimum height=1cm] at (0.5,0.5) {\centering Schema, Types};
+        \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=2cm,align=center,minimum height=1cm] at (5.5,0.5) {\centering Expression Language};
+        \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=4.5cm,align=center,minimum height=1cm] at (10.5,0.5) {\centering Engine};
+        \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=2cm,align=center,minimum height=1cm] at (10.5,-2) {\centering Connection Pool};
+        \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=2cm,align=center,minimum height=1cm] at (15.5,-2) {\centering Expression Dialect};
+        \node[rectangle,rounded corners,draw,anchor=south west,fill=white,text width=2cm,align=center,minimum height=1cm] at (15.5,-5) {\centering DBAPI};
     \end{tikzpicture}
 }
+
+\bg{Flying_Array_by_Notshurly}  % CC BY-SA 3.0
 
 \begin{frame}[fragile]
     \tx{1}{Deklarativní model}
@@ -245,6 +278,8 @@ class Address(Base):
         \end{verbatim}
 \end{frame}
 
+\bg{Lightning_Array_by_Notshurly}  % CC BY-SA 3.0
+
 \begin{frame}[fragile]
     \tx{1}{Unit of Work}
 
@@ -264,6 +299,8 @@ session.commit()
         \end{verbatim}
 \end{frame}
 
+\bg{Sleep_Array_by_Notshurly}  % CC BY-SA 3.0
+
 \begin{frame}[fragile]
     \tx{1}{Dotazování}
 
@@ -275,6 +312,8 @@ session.select(User).filter(User.name == 'ed')
         \end{verbatim}
     \tx{1}{Opět plné možnosti \rd{1}{SQL}}
 \end{frame}
+
+\bg{Power_Control_Array_by_Notshurly} % CC BY-SA 3.0
 
 \begin{frame}[fragile]
     \tx{1}{\rd{1}{ORM} je nadstavba nad \rd{1}{Core}}
@@ -294,6 +333,8 @@ Table('users', MetaData(None),
 
         \end{verbatim}
 \end{frame}
+
+\bg{yinyang}
 
 \frame{
     \tx{1}{“The \rd{1}{Tao} of SQLAlchemy”}
@@ -315,21 +356,27 @@ Table('users', MetaData(None),
     \tx{3}{PEP\rd{1}{20} (import this)}
 }
 
+\bg{Bathing_Array_by_Notshurly}  % CC BY-SA 3.0
+
 \frame{
     \tx{1}{Díky za pozornost!}
     \sk
     \rd{1}{Dotazy?}
 }
 
+\bg{Electricity_Bombarment_Array_by_Notshurly}  % CC BY-SA 3.0
+
 \frame{
-    \tx{1}{Zdroje}
+    \small
+    \rd{1}{Zdroje}\\[0.25cm]
     \tiny
+    \tx{1}{\url{http://www.sqlalchemy.org}}\\[0.25cm]
+    \tx{1}{\url{http://spyced.blogspot.com/2009/05/belated-2009-introduction-to-sqlalchemy.html}}\\[0.25cm]
+    \tx{1}{\url{http://www.sqlalchemy.org/blog/2011/09/19/sqlalchemy-at-pygotham/}}
     \sk
-    \url{http://www.sqlalchemy.org}
+    \tx{1}{Obrázky na pozadí \rd{1}{© Blye Widmar} (CC BY-SA 3.0) \url{http://notshurly.deviantart.com/gallery/23303244}}
     \sk
-    \url{http://spyced.blogspot.com/2009/05/belated-2009-introduction-to-sqlalchemy.html}
-    \sk
-    \url{http://www.sqlalchemy.org/blog/2011/09/19/sqlalchemy-at-pygotham/}
+    \tx{1}{Šířeno pod licencí Creative Commons \rd{1}{Attribution-ShareAlike} 3.0 \url{http://creativecommons.org/licenses/by-sa/3.0/}}\\
 }
 
 \end{center}
