@@ -1,0 +1,85 @@
+
+= SQL =
+
+Proč NoSQL?
+
+Relační databáze ... 40 let vývoje
+
+Špatný standard
+
+
+Proč Django ORM? – jednoduché pro věci, na které je dobré NoSQL!
+
+Chceme SQL! Ne syntax, ale to co umí!
+
+    “Disproving the myth of 'the best database layer is
+    the one that makes the database invisible' is a
+    primary philosophy of SA. If you don't want to deal
+    with SQL, then there's little point to using a
+    database in the first place.”
+
+
+DBAPI? ... dejà vu!
+
+
+= Core =
+
+Composability
+
+Cokoli v SQL se dá udělat pomocí pythonových výrazů
+dotazy = objekty ... dá se s nimi pracovat
+
+    PostgreSQL
+    MySQL
+    SQLite
+    Firebird
+    Oracle
+    MSSQL
+    Sybase
+    DB2
+    Informix
+    SAPDB
+    MSAccess
+
+    Technical excellence
+        PK: multi-column is fine; mutable is fine; any
+        data type is fine; doesn't have to be named “id” !!!
+        http://blogs.ittoolbox.com/database/soup/archives/primary-keyvil-part-i-
+        Recognizes all database defaults instead of
+            allowing a few special cases like “created_at”
+        ● Doesn't make up its own query language
+        ● No XML
+        ● Introspection or define-tables-in-Python
+        ● Session/unit-of-work based
+        ● Migrations
+
+= The Tao of SQLAlchemy =
+
+SQL databases behave less like object collections the more size and performance start to matter
+object collections behave less like tables and rows the more abstraction starts to matter
+
+Každá část funguje se všemi ostatními
+(na rozdíl od Django ORM – )
+
+= ORM =
+
+... počkat, a není SQLAlchemy ORMko?
+
+PK musí být
+
+Session / Unit of Work
+Transaction
+
+Declarative
+
+= A další =
+
+Elixir
+Alembic
+
+
+= Zdroje =
+
+http://spyced.blogspot.com/2009/05/belated-2009-introduction-to-sqlalchemy.html (2009)
+http://www.sqlalchemy.org/blog/2011/09/19/sqlalchemy-at-pygotham/ (PyGotham 2011)
+https://www.youtube.com/watch?v=GxL9MnWlCwo (proč ne Django)
