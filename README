@@ -1,0 +1,21 @@
+
+Slides for a SQLAlchemy introduction talk. Czech only.
+Typeset using TeX Live's `lualatex`.
+
+License: CC-BY-SA 3.0,
+http://creativecommons.org/licenses/by-sa/3.0/
+
+Alchemic arrays in the `circles` directory (except yinyang.png) are by
+Blye Widmar, http://notshurly.deviantart.com/gallery/23303244
+
+
+---
+
+Slajdy k přednášce o SQLAlchemy na lednovém Pyvu 2012.
+Sázeno pomocí `lualatex` z balíčku TeX Live.
+
+Šířeno pod licencí CC-BY-SA 3.0,
+http://creativecommons.org/licenses/by-sa/3.0/
+
+Alchymistickoidní symboly v adresáři `circles` (kromě yinyang.png) vytvořil
+Blye Widmar, http://notshurly.deviantart.com/gallery/23303244
