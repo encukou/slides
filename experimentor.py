@@ -7,12 +7,105 @@ import traceback
 
 import urwid
 
-class FancyEdit(urwid.Edit):
+class FancyEdit(urwid.ListBox):
+    signals = ["change"]
+
+    def __init__(self, text):
+        self.lines = []
+        self.edit_text = text
+        super().__init__(self.lines)
+
+    def _make_line_editor(self, text):
+        text = text.expandtabs(4)
+        editor = urwid.Edit(edit_text=text, wrap='clip', edit_pos=0)
+        urwid.connect_signal(editor, 'change',
+            lambda subedit, text: self._emit(self, 'change', text))
+        return editor
+
+    @property
+    def edit_text(self):
+        return '\n'.join(e.edit_text for e in self.lines)
+
+    @edit_text.setter
+    def edit_text(self, new_text):
+        self.lines[:] = [self._make_line_editor(l)
+            for l in new_text.splitlines() + ['']]
+
     def keypress(self, size, key):
-        if key == 'tab':
-            self.insert_text('    ')
+        if key == 'backspace':
+            widget, pos = self.get_focus()
+            head = widget.edit_text[:widget.edit_pos]
+            if head and not head.strip():
+                key = 'shift tab'
+        elif key == 'home':
+            widget, pos = self.get_focus()
+            if widget.edit_pos == 0:
+                key = 'smart home'
+        key = super().keypress(size, key)
+        if key == 'left':
+            widget, pos = self.get_focus()
+            if pos > 0:
+                self.set_focus(pos - 1)
+                widget, pos = self.get_focus()
+                self.keypress(size, 'end')
+        elif key == 'right':
+            widget, pos = self.get_focus()
+            widget.set_edit_pos(0)
+            self.set_focus(pos + 1)
+        elif key == 'tab':
+            widget, pos = self.get_focus()
+            old_pos = widget.edit_pos
+            widget.set_edit_pos(0)
+            widget.insert_text(' ' * 4)
+            widget.set_edit_pos(old_pos + 4)
+        elif key == 'shift tab':
+            widget, pos = self.get_focus()
+            old_pos = widget.edit_pos
+            for i in range(4):
+                if widget.edit_text.startswith(' '):
+                    widget.set_edit_pos(widget.edit_pos - 1)
+                    widget.edit_text = widget.edit_text[1:]
+        elif key == 'enter':
+            widget, pos = self.get_focus()
+            orig_line = widget.edit_text
+            split_point = widget.edit_pos
+            head, tail = orig_line[:split_point], orig_line[split_point:]
+            widget.edit_text = head
+            tail = tail.lstrip()
+            self.lines[pos + 1:pos + 1] = [self._make_line_editor(tail)]
+            self.keypress(size, 'down')
+            widget, pos = self.get_focus()
+            widget.edit_pos = 0
+            while orig_line.startswith(' ' * 4):
+                widget.insert_text(' ' * 4)
+                orig_line = orig_line[4:]
+            if head.strip().endswith(':'):
+                widget.insert_text(' ' * 4)
+            self.keypress(size, 'smart home')
+        elif key == 'smart home':
+            widget, pos = self.get_focus()
+            pos = len(widget.edit_text) - len(widget.edit_text.lstrip())
+            widget.edit_pos = pos
+        elif key == 'backspace':
+            widget, pos = self.get_focus()
+            if pos:
+                text = widget.edit_text
+                self.lines[pos:pos + 1] = []
+                self.set_focus(pos - 1)
+                widget, pos = self.get_focus()
+                self.keypress(size, 'end')
+                widget.edit_text += text
+        elif key == 'delete':
+            widget, pos = self.get_focus()
+            try:
+                next_widget = self.lines[pos + 1]
+            except IndexError:
+                pass
+            else:
+                widget.edit_text += next_widget.edit_text.strip()
+                self.lines[pos + 1:pos + 2] = []
         else:
-            super().keypress(size, key)
+            return key
 
 
 class ResultColumn(urwid.WidgetWrap):
@@ -27,12 +120,16 @@ class ResultColumn(urwid.WidgetWrap):
 
 class TextColumn(urwid.WidgetWrap):
     def __init__(self, text):
-        self.textbox = FancyEdit(edit_text=text, multiline=True)
-        self.walker = urwid.SimpleListWalker([self.textbox])
-        self.listbox = urwid.ListBox(self.walker)
+        self.textbox = FancyEdit(text)
         self.footer = urwid.AttrWrap(urwid.Text("Python"), 'status')
-        self.frame = urwid.Frame(self.listbox, footer=self.footer)
+        self.frame = urwid.Frame(self.textbox, footer=self.footer)
         urwid.WidgetWrap.__init__(self, self.frame)
+
+    def keypress(self, size, key):
+        rv = super().keypress(size, key)
+        if key:
+            self.footer.set_text(key)
+        return rv
 
 
 class Runner(threading.Thread):
@@ -52,16 +149,17 @@ class Runner(threading.Thread):
 
     def run(self):
         try:
-            code = compile(self.code, filename='<input>', mode='exec')
+            code = compile(self.code, filename='<experimentor>', mode='exec')
             exec(self.code, dict(print=self.print))
         except BaseException as exc:
             self.result_pipe.write(traceback.format_exc().strip())
         else:
             self.result_pipe.write('Okay!')
-        try:
-            self.result_pipe.close()
-        except IOError:
-            pass
+        for pipe in self.stdout, self.result_pipe:
+            try:
+                self.pipe.close()
+            except IOError:
+                pass
 
 
 class Experimentor(object):
@@ -87,9 +185,13 @@ class Experimentor(object):
 
     def main(self):
         self.loop = urwid.MainLoop(self.view, self.palette)
+        self.loop.screen.tty_signal_keys(
+                susp='undefined',
+                stop='undefined',
+                start='undefined',
+            )
+        self.start_exec(self.text.textbox.edit_text)
         self.loop.run()
-
-        self.start_exec(text)
 
     def text_changed(self, edit, text):
         self.start_exec(text)
@@ -111,12 +213,15 @@ class Experimentor(object):
         self.stdout_pipe = self.loop.watch_pipe(add_text)
         self.result_pipe = self.loop.watch_pipe(set_result)
         self.columns.widget_list[1] = result
-        Runner(self.stdout_pipe, self.result_pipe, text).start()
+        #Runner(self.stdout_pipe, self.result_pipe, text).start()
 
     def save(self, text):
         self.result.statusbox.set_text('Saved')
         with open(self.filename, 'w') as f:
             f.write(text)
 
+    def input_filter(self, keys, raw):
+        self.text.footer.set_text(key)
+        return keys
 
 Experimentor(*sys.argv[1:]).main()
