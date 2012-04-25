@@ -5,6 +5,7 @@ import sys
 import threading
 import traceback
 import collections
+import inspect
 
 import urwid
 
@@ -46,13 +47,12 @@ class FancyEdit(urwid.ListBox):
 
     def __init__(self, text):
         self.lines = []
+        self.num_lines = 0
         self.edit_text = text
         self.changed = False
         super().__init__(self.lines)
         self.cut_list = []
         self.last_cut_pos = None
-        self.lineno_length = 0
-        self.emit_change()
 
     @property
     def edit_text(self):
@@ -62,16 +62,18 @@ class FancyEdit(urwid.ListBox):
     def edit_text(self, new_text):
         self.lines[:] = [FancyLineEdit(self, l)
             for l in new_text.splitlines() + ['']]
+        self.emit_change()
 
     def emit_change(self):
         self._emit('change', self.edit_text)
-        lineno_length = max(2, len(str(len(self.lines))))
-        if self.lineno_length != lineno_length:
-            self.lineno_length = lineno_length
+        if self.num_lines != len(self.lines):
+            self.num_lines = len(self.lines)
+            self.lineno_length = len(str(len(self.lines)))
             for line in self.lines:
                 line._invalidate()
 
     def keypress(self, size, key):
+        start_line_count = len(self.lines)
         if key == 'backspace':
             widget, pos = self.get_focus()
             head = widget.edit_text[:widget.edit_pos]
@@ -163,6 +165,8 @@ class FancyEdit(urwid.ListBox):
             self.changed = True
         else:
             return_value = key
+        if not self.lines:
+            self.lines.append(FancyLineEdit(self, ''))
         if self.changed:
             self.emit_change()
             self.changed = False
@@ -200,7 +204,23 @@ class Runner(threading.Thread):
 
     def print(self, *args, file=None, end='\n', sep=' '):
         if file is None or file is sys.stdout:
-            self.result.items.append(urwid.Text(sep.join(str(a) for a in args)))
+            space = len(str(len(self.text.splitlines())))
+            fill = ' ' * space
+            frame = inspect.currentframe()
+            ref_lineno = '?'
+            while frame:
+                frameinfo = inspect.getframeinfo(frame)
+                if frameinfo.filename == '<experimentor>':
+                    ref_lineno = str(frameinfo.lineno)
+                    break
+                frame = frame.f_back
+            text_item = urwid.Text([
+                    ('secondary', ref_lineno.rjust(space) + ' '),
+                    sep.join(str(a).replace('\n', '\n ' + fill) for a in args),
+                ])
+            text_item._selectable = True
+            text_item.keypress = lambda size, key: key
+            self.result.items.append(urwid.AttrMap(text_item, {}, {None: 'status'}))
         else:
             print(self, *args, file=file, end=end, sep=sep)
 
@@ -225,6 +245,7 @@ class Runner(threading.Thread):
                     while self.experimentor.results[0].sequence_number < sn:
                         self.experimentor.results.popleft()
                     self.experimentor.columns.widget_list[1] = self.result
+                    self.result.statusbox.set_text(' It works! ♪')
         self.experimentor.wake_up()
 
 
@@ -232,7 +253,7 @@ class Experimentor(urwid.Frame):
     palette = [
             ('normal', 'black', 'white'),
             ('status', 'white', 'dark blue'),
-            ('secondary', 'dark gray', 'white'),
+            ('secondary', 'light gray', 'white'),
         ]
 
     def __init__(self, filename):
