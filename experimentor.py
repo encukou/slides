@@ -4,6 +4,7 @@ import os
 import sys
 import threading
 import traceback
+import collections
 
 import urwid
 
@@ -13,13 +14,15 @@ class FancyEdit(urwid.ListBox):
     def __init__(self, text):
         self.lines = []
         self.edit_text = text
+        self.changed = False
         super().__init__(self.lines)
 
     def _make_line_editor(self, text):
         text = text.expandtabs(4)
         editor = urwid.Edit(edit_text=text, wrap='clip', edit_pos=0)
-        urwid.connect_signal(editor, 'change',
-            lambda subedit, text: self._emit(self, 'change', text))
+        def emit_change(subedit, text):
+            self.changed = True
+        urwid.connect_signal(editor, 'change', emit_change)
         return editor
 
     @property
@@ -42,6 +45,7 @@ class FancyEdit(urwid.ListBox):
             if widget.edit_pos == 0:
                 key = 'smart home'
         key = super().keypress(size, key)
+        return_value = None
         if key == 'left':
             widget, pos = self.get_focus()
             if pos > 0:
@@ -105,11 +109,16 @@ class FancyEdit(urwid.ListBox):
                 widget.edit_text += next_widget.edit_text.strip()
                 self.lines[pos + 1:pos + 2] = []
         else:
-            return key
+            return_value = key
+        if self.changed:
+            self._emit('change', self.edit_text)
+            self.changed = False
+        return return_value
 
 
 class ResultColumn(urwid.WidgetWrap):
-    def __init__(self):
+    def __init__(self, sequence_number):
+        self.sequence_number = sequence_number
         self.statusbox = urwid.Text('Ready')
         self.foot = urwid.AttrWrap(self.statusbox, 'status')
         self.items = urwid.SimpleListWalker([])
@@ -125,103 +134,117 @@ class TextColumn(urwid.WidgetWrap):
         self.frame = urwid.Frame(self.textbox, footer=self.footer)
         urwid.WidgetWrap.__init__(self, self.frame)
 
-    def keypress(self, size, key):
-        rv = super().keypress(size, key)
-        if key:
-            self.footer.set_text(key)
-        return rv
-
 
 class Runner(threading.Thread):
-    def __init__(self, stdout, result_pipe, code):
-        self.stdout = os.fdopen(stdout, 'w')
-        self.result_pipe = os.fdopen(result_pipe, 'w')
-        self.code = code
+    def __init__(self, experimentor, result, text):
+        self.experimentor = experimentor
+        self.result = result
+        self.text = text
         super().__init__()
 
-    def print(self, *args, file=None, **kwargs):
-        if file is None or file == sys.stdout:
-            file = self.stdout
-            print(*args, file=self.stdout, **kwargs)
-            self.stdout.flush()
+    def print(self, *args, file=None, end='\n', sep=' '):
+        if file is None or file is sys.stdout:
+            self.result.items.append(urwid.Text(sep.join(str(a) for a in args)))
         else:
-            print(*args, file=file, **kwargs)
+            print(self, *args, file=file, end=end, sep=sep)
 
     def run(self):
         try:
-            code = compile(self.code, filename='<experimentor>', mode='exec')
-            exec(self.code, dict(print=self.print))
+            code = compile(self.text, filename='<experimentor>', mode='exec')
+            exec(code, dict(print=self.print))
         except BaseException as exc:
-            self.result_pipe.write(traceback.format_exc().strip())
+            with self.experimentor.lock:
+                sn = self.result.sequence_number
+                if self.experimentor.results[0].sequence_number <= sn:
+                    while self.experimentor.results[0].sequence_number < sn:
+                        self.experimentor.results.popleft()
+                self.experimentor.columns.widget_list[1].statusbox.set_text(
+                    traceback.format_exc().strip())
         else:
-            self.result_pipe.write('Okay!')
-        for pipe in self.stdout, self.result_pipe:
-            try:
-                self.pipe.close()
-            except IOError:
-                pass
+            self.result.statusbox.set_text('')
+            with self.experimentor.lock:
+                sn = self.result.sequence_number
+                if self.experimentor.results[0].sequence_number <= sn:
+                    while self.experimentor.results[0].sequence_number < sn:
+                        self.experimentor.results.popleft()
+                    self.experimentor.columns.widget_list[1] = self.result
+        self.experimentor.wake_up()
 
 
-class Experimentor(object):
+class Experimentor(urwid.Frame):
     palette = [
             ('status', 'white', 'dark blue'),
         ]
 
     def __init__(self, filename):
         self.filename = filename
-        if os.path.exists(filename):
-            with open(filename) as f:
-                text = f.read()
-        else:
-            text = ''
-        self.text = TextColumn(text)
-        self.result = ResultColumn()
+        self.text = TextColumn('')
+        self.reload()
+        self.result = ResultColumn(0)
         self.columns = urwid.Columns([self.text, self.result], 1)
         self.col_list = self.columns.widget_list
-        self.view = urwid.Frame(self.columns)
+        super().__init__(self.columns)
         self.stdout_pipe = None
 
-        urwid.connect_signal(self.text.textbox, 'change', self.text_changed)
+        self.sequence_number = 0
+        self.results = collections.deque()
+        self.lock = threading.Lock()
 
-    def main(self):
-        self.loop = urwid.MainLoop(self.view, self.palette)
+        self.loop = urwid.MainLoop(self, self.palette)
         self.loop.screen.tty_signal_keys(
                 susp='undefined',
                 stop='undefined',
                 start='undefined',
             )
-        self.start_exec(self.text.textbox.edit_text)
+        self.read_pipe, self.write_pipe = os.pipe()
+        self.loop.watch_file(self.read_pipe, self.on_pipe)
+
+        urwid.connect_signal(self.text.textbox, 'change', self.text_changed)
+
+    def keypress(self, size, key):
+        key = super().keypress(size, key)
+        if key == 'f5':
+            self.reload()
+        else:
+            return key
+
+    def reload(self):
+        with open(self.filename) as f:
+            text = f.read()
+        self.text.textbox.edit_text = text
+
+    def main(self):
+        self.start_exec(self.text.textbox.edit_text, async=False)
         self.loop.run()
 
     def text_changed(self, edit, text):
+        self.save(text)
         self.start_exec(text)
 
-    def start_exec(self, text):
-        self.save(text)
-        if self.stdout_pipe:
-            self.loop.remove_watch_pipe(self.stdout_pipe)
-            self.loop.remove_watch_pipe(self.result_pipe)
-        result = self.result = ResultColumn()
-        def set_result(text):
-            if text:
-                result.statusbox.set_text(text)
-                self.loop.draw_screen()
-        def add_text(text):
-            if text:
-                result.items.append(urwid.Text(text))
-                self.loop.draw_screen()
-        self.stdout_pipe = self.loop.watch_pipe(add_text)
-        self.result_pipe = self.loop.watch_pipe(set_result)
-        self.columns.widget_list[1] = result
-        #Runner(self.stdout_pipe, self.result_pipe, text).start()
+    def start_exec(self, text, async=True):
+        with self.lock:
+            self.sequence_number += 1
+            result = ResultColumn(self.sequence_number)
+            self.results.append(result)
+        runner = Runner(self, result, text)
+        if async:
+            runner.start()
+        else:
+            runner.run()
+
+    def wake_up(self):
+        os.write(self.write_pipe, b'!')
 
     def save(self, text):
-        self.result.statusbox.set_text('Saved')
+        #self.text.footer.set_text('Saving')
         with open(self.filename, 'w') as f:
             f.write(text)
+        #self.text.footer.set_text('Saved')
 
-    def input_filter(self, keys, raw):
-        self.text.footer.set_text(key)
-        return keys
+    def on_pipe(self):
+        os.read(self.read_pipe, 1)
+        with self.lock:
+            self.loop.draw_screen()
+
 
 Experimentor(*sys.argv[1:]).main()
