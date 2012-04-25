@@ -8,6 +8,39 @@ import collections
 
 import urwid
 
+
+class FancyLineEdit(urwid.Edit):
+    def __init__(self, parent, text):
+        self.parent = parent
+        text = text.expandtabs(4)
+        super().__init__(edit_text=text, wrap='clip', edit_pos=0)
+        urwid.connect_signal(self, 'change', self.emit_change)
+
+    def emit_change(self, subedit, text):
+        if subedit.edit_text != text:
+            self.parent.changed = True
+
+    def _capt_set(attr_name):
+        def x(self, *stuff, **more_stuff):
+            try:
+                # XXX: Behold the inefficiency!
+                # This is called from a loop!
+                # Needless O(n²) in number of lines!
+                index = self.parent.lines.index(self) + 1
+            except ValueError:
+                caption = '?'
+            else:
+                caption = str(index)
+            space = self.parent.lineno_length
+            self.set_caption([('secondary', caption.rjust(space)), ' '])
+            return getattr(super(), attr_name)(*stuff, **more_stuff)
+        return x
+
+    rows = _capt_set('rows')
+    render = _capt_set('render')
+    get_cursor_coords = _capt_set('get_cursor_coords')
+
+
 class FancyEdit(urwid.ListBox):
     signals = ["change"]
 
@@ -18,15 +51,8 @@ class FancyEdit(urwid.ListBox):
         super().__init__(self.lines)
         self.cut_list = []
         self.last_cut_pos = None
-
-    def _make_line_editor(self, text):
-        text = text.expandtabs(4)
-        editor = urwid.Edit(edit_text=text, wrap='clip', edit_pos=0)
-        def emit_change(subedit, text):
-            if subedit.edit_text != text:
-                self.changed = True
-        urwid.connect_signal(editor, 'change', emit_change)
-        return editor
+        self.lineno_length = 0
+        self.emit_change()
 
     @property
     def edit_text(self):
@@ -34,8 +60,16 @@ class FancyEdit(urwid.ListBox):
 
     @edit_text.setter
     def edit_text(self, new_text):
-        self.lines[:] = [self._make_line_editor(l)
+        self.lines[:] = [FancyLineEdit(self, l)
             for l in new_text.splitlines() + ['']]
+
+    def emit_change(self):
+        self._emit('change', self.edit_text)
+        lineno_length = max(2, len(str(len(self.lines))))
+        if self.lineno_length != lineno_length:
+            self.lineno_length = lineno_length
+            for line in self.lines:
+                line._invalidate()
 
     def keypress(self, size, key):
         if key == 'backspace':
@@ -79,7 +113,7 @@ class FancyEdit(urwid.ListBox):
             head, tail = orig_line[:split_point], orig_line[split_point:]
             widget.edit_text = head
             tail = tail.lstrip()
-            self.lines[pos + 1:pos + 1] = [self._make_line_editor(tail)]
+            self.lines[pos + 1:pos + 1] = [FancyLineEdit(self, tail)]
             self.keypress(size, 'down')
             widget, pos = self.get_focus()
             widget.edit_pos = 0
@@ -124,13 +158,13 @@ class FancyEdit(urwid.ListBox):
             self.changed = True
         elif key == 'ctrl u':
             widget, pos = self.get_focus()
-            lines = [self._make_line_editor(t) for t in self.cut_list]
+            lines = [FancyLineEdit(self, t) for t in self.cut_list]
             self.lines[pos:pos] = lines
             self.changed = True
         else:
             return_value = key
         if self.changed:
-            self._emit('change', self.edit_text)
+            self.emit_change()
             self.changed = False
             if key != 'ctrl k':
                 self.last_cut_pos = None
@@ -181,7 +215,7 @@ class Runner(threading.Thread):
                     while self.experimentor.results[0].sequence_number < sn:
                         self.experimentor.results.popleft()
                 column = self.experimentor.columns.widget_list[1]
-                column.body_wrap.set_attr_map({None: 'invalid'})
+                column.body_wrap.set_attr_map({None: 'secondary'})
                 column.statusbox.set_text(traceback.format_exc().strip())
         else:
             self.result.statusbox.set_text('')
@@ -198,7 +232,7 @@ class Experimentor(urwid.Frame):
     palette = [
             ('normal', 'black', 'white'),
             ('status', 'white', 'dark blue'),
-            ('invalid', 'dark gray', 'white'),
+            ('secondary', 'dark gray', 'white'),
         ]
 
     def __init__(self, filename):
