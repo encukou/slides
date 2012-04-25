@@ -16,12 +16,15 @@ class FancyEdit(urwid.ListBox):
         self.edit_text = text
         self.changed = False
         super().__init__(self.lines)
+        self.cut_list = []
+        self.last_cut_pos = None
 
     def _make_line_editor(self, text):
         text = text.expandtabs(4)
         editor = urwid.Edit(edit_text=text, wrap='clip', edit_pos=0)
         def emit_change(subedit, text):
-            self.changed = True
+            if subedit.edit_text != text:
+                self.changed = True
         urwid.connect_signal(editor, 'change', emit_change)
         return editor
 
@@ -86,6 +89,7 @@ class FancyEdit(urwid.ListBox):
             if head.strip().endswith(':'):
                 widget.insert_text(' ' * 4)
             self.keypress(size, 'smart home')
+            self.changed = True
         elif key == 'smart home':
             widget, pos = self.get_focus()
             pos = len(widget.edit_text) - len(widget.edit_text.lstrip())
@@ -99,6 +103,7 @@ class FancyEdit(urwid.ListBox):
                 widget, pos = self.get_focus()
                 self.keypress(size, 'end')
                 widget.edit_text += text
+                self.changed = True
         elif key == 'delete':
             widget, pos = self.get_focus()
             try:
@@ -108,11 +113,27 @@ class FancyEdit(urwid.ListBox):
             else:
                 widget.edit_text += next_widget.edit_text.strip()
                 self.lines[pos + 1:pos + 2] = []
+                self.changed = True
+        elif key == 'ctrl k':
+            widget, pos = self.get_focus()
+            if self.last_cut_pos != pos:
+                self.cut_list = []
+            self.cut_list.append(widget.edit_text)
+            self.last_cut_pos = pos
+            self.lines[pos:pos + 1] = []
+            self.changed = True
+        elif key == 'ctrl u':
+            widget, pos = self.get_focus()
+            lines = [self._make_line_editor(t) for t in self.cut_list]
+            self.lines[pos:pos] = lines
+            self.changed = True
         else:
             return_value = key
         if self.changed:
             self._emit('change', self.edit_text)
             self.changed = False
+            if key != 'ctrl k':
+                self.last_cut_pos = None
         return return_value
 
 
@@ -120,17 +141,18 @@ class ResultColumn(urwid.WidgetWrap):
     def __init__(self, sequence_number):
         self.sequence_number = sequence_number
         self.statusbox = urwid.Text('Ready')
-        self.foot = urwid.AttrWrap(self.statusbox, 'status')
+        self.foot = urwid.AttrMap(self.statusbox, 'status')
         self.items = urwid.SimpleListWalker([])
         self.body = urwid.ListBox(self.items)
-        self.frame = urwid.Frame(self.body, footer=self.foot)
+        self.body_wrap = urwid.AttrMap(self.body, {})
+        self.frame = urwid.Frame(self.body_wrap, footer=self.foot)
         urwid.WidgetWrap.__init__(self, self.frame)
 
 
 class TextColumn(urwid.WidgetWrap):
     def __init__(self, text):
         self.textbox = FancyEdit(text)
-        self.footer = urwid.AttrWrap(urwid.Text("Python"), 'status')
+        self.footer = urwid.AttrMap(urwid.Text(''), 'status')
         self.frame = urwid.Frame(self.textbox, footer=self.footer)
         urwid.WidgetWrap.__init__(self, self.frame)
 
@@ -158,8 +180,9 @@ class Runner(threading.Thread):
                 if self.experimentor.results[0].sequence_number <= sn:
                     while self.experimentor.results[0].sequence_number < sn:
                         self.experimentor.results.popleft()
-                self.experimentor.columns.widget_list[1].statusbox.set_text(
-                    traceback.format_exc().strip())
+                column = self.experimentor.columns.widget_list[1]
+                column.body_wrap.set_attr_map({None: 'invalid'})
+                column.statusbox.set_text(traceback.format_exc().strip())
         else:
             self.result.statusbox.set_text('')
             with self.experimentor.lock:
@@ -173,7 +196,9 @@ class Runner(threading.Thread):
 
 class Experimentor(urwid.Frame):
     palette = [
+            ('normal', 'black', 'white'),
             ('status', 'white', 'dark blue'),
+            ('invalid', 'dark gray', 'white'),
         ]
 
     def __init__(self, filename):
@@ -183,7 +208,7 @@ class Experimentor(urwid.Frame):
         self.result = ResultColumn(0)
         self.columns = urwid.Columns([self.text, self.result], 1)
         self.col_list = self.columns.widget_list
-        super().__init__(self.columns)
+        super().__init__(urwid.AttrMap(self.columns, 'normal'))
         self.stdout_pipe = None
 
         self.sequence_number = 0
