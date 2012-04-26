@@ -289,8 +289,13 @@ class Experimentor(urwid.Frame):
             return key
 
     def reload(self):
-        with open(self.filename) as f:
-            text = f.read()
+        try:
+            file = open(self.filename)
+        except IOError:
+            text = ''
+        else:
+            with file:
+                text = file.read()
         self.text.textbox.edit_text = text
 
     def main(self):
