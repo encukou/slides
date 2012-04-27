@@ -163,6 +163,31 @@ class FancyEdit(urwid.ListBox):
             lines = [FancyLineEdit(self, t) for t in self.cut_list]
             self.lines[pos:pos] = lines
             self.changed = True
+        elif key == 'ctrl w':
+            widget, pos = self.get_focus()
+            pos = widget.edit_pos - 1
+            text = widget.edit_text
+            while pos >= 0 and text[pos] == ' ':
+                text = text[:pos] + text[pos + 1:]
+                pos -= 1
+            symbols = '!@#$%^&*()_+-={}[]:";\'<>?,./|\\'
+            nums = '1234567890'
+            if pos >= 0:
+                if text[pos] in symbols:
+                    while pos >= 0 and text[pos] in symbols:
+                        text = text[:pos] + text[pos + 1:]
+                        pos -= 1
+                elif text[pos] in nums:
+                    while pos >= 0 and text[pos] in nums:
+                        text = text[:pos] + text[pos + 1:]
+                        pos -= 1
+                else:
+                    while (pos >= 0 and text[pos] not in symbols and
+                            text[pos] not in nums and text[pos] != ' '):
+                        text = text[:pos] + text[pos + 1:]
+                        pos -= 1
+            widget.edit_text = text
+            widget.edit_pos = pos + 1
         else:
             return_value = key
         if not self.lines:
