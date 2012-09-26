@@ -1,0 +1,365 @@
+\documentclass[20pt]{beamer}
+\usepackage{fontspec}
+\usepackage{amsfonts}
+\usepackage{tangocolors}
+\usepackage{listings}
+\usepackage{multicol}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
+% thanks http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+\newcommand\normallistingstyle{\lstset{ %
+  language=Python,                % the language of the code
+  basicstyle=\footnotesize,
+                                   % the size of the fonts that are used for the code
+  %numbers=left,                   % where to put the line-numbers
+  %numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  %stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  %numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  %frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  %captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\ ,
+  emph={[2]__import__,range,input,raw_input,eval,NameError},
+  keywordstyle=\color{ta3chocolate},          % keyword style
+  commentstyle=\color{ta3chameleon},       % comment style
+  stringstyle=\color{ta3chameleon},         % string literal style
+  emphstyle={[2]\color{ta3butter}},         % string literal style
+  escapeinside=\$\$,            % if you want to add LaTeX within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+  aboveskip=0pt,
+  belowskip=0pt,
+}}
+\newcommand\biglistingstyle{\lstset{ %
+    basicstyle=\small,
+}}
+\newcommand\altlistingstyle{\lstset{ %
+    backgroundcolor=\color{black},
+    basicstyle=\small\color{white},
+    keywordstyle=\color{tachocolate},
+    commentstyle=\color{tachameleon},
+    stringstyle=\color{tachameleon},
+    emphstyle={[2]\color{tabutter}},
+}}
+\normallistingstyle
+\newcommand\topshade{
+    \begin{tikzpicture}[remember picture,overlay]
+    \fill[black] (current page.west) rectangle +(100cm, -100cm);
+    \end{tikzpicture}
+    \vspace{-50pt}
+    \biglistingstyle
+}
+\newcommand\halfshadenopause{
+    \altlistingstyle\bigskip\bigskip\bigskip
+}
+\newcommand\halfshade{
+    \pause\halfshadenopause
+}
+\newcommand\bottomshade{
+    \normallistingstyle
+}
+\newcommand\sk{\par\bigskip\bigskip\par}
+\newcommand\wh[1]{\only<#1>{\color{white}}}
+\newcommand\tx[2]{\alt<#1>{\textcolor{ta3gray}}{\textcolor{ta3gray}}{\uncover<#1->{#2}}}
+\newcommand\rd[2]{\alt<#1>{\textcolor{ta2chameleon}}{\textcolor{ta2chameleon}}{\uncover<#1->{#2}}}
+
+\begin{document}
+\fontspec[Numbers=Lining]{Fertigo Pro}
+\color{ta3gray}
+
+\begin{center}
+\title{eval()}
+\author{Petr Viktorin}
+\date{\today}
+
+\frame{\color{ta3gray}
+    \sk
+    \textcolor{ta2gray}{Zákeřný}
+    \textcolor{tachameleon}{eval()}
+    \sk\sk
+    \textcolor{ta2gray}{Petr Viktorin}\\[-0.25cm]
+    \textcolor{ta2gray}{\tiny @encukou}
+    \sk
+    \textcolor{ta2gray}{\tiny nebezpečné PyVo 2012-09-27}
+}
+
+\frame{\color{ta3gray}
+    {\fontspec{DejaVu Sans Mono}\tiny \$ pydoc eval \hfill}
+
+    eval(\textit{source}[, \textit{globals}[, \textit{locals}]])
+    \sk
+    \rd{1}{Evaluate the source} in the context of globals and locals.
+    \sk
+    \small{
+        The source may be a \rd{1}{string} representing a Python expression
+        or a code object as returned by compile().
+    }
+}
+
+\begin{frame}[fragile]\color{ta3gray}\tiny
+\lstinputlisting[language=Python]{snippet/funceval.py}
+\end{frame}
+
+\begin{frame}[fragile]\color{ta3gray}\tiny
+\begin{multicols}{2}
+\begin{verbatim}
+Zadej funkci: x * 5
+x = 0, y = 0
+x = 1, y = 5
+x = 2, y = 10
+x = 3, y = 15
+x = 4, y = 20
+\end{verbatim}
+\pause
+\columnbreak
+\begin{verbatim}
+Zadej funkci: math.sin(x) 
+x = 0, y = 0.0
+x = 1, y = 0.841470984808
+x = 2, y = 0.909297426826
+x = 3, y = 0.14112000806
+x = 4, y = -0.756802495308
+\end{verbatim}
+\end{multicols}
+\pause
+\begin{verbatim}
+Zadej funkci: x ** 999999
+x = 0, y = 0
+x = 1, y = 1
+\end{verbatim}
+\pause
+\begin{verbatim}
+Zadej funkci: open('/etc/passwd').read()
+x = 0, y = root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+\end{verbatim}
+\pause
+\begin{verbatim}
+Zadej funkci: os.system('fire-mah-lazors --target=alderaan')
+\end{verbatim}
+\end{frame}
+
+\frame{
+Jak se \rd{1}{bránit}?
+}
+
+\frame{\color{ta3gray}
+    {\fontspec{DejaVu Sans Mono}\tiny \$ pydoc eval \hfill}
+
+    eval(\textit{source}[, \textit{globals}[, \textit{locals}]])
+    \sk
+    The \rd{1}{globals} must be a dictionary and \rd{1}{locals} can be any
+    mapping, defaulting to the current globals and locals.
+    \sk
+    If only globals is given, locals defaults to it.
+}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+>>> import math
+>>> eval("math.sin(3.141)")
+0.0005926535550994539
+$\pause$
+>>> eval("math.sin(3.141)", {})
+Traceback (most recent call last):
+  ...
+NameError: $name 'math' is not defined$
+
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+>>> import math
+>>> import os
+>>> eval("math.sin(3.141)", dict(math=math))
+0.0005926535550994539
+$\pause$
+>>> eval("os.system('echo pwned')", dict(math=math))
+Traceback (most recent call last):
+  ...
+NameError: $name 'os' is not defined$
+
+\end{lstlisting}
+\end{frame}
+
+\frame{Už je to \rd{1}{bezpečné}?}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+>>> import math
+>>> import os
+>>> eval("dir()")
+['__builtins__', '__doc__', '__name__', '__package__', 'math', 'os']
+$\pause$
+>>> eval("dir()", dict(math=math))
+['__builtins__', 'math']
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+>>> eval("dir(__builtins__)")
+[..., 'abs', 'all', 'any', 'apply',
+    'basestring', 'bin', 'bool',
+    'buffer', 'bytearray', 'bytes',
+    'callable', 'chr', 'cmp',
+    ..., 'vars', 'xrange', 'zip']
+\end{lstlisting}
+\pause
+\begin{lstlisting}
+>>> eval('''open('/etc/passwd'
+        ).read()''', {})
+$'root:x:0:0:root:/root:/bin/bash{\textbackslash}n ...$
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+>>> eval("open('/etc/passwd').read()", dict(__builtins__={}))
+Traceback (most recent call last):
+  ...
+NameError: $name 'open' is not defined$
+$\pause$
+>>> eval("abs(-5)", dict(__builtins__={}, abs=abs))
+5
+\end{lstlisting}
+\end{frame}
+
+\frame{Už je to \rd{1}{bezpečné}!?}
+
+\frame{eval()\\vyhodnotí\\\rd{1}{jakýkoli}\\výraz}
+
+\begin{frame}[fragile]
+Co \rd{1}{není} výraz?
+
+\begin{lstlisting}
+def f(x):
+    return 3 + x
+$\pause$
+for x in range(10):
+    print x
+$\pause$
+x = 3
+$\pause$
+import os
+\end{lstlisting}
+{\tiny a další příkazy: \url{http://docs.python.org/reference/index.html}}
+\end{frame}
+
+\frame{
+Jak to \rd{1}{obejít}?
+}
+
+\begin{frame}[fragile]
+\topshade
+\begin{lstlisting}
+def f(x):
+    return 3 + x
+\end{lstlisting}
+\halfshade
+\begin{lstlisting}
+f = (lambda x: 3 + x)
+$\color{black}!$
+\end{lstlisting}
+\bottomshade
+\end{frame}
+
+\begin{frame}[fragile]
+\topshade
+\begin{lstlisting}
+x = 3 * 8
+foobar(x)
+\end{lstlisting}
+\halfshade
+\begin{lstlisting}
+(lambda x=3 ** 8:
+    foobar(x)
+)()
+\end{lstlisting}
+\bottomshade
+\end{frame}
+
+\begin{frame}[fragile]
+\topshade
+\begin{lstlisting}
+for x in range(10):
+    print x
+\end{lstlisting}
+\halfshade
+\begin{lstlisting}
+[sys.stdout.write('%s\n' % x) for x in range(10)]
+\end{lstlisting}
+\bottomshade
+\end{frame}
+
+\begin{frame}[fragile]
+\topshade
+\begin{lstlisting}
+class T(object):
+    def __init__(self, p):
+        self.p = p
+\end{lstlisting}
+\halfshade
+\begin{lstlisting}
+T = type("T", (object,),
+  dict(
+    __init__=lambda self, p:
+      setattr(self, 'p', p)))
+\end{lstlisting}
+\bottomshade
+\end{frame}
+
+\begin{frame}[fragile]
+\topshade
+\begin{lstlisting}
+import os
+os.system("echo pwned")
+\end{lstlisting}
+\halfshade
+\begin{lstlisting}
+__import__('os').system(
+    "echo pwned")
+$\color{black}!$
+\end{lstlisting}
+\bottomshade
+\end{frame}
+
+\begin{frame}[fragile]
+\topshade
+\begin{lstlisting}
+import os
+os.system("echo pwned")
+\end{lstlisting}
+\halfshadenopause
+\begin{lstlisting}
+(lambda os=__import__('os'):
+    os.system("echo pwned")
+)()
+\end{lstlisting}
+\bottomshade
+\end{frame}
+
+
+\frame{
+Téměř \rd{1}{jakýkoli} program se dá převést na jediný \rd{1}{výraz}
+
+\bigskip\pause\bigskip
+
+Ještě tak mít ten \rd{1}{\_\_import\_\_}...
+}
+
+\end{center}
+\end{document}
+
