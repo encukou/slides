@@ -3,6 +3,7 @@
 \usepackage{amsfonts}
 \usepackage{tangocolors}
 \usepackage{listings}
+\usepackage{hyperref}
 \usepackage{multicol}
 
 \usepackage{tikz}
@@ -29,11 +30,13 @@
   breaklines=true,                % sets automatic line breaking
   breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
   title=\ ,
-  emph={[2]__import__,range,input,raw_input,eval,NameError},
+  emph={[2]__import__,range,input,raw_input,NameError,dir,dict},
+  emph={[3]eval},
   keywordstyle=\color{ta3chocolate},          % keyword style
   commentstyle=\color{ta3chameleon},       % comment style
   stringstyle=\color{ta3chameleon},         % string literal style
-  emphstyle={[2]\color{ta3butter}},         % string literal style
+  emphstyle={[2]\color{ta3butter}},
+  emphstyle={[3]\color{ta3orange}},
   escapeinside=\$\$,            % if you want to add LaTeX within your code
   morekeywords={*,...}               % if you want to add more keywords to the set
   aboveskip=0pt,
@@ -49,6 +52,7 @@
     commentstyle=\color{tachameleon},
     stringstyle=\color{tachameleon},
     emphstyle={[2]\color{tabutter}},
+    emphstyle={[3]\color{taorange}},
 }}
 \normallistingstyle
 \newcommand\topshade{
@@ -87,7 +91,7 @@
     \textcolor{tachameleon}{eval()}
     \sk\sk
     \textcolor{ta2gray}{Petr Viktorin}\\[-0.25cm]
-    \textcolor{ta2gray}{\tiny @encukou}
+    \textcolor{ta2gray}{\tiny encukou@gmail.com}
     \sk
     \textcolor{ta2gray}{\tiny nebezpečné PyVo 2012-09-27}
 }
@@ -201,7 +205,9 @@ NameError: $name 'os' is not defined$
 >>> import math
 >>> import os
 >>> eval("dir()")
-['__builtins__', '__doc__', '__name__', '__package__', 'math', 'os']
+['__builtins__', '__doc__',
+    '__name__', '__package__',
+    'math', 'os']
 $\pause$
 >>> eval("dir()", dict(math=math))
 ['__builtins__', 'math']
@@ -210,7 +216,7 @@ $\pause$
 
 \begin{frame}[fragile]
 \begin{lstlisting}
->>> eval("dir(__builtins__)")
+>>> dir(__builtins__)
 [..., 'abs', 'all', 'any', 'apply',
     'basestring', 'bin', 'bool',
     'buffer', 'bytearray', 'bytes',
@@ -307,6 +313,25 @@ for x in range(10):
 \begin{frame}[fragile]
 \topshade
 \begin{lstlisting}
+def f(x):
+    return 3 + x
+for i in range(10):
+    print f(i)
+\end{lstlisting}
+\halfshade
+\begin{lstlisting}
+(lambda f=(lambda x: 3 + x),
+        out=sys.stdout.write:
+  [out('%s\n' % f(x))
+    for x in range(10)])()
+$\color{black}!$
+\end{lstlisting}
+\bottomshade
+\end{frame}
+
+\begin{frame}[fragile]
+\topshade
+\begin{lstlisting}
 class T(object):
     def __init__(self, p):
         self.p = p
@@ -314,9 +339,9 @@ class T(object):
 \halfshade
 \begin{lstlisting}
 T = type("T", (object,),
-  dict(
-    __init__=lambda self, p:
-      setattr(self, 'p', p)))
+  {'__init__':
+    lambda self, p:
+      setattr(self, 'p', p)})
 \end{lstlisting}
 \bottomshade
 \end{frame}
@@ -357,7 +382,179 @@ Téměř \rd{1}{jakýkoli} program se dá převést na jediný \rd{1}{výraz}
 
 \bigskip\pause\bigskip
 
+eval()\\vyhodnotí\\\rd{1}{jakýkoli}\\výraz
+
+\bigskip\pause\bigskip
+
 Ještě tak mít ten \rd{1}{\_\_import\_\_}...
+}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+>>> (42).bit_length()
+6
+$\pause$
+>>> dir(42)
+[..., '__add__', '__class__',
+    '__doc__', '__hash__',
+    '__str__', 'bit_length', ...]
+$\pause$
+>>> (42).__class__
+<type 'int'>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+>>> (42).__class__.mro()
+[<type 'int'>, <type 'object'>]
+$\pause$
+>>> '42'.__class__.mro()
+[<type 'str'>, <type 'basestring'>, <type 'object'>]
+$\pause$
+>>> (42).__class__.mro()[-1]
+<type 'object'>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+>>> (42).__class__.mro()[-1]
+$<type 'object'>$
+$\pause$
+>>> ((42).__class__.
+        mro()[-1].__subclasses__())
+$[<type 'type'>, <type 'weakref'>, ...,$
+    $<type 'int'>, <type 'basestring'>, ...,$
+    $<type 'super'>, <type 'xrange'>, ...,$
+    $<type 'function'>, <type 'classobj'>, ...,$
+    $<type 'sys.version\_info'>, ...,$
+    $<class 'warnings.catch\_warnings'>, ...,$
+    $<class 'codecs.IncrementalEncoder'>, ...]$
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+>>> [c for c in ((42).__class__.
+        mro()[-1].__subclasses__())
+    if c.__name__ == 'file'][0]
+$<type 'file'>$
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+>>> [c for c in (42).__class__.
+        mro()[-1].__subclasses__()
+    if c.__name__ == 'file'][0](
+        '/etc/passwd').read()
+
+$'root:x:0:0:root:/root:/bin/bash{\textbackslash}n$...
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+(lambda fc=(
+    lambda n: [c for c in 
+        ().__class__.__bases__[0].__subclasses__() 
+        if c.__name__ == n][0]):
+    fc("function")(
+        fc("code")(
+            0,0,0,0,"KABOOM",(),(),(),"","",0,""
+        ),{}
+)())()
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+Ale eval()ovaný kód se dá předem \rd{1}{vyčistit}!!!!
+
+\bigskip\pause\bigskip
+
+Znáte problémy s \rd{1}{os.system}?
+SQL injection? XSS?
+
+\bigskip\pause\bigskip
+
+Znáte moduly \rd{1}{rexec} a \rd{1}{bastion}?
+
+\bigskip\pause\bigskip
+
+... nedá!!!!
+\end{frame}
+
+
+\begin{frame}[fragile]
+Co místo \rd{1}{eval}u?
+\end{frame}
+
+\begin{frame}[fragile]
+
+{\tiny Věřím svým uživatelům!}\\[-5pt]
+Opravdový modul
+
+\bigskip\pause
+
+{\tiny Dělám kalkulačku!}\\[-5pt]
+pyparsing, PLY
+
+\bigskip\pause
+
+{\tiny Chci načíst dict/list!}\\[-5pt]
+\verb+ast.literal_eval+
+
+\bigskip\pause
+
+{\tiny Čtu/píšu data/koniguraci!}\\[-5pt]
+YAML, JSON, \verb+ConfigParser+
+
+\bigskip\pause
+
+{\tiny Dělám překladač/REPL!}\\[-5pt]
+\verb+compile+ \& \verb+exec()+
+\end{frame}
+
+\begin{frame}[fragile]
+Pozor na to, že eval se zákeřně schovává ve funkci \rd{1}{input}!
+
+\bigskip
+
+input(x) $\Leftrightarrow$ eval(raw\_input(x))
+
+\end{frame}
+
+
+\frame{
+
+    \bigskip\bigskip
+    \bigskip\bigskip
+    \bigskip\bigskip
+
+    {\huge ?}
+
+    \bigskip\bigskip
+    \bigskip\bigskip
+
+    {\tiny
+    Petr Viktorin\\[10pt]%
+    \href{http://twitter.com/encukou}{@\rd{1}{encukou}}\\%
+    \href{mailto:encukou@gmail.com}{\rd{1}{encukou}@gmail.com}\\%
+    \sk
+    \tx{1}{Slajdy jsou pod licencí Creative Commons Attribution-ShareAlike 3.0 \url{http://creativecommons.org/licenses/by-sa/3.0/}}\\
+    }
+
+}
+
+\frame{
+    \small
+    \rd{1}{Zdroje} (pozor, většinou zastaralé)\\[0.25cm]
+    \tiny
+    \tx{1}{\url{http://nedbatchelder.com/blog/201206/eval_really_is_dangerous.html}}\\[0.25cm]
+    \tx{1}{\url{http://lybniz2.sourceforge.net/safeeval.html}}\\[0.25cm]
+    \tx{1}{\url{http://effbot.org/zone/librarybook-core-eval.htm}}\\[0.25cm]
 }
 
 \end{center}
