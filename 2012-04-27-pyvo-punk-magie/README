@@ -1,0 +1,16 @@
+
+Editor with realtime Python evaluation for a talk about some of the more
+obscure constructs in Python. Czech only.
+
+Talk video: https://www.youtube.com/watch?v=EF3dxcGn6to
+
+License: MIT
+
+---
+
+Editor se zobrazováním výstupu v reálném čase. Použito na přednášku o Pythonové
+„magii“ na dubnovém Pyvu 2012.
+
+Video z prezentace: https://www.youtube.com/watch?v=EF3dxcGn6to
+
+License: MIT
