@@ -1,3 +1,5 @@
+*.pyc
+
 # Standard-ish TeX ignore list
 *.aux
 *.bbl
