@@ -1,0 +1,307 @@
+\documentclass[20pt]{beamer}
+\usepackage{fontspec}
+\usepackage{amsfonts}
+\usepackage{tangocolors}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
+% thanks http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+\newcommand\normallistingstyle{\lstset{ %
+  language=Python,                % the language of the code
+  basicstyle=\footnotesize,
+                                   % the size of the fonts that are used for the code
+  %numbers=left,                   % where to put the line-numbers
+  %numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  %stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  %numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  %frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  %captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\ ,
+  emph={[2]__import__,range,input,raw_input,NameError,dir,dict},
+  keywordstyle=\color{ta3chocolate},          % keyword style
+  commentstyle=\color{ta3orange},       % comment style
+  stringstyle=\color{ta3orange},         % string literal style
+  emphstyle={[2]\color{ta2orange}},
+  escapeinside=\$\$,            % if you want to add LaTeX within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+  aboveskip=0pt,
+  belowskip=0pt,
+}}
+\newcommand\biglistingstyle{\lstset{ %
+    basicstyle=\small,
+}}
+\newcommand\altlistingstyle{\lstset{ %
+    backgroundcolor=\color{black},
+    basicstyle=\small\color{white},
+    keywordstyle=\color{tachocolate},
+    commentstyle=\color{tachameleon},
+    stringstyle=\color{tachameleon},
+    emphstyle={[2]\color{tabutter}},
+    emphstyle={[3]\color{taorange}},
+}}
+\normallistingstyle
+\newcommand\topshade{
+    \begin{tikzpicture}[remember picture,overlay]
+    \fill[black] (current page.west) rectangle +(100cm, -100cm);
+    \end{tikzpicture}
+    \vspace{-50pt}
+    \biglistingstyle
+}
+\newcommand\halfshadenopause{
+    \altlistingstyle\bigskip\bigskip\bigskip
+}
+\newcommand\halfshade{
+    \pause\halfshadenopause
+}
+\newcommand\bottomshade{
+    \normallistingstyle
+}
+\newcommand\sk{\par\bigskip\bigskip\par}
+\newcommand\wh[1]{\only<#1>{\color{white}}}
+\newcommand\tx[2]{\alt<#1>{\textcolor{ta3gray}}{\textcolor{ta3gray}}{\uncover<#1->{#2}}}
+\newcommand\rd[2]{\alt<#1>{\textcolor{ta2orange}}{\textcolor{ta3gray}}{#2}}
+\renewcommand\emph[1]{\textcolor{ta2orange}{#1}}
+
+\begin{document}
+\fontspec[Numbers=Lining]{Fertigo Pro}
+\color{ta3gray}
+
+\begin{center}
+\title{eval()}
+\author{Petr Viktorin}
+\date{\today}
+
+\frame{\color{ta3gray}
+    \sk
+    \textcolor{ta2gray}{Jak}
+    \textcolor{taorange}{zveřejnit}
+    \textcolor{ta2gray}{knihovnu}
+    \sk\sk
+    \textcolor{ta2gray}{Petr Viktorin}\\[-0.25cm]
+    \textcolor{ta2gray}{\tiny encukou@gmail.com}
+    \sk
+    \textcolor{ta2gray}{\tiny PyVo, 2012-10-25}
+}
+
+\frame{
+    Licence
+
+    \bigskip\bigskip
+    \bigskip\bigskip
+
+    BSD? \rd{1}{MIT}? GPL?
+
+    \bigskip\bigskip
+    \bigskip\bigskip
+}
+
+\frame{
+    Git \& Github
+
+    \pause
+
+    nebo jinde?
+
+}
+
+\begin{frame}[fragile]
+Struktura projektu
+\begin{lstlisting}
+LICENSE             $\pause$
+README              $\pause$
+CHANGELOG           $\pause$
+$\rd{1}{setup.py}$  $\pause$
+$\rd{1}{mojeknihovna}$/
+    __init__$.py$   $\pause$
+    tests/          $\pause$
+doc/                $\pause$
+bin/
+\end{lstlisting}
+\bigskip\bigskip
+\end{frame}
+
+\begin{frame}[fragile]
+setup.py
+\lstset{basicstyle=\tiny}
+\begin{lstlisting}
+from setuptools import setup, find_packages
+
+setup(
+    name='Moje knihovna',
+    version='0.0.1',
+    author='Já První',
+    author_email='ja@example.com',
+    scripts=['bin/necodelej'],
+    url='http://github.com/ja/mojeknihovna/',
+    license='MIT',
+    description='Moje první knihovna.',
+    install_requires=[
+        "docopt >= 0.5.0",
+    ],
+    packages=find_packages(),
+    long_description=open('README').read(),
+    classifiers=[$\rd{1}{...}$],
+)
+\end{lstlisting}
+\normallistingstyle
+\bigskip\bigskip
+\end{frame}
+
+\frame{
+    Trove Classifiers
+
+    \bigskip\bigskip
+
+    \small
+    \url{http://pypi.python.org/pypi?:action=list_classifiers}
+
+    \bigskip\bigskip
+    \footnotesize
+
+    Natural Language :: Czech
+
+    \bigskip
+
+    License :: OSI Approved :: MIT License
+
+    \bigskip
+
+    Programming Language :: Python :: 3
+
+}
+
+\frame{
+    Nestačí?
+
+    \bigskip\bigskip
+
+    \url{http://packages.python.org/distribute/setuptools.html}
+}
+
+\begin{frame}[fragile]
+Na PyPI s tím!
+
+\bigskip\bigskip
+
+\url{http://pypi.python.org/pypi}
+
+\bigskip\bigskip
+
+\begin{itemize}\itemsep -20pt
+\item[]\$ python \  setup.py \  \rd{1}{sdist} \  \ \  \  \  \  \.\\
+\item[]\$ python \  setup.py \  \rd{1}{register} \.\\
+\item[]\$ python \  setup.py \  \rd{1}{upload}\  \  \   \\
+\end{itemize}
+\end{frame}
+
+\frame{
+    A je to!
+
+\bigskip\bigskip
+
+    \rd{1}{pip \ install} \ mojeknihovna
+
+}
+
+\frame{
+    Verzování
+
+\bigskip\bigskip
+\bigskip\bigskip
+
+    {\huge \rd{3}{0}.\rd{2}{3}.\rd{1}{7}}
+
+\bigskip\bigskip
+
+}
+
+\frame{
+    \rd{1}{Dokumentace}
+
+\bigskip\bigskip
+
+    Sphinx
+
+\bigskip
+
+    readthedocs.org
+}
+
+\frame{
+    \emph{Propagace}\\\pause
+
+\bigskip\bigskip
+
+Blogy \\\pause
+Twittery \\\pause
+Géplusy \\\pause
+Xichtobichle \\\pause
+
+\bigskip
+
+Přednášky \\\pause
+Workshopy \\\pause
+...
+
+}
+
+\frame{
+
+    \bigskip\bigskip
+    \bigskip\bigskip
+    \bigskip\bigskip
+
+    {\huge ?}
+
+    \bigskip\bigskip
+    \bigskip
+
+    {\tiny
+    Petr Viktorin\\[10pt]%
+    \href{http://twitter.com/encukou}{@\rd{1}{encukou}}\\%
+    \href{mailto:encukou@gmail.com}{\rd{1}{encukou}@gmail.com}\\%
+    \href{http://github.com/encukou}{github.com/\rd{1}{encukou}}\\%
+    \sk
+    \tx{1}{Licence slajdů \& videa: \\ Creative Commons Attribution-ShareAlike 3.0 \url{http://creativecommons.org/licenses/by-sa/3.0/}}\\
+    }
+
+}
+
+\frame{
+    \small
+    \rd{1}{Zdroje} \& odkazy\\[0.25cm]
+    \bigskip\bigskip
+    \tiny
+    \tx{1}{\url{http://as.ynchrono.us/2007/12/filesystem-structure-of-python-project_21.html}}\\[0.25cm]
+    \tx{1}{\url{http://packages.python.org/distribute/setuptools.html}}\\[0.25cm]
+    \tx{1}{\url{http://guide.python-distribute.org/creation.html}}\\[0.25cm]
+    \bigskip
+    \tx{1}{\url{http://pypi.python.org/pypi}}\\[0.25cm]
+    \bigskip
+    \tx{1}{\url{http://semver.org/}}\\[0.25cm]
+    \bigskip
+    \tx{1}{\url{http://sphinx.pocoo.org/}}\\[0.25cm]
+    \tx{1}{\url{https://readthedocs.org/}}\\[0.25cm]
+    %\tx{1}{\url{}}\\[0.25cm]
+    %\tx{1}{\url{}}\\[0.25cm]
+    %\tx{1}{\url{}}\\[0.25cm]
+    %\tx{1}{\url{}}\\[0.25cm]
+   
+}
+
+\end{center}
+\end{document}
+
