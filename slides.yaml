@@ -1,4 +1,23 @@
 - |
+    [TEST SLIDE]
+    ┌───────────────────────────────────────┐
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    └───────────────────────────────────────┘
+- |
 
 
     «Textová rozhraní» v dnešní době
@@ -12,3 +31,287 @@
     «Terminál»
 
     Trocha historie
+# A
+# B
+# Ctrl+Alt+F2
+# Meta+F
+- |
+    Kanály v «CLI»
+
+
+
+
+    ┌────────────┐    stdin    ┌─────────┐ «hide≈.»
+    │ Klávesnice ─────────────>│         │ «hide≈.»
+    │            │             │ program │ «hide≈.»
+    │            │    stdout   │         │ «hide≈.»
+    │           <──────────────│         │ «hide≈.»
+    │ Obrazovka  │    stderr   └─────────┘ «hide≈.»
+    │           <─────────────────┘        «hide≈.»
+    │            │                         «hide≈.»
+    └────────────┘                         «hide≈.»
+    «hide≈.»
+    «hide≈.»
+    «hide≈.»
+    «hide≈.»
+
+- |
+    «Escape» codes
+    «hide≈.»                                       «hide≈.»
+    «hide≈.»   vymazání posledního znaku           «hide≈.»
+    «hide≈.»                   .                   «hide≈.»
+    «hide≈.»                   .                   «hide≈.»
+    «hide≈.»┌────────────┐     .       ┌─────────┐ «hide≈.»
+    «hide≈.»│ Klávesnice ─────────────>│         │ «hide≈.»
+    «hide≈.»│            │             │ program │ «hide≈.»
+    «hide≈.»│            │             │         │ «hide≈.»
+    «hide≈.»│           <──────────────│         │ «hide≈.»
+    «hide≈.»│ Obrazovka  │             └─────────┘ «hide≈.»
+    «hide≈.»│           <─────────────────┘        «hide≈.»
+    «hide≈.»│            │        .                «hide≈.»
+    «hide≈.»└────────────┘        .                «hide≈.»
+    «hide≈.»                      .                «hide≈.»
+    «hide≈.»               pohyb kurzoru           «hide≈.»
+    «hide≈.»
+    «hide≈.»
+
+- |
+    Máme lepší obrazovky! Chceme víc «magie»!
+    «hide≈.»                                       «hide≈.»
+    «hide≈.»   vymazání posledního znaku           «hide≈.»
+    «hide≈.»                   .                   «hide≈.»
+    «hide≈.»                   .                   «hide≈.»
+    «hide≈.»┌────────────┐     .       ┌─────────┐ «hide≈.»
+    «hide≈.»│ Klávesnice ─────────────>│         │ «hide≈.»
+    «hide≈.»│            │             │ program │ «hide≈.»
+    «hide≈.»│            │             │         │ «hide≈.»
+    «hide≈.»│           <──────────────│         │ «hide≈.»
+    «hide≈.»│ Obrazovka  │             └─────────┘ «hide≈.»
+    «hide≈.»│           <─────────────────┘        «hide≈.»
+    «hide≈.»│            │        .                «hide≈.»
+    «hide≈.»└────────────┘        .                «hide≈.»
+    «hide≈.»                     Tučné písmo       «hide≈.»
+    «hide≈.»               pohyb kurzoru           «hide≈.»
+    «hide≈.»                 «barvičky!»           «hide≈.»
+    «hide≈.»
+
+- |
+    Moderní doba si žádá fičury
+    «hide≈.»                                       «hide≈.»
+    «hide≈.»   vymazání posledního znaku           «hide≈.»
+    «hide≈.»                   . «Unicode!»          «hide≈.»
+    «hide≈.»      Pohyby myši! Klikání!            «hide≈.»
+    «hide≈.»┌────────────┐     .       ┌─────────┐ «hide≈.»
+    «hide≈.»│ Klávesnice ─────────────>│         │ «hide≈.»
+    «hide≈.»│            │             │ program │ «hide≈.»
+    «hide≈.»│            │             │         │ «hide≈.»
+    «hide≈.»│           <──────────────│         │ «hide≈.»
+    «hide≈.»│ Obrazovka  │             └─────────┘ «hide≈.»
+    «hide≈.»│           <─────────────────┘        «hide≈.»
+    «hide≈.»│            │    Podtržení!           «hide≈.»
+    «hide≈.»└────────────┘        .    Blikání!    «hide≈.»
+    «hide≈.»         Pípnutí!    Tučné písmo       «hide≈.»
+    «hide≈.»               pohyb kurzoru           «hide≈.»
+    «hide≈.»        «ještě víc» barviček!            «hide≈.»
+    «hide≈.»                  Unicode?             «hide≈.»
+# A Windows to řesí jinak
+- |
+    No fuj!
+
+    Proč teda «používat» CLI/TUI?
+
+    «hide≈.»
+    «hide≈.»
+    «hide≈.»
+
+- |
+    
+
+    Proč teda používat «CLI»/«TUI»?
+
+    Jednoduché · Skiprovatelné · Nenáročné
+    «hide≈.»
+    «hide≈.»
+
+- |
+    
+
+    Proč teda používat CLI/TUI?
+
+    «Jednoduché» · Skiprovatelné · Nenáročné
+
+    «bold≈print("hello world!")»
+
+- |
+
+
+    Proč teda používat CLI/TUI?
+
+    Jednoduché · «Skiprovatelné» · Nenáročné
+
+    git branch 2> /dev/null | grep -e '\* ' | sed -e's/\* //'
+
+- |
+
+
+    Proč teda používat CLI/TUI?
+
+    Jednoduché · Skiprovatelné · «Nenáročné»
+
+    1.5h videa v 680KB?
+
+- |
+
+
+    Proč teda používat CLI/TUI?
+
+    Jednoduché · Skiprovatelné · «Nenáročné»
+
+    «SSH»
+
+- |
+    Tak jo! A jak na to?
+
+
+
+
+
+
+    «hide≈.»
+
+- |
+    Tak jo! A jak na to?
+
+    «Jednoduše»
+
+    Udělat pořádné TUI à la «Midnight Commander»,
+    to je práce srovnatelná s podobným GUI.
+
+
+    «hide≈.»
+
+- |
+    Tak jo! A jak na to?
+
+    «Jednoduše»
+
+    Udělat pořádné TUI à la Midnight Commander,
+    to je práce srovnatelná s podobným GUI.
+
+    «git» vs. «tig»
+    «hide≈.»
+
+- |
+    Tak jo! A jak na to?
+
+    Jednoduše · «Skriptovatelně»
+
+    Barvičky? Kouzla? Ať jdou «vypnout»!
+
+
+
+    «hide≈.»
+
+- |
+    Tak jo! A jak na to?
+
+    Jednoduše · «Skriptovatelně»
+
+    Barvičky? Kouzla? Ať jdou vypnout!
+    Jde to do «roury»? Ať se kouzla vypnou automaticky!
+
+
+    «hide≈.»
+
+- |
+    Tak jo! A jak na to?
+
+    Jednoduše · «Skriptovatelně»
+
+    Barvičky? Kouzla? Ať jdou vypnout!
+    Jde to do roury? Ať se kouzla vypnou automaticky!
+    Ale ať jdou zase «zapnout»!
+
+    «hide≈.»
+
+- |
+    Tak jo! A jak na to?
+
+    Jednoduše · «Skriptovatelně»
+
+    Barvičky? Kouzla? Ať jdou vypnout!
+    Jde to do roury? Ať se kouzla vypnou automaticky!
+    Ale ať jdou zase zapnout!
+
+    Inspiruj se Gitem.
+
+- |
+    Tak jo! A jak na to?
+
+    Jednoduše · Skriptovatelně · ... a použij dobrou «knihovnu».
+
+
+
+
+
+    «hide≈.»
+
+- |
+    «curses»
+
+    ... je ve standardní knihovně...
+    
+    ale
+
+- |
+    «curses»
+    To jméno má svůj důvod
+
+    «Note»: A character means a C character (an ASCII code), rather than a Python character (a string of length 1). (This note is true whenever the documentation mentions a character.) The built-in ord() is handy for conveying strings to codes.
+
+
+- |
+    «curses» WTF
+
+    «curses.meta(yes)»
+        If yes is 1, allow 8-bit characters to be input. If yes is 0, allow only 7-bit chars.
+
+    «curses.napms(ms)»
+        Sleep for ms milliseconds.
+
+- |
+    «blessings»
+
+    Jednoduchá knihovnička
+
+    Obarvování textu, občas hýbnutí kurzorem
+
+    „Pipe savvy“
+
+    Nefunguje pod Windows, ale...
+
+- |
+    «colorama»
+
+    ANSI escapes pro Windows
+
+- |
+    «clint»
+
+    (Zatím) nedokumentovaná knihovna K. Reitze
+
+    Argumenty, barvičky, tabulky, progressbary, indent, unicode...
+
+- |
+    «urwid»
+
+    Knihovna inspirovaná GUÍtky (strom widgetů)
+
+    Klávesnice (příkazy/text), myš
+
+    Palety pro černobílé/barevné/superbarevné terminály
+
+    Terminál, curses, HTML screenshot
+
+
+    Ukázku nehledejte daleko...

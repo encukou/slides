@@ -3,6 +3,8 @@
 
 from __future__ import unicode_literals
 
+import os
+
 import urwid
 import yaml
 
@@ -40,31 +42,55 @@ class SlideLoop(urwid.MainLoop):
         self.screen.set_terminal_properties(colors=256)
         self.slides = [make_slide(s) for s in slides]
         self.current_slide = current_slide
-        self.update_slide()
+        try:
+            self.update_slide()
+        except IndexError:
+            self.current_slide = 0
+            self.update_slide()
 
     palette = [
-        ('hide', 'light gray', 'white', 'standout'),
+        ('hide', 'white', 'white', 'standout'),
         ('emph', 'dark blue,bold', 'white', 'standout'),
+        ('bold', 'black,bold', 'white', 'standout'),
         ('normal', 'black', 'white'),
     ]
 
     def update_slide(self):
         self.top_widget.original_widget = self.slides[self.current_slide]
+        with open('last_slide', 'w') as savefile:
+            savefile.write(str(self.current_slide))
 
     def handle_input(self, key):
+        if isinstance(key, tuple) and key[0] == 'mouse press':
+            if key[1] == 5:
+                key = 'right'
+            if key[1] == 4:
+                key = 'left'
         if key in ('q', 'Q'):
             raise urwid.ExitMainLoop()
-        elif key in ('n', ' '):
+        elif key in ('n', ' ', 'right'):
             self.current_slide += 1
             try:
                 self.update_slide()
             except IndexError:
                 raise urwid.ExitMainLoop()
-        elif key in ('p', 'backspace') and current_slide > 0:
+        elif key in ('p', 'backspace', 'left') and self.current_slide > 1:
             self.current_slide -= 1
             self.update_slide()
+        elif key in ('a', 'A'):
+            os.system('qiv -if media/texassilent700.gif')
+        elif key in ('b', 'B'):
+            os.system('qiv -if media/Televideo925Terminal.jpg')
         else:
-            raise SystemExit(key)
+            #raise SystemExit(key)
+            pass
 
 if __name__ == '__main__':
-    SlideLoop(yaml.load(open('slides.yaml'))).run()
+    try:
+        with open('last_slide') as slidefile:
+            current_slide = int(slidefile.read())
+    except Exception, e:
+        print e
+        current_slide = 0
+    with open('slides.yaml') as slide_file:
+        SlideLoop(yaml.load(slide_file), current_slide).run()
