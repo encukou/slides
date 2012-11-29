@@ -41,88 +41,88 @@
 
 
 
-    ┌────────────┐    stdin    ┌─────────┐ «hide≈.»
-    │ Klávesnice ─────────────>│         │ «hide≈.»
-    │            │             │ program │ «hide≈.»
-    │            │    stdout   │         │ «hide≈.»
-    │           <──────────────│         │ «hide≈.»
-    │ Obrazovka  │    stderr   └─────────┘ «hide≈.»
-    │           <─────────────────┘        «hide≈.»
-    │            │                         «hide≈.»
-    └────────────┘                         «hide≈.»
-    «hide≈.»
-    «hide≈.»
-    «hide≈.»
-    «hide≈.»
+    ┌────────────┐    stdin    ┌─────────┐ «»
+    │ Klávesnice ─────────────>│         │ «»
+    │            │             │ program │ «»
+    │            │    stdout   │         │ «»
+    │           <──────────────│         │ «»
+    │ Obrazovka  │    stderr   └─────────┘ «»
+    │           <─────────────────┘        «»
+    │            │                         «»
+    └────────────┘                         «»
+    «»
+    «»
+    «»
+    «»
 
 - |
     «Escape» codes
-    «hide≈.»                                       «hide≈.»
-    «hide≈.»   vymazání posledního znaku           «hide≈.»
-    «hide≈.»                   .                   «hide≈.»
-    «hide≈.»                   .                   «hide≈.»
-    «hide≈.»┌────────────┐     .       ┌─────────┐ «hide≈.»
-    «hide≈.»│ Klávesnice ─────────────>│         │ «hide≈.»
-    «hide≈.»│            │             │ program │ «hide≈.»
-    «hide≈.»│            │             │         │ «hide≈.»
-    «hide≈.»│           <──────────────│         │ «hide≈.»
-    «hide≈.»│ Obrazovka  │             └─────────┘ «hide≈.»
-    «hide≈.»│           <─────────────────┘        «hide≈.»
-    «hide≈.»│            │        .                «hide≈.»
-    «hide≈.»└────────────┘        .                «hide≈.»
-    «hide≈.»                      .                «hide≈.»
-    «hide≈.»               pohyb kurzoru           «hide≈.»
-    «hide≈.»
-    «hide≈.»
+    «»                                       «»
+    «»   vymazání posledního znaku           «»
+    «»                   .                   «»
+    «»                   .                   «»
+    «»┌────────────┐     .       ┌─────────┐ «»
+    «»│ Klávesnice ─────────────>│         │ «»
+    «»│            │             │ program │ «»
+    «»│            │             │         │ «»
+    «»│           <──────────────│         │ «»
+    «»│ Obrazovka  │             └─────────┘ «»
+    «»│           <─────────────────┘        «»
+    «»│            │        .                «»
+    «»└────────────┘        .                «»
+    «»                      .                «»
+    «»               pohyb kurzoru           «»
+    «»
+    «»
 
 - |
     Máme lepší obrazovky! Chceme víc magie!
-    «hide≈.»                                       «hide≈.»
-    «hide≈.»   vymazání posledního znaku           «hide≈.»
-    «hide≈.»                   .                   «hide≈.»
-    «hide≈.»                   .                   «hide≈.»
-    «hide≈.»┌────────────┐     .       ┌─────────┐ «hide≈.»
-    «hide≈.»│ Klávesnice ─────────────>│         │ «hide≈.»
-    «hide≈.»│            │             │ program │ «hide≈.»
-    «hide≈.»│            │             │         │ «hide≈.»
-    «hide≈.»│           <──────────────│         │ «hide≈.»
-    «hide≈.»│ Obrazovka  │             └─────────┘ «hide≈.»
-    «hide≈.»│           <─────────────────┘        «hide≈.»
-    «hide≈.»│            │        .                «hide≈.»
-    «hide≈.»└────────────┘        .                «hide≈.»
-    «hide≈.»                     Tučné písmo       «hide≈.»
-    «hide≈.»               pohyb kurzoru           «hide≈.»
-    «hide≈.»                 «barvičky!»           «hide≈.»
-    «hide≈.»
+    «»                                       «»
+    «»   vymazání posledního znaku           «»
+    «»                   .                   «»
+    «»                   .                   «»
+    «»┌────────────┐     .       ┌─────────┐ «»
+    «»│ Klávesnice ─────────────>│         │ «»
+    «»│            │             │ program │ «»
+    «»│            │             │         │ «»
+    «»│           <──────────────│         │ «»
+    «»│ Obrazovka  │             └─────────┘ «»
+    «»│           <─────────────────┘        «»
+    «»│            │        .                «»
+    «»└────────────┘        .                «»
+    «»                     Tučné písmo       «»
+    «»               pohyb kurzoru           «»
+    «»                 «barvičky!»           «»
+    «»
 
 - |
     Moderní doba si žádá fičury
-    «hide≈.»                                       «hide≈.»
-    «hide≈.»   vymazání posledního znaku           «hide≈.»
-    «hide≈.»                   . «Unicode!»          «hide≈.»
-    «hide≈.»      Pohyby myši! Klikání!            «hide≈.»
-    «hide≈.»┌────────────┐     .       ┌─────────┐ «hide≈.»
-    «hide≈.»│ Klávesnice ─────────────>│         │ «hide≈.»
-    «hide≈.»│            │             │ program │ «hide≈.»
-    «hide≈.»│            │             │         │ «hide≈.»
-    «hide≈.»│           <──────────────│         │ «hide≈.»
-    «hide≈.»│ Obrazovka  │             └─────────┘ «hide≈.»
-    «hide≈.»│           <─────────────────┘        «hide≈.»
-    «hide≈.»│            │    Podtržení!           «hide≈.»
-    «hide≈.»└────────────┘        .    Blikání!    «hide≈.»
-    «hide≈.»         Pípnutí!    Tučné písmo       «hide≈.»
-    «hide≈.»               pohyb kurzoru           «hide≈.»
-    «hide≈.»        «ještě víc» barviček!            «hide≈.»
-    «hide≈.»                  Unicode?             «hide≈.»
+    «»                                       «»
+    «»   vymazání posledního znaku           «»
+    «»                   . «Unicode!»          «»
+    «»      Pohyby myši! Klikání!            «»
+    «»┌────────────┐     .       ┌─────────┐ «»
+    «»│ Klávesnice ─────────────>│         │ «»
+    «»│            │             │ program │ «»
+    «»│            │             │         │ «»
+    «»│           <──────────────│         │ «»
+    «»│ Obrazovka  │             └─────────┘ «»
+    «»│           <─────────────────┘        «»
+    «»│            │    Podtržení!           «»
+    «»└────────────┘        .    Blikání!    «»
+    «»         Pípnutí!    Tučné písmo       «»
+    «»               pohyb kurzoru           «»
+    «»        «ještě víc» barviček!            «»
+    «»                  Unicode?             «»
 # A Windows to řesí jinak
 - |
     No fuj!
 
     Proč teda «používat» CLI/TUI?
 
-    «hide≈.»
-    «hide≈.»
-    «hide≈.»
+    «»
+    «»
+    «»
 
 - |
     
@@ -130,8 +130,8 @@
     Proč teda používat «CLI»/«TUI»?
 
     Jednoduché · Skiprovatelné · Nenáročné
-    «hide≈.»
-    «hide≈.»
+    «»
+    «»
 
 - |
     
@@ -177,7 +177,7 @@
 
 
 
-    «hide≈.»
+    «»
 
 - |
     Tak jo! A jak na to?
@@ -188,7 +188,7 @@
     to je práce srovnatelná s podobným GUI.
 
 
-    «hide≈.»
+    «»
 
 - |
     Tak jo! A jak na to?
@@ -199,7 +199,7 @@
     to je práce srovnatelná s podobným GUI.
 
     «git» vs. «tig»
-    «hide≈.»
+    «»
 
 - |
     Tak jo! A jak na to?
@@ -210,7 +210,7 @@
 
 
 
-    «hide≈.»
+    «»
 
 - |
     Tak jo! A jak na to?
@@ -221,7 +221,7 @@
     Jde to do «roury»? Ať se kouzla vypnou automaticky!
 
 
-    «hide≈.»
+    «»
 
 - |
     Tak jo! A jak na to?
@@ -232,7 +232,7 @@
     Jde to do roury? Ať se kouzla vypnou automaticky!
     Ale ať jdou zase «zapnout»!
 
-    «hide≈.»
+    «»
 
 - |
     Tak jo! A jak na to?
@@ -254,7 +254,7 @@
 
 
 
-    «hide≈.»
+    «»
 
 - |
     «curses»
@@ -317,13 +317,13 @@
     Ukázku nehledejte daleko...
 
 - |
-    «hide≈.» ╓──────╖ «hide≈.»
-    «hide≈.» ║      ║ «hide≈.»
-    «hide≈.» ║      ║ «hide≈.»
-    «hide≈.»    ╓───╜ «hide≈.»
-    «hide≈.»    ║     «hide≈.»
-    «hide≈.»          «hide≈.»
-    «hide≈.»    ●     «hide≈.»
+    «» ╓──────╖ «»
+    «» ║      ║ «»
+    «» ║      ║ «»
+    «»    ╓───╜ «»
+    «»    ║     «»
+    «»          «»
+    «»    ●     «»
 
 
     Petr Viktorin
