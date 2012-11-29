@@ -1,0 +1,337 @@
+- |
+    [TEST SLIDE]
+    ┌───────────────────────────────────────┐
+    │                                       │
+    │                                       │
+    │ «hide≈Ovládání: space, backspace, q»         │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    └───────────────────────────────────────┘
+- |
+
+
+    «Textová rozhraní» v dnešní době
+
+    Petr Viktorin
+    encukou@gmail.com
+
+
+    PyVo, 2012-11-29
+- |
+    «Terminál»
+
+    Trocha historie
+
+    «hide≈Pozn.: obrázky! zmáčknout postupně A (term. s tiskárnou), B (term. s obrazovkou), Ctrl+Alt+F2 (VT), a zrušit full-screen u konzole (emulátor pro X)»
+# A
+# B
+# Ctrl+Alt+F2
+# Meta+F
+- |
+    Kanály v «Unixu»
+
+
+
+
+    ┌────────────┐    stdin    ┌─────────┐ «»
+    │ Klávesnice ─────────────>│         │ «»
+    │            │             │ program │ «»
+    │            │    stdout   │         │ «»
+    │           <──────────────│         │ «»
+    │ Obrazovka  │    stderr   └─────────┘ «»
+    │           <─────────────────┘        «»
+    │            │                         «»
+    └────────────┘                         «»
+    «»
+    «»
+    «»
+    «»
+
+- |
+    «Escape» codes
+    «»                                       «»
+    «»   vymazání posledního znaku           «»
+    «»                   .                   «»
+    «»                   .                   «»
+    «»┌────────────┐     .       ┌─────────┐ «»
+    «»│ Klávesnice ─────────────>│         │ «»
+    «»│            │             │ program │ «»
+    «»│            │             │         │ «»
+    «»│           <──────────────│         │ «»
+    «»│ Obrazovka  │             └─────────┘ «»
+    «»│           <─────────────────┘        «»
+    «»│            │        .                «»
+    «»└────────────┘        .                «»
+    «»                      .                «»
+    «»               pohyb kurzoru           «»
+    «»
+    «»
+
+- |
+    Máme lepší obrazovky! Chceme víc magie!
+    «»                                       «»
+    «»   vymazání posledního znaku           «»
+    «»                   .                   «»
+    «»                   .                   «»
+    «»┌────────────┐     .       ┌─────────┐ «»
+    «»│ Klávesnice ─────────────>│         │ «»
+    «»│            │             │ program │ «»
+    «»│            │             │         │ «»
+    «»│           <──────────────│         │ «»
+    «»│ Obrazovka  │             └─────────┘ «»
+    «»│           <─────────────────┘        «»
+    «»│            │        .                «»
+    «»└────────────┘        .                «»
+    «»                     Tučné písmo       «»
+    «»               pohyb kurzoru           «»
+    «»                 «barvičky!»           «»
+    «»
+
+- |
+    Moderní doba si žádá fičury
+    «»                                       «»
+    «»   vymazání posledního znaku           «»
+    «»                   . «Unicode!»          «»
+    «»      Pohyby myši! Klikání!            «»
+    «»┌────────────┐     .       ┌─────────┐ «»
+    «»│ Klávesnice ─────────────>│         │ «»
+    «»│            │             │ program │ «»
+    «»│            │             │         │ «»
+    «»│           <──────────────│         │ «»
+    «»│ Obrazovka  │             └─────────┘ «»
+    «»│           <─────────────────┘        «»
+    «»│            │    Podtržení!           «»
+    «»└────────────┘        .    Blikání!    «»
+    «»         Pípnutí!    Tučné písmo       «»
+    «»               pohyb kurzoru           «»
+    «»        «ještě víc» barviček!            «»
+    «»                  Unicode?             «»
+# A Windows to řesí jinak
+- |
+    No fuj!
+
+    Proč teda «používat» CLI/TUI?
+
+    «»
+    «»
+    «»
+
+- |
+    
+
+    Proč teda používat «CLI»/«TUI»?
+
+    Jednoduché · Skiprovatelné · Nenáročné
+    «»
+    «»
+
+- |
+    
+
+    Proč teda používat CLI/TUI?
+
+    «Jednoduché» · Skiprovatelné · Nenáročné
+
+    «bold≈print("hello world!")»
+
+- |
+
+
+    Proč teda používat CLI/TUI?
+
+    Jednoduché · «Skiprovatelné» · Nenáročné
+
+    git branch 2> /dev/null | grep -e '\* ' | sed -e's/\* //'
+
+- |
+
+
+    Proč teda používat CLI/TUI?
+
+    Jednoduché · Skiprovatelné · «Nenáročné»
+
+    1.5h „videa“ v 680KB?
+
+- |
+
+
+    Proč teda používat CLI/TUI?
+
+    Jednoduché · Skiprovatelné · «Nenáročné»
+
+    «SSH»
+
+- |
+    Tak jo! A jak na to?
+
+
+
+
+
+
+    «»
+
+- |
+    Tak jo! A jak na to?
+
+    «Jednoduše»
+
+    Udělat pořádné TUI à la «Midnight Commander»,
+    to je práce srovnatelná s podobným GUI.
+
+
+    «»
+
+- |
+    Tak jo! A jak na to?
+
+    «Jednoduše»
+
+    Udělat pořádné TUI à la Midnight Commander,
+    to je práce srovnatelná s podobným GUI.
+
+    «git» vs. «tig»
+    «»
+
+- |
+    Tak jo! A jak na to?
+
+    Jednoduše · «Skriptovatelně»
+
+    Barvičky? Kouzla? Ať jdou «vypnout»!
+
+
+
+    «»
+
+- |
+    Tak jo! A jak na to?
+
+    Jednoduše · «Skriptovatelně»
+
+    Barvičky? Kouzla? Ať jdou vypnout!
+    Jde to do «roury»? Ať se kouzla vypnou automaticky!
+
+
+    «»
+
+- |
+    Tak jo! A jak na to?
+
+    Jednoduše · «Skriptovatelně»
+
+    Barvičky? Kouzla? Ať jdou vypnout!
+    Jde to do roury? Ať se kouzla vypnou automaticky!
+    Ale ať jdou zase «zapnout»!
+
+    «»
+
+- |
+    Tak jo! A jak na to?
+
+    Jednoduše · «Skriptovatelně»
+
+    Barvičky? Kouzla? Ať jdou vypnout!
+    Jde to do roury? Ať se kouzla vypnou automaticky!
+    Ale ať jdou zase zapnout!
+
+    Inspiruj se Gitem.
+
+- |
+    Tak jo! A jak na to?
+
+    Jednoduše · Skriptovatelně · ... a použij dobrou «knihovnu».
+
+
+
+
+
+    «»
+
+- |
+    «curses»
+
+    ... je ve standardní knihovně...
+    
+    ale
+
+- |
+    «curses»
+    To jméno má svůj důvod
+
+    «Note»: A character means a C character (an ASCII code), rather than a Python character (a string of length 1). (This note is true whenever the documentation mentions a character.) The built-in ord() is handy for conveying strings to codes.
+
+
+- |
+    «curses» WTF
+
+    «curses.meta(yes)»
+        If yes is 1, allow 8-bit characters to be input. If yes is 0, allow only 7-bit chars.
+
+    «curses.napms(ms)»
+        Sleep for ms milliseconds.
+
+- |
+    «blessings»
+
+    Jednoduchá knihovnička
+
+    Obarvování textu, občas hýbnutí kurzorem
+
+    „Pipe savvy“
+
+    Nefunguje pod Windows, ale...
+
+- |
+    «colorama»
+
+    ANSI escapes pro Windows
+
+- |
+    «clint»
+
+    (Zatím moc nedokumentovaná) knihovna K. Reitze
+
+    Argumenty, barvičky, tabulky, progressbary, indent, unicode...
+
+- |
+    «urwid»
+
+    Knihovna inspirovaná GUÍtky (strom widgetů)
+
+    Klávesnice (příkazy/text), myš
+
+    Palety pro černobílé/barevné/superbarevné terminály
+
+    Terminál, curses, HTML screenshot
+
+
+    Ukázku nehledejte daleko...
+
+- |
+    «» ╓──────╖ «»
+    «» ║      ║ «»
+    «» ║      ║ «»
+    «»    ╓───╜ «»
+    «»    ║     «»
+    «»          «»
+    «»    ●     «»
+
+
+    Petr Viktorin
+    @«encukou» · «encukou»@gmail.com · github.com/«encukou»
+
+
+    Licence slajdů a případného audia/videa:
+    Creative Commons Attribution-ShareAlike 3.0
+    http://creativecommons.org/licenses/by-sa/3.0/
