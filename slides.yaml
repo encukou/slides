@@ -3,7 +3,7 @@
     ┌───────────────────────────────────────┐
     │                                       │
     │                                       │
-    │                                       │
+    │ «hide≈Ovládání: space, backspace, q»         │
     │                                       │
     │                                       │
     │                                       │
@@ -31,6 +31,8 @@
     «Terminál»
 
     Trocha historie
+
+    «hide≈Pozn.: obrázky! zmáčknout postupně A (term. s tiskárnou), B (term. s obrazovkou), Ctrl+Alt+F2 (VT), a zrušit full-screen u konzole (emulátor pro X)»
 # A
 # B
 # Ctrl+Alt+F2

@@ -5,8 +5,8 @@ from __future__ import unicode_literals
 
 import os
 
-import urwid
-import yaml
+import urwid  # pip install urwid
+import yaml  # pip install yaml
 
 def addattrs(string):
     result = []
@@ -49,7 +49,7 @@ class SlideLoop(urwid.MainLoop):
             self.update_slide()
 
     palette = [
-        ('hide', 'white', 'white', 'standout'),
+        ('hide', 'light gray', 'white', 'standout'),  # change to 'white', 'white' to hude notes!
         ('emph', 'dark blue,bold', 'white', 'standout'),
         ('bold', 'black,bold', 'white', 'standout'),
         ('normal', 'black', 'white'),
