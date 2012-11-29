@@ -62,9 +62,9 @@ class SlideLoop(urwid.MainLoop):
 
     def handle_input(self, key):
         if isinstance(key, tuple) and key[0] == 'mouse press':
-            if key[1] == 5:
+            if key[1] in (5, 1):
                 key = 'right'
-            if key[1] == 4:
+            if key[1] in (4, 3):
                 key = 'left'
         if key in ('q', 'Q'):
             raise urwid.ExitMainLoop()
