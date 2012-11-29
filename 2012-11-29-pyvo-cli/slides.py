@@ -49,7 +49,7 @@ class SlideLoop(urwid.MainLoop):
             self.update_slide()
 
     palette = [
-        ('hide', 'light gray', 'white', 'standout'),  # change to 'white', 'white' to hude notes!
+        ('hide', 'light gray', 'white', 'standout'),  # change to 'white', 'white' to hide notes!
         ('emph', 'dark blue,bold', 'white', 'standout'),
         ('bold', 'black,bold', 'white', 'standout'),
         ('normal', 'black', 'white'),
