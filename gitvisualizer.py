@@ -1,3 +1,17 @@
+#! /usr/bin/env python2
+"""Simple near-realtime visualization of a Git repository
+
+This only does what it needs to do for my presentation.
+It was written as a brainstorm of what this needs to do, so there was not much
+design involved. Or refactoring. It somehow hangs together, though, and only
+took half a day to make.
+Don't judge me by the quality :)
+
+It's meant for small repos with a few commits only.
+DO NOT run this on a big repo. It's reeeally inefficient (and it would be
+extremely confusing on a complicated repo, too).
+"""
+
 from __future__ import print_function, unicode_literals, division
 
 import subprocess
