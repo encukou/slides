@@ -42,11 +42,13 @@ class Object(GraphicsObject):
         self.graph = graph
         self.name = name
 
-        self.radius = 10
+        self.radius = 15
         self.pointers_in = set()
         self.drag_starts = {}
 
         self.vx = self.vy = 0
+
+        self.reachable = 0
 
     def add_children(self):
         pass
@@ -55,7 +57,9 @@ class Object(GraphicsObject):
         gl.glColor3f(*self.color)
         circle(0, 0, self.radius)
         if self.pointers_in:
-            gl.glColor4f(0, 0, 1, 1)
+            gl.glColor4f(1, 1, 1, 1)
+        elif self.reachable:
+            gl.glColor4f(0, self.reachable, 1, 1)
         else:
             gl.glColor4f(0, 0, 0, 1)
         circle(0, 0, self.radius - 2)
@@ -168,8 +172,21 @@ class Ref(Object):
     color = 1, 1, 0
     def __init__(self, graph, name, target):
         Object.__init__(self, graph, name)
+        self._target = None
         self.target = target
-        graph.add_edge(self, target, RefTarget)
+        if name == 'HEAD':
+            self.color = 1, 0.5, 0
+
+    @property
+    def target(self):
+        return self._target
+
+    @target.setter
+    def target(self, new):
+        if self._target:
+            self.graph.edges[self, self._target] = {}
+        self._target = new
+        self.graph.add_edge(self, new, RefTarget)
 
     @property
     def summary(self):
@@ -229,9 +246,13 @@ class CommitParent(Edge):
     color = 1, 0, 1
 
     def force(self, distance, ndx, ndy, dx, dy):
+        if self.graph.show_trees:
+            c = 1000
+        else:
+            c = 100
         return (
-            -ndx * (10 + distance ** 2 / 1000),
-            -ndy * (10 + distance ** 2 / 1000) + 100)
+            -ndx * (10 + distance ** 2 / c) - 70,
+            -ndy * (10 + distance ** 2 / c) + 70)
 
 
 class RefTarget(Edge):
@@ -240,8 +261,8 @@ class RefTarget(Edge):
 
     def force(self, distance, ndx, ndy, dx, dy):
         return (
-            -ndx * (10 + distance ** 2 / 100) + 10,
-            -ndy * (10 + distance ** 2 / 100) + 10)
+            -ndx * (10 + distance ** 2 / 100) + 20,
+            -ndy * (10 + distance ** 2 / 100) + 20)
 
 
 class TreeEntry(Edge):
@@ -267,16 +288,17 @@ class Graph(Layer):
 
         self.show_trees = True
 
+        self.clock = clock
+        self.last_update_time = clock.time
+        self.time = clock.time
+        self.simulate = self.simulate
+        clock.schedule_update_function(self.simulate)
+
         self.lingering = {}
         self.objects = {}
         self.edges = {}
         self.update()
         self.update()
-
-        self.clock = clock
-        self.time = clock.time
-        self.simulate = self.simulate
-        clock.schedule_update_function(self.simulate)
 
     def update(self):
         try:
@@ -291,10 +313,13 @@ class Graph(Layer):
         for line in run_git('show-ref'):
             sha, name = line.strip().split()
             obj = self.add_object(sha)
-            self.add_ref(name, obj)
+            ref = self.add_ref(name, obj)
+            ref.target = obj
         for line in run_git('symbolic-ref', 'HEAD'):
             name = line.strip()
-            self.add_ref('HEAD', self.add_ref(name))
+            ref = self.add_ref('HEAD')
+            ref.target = self.add_ref(name)
+        self.last_update_time = self.clock.time
 
     def _add(func):
         def adder(self, name, *args, **kwargs):
@@ -308,7 +333,10 @@ class Graph(Layer):
                 else:
                     del self.lingering[name]
                     obj.add_children()
-            self.objects[name] = obj
+            if self.show_trees or obj.type not in ('tree', 'blob'):
+                self.objects[name] = obj
+            else:
+                self.lingering[name] = obj
             return obj
         return adder
 
@@ -336,6 +364,11 @@ class Graph(Layer):
         except KeyError:
             edge = cls(self, a, b, *args)
             self.edges.setdefault((a, b), {})[cls, args] = edge
+            if b.position == (0, 0):
+                b.position = a.position
+                dfx, dfy = interaction(a, b)
+                b.x += dfx * 100
+                b.y += dfy * 100
         else:
             assert isinstance(edge, cls)
         return edge
@@ -366,63 +399,73 @@ class Graph(Layer):
     def children(self, v):
         pass
 
+    def interaction(self, obj, obj2):
+        fx = fy = 0
+        if obj is obj2:
+            return 0, 0
+        dx = obj.x - obj2.x
+        dy = obj.y - obj2.y
+        distance = sqrt(dx ** 2 + dy ** 2)
+        if not distance:
+            rx = random.random() - 0.5
+            ry = random.random() - 0.5
+            obj.x += rx * obj.radius * 5
+            obj.y += ry * obj.radius * 5
+            return 0, 0
+        ndx = dx / distance
+        ndy = dy / distance
+        if distance < 20:
+            fx += ndx * 1e3
+            fy += ndy * 1e3
+        else:
+            # Repulsion
+            repulsion = 1e7 / distance ** 3
+            fx += ndx * repulsion
+            fy += ndy * repulsion
+        for edge in self.edges.get((obj, obj2), {}).values():
+            dfx, dfy = edge.force(distance, ndx, ndy, dx, dy)
+            fx += dfx
+            fy += dfy
+        for edge in self.edges.get((obj2, obj), {}).values():
+            dfx, dfy = edge.force(distance, -ndx, -ndy, -dx, -dy)
+            fx -= dfx
+            fy -= dfy
+            if obj2.reachable:
+                obj.reachable = max(obj.reachable, obj2.reachable) * 0.9
+        return fx, fy
+
     def simulate(self):
         dt = self.clock.time - self.time
-        dt *= 2
+        if dt > 0.1:
+            dt = 0.1
         self.time = self.clock.time
         cx = cy = 0
         objects = self.objects.values()
         for obj in objects:
             fx = fy = 0
+            obj.reachable = 1 if obj.pointers_in else 0
             for obj2 in self.objects.values():
-                if obj is obj2:
-                    continue
-                dx = obj.x - obj2.x
-                dy = obj.y - obj2.y
-                distance = sqrt(dx ** 2 + dy ** 2)
-                if not distance:
-                    rx = random.random() - 0.5
-                    ry = random.random() - 0.5
-                    obj.x += rx * obj.radius * 5
-                    obj.y += ry * obj.radius * 5
-                    continue
-                ndx = dx / distance
-                ndy = dy / distance
-                if distance < obj.radius + obj2.radius:
-                    fx += obj.radius * ndx * 1e2
-                    fy += obj.radius * ndy * 1e2
-                else:
-                    # Repulsion
-                    repulsion = 1e7 / distance ** 3
-                    fx += ndx * repulsion
-                    fy += ndy * repulsion
-                for edge in self.edges.get((obj, obj2), {}).values():
-                    dfx, dfy = edge.force(distance, ndx, ndy, dx, dy)
-                    fx += dfx
-                    fy += dfy
-                for edge in self.edges.get((obj2, obj), {}).values():
-                    dfx, dfy = edge.force(distance, -ndx, -ndy, -dx, -dy)
-                    fx -= dfx
-                    fy -= dfy
-            # Gravity
-            fx -= obj.x / 100
-            fy -= obj.y / 100
+                dfx, dfy = self.interaction(obj, obj2)
+                fx += dfx
+                fy += dfy
+            # "Gravity"
+            fx -= obj.x / 5
+            fy -= obj.y / 5
             # Force
             obj.vx += fx * dt
             obj.vy += fy * dt
             # Resistance
             obj.vx *= 0.9
             obj.vy *= 0.9
-            # Center calculation
-            cx += obj.x
-            cy += obj.y
-        cx /= len(objects)
-        cy /= len(objects)
         for obj in objects:
             if not obj.pointers_in:
                 obj.position = (
-                    obj.x + obj.vx * dt - cx * dt,
-                    obj.y + obj.vy * dt - cy * dt)
+                    obj.x + obj.vx * dt,
+                    obj.y + obj.vy * dt)
+
+        if self.last_update_time +1 > self.clock.time:
+            self.update()
+
 
     def on_text(self, keyboard, text):
         if 't' in text.lower():
