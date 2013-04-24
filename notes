@@ -14,12 +14,14 @@ How Git works:
     Tree objects
         git write-tree
         git cat-file                                -s, -t, -p
+
+    load up the visualizer!
+
     Subtrees
         git write-tree
         git cat-file                                -s, -t, -p
     Commits
         git commit
-        git rev-parse HEAD
         git cat-file                                -s, -t, -p
 
         - show good commit message?
@@ -67,8 +69,7 @@ How Git works:
     Branches
         look @ refs/heads/master
         look @ HEAD
-
-    Load up the visualizer!
+        Show in visualizer
 
     Do a bunch of commits & branches
         look @ structure

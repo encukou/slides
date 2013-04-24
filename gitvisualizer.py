@@ -356,16 +356,26 @@ class TreeEntry(Edge):
     def force(self, distance, ndx, ndy, dx, dy):
         return (
             -ndx * (10 + distance ** 2 / 1000),
-            -ndy * (10 + distance ** 2 / 1000) + 20)
+            -ndy * (10 + distance ** 2 / 1000) + 10 * len(self.a.children))
 
     def draw(self, **kwargs):
         super(TreeEntry, self).draw(**kwargs)
         if self.graph.show_filenames:
+            try:
+                children = sorted(self.a.children)
+                w2 = (1 + children.index(self.filename)) / (len(children) + 1)
+            except LookupError:
+                w2 = 1 / 2
+            w1 = 1 - w2
             self.text_obj.position = (
-                (self.a.x + self.b.x) / 2 -
+                self.a.x * w1 + self.b.x * w2 -
                     self.text_obj.width * self.text_obj.scale_x / 2,
-                (self.a.y + self.b.y) / 2 -
+                self.a.y * w1 + self.b.y * w2 -
                     self.text_obj.height * self.text_obj.scale_y / 2)
+            if self.b.pointers_in:
+                self.text_obj.color = 1, 1, 1
+            else:
+                self.text_obj.color = 0.5, 1, 1
             self.text_obj.do_draw(**kwargs)
 
 
