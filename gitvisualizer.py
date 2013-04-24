@@ -1,12 +1,13 @@
+from __future__ import print_function, unicode_literals, division
+
 import subprocess
 import sys
-import io
 
 
 def run(*command):
     print(command)
     process = subprocess.Popen(command, stdout=subprocess.PIPE)
-    return io.TextIOWrapper(process.stdout, encoding='utf-8')
+    return process.stdout
 
 
 visclass_by_type = {}
@@ -117,7 +118,7 @@ class RefTarget(Edge):
 class TreeEntry(Edge):
     type = 'entry'
     def __init__(self, graph, a, b, filename):
-        super().__init__(graph, a, b)
+        Edge.__init__(self, graph, a, b)
         self.filename = filename
 
     @property
@@ -188,7 +189,8 @@ class Graph(object):
     def dump(self):
         for name, obj in self.objects.items():
             print(obj.name, obj.type, obj.summary or '')
-            for (a, b, *rest), edge in self.edges.items():
+            for key, edge in self.edges.items():
+                a, b = key[:2]
                 if a is obj:
                     print(' --', edge.summary, '->', b.name)
                 if b is obj:
