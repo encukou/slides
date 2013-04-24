@@ -371,6 +371,7 @@ class Graph(Layer):
         self.simulate = self.simulate
         clock.schedule_update_function(self.simulate)
 
+        self.frozen = set()
         self.lingering = {}
         self.objects = {}
         self.edges = {}
@@ -383,6 +384,7 @@ class Graph(Layer):
         except AttributeError:
             pass
         self.lingering.update(self.objects)
+        self.frozen = set(self.objects)
         self.objects = {}
         for line in run_git('write-tree'):
             obj = self.add_object(line.strip())
@@ -406,6 +408,10 @@ class Graph(Layer):
             if obj:
                 ref.target = obj
         self.last_update_time = self.clock.time
+        if set(self.objects) != self.frozen:
+            for i in range(100):
+                self.simulate(0.1)
+        self.frozen = set()
 
     def _add(func):
         def adder(self, name, *args, **kwargs):
@@ -530,20 +536,25 @@ class Graph(Layer):
                 obj.reachable = max(obj.reachable, obj2.reachable) * 0.9
         return fx, fy
 
-    def simulate(self):
-        dt = self.clock.time - self.time
-        dt *= 4
-        if dt > 0.1:
-            dt = 0.1
-        self.time = self.clock.time
+    def simulate(self, dt=None):
+        if dt is None:
+            dt = self.clock.time - self.time
+            dt *= 4
+            if dt > 0.1:
+                dt = 0.1
+            self.time = self.clock.time
         cx = cy = 0
         objects = self.objects.values()
         for obj in objects:
+            if obj.name in self.frozen:
+                continue
             if not obj.pointers_in:
                 obj.position = (
                     obj.x + obj.vx * dt,
                     obj.y + obj.vy * dt)
         for obj in objects:
+            if obj.name in self.frozen:
+                continue
             fx = fy = 0
             obj.reachable = 1 if obj.pointers_in else 0
             for obj2 in self.objects.values():
