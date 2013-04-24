@@ -31,12 +31,15 @@ class Commit(object):
                 break
             if name == 'tree':
                 self.tree = self.graph.add_object(value)
+                graph.add_edge(self, self.tree, CommitTree)
             elif name == 'author':
                 self.author = value
             elif name == 'committer':
                 self.committer = value
             elif name == 'parent':
-                self.parents.append(self.graph.add_object(value))
+                parent = self.graph.add_object(value)
+                self.parents.append(parent)
+                graph.add_edge(self, parent, CommitParent)
             else:
                 print('Warning: unknown commit line:', line)
 
@@ -54,12 +57,15 @@ class Tree(object):
         self.children = {}
         for line in run('git', 'cat-file', sha, '-p'):
             line = line.strip()
-            info, tab, name = line.partition('\t')
-            self.add_child(info, name)
+            info, tab, filename = line.partition('\t')
+            obj = self.add_child(info, filename)
+            graph.add_edge(self, obj, TreeEntry, filename)
 
     def add_child(self, info, name):
         mode, type, sha = info.split(' ')
-        self.children[name] = self.graph.add_object(sha)
+        child = self.graph.add_object(sha)
+        self.children[name] = child
+        return child
 
 
 @visclass
@@ -78,17 +84,52 @@ class Ref(object):
         self.graph = graph
         self.name = name
         self.target = target
+        graph.add_edge(self, target, RefTarget)
 
     @property
     def summary(self):
         return self.target.name
 
 
+class Edge(object):
+    def __init__(self, graph, a, b):
+        self.graph = graph
+        self.a = a
+        self.b = b
+
+    @property
+    def summary(self):
+        return self.type
+
+
+class CommitTree(Edge):
+    type = 'tree'
+
+
+class CommitParent(Edge):
+    type = 'parent'
+
+
+class RefTarget(Edge):
+    type = 'target'
+
+
+class TreeEntry(Edge):
+    type = 'entry'
+    def __init__(self, graph, a, b, filename):
+        super().__init__(graph, a, b)
+        self.filename = filename
+
+    @property
+    def summary(self):
+        return './' + self.filename
+
+
 class Graph(object):
     def __init__(self, repo_path):
         self.repo_path = repo_path
         self.objects = {}
-        self.edges = set()
+        self.edges = {}
         self.update()
 
     def update(self):
@@ -134,9 +175,24 @@ class Graph(object):
             return
         return visclass(self, sha)
 
+    def add_edge(self, a, b, cls, *args):
+        try:
+            edge = self.edges[a, b, cls, args]
+        except Exception:
+            edge = cls(self, a, b, *args)
+            self.edges[a, b, cls, args] = edge
+        else:
+            assert isinstance(edge, cls)
+        return edge
+
     def dump(self):
         for name, obj in self.objects.items():
             print(obj.name, obj.type, obj.summary or '')
+            for (a, b, *rest), edge in self.edges.items():
+                if a is obj:
+                    print(' --', edge.summary, '->', b.name)
+                if b is obj:
+                    print(' <-', edge.summary, '--', a.name)
 
 
 def main(repo_path):
