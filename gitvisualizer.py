@@ -37,9 +37,19 @@ def circle(x, y, radius):
     gl.glEnd()
 
 
+def rectangle(x1, y1, x2, y2):
+    gl.glBegin(gl.GL_TRIANGLE_STRIP)
+    gl.glVertex2f(x1, y1)
+    gl.glVertex2f(x1, y2)
+    gl.glVertex2f(x2, y1)
+    gl.glVertex2f(x2, y2)
+    gl.glEnd()
+
+
 class Object(GraphicsObject):
+    short_name = None
     def __init__(self, graph, name):
-        GraphicsObject.__init__(self)
+        GraphicsObject.__init__(self, height=15)
         self.graph = graph
         self.name = name
 
@@ -51,25 +61,65 @@ class Object(GraphicsObject):
 
         self.reachable = 0
 
+        self.text_obj = Text(None, '')
+        self.set_size()
+
+    def set_size(self):
+        self.size = self.radius * 2, self.radius * 2
+        if self.short_name:
+            self.width *= 2
+
     def add_children(self):
         pass
 
     def draw(self, **kwargs):
-        gl.glColor3f(*self.color)
-        circle(0, 0, self.radius)
+        if self.width > self.radius * 2:
+            xes = [-self.width / 2 + self.radius, self.width / 2 - self.radius]
+            gl.glColor3f(*self.color)
+            rectangle(-self.width / 2 + self.radius, -self.height / 2,
+                      self.width / 2 - self.radius, self.height / 2)
+        else:
+            xes = [0]
+        for x in xes:
+            gl.glColor3f(*self.color)
+            circle(x, 0, self.radius)
+            self.set_inner_color()
+            circle(x, 0, self.radius - 2)
+        if self.width > self.radius * 2:
+            rectangle(-self.width / 2 + self.radius + 2, -self.height / 2 + 2,
+                      self.width / 2 - self.radius - 2, self.height / 2 - 2)
+        if self is self.graph.staging_tree:
+            gl.glColor3f(*self.color)
+            circle(self.width / 2, self.height / 2, 2)
+        self.draw_text(**kwargs)
+
+    def set_inner_color(self):
         if self.pointers_in:
             gl.glColor4f(1, 1, 1, 1)
         elif self.reachable:
             gl.glColor4f(0, self.reachable, 1, 1)
         else:
             gl.glColor4f(0, 0, 0, 1)
-        circle(0, 0, self.radius - 2)
-        if self is self.graph.staging_tree:
-            gl.glColor3f(*self.color)
-            circle(self.radius, self.radius, 2)
+
+    def draw_text(self, **kwargs):
+        if self.short_name:
+            if self.reachable:
+                self.text_obj.color = 0, 0, 0
+            else:
+                self.text_obj.color = 1, 1, 1
+            self.text_obj.text = self.short_name
+            self.text_obj.scale = (self.width / 2 - 4) / self.text_obj.width * 2
+            self.text_obj.position = (
+                -self.text_obj.width * self.text_obj.scale_x / 2,
+                -self.text_obj.height * self.text_obj.scale_y * 1 / 3)
+            self.text_obj.do_draw(**kwargs)
 
     def hit_test(self, x, y, z):
-        return x ** 2 + y ** 2 < self.radius ** 2
+        if self.width > self.radius * 2:
+            return (-self.width / 2 < x < self.width / 2 and
+                    -self.height / 2 < y < self.height / 2)
+        else:
+            return x ** 2 + y ** 2 < self.radius ** 2
 
     def on_pointer_motion(self, pointer, x, y, z, **kwargs):
         self.pointers_in.add(pointer)
@@ -135,6 +185,10 @@ class Commit(Object):
     def summary(self):
         return self.message.partition('\n')[0]
 
+    @property
+    def short_name(self):
+        return self.name[:7]
+
 @visclass
 class Tree(Object):
     type = 'tree'
@@ -195,6 +249,10 @@ class Ref(Object):
     @property
     def summary(self):
         return self.target.name
+
+    @property
+    def short_name(self):
+        return self.name.rpartition('/')[-1]
 
 
 class Edge(GraphicsObject):
@@ -275,6 +333,7 @@ class TreeEntry(Edge):
     def __init__(self, graph, a, b, filename):
         Edge.__init__(self, graph, a, b)
         self.filename = filename
+        self.text_obj = Text(None, filename, scale=0.2)
 
     @property
     def summary(self):
@@ -285,12 +344,24 @@ class TreeEntry(Edge):
             -ndx * (10 + distance ** 2 / 1000),
             -ndy * (10 + distance ** 2 / 1000) + 20)
 
+    def draw(self, **kwargs):
+        super(TreeEntry, self).draw(**kwargs)
+        if self.graph.show_filenames:
+            self.text_obj.position = (
+                (self.a.x + self.b.x) / 2 -
+                    self.text_obj.width * self.text_obj.scale_x / 2,
+                (self.a.y + self.b.y) / 2 -
+                    self.text_obj.height * self.text_obj.scale_y / 2)
+            self.text_obj.do_draw(**kwargs)
+
 
 class Graph(Layer):
     def __init__(self,  clock):
         Layer.__init__(self)
 
         self.show_trees = True
+        self.show_refs = False
+        self.show_filenames = True
 
         self.staging_tree = None
 
@@ -350,10 +421,12 @@ class Graph(Layer):
                 else:
                     del self.lingering[name]
                     obj.add_children()
-            if self.show_trees or obj.type not in ('tree', 'blob'):
-                self.objects[name] = obj
-            else:
-                self.lingering[name] = obj
+            collection = self.objects
+            if obj.type in ('tree', 'blob') and not self.show_trees:
+                collection = self.lingering
+            elif obj.type in ('ref') and not self.show_refs:
+                collection = self.lingering
+            collection[name] = obj
             return obj
         return adder
 
@@ -387,10 +460,11 @@ class Graph(Layer):
                     o1.position = o2.position
                     dfx, dfy = self.interaction(o1, o2)
                     print(dfx, dfy, o1, o2)
-                    o1.x += dfx * 100
-                    o1.y += dfy * 100
-                    o1.vx += dfx * 100
-                    o1.vy += dfy * 100
+                    o1.x += o2.x - dfx * 100
+                    o1.y += o2.y - dfy * 100
+                    print(o1.x, o1.y)
+                    o1.vx += -dfx * 100
+                    o1.vy += -dfy * 100
         else:
             assert isinstance(edge, cls)
         return edge
@@ -494,7 +568,12 @@ class Graph(Layer):
         if 't' in text.lower():
             self.show_trees = not self.show_trees
             self.update()
-            print(self.show_trees)
+        if 'r' in text.lower():
+            self.show_refs = not self.show_refs
+            self.update()
+        if 'f' in text.lower():
+            self.show_filenames = not self.show_filenames
+            self.update()
         if '+' in text.lower():
             self.scale = self.scale_x + 0.1
         if '-' in text.lower():
