@@ -7,7 +7,8 @@ from math import pi, sin, cos, sqrt
 import random
 
 from pyglet import gl
-from gillcup_graphics import Layer, GraphicsObject, Window, RealtimeClock, run
+from gillcup_graphics import (Layer, GraphicsObject, Window, RealtimeClock,
+                              Text,run)
 
 tau = 2 * pi
 
@@ -63,6 +64,9 @@ class Object(GraphicsObject):
         else:
             gl.glColor4f(0, 0, 0, 1)
         circle(0, 0, self.radius - 2)
+        if self is self.graph.staging_tree:
+            gl.glColor3f(*self.color)
+            circle(self.radius, self.radius, 2)
 
     def hit_test(self, x, y, z):
         return x ** 2 + y ** 2 < self.radius ** 2
@@ -210,7 +214,7 @@ class Edge(GraphicsObject):
         dist = sqrt(dx ** 2 + dy ** 2)
         if dist == 0:
             return
-        width = self.a.radius * self.b.radius / 100
+        width = 1
         cx = dy / dist * width
         cy = dx / dist * width
         gl.glBegin(gl.GL_TRIANGLE_STRIP)
@@ -288,6 +292,8 @@ class Graph(Layer):
 
         self.show_trees = True
 
+        self.staging_tree = None
+
         self.clock = clock
         self.last_update_time = clock.time
         self.time = clock.time
@@ -307,18 +313,27 @@ class Graph(Layer):
             pass
         self.lingering.update(self.objects)
         self.objects = {}
-        for line in run_git('ls-files', '--stage'):
-            info = line.strip().split(' ')
-            obj = self.add_object(info[1])
+        for line in run_git('write-tree'):
+            obj = self.add_object(line.strip())
+            self.staging_tree = obj
         for line in run_git('show-ref'):
             sha, name = line.strip().split()
             obj = self.add_object(sha)
             ref = self.add_ref(name, obj)
-            ref.target = obj
+            if ref:
+                ref.target = obj
         for line in run_git('symbolic-ref', 'HEAD'):
             name = line.strip()
             ref = self.add_ref('HEAD')
-            ref.target = self.add_ref(name)
+            if ref:
+                ref.target = self.add_ref(name)
+            break
+        else:
+            ref = self.add_ref('HEAD')
+            sha = run_git('rev-parse', 'HEAD').read().strip()
+            obj = self.add_object(sha)
+            if obj:
+                ref.target = obj
         self.last_update_time = self.clock.time
 
     def _add(func):
@@ -330,6 +345,8 @@ class Graph(Layer):
                     obj = self.lingering[name]
                 except KeyError:
                     obj = func(self, name, *args, **kwargs)
+                    if not obj:
+                        return
                 else:
                     del self.lingering[name]
                     obj.add_children()
@@ -345,7 +362,8 @@ class Graph(Layer):
         if target is None:
             for line in run_git('rev-parse', name):
                 target = self.add_object(line.strip())
-        assert target is not None
+        if target is None:
+            return
         return Ref(self, name, target)
 
     @_add
@@ -354,7 +372,7 @@ class Graph(Layer):
         try:
             visclass = visclass_by_type[obj_type]
         except KeyError:
-            print('Warning: unknown object type:', obj_type)
+            print('Warning: unknown object type:', obj_type, sha)
             return
         return visclass(self, sha)
 
@@ -364,11 +382,15 @@ class Graph(Layer):
         except KeyError:
             edge = cls(self, a, b, *args)
             self.edges.setdefault((a, b), {})[cls, args] = edge
-            if b.position == (0, 0):
-                b.position = a.position
-                dfx, dfy = interaction(a, b)
-                b.x += dfx * 100
-                b.y += dfy * 100
+            for o1, o2 in ((a, b), (b, a)):
+                if o1.position == (0, 0, 0):
+                    o1.position = o2.position
+                    dfx, dfy = self.interaction(o1, o2)
+                    print(dfx, dfy, o1, o2)
+                    o1.x += dfx * 100
+                    o1.y += dfy * 100
+                    o1.vx += dfx * 100
+                    o1.vy += dfy * 100
         else:
             assert isinstance(edge, cls)
         return edge
@@ -436,11 +458,17 @@ class Graph(Layer):
 
     def simulate(self):
         dt = self.clock.time - self.time
+        dt *= 4
         if dt > 0.1:
             dt = 0.1
         self.time = self.clock.time
         cx = cy = 0
         objects = self.objects.values()
+        for obj in objects:
+            if not obj.pointers_in:
+                obj.position = (
+                    obj.x + obj.vx * dt,
+                    obj.y + obj.vy * dt)
         for obj in objects:
             fx = fy = 0
             obj.reachable = 1 if obj.pointers_in else 0
@@ -457,13 +485,8 @@ class Graph(Layer):
             # Resistance
             obj.vx *= 0.9
             obj.vy *= 0.9
-        for obj in objects:
-            if not obj.pointers_in:
-                obj.position = (
-                    obj.x + obj.vx * dt,
-                    obj.y + obj.vy * dt)
 
-        if self.last_update_time +1 > self.clock.time:
+        if self.last_update_time + 1 < self.clock.time:
             self.update()
 
 
