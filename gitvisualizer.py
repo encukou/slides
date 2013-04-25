@@ -323,7 +323,7 @@ class CommitParent(Edge):
 
     def force(self, distance, ndx, ndy, dx, dy):
         if self.graph.show_trees:
-            c = 1000
+            c = 200
         else:
             c = 100
         return (
