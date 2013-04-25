@@ -1,0 +1,14 @@
+
+Materials for a PyVo talk about Git.
+# pip install -r requirements.txt
+# gitvisualizer.py /path/to/NEW/git/repo
+
+License: MIT
+
+---
+
+Materiály k přednášce pro dubnové Pyvo 2013.
+# pip install -r requirements.txt
+# gitvisualizer.py /path/to/NEW/git/repo
+
+License: MIT
