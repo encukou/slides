@@ -1,0 +1,165 @@
+How Git works:
+    Data & operations
+        git init
+        look @ .git
+    The basic structure: content-addressable storage
+        nano README
+        git hash-object                             --stdin,  -w, 
+        git hash-object -w
+        git cat-file                                -s, -t, -p
+        inflate .git/objects/xy/z... # un-deflate the object
+        inflate .git/objects/xy/z...  --repr
+        inflate .git/objects/xy/z... | sha1sum
+    Staging Area (Index)
+        git status
+        git add
+        git status
+    Tree objects
+        nano BUGS; git add BUGS
+        git write-tree
+        git cat-file                                -s, -t, -p
+
+    Subtrees
+        load up the visualizer!
+        nano CONTRIBUTORS; git add CONTRIBUTORS
+        git write-tree
+        git cat-file                                -s, -t, -p
+    Commits
+        git commit
+        git cat-file                                -s, -t, -p
+
+        - show good commit message?
+
+    Staging area revisited
+        hack hack
+        git status
+        git add
+        hack hack
+        git status
+        git diff
+        git diff --staged
+        git diff HEAD
+        git add -p          # working tree → staging
+        git diff --staged
+        git reset -p        # staging → working tree
+
+    Another commit
+        git commit
+        git cat-file                                -s, -t, -p
+
+    Diff
+        git diff A..B
+        - word diff
+        - diff stat
+
+        Comment on advantages of whole-file based:
+            Diff algorithms change
+            The whole thing is verified by the hash
+            Fast access times
+
+    Pack files (deltas after all)
+        git gc
+
+    Moving a file
+        git mv CONTRIBUTORS AUTHORS
+        git commit
+        examine stuff
+
+    The log
+        git log
+        git log --patch
+        git log --stat
+        git log --oneline
+
+    Branches
+        look @ refs/heads/master
+        look @ HEAD
+        Show in visualizer
+
+    Do a bunch of commits & branches
+        look @ structure
+        Note, branches (heads) are not the only refs: remotes, stash
+
+    git commit --amend
+
+    Trivial Merge
+
+    Conflict merge
+        index stages
+        git show :1:filename        # common ancestor
+        git show :2:filename        # current branch
+        git show :3:filename        # what's being merged in
+
+    Delete a branch & resurrect it
+    Delete a branch, git gc, resurrect it
+        IT JUST WON'T DIE
+
+    Reflog!
+        git log -g
+
+    possibly - Delete a branch, trim reflog (git reflog expire --expire=0), git gc, resurrect it
+        HAAA!
+
+    Naming commits
+        shortcuts - don't have to know them
+            branch name
+            x@{3}
+            x@{one.minute.ago}
+            @{-3}
+            ... reflog data, LOCAL!
+            SHA (possibly unique prefix of 4+ chars [kernel needs 12!])
+            x^{tree}
+            x:abc/def
+            :/regex
+            ~
+            ^
+            man git rev-parse
+        Revision selection
+            x..y        # in x, not in y
+            x...y       # symmetric
+        git log --oneline --graph --decorate -all
+
+        
+
+    Rebase
+        breaks parent information
+        breaks hash verification
+        Simplifies history. Hm.
+
+        ?? - show: git branch --merged/--no-merged?
+
+    Interactive rebase
+        Move commits around (!! prepare to do this !!)
+        Squash/fixup, remove
+        git rebase --edit-todo
+
+    Configuration
+        git config --global user.name "Petr Viktorin"
+        git config --global user.email encukou@gmail.com
+
+    Ignoring files; 3 places to config
+        - per-repo, user
+        - per-repo, shared
+        - global
+
+    What we didn't cover
+        - remotes, tags, stashing
+        - servers, bare repos, push/pull
+        - submodules
+        - practical usage
+            aliases
+            workflows, conventions
+            integration; git format-patch, git am, git archive
+            fast-export
+        - git blame
+            - git blame --reverse
+        - git bisect
+        - subtree merges
+        - hooks
+        - import from elsewhere
+        - detached HEAD
+
+    Git attributes
+        - patch headers
+        - binary diffs
+        - smudge/clean
