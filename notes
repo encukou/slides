@@ -1,0 +1,40 @@
+
+===
+
+Even in the age of iPhones and web apps, text-based interfaces are still
+important.
+
+This talk will briefly recount the history (and historical baggage) of the
+terminal, answer why text UIs are relevant, go through some tips on how to
+build them, and introduce the (mostly) awesome tools to do so: argparse,
+docopt; termcolor, colorama, blessings, curses, urwid. I’ll concentrate on tips
+to choose and use the tools effectively, from deciding whether to build a text
+UI at all, to details from pipe friendliness to mouse input.
+
+The talk should be accessible to any Python coder who’s ever piped two programs
+together in a shell. Familiarity with text-based tools like Git, vi, or
+Midnight Commander will make you right at home.
+
+The accompanying slides will run in a terminal emulator.
+
+===
+
+History (and historical baggage)
+
+Why are text UIs still relevant?
+
+How to build text UIs
+
+Tools
+- argparse
+- docopt
+- termcolor
+- colorama
+- blessings
+- curses
+- urwid
+
+Questions
+- Do I build a text UI at all?
+- Pipe friendliness
+- Mouse input
