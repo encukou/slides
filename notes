@@ -20,6 +20,48 @@ The accompanying slides will run in a terminal emulator.
 ===
 
 History (and historical baggage)
+ - A teleprinter (teletypewriter, Teletype or TTY) is an electromechanical
+   typewriter that can be used to send and receive typed messages from point to
+   point and point to multipoint over various types of communications channels.
+   - Evolved from stock tickers
+   - ASCII
+   - Started to be used for computer I/O because they were available
+     - Replaced batch processing
+   Understood e.g. word length, baud rate, flow control, parity
+
+UNIX
+- Files and processes. (and signals)
+  - files, pipes, sockets, directories, devices, TTYs
+    - read, write, ioctl()
+  - signals
+    - SIGHUP  ^D
+    - SIGINT  ^C (interactive attention)
+    - SIGQUIT ^\
+    - SIGPIPE
+    - SIGCHLD (info: process id, user id, exit status/termination signal, some execution time statistics)
+    - SIGSTOP (unconditional stop)
+    - SIGCONT
+    - SIGTSTP ^Z (after receiving, process usually sends SIGSTOP to itself)
+    - SIGTTIN (bg proc reads from tty)
+    - SIGTTOU (fg proc writes to tty)
+    - SIGWINCH - !!!
+
+ - PTY (pseudo terminal) -- xterm, screen/tmux
+
+- random topics
+  - basic line editing
+  - blocking I/O, ^S/^Q   (... modem hangup?!)
+  - session management (execution context; sessions,leaders; foreground process; signals,syscalls)
+  - termios(3), stty(1)
+  - keyboard/video handling (TTY emulation)
+
+- login(1) gives R/W access to a TTY device to you
+
+- Fancy fratures
+  - cursor movement
+  - colors, blinking
+  - unicode
+  - mouse
 
 Why are text UIs still relevant?
 
@@ -38,3 +80,8 @@ Questions
 - Do I build a text UI at all?
 - Pipe friendliness
 - Mouse input
+
+
+Sources
+[0] http://www.linusakesson.net/programming/tty/
+    (Linus Åkesson's blog post on TTYs, used for history)
