@@ -1,13 +1,21 @@
 - text: |
-    /♢ aminate
-
-
-    --- calibration in progress ---
-
-
-
-
-    ♢
+    ┌───────────────────────────────────────┐
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                   X                   │♢animate X=/,-,\,|
+    │                                       │
+    │                                       │
+    │        calibration in progress        │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    └───────────────────────────────────────┘
 
 - text: |
     ♢
@@ -15,7 +23,7 @@
     «TERMINALS,»
     «Command Lines, and Text User Interfaces»
 
-    ─────────────────────────────────────────
+    ----------------------♢hr
 
 
 
@@ -100,8 +108,8 @@
                               |  TTY   |
                 Backspace     |emulator| ♢ [1] Backspace♢Note: briefly explain line discipline
               "Input mode"    +--------+ ♢ [2] "Input mode"
-                   ^C            ^  |    ♢ [3] ^C
-                   ^Z            |  v    ♢ [3] ^Z
+                   ^C            ^  |    ♢ [3] \^C
+                   ^Z            |  v    ♢ [3] \^Z
                         +----------+----+
                         | keyboard | TV |
                         +----------+----+
@@ -121,12 +129,8 @@
     opost -olcuc -ocrnl onlcr -onocr -onlret -ofill -ofdel nl0 cr0 tab0 bs0 vt0 ff0
     isig icanon iexten echo echoe echok -echonl -noflsh -xcase -tostop -echoprt echoctl echoke
 
-- copy: "-2#3"
-  text: '<copy of a previous slide>'
-
-
 - fixtext: |
-    Features♢center
+    Features  «»♢center
 
     +---------+               +--------+
     |         | <- stdin ---- |        |
@@ -135,18 +139,18 @@
     |         |               |        |
     |         | -- stderr --> |        |
     +---------+               +--------+
-        Character sets                   ♢[10] Character sets
-                Backspace      Underline ♢[5] Underline
-              "Input mode"               
-       Bold        ^C        Mouse       ♢[4] Bold♢[12] Mouse
-     Blinking      ^Z   Unicode          ♢[6] Blinking♢[13] Unicode
-               Window size (ioctl)       ♢[8] Window size♢[9] (ioctl)
+        Character sets                   ♢[9] Character sets
+                Backspace      Underline ♢[4] Underline
+              "Input mode"
+       Bold        ^C        Mouse       ♢[2] Bold♢[11] Mouse
+     Blinking      ^Z   Unicode          ♢[5] Blinking♢[12] Unicode
+               Window size (ioctl)       ♢[7] Window size♢[8] .ioctl.
              Cursor movement             ♢[1] Cursor movement
-            More Colors!         Beep    ♢[3] Colors♢[7] Beep♢[11] More♢[11] !
+            More Colors!         Beep    ♢[3] Colors♢[6] Beep♢[10] More♢[10] !
 
 
 - fixtext: |
-    «»♢
+    «»
 
 
 
@@ -157,12 +161,12 @@
 
         Character sets
                 Backspace      Underline
+              "Input mode"
        Bold        ^C        Mouse
-     Blinking      ^Z
+     Blinking      ^Z   Unicode
                Window size (ioctl)
              Cursor movement
             More Colors!         Beep
-                 Unicode                 ♢
 
 
 - text: |
@@ -220,7 +224,7 @@
     TUIs are simple, universal, scriptable, lightweight, «cool»
 
 
-    At least for «you»♢[1] .*
+    At least for «you» ♢[1] .*
 
 
 - fixtext: |
@@ -233,21 +237,21 @@
 
     • Full-screen
         less, vim, mc♢[2] .*
-        «cool»♢[3]
+        «cool»♢[4] .*
 
 
 - fixtext: |
-    How to build a text user interface♢center♢@deemph[1:]text
+    How to build a text user interface♢center♢@deemph[1]text
     ♢reveal[2]
-    • Decide on the type♢e[2]
+    • Decide on the type♢@emph[2] \w.*
         Line-based? Full-screen TUI?♢reveal[3]
-        Traditional GUI? Web UI?♢@deemph[4] Web UI?♢@deemph[5-] .*
+        Traditional GUI? Web UI?♢@deemph[4] Web UI?♢@deemph[5] Traditional GUI?
     ♢reveal[4]
-    • Parse command-line arguments♢e[4]♢XXX:Example?♢XXX:Strict conventions; very important - can't easily change later, like designing API
+    • Parse command-line arguments♢@emph[4] \s.*♢XXX:Example?♢XXX:Strict conventions; very important - can't easily change later, like designing API
     ♢reveal[5]
-    • Output the output♢e[5]
+    • Output the output♢@emph[5] \s.*
     ♢reveal[6]
-    • Handle input♢e[6]
+    • Handle input♢@emph[6] \w.*
 
 
 - text: |
@@ -280,21 +284,9 @@
 
     Simple colorization 
 
-    Outputs ANSI escape sequences♢emph[1] ANSI
+    Outputs ANSI escape sequences♢@emph[1] ANSI
 
     «hide≈XXX: Program: listing, output»
-
-
-- text: |
-    import «colorama» «hide≈XXX: Github link»
-
-    Colorization wrapper for Windows
-
-    Replaces the sys.stdout & stderr objects, intercepts ANSI sequences, calls appropriate Windows functions
-
-    No-op on systems that understand ANSI «deemph≈(by default)»
-
-    «hide≈XXX: Program?: listing?, output?»
 
 
 - text: |
@@ -338,7 +330,11 @@
     setcbreak()
     setraw()
 
+    ----------------------♢hr
+
     import «termios»
+
+    Posix calls for tty I/O control
 
 
 - pygments: true  # XXX
@@ -369,6 +365,16 @@
 
     Either you're an expert,
     or you find a snippet for your usage on StackOverflow
+
+
+- text: |
+    import «urwid»
+
+    (What I used for these slides)
+
+    Widget-based TUI library
+
+    Multiple backends (curses, terminal, web)
 
 
 # XXX: Github? Mercurial/Googlecode?
