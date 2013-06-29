@@ -10,7 +10,7 @@
     │        calibration in progress        │
     │                                       │
     │                                       │
-    │                                       │
+    │         «deemph≈this shoud be visible»         │
     │                                       │
     │                                       │
     │                                       │
@@ -160,7 +160,7 @@
 
 
         Character sets
-                Backspace      Underline
+                Backspace      Underline ♢
               "Input mode"
        Bold        ^C        Mouse
      Blinking      ^Z   Unicode
@@ -245,7 +245,7 @@
     ♢reveal[2]
     • Decide on the type♢@emph[2] \w.*
         Line-based? Full-screen TUI?♢reveal[3]
-        Traditional GUI? Web UI?♢@deemph[4] Web UI?♢@deemph[5] Traditional GUI?
+        Traditional GUI? Web UI?♢@deemph[4] Web UI.♢@deemph[5] Traditional GUI.
     ♢reveal[4]
     • Parse command-line arguments♢@emph[4] \s.*♢XXX:Example?♢XXX:Strict conventions; very important - can't easily change later, like designing API
     ♢reveal[5]
@@ -310,7 +310,7 @@
     ♢reveal[1]
     Pipe-savvy
 
-    XXX: This slide is incomplete
+    «hide≈XXX: Program?: listing?, output?»
 
 
 - text: |
@@ -339,23 +339,22 @@
 
 - pygments: true  # XXX
   fixtext: |
-    import contextlib
-    import termios, tty
-    t_get = termios.tcgetattr
-    t_set = termios.tcsetattr
+    import sys, tty
+    from termios import tcgetattr
+    from termios import tcsetattr
 
-    @contextlib.context_manager
-    def with_cbreak():
-      old = None
-      try:
-        if sys.stdin.isatty():
-          old = t_get(sys.stdin)
-          tty.setcbreak(sys.stdin)
-        yield
-      finally:
-        if old is not None:
-          f = termios.TCSAFLUSH
-          termios.t_set(sys.stdin, f, old)
+    old = None
+    try:
+      if sys.stdin.isatty():
+        old = tcgetattr(sys.stdin)
+        tty.setcbreak(sys.stdin)  # XXX
+
+      print(sys.stdin.read(1))
+
+    finally:
+      if old is not None:
+        f = termios.TCSAFLUSH
+        tcsetattr(sys.stdin, f, old)
 
 - text: |
     import «curses»
@@ -375,6 +374,14 @@
     Widget-based TUI library
 
     Multiple backends (curses, terminal, web)
+
+
+- text: |
+    Mouse input?
+
+
+- text: |
+    A note on documentation
 
 
 # XXX: Github? Mercurial/Googlecode?

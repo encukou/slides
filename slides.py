@@ -7,8 +7,12 @@ import re
 import functools
 import time
 
-import urwid  # pip install urwid
-import yaml  # pip install yaml
+import urwid
+import yaml
+import pygments
+import pygments.formatter
+import pygments.token
+from pygments.lexers.agile import PythonLexer
 
 class reify(object):
     # https://github.com/Pylons/pyramid/blob/master/pyramid/decorator.py
@@ -52,7 +56,7 @@ class ReplaceWidget(BaseException):
 
 def make_directive(spec):
     spec = spec.strip()
-    if not spec or spec.startswith(('Note:', 'XXX:')):
+    if not spec or spec.startswith(('Note:', 'X' 'XX:')):
         return lambda text, **kw: text
     if spec == 'hr':
         return hr_directive
@@ -139,10 +143,16 @@ class Line(object):
         return self.text
 
     def ljust(self, length):
-        self.text = self.text.ljust(length)
+        self.text += ' ' * (length - len(self))
 
     def __len__(self):
-        return len(self.text)
+        text = addattrs(self.text)
+        length = 0
+        for part in text:
+            if isinstance(part, tuple):
+                attr, part = part
+            length += len(part)
+        return length
 
     def widget(self, subslide_number):
         text = self.text
@@ -156,9 +166,11 @@ class Line(object):
 
 class Slide(object):
     def __init__(self, slidespec):
-        if 'fixtext' in slidespec:
-            slidespec['text'] = slidespec['fixtext']
-        lines = slidespec.get('text').splitlines()
+        text = slidespec.get('text') or slidespec['fixtext']
+        if slidespec.get('pygments'):
+            text = pygments.highlight(text, PythonLexer(),
+                                      SlidePygmentsFormatter())
+        lines = text.splitlines()
         lines = [Line(l) for l in lines]
         if 'fixtext' in slidespec:
             maxlen = max(len(line) for line in lines)
@@ -172,13 +184,43 @@ class Slide(object):
             line.widget(subslide_number) for line in self.lines]))
 
 
+class SlidePygmentsFormatter(pygments.formatter.Formatter):
+    """
+    Output the text unchanged without any formatting.
+    """
+    name = 'Text only'
+    aliases = ['text', 'null']
+    filenames = ['*.txt']
+
+    def format(self, tokensource, outfile):
+        enc = self.encoding
+        for ttype, value in tokensource:
+            attr = None
+            if ttype in pygments.token.Token.Keyword:
+                attr = 'pygments_kwd'
+            if ttype in pygments.token.Operator.Word:
+                attr = 'pygments_kwd'
+            elif ttype in pygments.token.Token.String:
+                attr = 'pygments_string'
+            elif ttype in pygments.token.Token.Comment:
+                attr = 'deemph'
+            elif ttype in pygments.token.Token.Name.Decorator:
+                attr = 'pygments_kwd'
+            if attr:
+                value = '«%s≈%s»' % (attr, value)
+            if enc:
+                outfile.write(value.encode(enc))
+            else:
+                outfile.write(value)
+
+
 class SlideLoop(urwid.MainLoop):
     def __init__(self, slidespecs, current_slide=0):
         self.inner_widget = urwid.AttrMap(urwid.SolidFill(), 'normal')
         self.top_widget = self.inner_widget
-        self.top_widget = urwid.Padding(self.top_widget, width=41)
+        self.top_widget = urwid.Padding(self.top_widget, width=41,
+                                        align='center')
         self.top_widget = urwid.Filler(self.top_widget, height=17)
-        self.top_widget = urwid.Padding(self.top_widget)
         super(SlideLoop, self).__init__(
                 self.top_widget,
                 self.palette,
@@ -199,11 +241,14 @@ class SlideLoop(urwid.MainLoop):
         self.set_alarm_in(0.1, self.reset_alarm)
 
     palette = [
-        ('hide', 'light gray', 'white', 'standout'),  # 'white' to hide notes!
+        ('hide', 'light gray', 'white'),  # 'white' to hide notes!
         ('emph', 'dark blue,bold', 'white', 'standout'),
-        ('deemph', 'dark gray', 'white', 'standout'),   # XXX: Not bold!
+        ('deemph', 'light gray', 'white'),   # XXX: Not bold!
         ('bold', 'black,bold', 'white', 'standout'),
         ('normal', 'black', 'white'),
+
+        ('pygments_kwd', 'dark blue', 'white'),
+        ('pygments_string', 'dark blue', 'white'),
     ]
 
     def update_slide(self):
@@ -237,7 +282,7 @@ class SlideLoop(urwid.MainLoop):
             if self.current_subslide:
                 self.current_subslide -= 1
                 self.update_slide()
-            else:
+            elif self.current_slide > 1:
                 self.current_slide -= 1
                 slide = self.slides[self.current_slide]
                 self.current_subslide = slide.subslide_count
