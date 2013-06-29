@@ -1,0 +1,375 @@
+- text: |
+    /♢ aminate
+
+
+    --- calibration in progress ---
+
+
+
+
+    ♢
+
+- text: |
+    ♢
+
+    «TERMINALS,»
+    «Command Lines, and Text User Interfaces»
+
+    ─────────────────────────────────────────
+
+
+
+    Petr Viktorin
+    encukou@gmail.com
+
+- text: |
+    Hello! I'm «Petr Viktorin»
+
+    I work at Red Hat
+    on the FreeIPA project
+    (Kerberos, LDAP, Active Directory)
+
+    «deemph≈but this talk is not about that»
+    ♢
+
+- text: |
+    I also help organize «Python meetups»
+
+    Are you in «Brno» last Thursday of any month?
+        → «python.cz»
+
+    «deemph≈but this talk is not about that»
+    «deemph≈either»
+
+- text: |
+    The Console
+
+    Terminal
+
+    TTY
+     «hide≈Note: History section will NOT be chronologically correct»
+
+- text: |
+    It all started with the «teletype» (teleprinter) «hide≈XXX: year!!!»
+
+    printer + keyboard + wires
+
+    «hide≈Computers caught up, batch→realtime»
+
+- text: |
+    UNIX:
+
+    Everything is a file!
+
+    disk device
+    directory
+    pipe
+    «      »regular files «deemph≈(boring!)»
+    TTY!
+
+
+- fixtext: |
+    UNIX and terminals♢center
+
+    +---------+               +--------+
+    |         | <- stdin ---- |        |
+    |         |               | kernel |
+    | process | -- stdout --> |  TTY   |
+    |         |               | driver |
+    |         | -- stderr --> |        |
+    +---------+               +--------+
+                                 ^  |
+                              +--------+
+                              | modem? |
+                              +--------+
+                                 |  v
+                             +----------+
+                             | terminal |
+                             +----------+
+
+- fixtext: |
+    Terminal emulators♢center
+
+    +---------+               +--------+
+    |         | <- stdin ---- |        |
+    |         |               | kernel |
+    | process | -- stdout --> |  TTY   |
+    |         |               | driver |
+    |         | -- stderr --> |        |
+    +---------+               +--------+
+                              |  TTY   |
+                Backspace     |emulator| ♢ [1] Backspace♢Note: briefly explain line discipline
+              "Input mode"    +--------+ ♢ [2] "Input mode"
+                   ^C            ^  |    ♢ [3] ^C
+                   ^Z            |  v    ♢ [3] ^Z
+                        +----------+----+
+                        | keyboard | TV |
+                        +----------+----+
+
+
+
+- diversion: true  # XXX
+  align: left
+  text:
+    $ stty -a
+
+
+    speed 38400 baud; rows 45; columns 266; line = 0;
+    intr = ^C; quit = ^\; erase = ^?; kill = ^U; eof = ^D; eol = <undef>; eol2 = <undef>; swtch = <undef>; start = ^Q; stop = ^S; susp = ^Z; rprnt = ^R; werase = ^W; lnext = ^V; flush = ^O; min = 1; time = 0;
+    -parenb -parodd cs8 -hupcl -cstopb cread -clocal -crtscts
+    -ignbrk -brkint -ignpar -parmrk -inpck -istrip -inlcr -igncr icrnl ixon ixoff -iuclc -ixany -imaxbel iutf8
+    opost -olcuc -ocrnl onlcr -onocr -onlret -ofill -ofdel nl0 cr0 tab0 bs0 vt0 ff0
+    isig icanon iexten echo echoe echok -echonl -noflsh -xcase -tostop -echoprt echoctl echoke
+
+- copy: "-2#3"
+  text: '<copy of a previous slide>'
+
+
+- fixtext: |
+    Features♢center
+
+    +---------+               +--------+
+    |         | <- stdin ---- |        |
+    |         |               |terminal|
+    | process | -- stdout --> |        |
+    |         |               |        |
+    |         | -- stderr --> |        |
+    +---------+               +--------+
+        Character sets                   ♢[10] Character sets
+                Backspace      Underline ♢[5] Underline
+              "Input mode"               
+       Bold        ^C        Mouse       ♢[4] Bold♢[12] Mouse
+     Blinking      ^Z   Unicode          ♢[6] Blinking♢[13] Unicode
+               Window size (ioctl)       ♢[8] Window size♢[9] (ioctl)
+             Cursor movement             ♢[1] Cursor movement
+            More Colors!         Beep    ♢[3] Colors♢[7] Beep♢[11] More♢[11] !
+
+
+- fixtext: |
+    «»♢
+
+
+
+
+                   «Ugh».
+
+
+
+        Character sets
+                Backspace      Underline
+       Bold        ^C        Mouse
+     Blinking      ^Z
+               Window size (ioctl)
+             Cursor movement
+            More Colors!         Beep
+                 Unicode                 ♢
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are «simple»
+
+
+    «print»('Hello world!')          «»
+    raw_«input»('What is your name?')
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are «simple»
+
+
+    No need for a designer
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, «universal»
+
+
+    Ever seen a computer without a command line?
+    Would you want to use it?♢[1] .*
+    as a computer?♢[2] .*
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, universal, «scriptable»
+
+
+    git branch «|» grep '\*' «|» cut -c3-
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, universal, scriptable, «lightweight»
+
+
+    These slides take «hide≈XXX:Number!» a couple of «kilobytes»
+    «hide≈Full video with timing information: X kB»♢[1] .*
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, universal, scriptable, lightweight, «cool»
+
+
+    At least for «you»♢[1] .*
+
+
+- fixtext: |
+    Types of TUIs♢center
+
+    • Line-based
+        cat, grep, git♢[1] .*
+        «simple, universal»♢[3] .*
+        «scriptable, lightweight»♢[3] .*
+
+    • Full-screen
+        less, vim, mc♢[2] .*
+        «cool»♢[3]
+
+
+- fixtext: |
+    How to build a text user interface♢center♢@deemph[1:]text
+    ♢reveal[2]
+    • Decide on the type♢e[2]
+        Line-based? Full-screen TUI?♢reveal[3]
+        Traditional GUI? Web UI?♢@deemph[4] Web UI?♢@deemph[5-] .*
+    ♢reveal[4]
+    • Parse command-line arguments♢e[4]♢XXX:Example?♢XXX:Strict conventions; very important - can't easily change later, like designing API
+    ♢reveal[5]
+    • Output the output♢e[5]
+    ♢reveal[6]
+    • Handle input♢e[6]
+
+
+- text: |
+    Tools of the trade
+
+    argparse, docopt, termcolor, blessings, colorama, clint, curses, urwid
+
+
+- text: |
+    import «argparse»
+    «hide≈no optparse please»
+    parses command-line arguments
+    part of stdlib
+
+    «hide≈XXX: Program: listing, output»
+    «hide≈XXX: Makes the help string for you - strict »
+
+
+- text: |
+    import «docopt» «hide≈XXX: Github link»
+
+    command-line parsing upside-down:
+    you write the usage text, docopt uses that
+
+    «hide≈XXX: Program: listing, output»
+
+
+- text: |
+    import «termcolor» «hide≈XXX: Github link»
+
+    Simple colorization 
+
+    Outputs ANSI escape sequences♢emph[1] ANSI
+
+    «hide≈XXX: Program: listing, output»
+
+
+- text: |
+    import «colorama» «hide≈XXX: Github link»
+
+    Colorization wrapper for Windows
+
+    Replaces the sys.stdout & stderr objects, intercepts ANSI sequences, calls appropriate Windows functions
+
+    No-op on systems that understand ANSI «deemph≈(by default)»
+
+    «hide≈XXX: Program?: listing?, output?»
+
+
+- text: |
+    import «colorama» «hide≈XXX: Github link»
+
+    Colorization wrapper for Windows
+
+    Replaces the sys.stdout & stderr objects, intercepts ANSI sequences, calls appropriate Windows functions
+
+    No-op on systems that understand ANSI
+    «deemph≈(by default)»
+
+    «hide≈XXX: Program?: listing?, output?»
+
+
+- text: |
+    import «blessings» «hide≈XXX: Github link»
+
+    Output colorization (ANSI sequences, «hide≈XXX:termcap»)
+    Simple
+    ♢reveal[1]
+    Pipe-savvy
+
+    XXX: This slide is incomplete
+
+
+- text: |
+    import «clint» «hide≈XXX: Github link»
+
+    Kitchen sink
+    colors, indents, columns, progress bars, implicit arguments, English-language join(), interactive prompting
+    ♢reveal[1]
+    TODO: unit tests, docs, py3k
+
+    «hide≈XXX: Program?: listing?, output?»
+
+
+- text: |
+    import «tty»
+
+    setcbreak()
+    setraw()
+
+    import «termios»
+
+
+- pygments: true  # XXX
+  fixtext: |
+    import contextlib
+    import termios, tty
+    t_get = termios.tcgetattr
+    t_set = termios.tcsetattr
+
+    @contextlib.context_manager
+    def with_cbreak():
+      old = None
+      try:
+        if sys.stdin.isatty():
+          old = t_get(sys.stdin)
+          tty.setcbreak(sys.stdin)
+        yield
+      finally:
+        if old is not None:
+          f = termios.TCSAFLUSH
+          termios.t_set(sys.stdin, f, old)
+
+- text: |
+    import «curses»
+
+    80s era C library, wrapped in Python «hide≈no buzzwords like “pythonic”; e.g. characters are ints»
+    stdlib
+
+    Either you're an expert,
+    or you find a snippet for your usage on StackOverflow
+
+
+# XXX: Github? Mercurial/Googlecode?
+# XXX: Python 3 compatibility?

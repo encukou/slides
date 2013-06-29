@@ -87,7 +87,7 @@ Why use a text UI?
     Why not use HTML?
 - Cool?
     do the simplest thing that works
-        math elegance
+        a certain elegance (in the math sense of the word)
         Presentation is NOT irrelevant. Dressing up is irrelevant.
     movie scene
 
@@ -110,7 +110,8 @@ Full-screen
 - Output
     How fancy will it be?
     Colors, columns
-    Mouse
+- Input
+    Cbreak? Mouse?
 
 Tools
 - argparse
