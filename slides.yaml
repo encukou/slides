@@ -1,3 +1,8 @@
+
+# Copyright 2013 by Petr Viktorin <encukou@gmail.com>
+# License: Creative Commons Attribution-ShareAlike 3.0 Unported
+# http://creativecommons.org/licenses/by-sa/3.0/
+
 - text: |
     ┌───────────────────────────────────────┐
     │                                       │
@@ -20,15 +25,18 @@
 - text: |
     ♢
 
-    «TERMINALS,»
-    «Command Lines, and Text User Interfaces»
 
-    ----------------------♢hr
+
+    «Terminals,»
+    «Command Lines,»
+    «and Text User Interfaces»
+
+
 
 
 
     Petr Viktorin
-    encukou@gmail.com
+    encukou.cz
 
 - text: |
     Hello! I'm «Petr Viktorin»
@@ -43,8 +51,9 @@
 - text: |
     I also help organize «Python meetups»
 
-    Are you in «Brno» last Thursday of any month?
-        → «python.cz»
+    Visiting «Brno» last Thursday of any month?
+    → «python.cz» ♢
+
 
     «deemph≈but this talk is not about that»
     «deemph≈either»
@@ -69,50 +78,50 @@
 
     Everything is a file!
 
-    disk device
-    directory
-    pipe
-    «      »regular files «deemph≈(boring!)»
-    TTY!
+    disk device♢[1] .*
+    pipe♢[2] .*
+    directory♢[3] .*
+    «      »regular files «deemph≈(boring!)»♢[4] .*
+    TTY!♢[5] .*
 
 
 - fixtext: |
     UNIX and terminals♢center
 
-    +---------+               +--------+
-    |         | <- stdin ---- |        |
-    |         |               | kernel |
-    | process | -- stdout --> |  TTY   |
-    |         |               | driver |
-    |         | -- stderr --> |        |
-    +---------+               +--------+
+    ┌─────────┐               ┌────────┐
+    │         │ <- stdin ---- │        │
+    │         │               │ kernel │
+    │ process │ -- stdout --> │  TTY   │
+    │         │               │ driver │
+    │         │ -- stderr --> │        │
+    └─────────┘               └────────┘
                                  ^  |
-                              +--------+
-                              | modem? |
-                              +--------+
+                                 |  |
+                                 |  |
+                                 |  |
                                  |  v
-                             +----------+
-                             | terminal |
-                             +----------+
+                             ┌──────────┐
+                             │ terminal │
+                             └──────────┘
 
 - fixtext: |
     Terminal emulators♢center
 
-    +---------+               +--------+
-    |         | <- stdin ---- |        |
-    |         |               | kernel |
-    | process | -- stdout --> |  TTY   |
-    |         |               | driver |
-    |         | -- stderr --> |        |
-    +---------+               +--------+
-                              |  TTY   |
-                Backspace     |emulator| ♢ [1] Backspace♢Note: briefly explain line discipline
-              "Input mode"    +--------+ ♢ [2] "Input mode"
-                   ^C            ^  |    ♢ [3] \^C
-                   ^Z            |  v    ♢ [3] \^Z
-                        +----------+----+
-                        | keyboard | TV |
-                        +----------+----+
+    ┌─────────┐               ┌────────┐
+    │         │ <- stdin ---- │        │
+    │         │               │ kernel │
+    │ process │ -- stdout --> │  TTY   │
+    │         │               │ driver │
+    │         │ -- stderr --> │        │
+    └─────────┘               ├────────┤
+                              │ Pseudo │
+                Backspace     │  TTY   │ ♢ [1] Backspace♢Note: briefly explain line discipline
+              "Input mode"    ├────────┤ ♢ [2] "Input mode"
+                   ^C         │  TTY   │ ♢ [3] \^C
+                   ^Z         │emulator│ ♢ [3] \^Z
+                      ┌───────┴────────┴─┐
+                      │ Graphical system │
+                      └──────────────────┘
 
 
 
@@ -132,13 +141,13 @@
 - fixtext: |
     Features  «»♢center
 
-    +---------+               +--------+
-    |         | <- stdin ---- |        |
-    |         |               |terminal|
-    | process | -- stdout --> |        |
-    |         |               |        |
-    |         | -- stderr --> |        |
-    +---------+               +--------+
+    ┌─────────┐               ┌────────┐
+    │         │ <- stdin ---- │        │
+    │         │               │terminal│
+    │ process │ -- stdout --> │        │
+    │         │               │        │
+    │         │ -- stderr --> │        │
+    └─────────┘               └────────┘
         Character sets                   ♢[9] Character sets
                 Backspace      Underline ♢[4] Underline
               "Input mode"
@@ -279,6 +288,18 @@
     «hide≈XXX: Program: listing, output»
 
 
+- fixtext: |
+    A note on documentation♢center
+
+
+    • --help option
+        cheatsheet
+    • man page
+        tersely explains everything
+    • website (tutorial)
+        teaches
+
+
 - text: |
     import «termcolor» «hide≈XXX: Github link»
 
@@ -311,6 +332,14 @@
     Pipe-savvy
 
     «hide≈XXX: Program?: listing?, output?»
+
+
+- text: |
+    Pipe friendliness
+
+    Default to color only for terminals
+
+    Provide a way to force color on or off
 
 
 - text: |
@@ -377,12 +406,38 @@
 
 
 - text: |
-    Mouse input?
+    Urwid widgets
+
+    ♢fib
+
+    ♢progressbar
 
 
 - text: |
-    A note on documentation
+    Mouse input
 
+
+    MainLoop(handle_mouse=False)
+
+
+- text: |
+    «»
+
+
+
+
+    Keep it simple!
+    ♢reveal[1]
+
+    questions?
+
+
+
+
+
+    ♢hr
+    © 2013 Petr Viktorin, http://encukou.cz
+    CC-BY-SA
 
 # XXX: Github? Mercurial/Googlecode?
 # XXX: Python 3 compatibility?

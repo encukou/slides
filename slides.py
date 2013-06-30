@@ -14,6 +14,8 @@ import pygments.formatter
 import pygments.token
 from pygments.lexers.agile import PythonLexer
 
+import fib
+
 class reify(object):
     # https://github.com/Pylons/pyramid/blob/master/pyramid/decorator.py
     def __init__(self, wrapped):
@@ -60,6 +62,10 @@ def make_directive(spec):
         return lambda text, **kw: text
     if spec == 'hr':
         return hr_directive
+    if spec == 'fib':
+        return fib_directive
+    if spec == 'progressbar':
+        return progressbar_directive
     if spec == 'center':
         return lambda text, **kw: text.strip()
     match = re.match(r'\[(?P<num>[0-9]+)\] (?P<pattern>.*)', spec)
@@ -87,7 +93,7 @@ class AttrDirective(object):
         self.pattern = pattern
 
     def sub_callback(self, text):
-        return "«%s≈%s»" % (self.attr, text.group())
+        return "«%s≈%s»" % (self.attr, text.group().replace('»', ''))
 
     def __call__(self, text, subslide_number):
         if self.num <= subslide_number:
@@ -126,6 +132,23 @@ def animate_directive(text, subslide_number, **kwargs):
 
 def hr_directive(text, subslide_number):
     raise ReplaceWidget(urwid.BoxAdapter(urwid.SolidFill('─'), 1))
+
+
+def fib_directive(text, subslide_number):
+    raise ReplaceWidget(urwid.Padding(urwid.LineBox(urwid.BoxAdapter(urwid.ListBox(fib.FibonacciWalker()), 7)), width=30, align='center'))
+
+
+class Progress(urwid.ProgressBar):
+    def render(self, size, focus=True):
+        self.current = int((time.time() * 2 % 100))
+        self.set_completion(self.current)
+        rv = super(Progress, self).render(size, focus)
+        self._invalidate()
+        return rv
+
+
+def progressbar_directive(text, subslide_number):
+    raise ReplaceWidget(urwid.Padding(Progress('normal', 'reverse', done=100)))
 
 
 class Line(object):
@@ -225,6 +248,7 @@ class SlideLoop(urwid.MainLoop):
                 self.top_widget,
                 self.palette,
                 unhandled_input=self.handle_input,
+                handle_mouse=False,
             )
         self.screen.set_terminal_properties(colors=256)
         self.slides = [Slide(s) for s in slidespecs]
@@ -246,6 +270,7 @@ class SlideLoop(urwid.MainLoop):
         ('deemph', 'light gray', 'white'),   # XXX: Not bold!
         ('bold', 'black,bold', 'white', 'standout'),
         ('normal', 'black', 'white'),
+        ('reverse', 'white', 'black'),
 
         ('pygments_kwd', 'dark blue', 'white'),
         ('pygments_string', 'dark blue', 'white'),
