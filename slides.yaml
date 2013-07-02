@@ -43,7 +43,7 @@
 
     I work at Red Hat
     on the FreeIPA project
-    (Kerberos, LDAP, Active Directory)
+    (LDAP, Kerberos, Active Directory)
 
     «deemph≈but this talk is not about that»
     ♢
@@ -51,9 +51,9 @@
 - text: |
     I also help organize «Python meetups»
 
-    Visiting «Brno» last Thursday of any month?
+    In «Brno» last Thursday of any month?
+    Join us at PyVo!
     → «python.cz» ♢
-
 
     «deemph≈but this talk is not about that»
     «deemph≈either»
@@ -64,14 +64,11 @@
     Terminal
 
     TTY
-     «hide≈Note: History section will NOT be chronologically correct»
 
-- text: |
-    It all started with the «teletype» (teleprinter) «hide≈XXX: year!!!»
-
-    printer + keyboard + wires
-
-    «hide≈Computers caught up, batch→realtime»
+  note:
+    - Computers going batch→realtime
+    - History section will NOT be chronologically correct
+    - ASCII: 1960s
 
 - text: |
     UNIX:
@@ -81,8 +78,8 @@
     disk device♢[1] .*
     pipe♢[2] .*
     directory♢[3] .*
-    «      »regular files «deemph≈(boring!)»♢[4] .*
-    TTY!♢[5] .*
+    TTY♢[4] .*
+    regular file♢[5] .*
 
 
 - fixtext: |
@@ -128,12 +125,12 @@
     $ stty -a
 
 
-    speed 38400 baud; rows 45; columns 266; line = 0;
-    intr = ^C; quit = ^\; erase = ^?; kill = ^U; eof = ^D; eol = <undef>; eol2 = <undef>; swtch = <undef>; start = ^Q; stop = ^S; susp = ^Z; rprnt = ^R; werase = ^W; lnext = ^V; flush = ^O; min = 1; time = 0;
+    speed 38400 baud; «rows» 45; columns 266; line = 0;
+    «intr» = ^C; quit = ^\; erase = ^?; kill = ^U; eof = ^D; eol = <undef>; eol2 = <undef>; swtch = <undef>; start = ^Q; stop = ^S; susp = ^Z; rprnt = ^R; werase = ^W; lnext = ^V; flush = ^O; min = 1; time = 0;
     -parenb -parodd cs8 -hupcl -cstopb cread -clocal -crtscts
-    -ignbrk -brkint -ignpar -parmrk -inpck -istrip -inlcr -igncr icrnl ixon ixoff -iuclc -ixany -imaxbel iutf8
+    -ignbrk -brkint -ignpar -parmrk -inpck -istrip -inlcr -igncr icrnl ixon ixoff -iuclc -ixany -imaxbel «iutf8»
     opost -olcuc -ocrnl onlcr -onocr -onlret -ofill -ofdel nl0 cr0 tab0 bs0 vt0 ff0
-    isig icanon iexten echo echoe echok -echonl -noflsh -xcase -tostop -echoprt echoctl echoke
+    isig icanon iexten «echo» echoe echok -echonl -noflsh -xcase -tostop -echoprt echoctl echoke
 
 - fixtext: |
     Features  «»♢center
@@ -141,18 +138,18 @@
     ┌─────────┐               ┌────────┐
     │         │ <- stdin ---- │        │
     │         │               │terminal│
-    │ process │ -- stdout --> │        │
+    │ process │ -- stdout --> │emulator│
     │         │               │        │
     │         │ -- stderr --> │        │
     └─────────┘               └────────┘
         Character sets                   ♢[7] Character sets
-                Backspace      Underline ♢[4] Underline
+                Backspace      Underline ♢[3] Underline
               "Input mode"
-       Bold        ^C        Mouse       ♢[2] Bold♢[9] Mouse
-     Blinking      ^Z   Unicode          ♢[5] Blinking♢[10] Unicode
-               Window size
-             Cursor movement             ♢[1] Cursor movement
-            More Colors!         Beep    ♢[3] Colors♢[6] Beep♢[8] More♢[8] !
+       Bold        ^C        Mouse       ♢[1] Bold♢[9] Mouse
+     Blinking      ^Z   Unicode          ♢[4] Blinking♢[8] Unicode
+               Window size       Beep    ♢[6] Beep
+            More Colors!                 ♢[2] Colors♢[10] More♢[10] !♢rainbow[10]
+             Cursor movement             ♢[5] Cursor movement
 
 
 - fixtext: |
@@ -166,22 +163,23 @@
 
 
         Character sets
-                Backspace      Underline ♢
+                Backspace      Underline
               "Input mode"
        Bold        ^C        Mouse
      Blinking      ^Z   Unicode
-               Window size
+               Window size       Beep
+            More Colors!                 ♢rainbow[0]
              Cursor movement
-            More Colors!         Beep
+  note: Why would I use this...?
 
 
-- text: |
-    Why do I use this?
+- fixtext: |
+    Why do I use this?♢center
 
-    TUIs are «simple»
+    TUIs are «simple»♢center
 
 
-    «print»('Hello world!')          «»
+    «print»('Hello world!')
     raw_«input»('What is your name?')
 
 
@@ -191,7 +189,7 @@
     TUIs are «simple»
 
 
-    No need for a designer
+    No UX designer needed!
 
 
 - text: |
@@ -200,9 +198,7 @@
     TUIs are simple, «universal»
 
 
-    Ever seen a computer without a command line?
-    Would you want to use it?♢[1] .*
-    as a computer?♢[2] .*
+    pip install pyshinylib
 
 
 - text: |
@@ -211,7 +207,8 @@
     TUIs are simple, universal, «scriptable»
 
 
-    git branch «|» grep '\*' «|» cut -c3-
+    git diff | pep8 --diff
+  note: Google Code Jam? Text-based inputs
 
 
 - text: |
@@ -220,8 +217,9 @@
     TUIs are simple, universal, scriptable, «lightweight»
 
 
-    These slides take «hide≈XXX:Number!» a couple of «kilobytes»
-    «hide≈Full video with timing information: X kB»♢[1] .*
+    These slides take >3 «kilobytes»
+
+    Replay info: >1MB♢[1] .*
 
 
 - text: |
@@ -230,7 +228,10 @@
     TUIs are simple, universal, scriptable, lightweight, «cool»
 
 
-    At least for «you» ♢[1] .*
+    At least to «you» ♢[1] .*
+
+
+- special: movie
 
 
 - fixtext: |
@@ -247,50 +248,45 @@
 
 
 - fixtext: |
-    How to build a text user interface♢center♢@deemph[1]text
-    ♢reveal[2]
-    • Decide on the type♢@emph[2] \w.*
-        Line-based? Full-screen TUI?♢reveal[3]
-        Traditional GUI? Web UI?♢@deemph[4] Web UI.♢@deemph[5] Traditional GUI.
-    ♢reveal[4]
-    • Parse command-line arguments♢@emph[4] \s.*♢XXX:Example?♢XXX:Strict conventions; very important - can't easily change later, like designing API
-    ♢reveal[5]
-    • Output the output♢@emph[5] \s.*
-    ♢reveal[6]
-    • Handle input♢@emph[6] \w.*
+    How to build a text user interface♢center♢@deemph[2]text
+
+    • Decide on the type
+        Line-based? Full-screen TUI?♢[1] .*
+        Traditional GUI? Web UI?♢[2] .*
+    • Parse command-line arguments
+        style? -u -xlib --gnu♢[3] .*
+    • Output the output
+
+    • Handle input
+  note:
+    - Arguments: http://www.faqs.org/docs/artu/ch10s05.html
+    - Arguments: Strict conventions
+    - Arguments: very important - can't easily change later, like designing API
 
 
-- text: |
-    Tools of the trade
+- fixtext: |
+    Command-line arguments♢center
 
-    argparse, docopt, termcolor, blessings, colorama, clint, curses, urwid
+    • Positional arguments
+        prog data.txt
+
+    • Options
+        prog -v
+        prog --verbose
+        prog --file data.txt
+        prog --file=data.txt
+        prog -f data.txt
+
+    • Subcommands
+        git log
+        git -c color=always log --oneline
 
 
 - text: |
     import «argparse»
-    «hide≈no optparse please»
+    «hide≈replaces: optparse»
+
     parses command-line arguments
-    part of stdlib
-
-    «hide≈XXX: Program: listing, output»
-    «hide≈XXX: Makes the help string for you - strict »
-
-
-- pygments: true
-  fixtext: |
-    Top-level structure of a program♢center
-
-
-    import sys
-
-    def main(argv):
-        args = parse_args(argv)
-        return process(args)
-
-    if __name__ == '__main__':
-        sys.exit(main(sys.argv))
-
-  note: http://www.artima.com/weblogs/viewpost.jsp?thread=4829
 
 
 - pygments: true
@@ -300,33 +296,53 @@
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '-v', '--verbose',
-        action='store_const',
-        const=True,
+        action='store_true',
         help='Print more text')
+    parser.add_argument(
+        'filename',
+        help='File to process')
 
-    args = parser.parse_args(['-v'])
-    print(args.verbose)
+    args = parser.parse_args(
+        ['-v', 'data.txt'])
+    print([args.verbose, args.filename])
+    → [True, 'data.txt']
+
+
+- fixtext: |
+    Documentation♢center
+    «deemph≈you can never write enough»♢center
+
+
+    • --help option
+        cheatsheet
+    • man page
+        tersely documents everything
+    • website, tutorial
+        explains, teaches
 
 
 - fixtext: |
     $ program.py -h
-    usage: program.py [-h] [-v]
+    usage: program.py [-h] [-v] filename
+
+    positional arguments:
+    filename       File to process
 
     optional arguments:
-      -h, --help     show this help message
-                     and exit
-      -v, --verbose  Print more text
+    -h, --help     show this help
+                   message and exit
+    -v, --verbose  Print more text
 
-    $
+    $ █
 
 
 - text: |
-    import «docopt» «hide≈XXX: Github link»
+    pip install «docopt»
 
-    command-line parsing upside-down:
-    you write the usage text, docopt uses that
+    write the usage text
+    parse options from that
 
-    «hide≈XXX: Program: listing, output»
+  note: http://docopt.org/
 
 
 - pygments: true
@@ -348,28 +364,48 @@
     {'--help': False,
      '--verbose': True,
      '<filename>': 'd.txt'}
+  note: If you leave out arguments, uses sys.argv !!
+
+- pygments: true
+  fixtext: |
+    Top-level structure of a program♢center
 
 
-- fixtext: |
-    A note on documentation♢center
+    import sys
 
+    def main(argv):
+        args = parse_args(argv)
+        return process(args)
 
-    • --help option
-        cheatsheet
-    • man page
-        tersely documents everything
-    • website (tutorial)
-        explains, teaches
+    if __name__ == '__main__':
+        sys.exit(main(sys.argv))
+
+  note: http://www.artima.com/weblogs/viewpost.jsp?thread=4829
 
 
 - text: |
-    import «termcolor» «hide≈XXX: Github link»
+    pip install «termcolor»
 
-    Simple colorization 
+    Simple colorization
 
     Outputs ANSI escape sequences♢@emph[1] ANSI
 
     «hide≈XXX: Program: listing, output»
+  note: https://pypi.python.org/pypi/termcolor
+
+
+- pygments: true
+  fixtext: |
+    from termcolor import colored
+
+    text = colored('Hello, World!', 'red')
+    print(text)
+
+        «red≈Hello, World!»
+
+    print(repr(text))
+
+        '\x1b[31mHello, World!\x1b[0m'
 
 
 - text: |
@@ -383,17 +419,21 @@
     «deemph≈(by default)»
 
     «hide≈XXX: Program?: listing?, output?»
+  note: https://pypi.python.org/pypi/colorama
 
 
 - text: |
-    import «blessings» «hide≈XXX: Github link»
+    import «blessings»
 
     Output colorization (ANSI sequences, «hide≈XXX:termcap»)
     Simple
-    ♢reveal[1]
-    Pipe-savvy
+
+    “Pipe-savvy”
 
     «hide≈XXX: Program?: listing?, output?»
+  note:
+    - https://pypi.python.org/pypi/blessings/
+    - https://github.com/erikrose/blessings
 
 
 - text: |
@@ -405,30 +445,31 @@
 
 
 - text: |
-    import «clint» «hide≈XXX: Github link»
+    github.com/kennethreitz/«clint»
 
     Kitchen sink
     colors, indents, columns, progress bars, implicit arguments, English-language join(), interactive prompting
-    ♢reveal[1]
+
     TODO: unit tests, docs, py3k
 
-    «hide≈XXX: Program?: listing?, output?»
+  note: https://github.com/kennethreitz/clint
 
 
 - text: |
+    import «termios»
+
+    Posix calls for tty I/O control
+    ♢reveal[1]
+    ----------------------♢hr
+
     import «tty»
 
     setcbreak()
     setraw()
 
-    ----------------------♢hr
-
-    import «termios»
-
-    Posix calls for tty I/O control
 
 
-- pygments: true  # XXX
+- pygments: true
   fixtext: |
     import sys, tty
     from termios import tcgetattr
@@ -438,7 +479,7 @@
     try:
       if sys.stdin.isatty():
         old = tcgetattr(sys.stdin)
-        tty.setcbreak(sys.stdin)  # XXX
+        tty.setcbreak(sys.stdin)
 
       print(sys.stdin.read(1))
 
@@ -450,17 +491,42 @@
 - text: |
     import «curses»
 
-    80s era C library, wrapped in Python «hide≈no buzzwords like “pythonic”; e.g. characters are ints»
-    stdlib
+    “Full-screen” TUI library
 
-    Either you're an expert,
-    or you find a snippet for your usage on StackOverflow
+    Write to a buffer, let curses display it
+
+    Virtual “windows”
+
+- text: |
+    «curses» curses
+
+    80s era C library, very thin Python wrapper
+
+    No docstrings (Use man pages!)
+
+    No Windows support
+
+  note: no buzzwords like “pythonic”; e.g. characters are ints
+
+
+- pygments: true
+  fixtext: |
+    import curses
+    stdscr = curses.initscr()
+    curses.noecho()
+    curses.cbreak()
+    stdscr.keypad(1)
+
+    ...
+
+    stdscr.keypad(0)
+    curses.nocbreak()
+    curses.echo()
+    curses.endwin()
 
 
 - text: |
     import «urwid»
-
-    (What I used for these slides)
 
     Widget-based TUI library
 
@@ -475,11 +541,38 @@
     ♢progressbar
 
 
+- pygments: true,
+  fixtext: |
+    ♢widget
+
+    widget = urwid.Pile([
+      urwid.Text(['ab', ('red', 'C'), 'd'],
+                  align='center'),
+      urwid.Text(['e', ('green', 'F'), 'gh'],
+                  align='center'),
+    ])
+
+    widget = urwid.LineBox(widget)
+
+
+- pygments: true
+  skip: true
+  fixtext: |
+    ♢widget
+
+
+    canvas = widget.render(size=(10,))
+    print list(canvas.content())
+
+
+    ♢widget_canvas
+
+
 - text: |
     Mouse input
 
 
-    MainLoop(handle_mouse=False)
+    urwid.MainLoop(handle_mouse=False)
 
 
 - text: |

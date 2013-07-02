@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 import re
 import functools
 import time
+import random
 
 import urwid
 import yaml
@@ -66,6 +67,10 @@ def make_directive(spec):
         return fib_directive
     if spec == 'progressbar':
         return progressbar_directive
+    if spec == 'widget':
+        return widget_directive
+    if spec == 'widget_canvas':
+        return widget_canvas_directive
     if spec == 'center':
         return lambda text, **kw: text.strip()
     match = re.match(r'\[(?P<num>[0-9]+)\] (?P<pattern>.*)', spec)
@@ -82,6 +87,9 @@ def make_directive(spec):
     if match:
         # XXX: reveal
         return lambda text, **kw: text
+    match = re.match(r'rainbow\[(?P<num>[0-9]+)\]', spec)
+    if match:
+        return functools.partial(rainbow_directive, **match.groupdict())
     #return lambda text, **kw: text
     raise ValueError(repr(spec))
 
@@ -135,7 +143,11 @@ def hr_directive(text, subslide_number):
 
 
 def fib_directive(text, subslide_number):
-    raise ReplaceWidget(urwid.Padding(urwid.LineBox(urwid.BoxAdapter(urwid.ListBox(fib.FibonacciWalker()), 7)), width=30, align='center'))
+    widget = urwid.ListBox(fib.FibonacciWalker())
+    widget = urwid.BoxAdapter(widget, 7)
+    widget = urwid.LineBox(widget)
+    widget = urwid.Padding(widget, width=30, align='center')
+    raise ReplaceWidget(widget)
 
 
 class Progress(urwid.ProgressBar):
@@ -149,6 +161,127 @@ class Progress(urwid.ProgressBar):
 
 def progressbar_directive(text, subslide_number):
     raise ReplaceWidget(urwid.Padding(Progress('normal', 'reverse', done=100)))
+
+
+class Rainbow(urwid.Text):
+    def __init__(self, text, *args, **kwargs):
+        self.orig_text = text
+        super(Rainbow, self).__init__(text, *args, **kwargs)
+
+    def render(self, size, focus=True):
+        text = []
+        for char in self.orig_text:
+            color = '#' + ''.join(random.choice('0068068ad') for i in range(3))
+            text.append((urwid.AttrSpec(color, 'white'), char))
+        self.set_text(text)
+        rv = super(Rainbow, self).render(size, focus)
+        self._invalidate()
+        return rv
+
+
+def rainbow_directive(text, subslide_number, num):
+    if subslide_number >= int(num):
+        raise ReplaceWidget(Rainbow(text, align='center'))
+    else:
+        return text
+
+
+def make_demo_widget():
+    return urwid.Pile([
+        urwid.Text(['ab', ('red', 'C'), 'd'], align='center'),
+        urwid.Text(['e', ('green', 'f'), 'gh'], align='center'),
+    ])
+
+
+def widget_directive(text, subslide_number):
+    w = urwid.Padding(make_demo_widget())
+    raise ReplaceWidget(urwid.Padding(urwid.LineBox(w),
+                                      width=22, align='center'))
+
+
+def widget_canvas_directive(text, subslide_number):
+    widget = make_demo_widget()
+    canvas = widget.render(size=(10,))
+    import pprint
+    raise ReplaceWidget(urwid.Text(pprint.pformat(list(canvas.content()), width=40)))
+
+
+class Movie(urwid.BoxWidget):
+    #chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワ'
+    chars = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜ'
+    colors = [
+            '#000',
+            '#060',
+            '#080',
+            '#0a0',
+            '#0d0',
+            '#0f0',
+            '#6f6',
+            '#8f8',
+            '#afa',
+            '#dfd',
+            '#fff',
+        ]
+
+    no_cache = ['render']
+
+    def __init__(self):
+        self.slots = {}
+
+    def make_row(self, size, row_num):
+        #row = ''.join(random.choice(self.chars) for i in range(size // 2))
+        #if size % 2:
+        #    row += ' '
+        row = ''.join(random.choice(self.chars) for i in range(size))
+        return row.encode('utf-8')
+
+    def get_color(self, x, y, first=False):
+        try:
+            intensity, speed, seed_counter = self.slots[x, y]
+        except Exception:
+            intensity = 0
+            speed = random.uniform(0.05, 0.2)
+            seed_counter = 0
+        top = self.slots.get((x, y+1))
+        if top:
+            if top[2] == 3:
+                seed_counter = 1
+        if random.random() < 0.001 or seed_counter == 1:
+            intensity = 1
+            speed = random.expovariate(10)
+        else:
+            intensity -= speed
+        if random.random() < 0.001 or (first and random.random() < 0.005):
+            seed_counter = 1
+        if seed_counter:
+            seed_counter += 1
+        self.slots[x, y] = intensity, speed, seed_counter
+
+        if intensity < 0:
+            intensity = 0
+        color_index = int((intensity ** 2) * len(self.colors))
+        if color_index < 0:
+            color_index = 0
+        if color_index >= len(self.colors):
+            color_index = len(self.colors) - 1
+        return self.colors[color_index]
+
+    def make_attr_row(self, size, row_num, first=False):
+        length = len(self.chars[0].encode('utf-8'))
+        return [(urwid.AttrSpec(self.get_color(i, row_num, first), 'black'),
+                 length)
+                for i in range(size)]
+
+    def render(self, size, focus=False):
+        (maxcol, maxrow) = size
+        rows = [self.make_row(maxcol, i) for i in range(maxrow)]
+        arows = [self.make_attr_row(maxcol, i, i == maxrow - 1)
+                 for i in range(maxrow)]
+        arows.reverse()
+        return urwid.TextCanvas(rows, arows)
+
+    def keypress(self, v, k):
+        return k
 
 
 class Line(object):
@@ -204,7 +337,13 @@ class Slide(object):
         self.lines = lines
         self.subslide_count = max(line.max_subslide for line in lines)
 
-    def get_widget(self, subslide_number):
+    def __new__(cls, slidespec):
+        if slidespec.get('special') == 'movie':
+            return lambda num: Movie()
+        else:
+            return object.__new__(cls, slidespec)
+
+    def __call__(self, subslide_number):
         return urwid.Filler(urwid.Pile([
             line.widget(subslide_number) for line in self.lines]))
 
@@ -253,7 +392,7 @@ class SlideLoop(urwid.MainLoop):
                 handle_mouse=False,
             )
         self.screen.set_terminal_properties(colors=256)
-        self.slides = [Slide(s) for s in slidespecs]
+        self.slides = [Slide(s) for s in slidespecs if not s.get('skip')]
         self.current_slide = current_slide
         self.current_subslide = 0
         self.reset_alarm()
@@ -264,7 +403,7 @@ class SlideLoop(urwid.MainLoop):
             self.update_slide()
 
     def reset_alarm(self, loop=None, data=None):
-        self.set_alarm_in(0.1, self.reset_alarm)
+        self.set_alarm_in(0.03, self.reset_alarm)
 
     palette = [
         ('hide', 'light gray', 'white'),  # 'white' to hide notes!
@@ -273,6 +412,8 @@ class SlideLoop(urwid.MainLoop):
         ('bold', 'black,bold', 'white', 'standout'),
         ('normal', 'black', 'white'),
         ('reverse', 'white', 'black'),
+        ('red', 'light red', 'white'),
+        ('green', 'light green', 'white'),
 
         ('pygments_kwd', 'dark blue', 'white'),
         ('pygments_string', 'dark blue', 'white'),
@@ -280,7 +421,7 @@ class SlideLoop(urwid.MainLoop):
 
     def update_slide(self):
         slide = self.slides[self.current_slide]
-        widget = slide.get_widget(self.current_subslide)
+        widget = slide(self.current_subslide)
         self.inner_widget.original_widget = widget
         with open('last_slide', 'w') as savefile:
             savefile.write(str(self.current_slide))
@@ -294,13 +435,21 @@ class SlideLoop(urwid.MainLoop):
 
         if key in ('q', 'Q'):
             raise urwid.ExitMainLoop()
+        elif key in ('s', 'S'):
+            env = {'PS1': '$ ', 'PS2': '. '}
+            cmd = ['bash', '--rcfile', '/dev/null']
+            widget = urwid.Terminal(cmd, env=env)
+            widget = urwid.LineBox(widget)
+            self.inner_widget.original_widget = widget
+        elif key in ('r', 'R'):
+            self.update_slide()
         elif key in ('n', ' ', 'right'):
             try:
                 slide = self.slides[self.current_slide]
             except IndexError:
                 pass
             else:
-                if self.current_subslide < slide.subslide_count:
+                if self.current_subslide < getattr(slide, 'subslide_count', 0):
                     self.current_subslide += 1
                     self.update_slide()
                     return
@@ -312,7 +461,7 @@ class SlideLoop(urwid.MainLoop):
             elif self.current_slide > 1:
                 self.current_slide -= 1
                 slide = self.slides[self.current_slide]
-                self.current_subslide = slide.subslide_count
+                self.current_subslide = getattr(slide, 'subslide_count', 0)
                 self.update_slide()
         elif key in ('0',):
             self.current_slide = self.current_subslide = 0
