@@ -114,19 +114,16 @@
     │         │               │ driver │
     │         │ -- stderr --> │        │
     └─────────┘               ├────────┤
-                              │ Pseudo │
-                Backspace     │  TTY   │ ♢ [1] Backspace♢Note: briefly explain line discipline
-              "Input mode"    ├────────┤ ♢ [2] "Input mode"
-                   ^C         │  TTY   │ ♢ [3] \^C
-                   ^Z         │emulator│ ♢ [3] \^Z
+                Backspace     │ Pseudo │ ♢ [1] Backspace♢Note: briefly explain line discipline
+              "Input mode"    │  TTY   │ ♢ [2] "Input mode"
+                   ^C         ├────────┤ ♢ [3] \^C
+                   ^Z         │  TTY   │ ♢ [4] \^Z
+               Window size    │emulator│ ♢ [5] Window size
                       ┌───────┴────────┴─┐
                       │ Graphical system │
                       └──────────────────┘
 
-
-
-- diversion: true  # XXX
-  align: left
+- align: left
   text:
     $ stty -a
 
@@ -148,14 +145,14 @@
     │         │               │        │
     │         │ -- stderr --> │        │
     └─────────┘               └────────┘
-        Character sets                   ♢[9] Character sets
+        Character sets                   ♢[7] Character sets
                 Backspace      Underline ♢[4] Underline
               "Input mode"
-       Bold        ^C        Mouse       ♢[2] Bold♢[11] Mouse
-     Blinking      ^Z   Unicode          ♢[5] Blinking♢[12] Unicode
-               Window size (ioctl)       ♢[7] Window size♢[8] .ioctl.
+       Bold        ^C        Mouse       ♢[2] Bold♢[9] Mouse
+     Blinking      ^Z   Unicode          ♢[5] Blinking♢[10] Unicode
+               Window size
              Cursor movement             ♢[1] Cursor movement
-            More Colors!         Beep    ♢[3] Colors♢[6] Beep♢[10] More♢[10] !
+            More Colors!         Beep    ♢[3] Colors♢[6] Beep♢[8] More♢[8] !
 
 
 - fixtext: |
@@ -173,7 +170,7 @@
               "Input mode"
        Bold        ^C        Mouse
      Blinking      ^Z   Unicode
-               Window size (ioctl)
+               Window size
              Cursor movement
             More Colors!         Beep
 
@@ -246,7 +243,7 @@
 
     • Full-screen
         less, vim, mc♢[2] .*
-        «cool»♢[4] .*
+        «lightweight, cool»♢[4] .*
 
 
 - fixtext: |
@@ -279,6 +276,50 @@
     «hide≈XXX: Makes the help string for you - strict »
 
 
+- pygments: true
+  fixtext: |
+    Top-level structure of a program♢center
+
+
+    import sys
+
+    def main(argv):
+        args = parse_args(argv)
+        return process(args)
+
+    if __name__ == '__main__':
+        sys.exit(main(sys.argv))
+
+  note: http://www.artima.com/weblogs/viewpost.jsp?thread=4829
+
+
+- pygments: true
+  fixtext: |
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-v', '--verbose',
+        action='store_const',
+        const=True,
+        help='Print more text')
+
+    args = parser.parse_args(['-v'])
+    print(args.verbose)
+
+
+- fixtext: |
+    $ program.py -h
+    usage: program.py [-h] [-v]
+
+    optional arguments:
+      -h, --help     show this help message
+                     and exit
+      -v, --verbose  Print more text
+
+    $
+
+
 - text: |
     import «docopt» «hide≈XXX: Github link»
 
@@ -288,6 +329,27 @@
     «hide≈XXX: Program: listing, output»
 
 
+- pygments: true
+  fixtext: |
+    from docopt import docopt
+
+    doc = """Read a file
+    Usage: script.py [options] <filename>
+
+    Options:
+      --help, -h      Show help
+      --verbose, -v   Print more text
+    """
+
+    args = docopt(doc, ['-v', 'd.txt'])
+    print(args)
+
+
+    {'--help': False,
+     '--verbose': True,
+     '<filename>': 'd.txt'}
+
+
 - fixtext: |
     A note on documentation♢center
 
@@ -295,9 +357,9 @@
     • --help option
         cheatsheet
     • man page
-        tersely explains everything
+        tersely documents everything
     • website (tutorial)
-        teaches
+        explains, teaches
 
 
 - text: |
@@ -441,3 +503,4 @@
 
 # XXX: Github? Mercurial/Googlecode?
 # XXX: Python 3 compatibility?
+# XXX: Author names?

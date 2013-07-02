@@ -152,7 +152,7 @@ def progressbar_directive(text, subslide_number):
 
 
 class Line(object):
-    def __init__(self, linespec):
+    def __init__(self, linespec, align='center'):
         directives = linespec.split('♢')
         self.text = directives.pop(0)
         self.directives = [make_directive(d) for d in directives]
@@ -161,6 +161,7 @@ class Line(object):
         else:
             self.max_subslide = max(getattr(d, 'max_subslide', 0)
                                     for d in self.directives)
+        self.align = align
 
     def str(self, subslide_number):
         return self.text
@@ -184,7 +185,7 @@ class Line(object):
                 text = directive(text, subslide_number=subslide_number)
             except ReplaceWidget as e:
                 return e.widget
-        return urwid.Text(addattrs(text), align='center')
+        return urwid.Text(addattrs(text), align=self.align)
 
 
 class Slide(object):
@@ -194,7 +195,8 @@ class Slide(object):
             text = pygments.highlight(text, PythonLexer(),
                                       SlidePygmentsFormatter())
         lines = text.splitlines()
-        lines = [Line(l) for l in lines]
+        align = slidespec.get('align', 'center')
+        lines = [Line(l, align=align) for l in lines]
         if 'fixtext' in slidespec:
             maxlen = max(len(line) for line in lines)
             for line in lines:
