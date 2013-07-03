@@ -7,6 +7,7 @@ import re
 import functools
 import time
 import random
+import sys
 
 import urwid
 import yaml
@@ -480,6 +481,34 @@ class SlideLoop(urwid.MainLoop):
             pass
 
 
+class ExtraLoop(urwid.MainLoop):
+    # Very dirty hack for a "confidence monitor" on another TTY
+    def __init__(self, device, main_loop):
+        self.main_loop = main_loop
+        old_stdout = sys.stdout
+        try:
+            sys.stdout = open(device, 'w')
+            screen = urwid.raw_display.Screen()
+        finally:
+            sys.stdout = old_stdout
+        self.top_widget = main_loop.top_widget
+        self.top_widget = urwid.Padding(self.top_widget, width=41,
+                                        align='center')
+        self.top_widget = urwid.Filler(self.top_widget, height=17)
+        super(ExtraLoop, self).__init__(
+                self.top_widget,
+                main_loop.palette,
+                handle_mouse=False,
+                event_loop=main_loop.event_loop,
+                screen=screen,
+            )
+        print self.screen
+        self.screen.set_terminal_properties(colors=256)
+        self.screen.start()
+        main_loop.set_alarm_in(0, lambda s, d: self.run)
+        self.event_loop.enter_idle(self.entering_idle)
+
+
 if __name__ == '__main__':
     try:
         with open('last_slide') as slidefile:
@@ -488,4 +517,10 @@ if __name__ == '__main__':
         print(e)
         current_slide = 0
     with open('slides.yaml') as slide_file:
-        SlideLoop(yaml.safe_load(slide_file), current_slide).run()
+        loop = SlideLoop(yaml.safe_load(slide_file), current_slide)
+        extra_loop = None
+        if len(sys.argv) > 1:
+            extra_loop = ExtraLoop(sys.argv[1], loop)
+        loop.run()
+        if extra_loop:
+            extra_loop.screen.stop()
