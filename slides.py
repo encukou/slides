@@ -380,15 +380,18 @@ class SlidePygmentsFormatter(pygments.formatter.Formatter):
                 outfile.write(value)
 
 
+def get_blank_slide():
+    return urwid.AttrMap(urwid.SolidFill(), 'normal')
+
+
 class SlideLoop(urwid.MainLoop):
     def __init__(self, slidespecs, current_slide=0):
-        self.inner_widget = urwid.AttrMap(urwid.SolidFill(), 'normal')
-        self.top_widget = self.inner_widget
-        self.top_widget = urwid.Padding(self.top_widget, width=41,
-                                        align='center')
-        self.top_widget = urwid.Filler(self.top_widget, height=17)
+        self.inner_widget = get_blank_slide()
+        self.top_widget = wrap_slide_widget(self.inner_widget)
+        self.inner_next_widget = get_blank_slide()
+        self.next_widget = wrap_slide_widget(self.inner_next_widget)
         super(SlideLoop, self).__init__(
-                self.top_widget,
+                urwid.AttrMap(self.top_widget, {'hide': 'hidden'}),
                 self.palette,
                 unhandled_input=self.handle_input,
                 handle_mouse=False,
@@ -408,9 +411,10 @@ class SlideLoop(urwid.MainLoop):
         self.set_alarm_in(0.03, self.reset_alarm)
 
     palette = [
-        ('hide', 'light gray', 'white'),  # 'white' to hide notes!
+        ('hide', 'light gray', 'white'),
+        ('hidden', 'white', 'white'),
         ('emph', 'dark blue,bold', 'white', 'standout'),
-        ('deemph', 'light gray', 'white'),   # XXX: Not bold!
+        ('deemph', 'light gray', 'white'),
         ('bold', 'black,bold', 'white', 'standout'),
         ('normal', 'black', 'white'),
         ('reverse', 'white', 'black'),
@@ -425,6 +429,13 @@ class SlideLoop(urwid.MainLoop):
         slide = self.slides[self.current_slide]
         widget = slide(self.current_subslide)
         self.inner_widget.original_widget = widget
+        try:
+            next_slide = self.slides[self.current_slide + 1]
+        except IndexError:
+            self.inner_next_widget.original_widget = get_blank_slide()
+        else:
+            widget = next_slide(getattr(next_slide, 'subslide_count', 0))
+            self.inner_next_widget.original_widget = widget
         with open('last_slide', 'w') as savefile:
             savefile.write(str(self.current_slide))
 
@@ -493,9 +504,11 @@ class ExtraLoop(urwid.MainLoop):
         finally:
             sys.stdout = old_stdout
         self.top_widget = main_loop.top_widget
-        self.top_widget = urwid.Padding(self.top_widget, width=41,
-                                        align='center')
-        self.top_widget = urwid.Filler(self.top_widget, height=17)
+        self.next_widget = main_loop.next_widget
+        self.top_widget = urwid.Columns([
+            wrap_slide_widget(self.top_widget),
+            wrap_slide_widget(self.next_widget),
+        ])
         super(ExtraLoop, self).__init__(
                 self.top_widget,
                 main_loop.palette,
@@ -503,11 +516,35 @@ class ExtraLoop(urwid.MainLoop):
                 event_loop=main_loop.event_loop,
                 screen=screen,
             )
-        print self.screen
         self.screen.set_terminal_properties(colors=256)
+        self.screen.get_cols_rows = self.screen_get_cols_rows
         self.screen.start()
-        main_loop.set_alarm_in(0, lambda s, d: self.run)
-        self.event_loop.enter_idle(self.entering_idle)
+        def enter_idle():
+            # We don't get SIGWINCH :(
+            # recalc size every time
+            self.screen_size = None
+            self.entering_idle()
+        self.event_loop.enter_idle(enter_idle)
+
+
+    def screen_get_cols_rows(self):
+        """Monkeypatch for urwid.raw_display.Screen.get_cols_rows
+
+        This un-hardcodes the assumption that we're dealing with stdout (fd 0)
+        """
+        import fcntl, struct, termios
+        screen = self.screen
+
+        buf = fcntl.ioctl(screen._term_output_file, termios.TIOCGWINSZ, ' '*4)
+        y, x = struct.unpack('hh', buf)
+        self.screen.maxrow = y
+        return x, y
+
+
+def wrap_slide_widget(widget):
+    widget = urwid.Padding(widget, width=41, align='center')
+    widget = urwid.Filler(widget, height=17)
+    return widget
 
 
 if __name__ == '__main__':
