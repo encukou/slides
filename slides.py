@@ -171,8 +171,9 @@ class Rainbow(urwid.Text):
 
     def render(self, size, focus=True):
         text = []
+        rng = random.WichmannHill(int(time.time() * 10))
         for char in self.orig_text:
-            color = '#' + ''.join(random.choice('0068068ad') for i in range(3))
+            color = '#' + ''.join(rng.choice('0068068ad') for i in range(3))
             text.append((urwid.AttrSpec(color, 'white'), char))
         self.set_text(text)
         rv = super(Rainbow, self).render(size, focus)
