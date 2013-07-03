@@ -160,6 +160,28 @@ class Progress(urwid.ProgressBar):
         return rv
 
 
+class TimeChunkProgress(urwid.ProgressBar):
+    def __init__(self, chunk_seconds):
+        super(TimeChunkProgress, self).__init__('normal', 'reverse', done=chunk_seconds)
+        self.chunk_seconds = chunk_seconds
+
+    def render(self, size, focus=True):
+        self.current = int((time.time() % self.chunk_seconds))
+        self.set_completion(self.current)
+        rv = super(TimeChunkProgress, self).render(size, focus)
+        self._invalidate()
+        return rv
+
+    def get_text(self):
+        return "-{0:02d}:{1:02d}".format(
+            *divmod(self.chunk_seconds - int((time.time() % self.chunk_seconds)), 60))
+
+
+class FractionProgress(urwid.ProgressBar):
+    def get_text(self):
+        return "{0}/{1}".format(self.current, self.done)
+
+
 def progressbar_directive(text, subslide_number):
     raise ReplaceWidget(urwid.Padding(Progress('normal', 'reverse', done=100)))
 
@@ -400,6 +422,8 @@ class SlideLoop(urwid.MainLoop):
             )
         self.screen.set_terminal_properties(colors=256)
         self.slides = [Slide(s) for s in slidespecs if not s.get('skip')]
+        self.progress_widget = FractionProgress('normal', 'reverse',
+                                                done=len(self.slides) - 1)
         self.current_slide = current_slide
         self.current_subslide = 0
         self.reset_alarm()
@@ -434,11 +458,11 @@ class SlideLoop(urwid.MainLoop):
 
         notes = getattr(slide, 'notes', None)
         if isinstance(notes, list):
-            self.notes_widget.set_text('\n'.join(str(n) for n in notes))
+            self.notes_widget.set_text('\n'.join(unicode(n) for n in notes))
         elif isinstance(notes, basestring):
             self.notes_widget.set_text(notes)
         elif notes:
-            self.notes_widget.set_text(str(notes))
+            self.notes_widget.set_text(unicode(notes))
         else:
             self.notes_widget.set_text('')
 
@@ -449,6 +473,8 @@ class SlideLoop(urwid.MainLoop):
         else:
             widget = next_slide(getattr(next_slide, 'subslide_count', 0))
             self.inner_next_widget.original_widget = widget
+
+        self.progress_widget.set_completion(self.current_slide)
 
         with open('last_slide', 'w') as savefile:
             savefile.write(str(self.current_slide))
@@ -525,6 +551,8 @@ class ExtraLoop(urwid.MainLoop):
                 wrap_slide_widget(self.next_widget),
             ])),
             urwid.Filler(main_loop.notes_widget),
+            (1, urwid.Filler(TimeChunkProgress(30 * 60))),
+            (1, urwid.Filler(main_loop.progress_widget)),
         ])
         super(ExtraLoop, self).__init__(
                 self.top_widget,

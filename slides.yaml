@@ -101,6 +101,10 @@
                              │ terminal │
                              └──────────┘
 
+  note:
+    - explain
+    - well, that's mostly a simplification
+
 - fixtext: |
     Terminal emulators♢center
 
@@ -119,6 +123,9 @@
                       ┌───────┴────────┴─┐
                       │ Graphical system │
                       └──────────────────┘
+  note:
+    - explain
+    - lot of things happened along the way
 
 - align: left
   text:
