@@ -338,6 +338,7 @@ class Slide(object):
                 line.ljust(maxlen)
         self.lines = lines
         self.subslide_count = max(line.max_subslide for line in lines)
+        self.notes = slidespec.get('note')
 
     def __new__(cls, slidespec):
         if slidespec.get('special') == 'movie':
@@ -390,6 +391,7 @@ class SlideLoop(urwid.MainLoop):
         self.top_widget = wrap_slide_widget(self.inner_widget)
         self.inner_next_widget = get_blank_slide()
         self.next_widget = wrap_slide_widget(self.inner_next_widget)
+        self.notes_widget = urwid.Text('')
         super(SlideLoop, self).__init__(
                 urwid.AttrMap(self.top_widget, {'hide': 'hidden'}),
                 self.palette,
@@ -429,6 +431,17 @@ class SlideLoop(urwid.MainLoop):
         slide = self.slides[self.current_slide]
         widget = slide(self.current_subslide)
         self.inner_widget.original_widget = widget
+
+        notes = getattr(slide, 'notes', None)
+        if isinstance(notes, list):
+            self.notes_widget.set_text('\n'.join(str(n) for n in notes))
+        elif isinstance(notes, basestring):
+            self.notes_widget.set_text(notes)
+        elif notes:
+            self.notes_widget.set_text(str(notes))
+        else:
+            self.notes_widget.set_text('')
+
         try:
             next_slide = self.slides[self.current_slide + 1]
         except IndexError:
@@ -436,6 +449,7 @@ class SlideLoop(urwid.MainLoop):
         else:
             widget = next_slide(getattr(next_slide, 'subslide_count', 0))
             self.inner_next_widget.original_widget = widget
+
         with open('last_slide', 'w') as savefile:
             savefile.write(str(self.current_slide))
 
@@ -505,9 +519,12 @@ class ExtraLoop(urwid.MainLoop):
             sys.stdout = old_stdout
         self.top_widget = main_loop.top_widget
         self.next_widget = main_loop.next_widget
-        self.top_widget = urwid.Columns([
-            wrap_slide_widget(self.top_widget),
-            wrap_slide_widget(self.next_widget),
+        self.top_widget = urwid.Pile([
+            (19, urwid.Columns([
+                wrap_slide_widget(self.top_widget),
+                wrap_slide_widget(self.next_widget),
+            ])),
+            urwid.Filler(main_loop.notes_widget),
         ])
         super(ExtraLoop, self).__init__(
                 self.top_widget,
