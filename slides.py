@@ -84,10 +84,6 @@ def make_directive(spec):
     match = re.match(r'animate (?P<marker>[^=]+)=(?P<animation>.*)', spec)
     if match:
         return functools.partial(animate_directive, **match.groupdict())
-    match = re.match(r'reveal\[(?P<num>[0-9]+)\]', spec)
-    if match:
-        # XXX: reveal
-        return lambda text, **kw: text
     match = re.match(r'rainbow\[(?P<num>[0-9]+)\]', spec)
     if match:
         return functools.partial(rainbow_directive, **match.groupdict())
@@ -212,8 +208,8 @@ def rainbow_directive(text, subslide_number, num):
 
 def make_demo_widget():
     return urwid.Pile([
-        urwid.Text(['ab', ('red', 'C'), 'd'], align='center'),
-        urwid.Text(['e', ('green', 'f'), 'gh'], align='center'),
+        urwid.Text(['abcd'], align='center'),
+        urwid.Text(['efgh'], align='center'),
     ])
 
 
@@ -414,6 +410,7 @@ class SlideLoop(urwid.MainLoop):
         self.inner_next_widget = get_blank_slide()
         self.next_widget = wrap_slide_widget(self.inner_next_widget)
         self.notes_widget = urwid.Text('')
+        self.start_term()
         super(SlideLoop, self).__init__(
                 urwid.AttrMap(self.top_widget, {'hide': 'hidden'}),
                 self.palette,
@@ -479,6 +476,13 @@ class SlideLoop(urwid.MainLoop):
         with open('last_slide', 'w') as savefile:
             savefile.write(str(self.current_slide))
 
+    def start_term(self):
+        env = {'PS1': '$ ', 'PS2': '. '}
+        cmd = ['bash', '--rcfile', '/dev/null']
+        widget = urwid.Terminal(cmd, env=env)
+        widget = urwid.LineBox(widget)
+        self.term_widget = widget
+
     def handle_input(self, key):
         if isinstance(key, tuple) and key[0] == 'mouse press':
             if key[1] in (5, 1):
@@ -486,14 +490,13 @@ class SlideLoop(urwid.MainLoop):
             if key[1] in (4, 3):
                 key = 'left'
 
+        if key == 'S':
+            self.start_term()
+
         if key in ('q', 'Q'):
             raise urwid.ExitMainLoop()
         elif key in ('s', 'S'):
-            env = {'PS1': '$ ', 'PS2': '. '}
-            cmd = ['bash', '--rcfile', '/dev/null']
-            widget = urwid.Terminal(cmd, env=env)
-            widget = urwid.LineBox(widget)
-            self.inner_widget.original_widget = widget
+            self.inner_widget.original_widget = self.term_widget
         elif key in ('r', 'R'):
             self.update_slide()
         elif key in ('n', ' ', 'right'):

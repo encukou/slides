@@ -43,7 +43,7 @@
 
     I work at Red Hat
     on the FreeIPA project
-    (LDAP, Kerberos, Active Directory)
+    (LDAP & Kerberos)
 
     «deemph≈but this talk is not about that»
     ♢
@@ -69,17 +69,6 @@
     - Computers going batch→realtime
     - History section will NOT be chronologically correct
     - ASCII: 1960s
-
-- text: |
-    UNIX:
-
-    Everything is a file!
-
-    disk device♢[1] .*
-    pipe♢[2] .*
-    directory♢[3] .*
-    TTY♢[4] .*
-    regular file♢[5] .*
 
 
 - fixtext: |
@@ -116,7 +105,7 @@
     │         │ -- stderr --> │        │
     └─────────┘               ├────────┤
                 Backspace     │ Pseudo │ ♢ [1] Backspace♢Note: briefly explain line discipline
-              "Input mode"    │  TTY   │ ♢ [2] "Input mode"
+                  ioctl       │  TTY   │ ♢ [2] ioctl
                    ^C         ├────────┤ ♢ [3] \^C
                    ^Z         │  TTY   │ ♢ [4] \^Z
                Window size    │emulator│ ♢ [5] Window size
@@ -125,7 +114,7 @@
                       └──────────────────┘
   note:
     - explain
-    - lot of things happened along the way
+    - resolution is 41×17
 
 - align: left
   text:
@@ -180,6 +169,10 @@
   note: Why would I use this...?
 
 
+- text: |
+    Why do I use this?
+
+
 - fixtext: |
     Why do I use this?♢center
 
@@ -188,16 +181,7 @@
 
     «print»('Hello world!')
     raw_«input»('What is your name?')
-
-
-- text: |
-    Why do I use this?
-
-    TUIs are «simple»
-
-
-    No UX designer needed!
-
+  note: mathematical elegance?
 
 - text: |
     Why do I use this?
@@ -224,9 +208,7 @@
     TUIs are simple, universal, scriptable, «lightweight»
 
 
-    These slides take >3 «kilobytes»
-
-    Replay info: >1MB♢[1] .*
+    This talk: ~1MB
 
 
 - text: |
@@ -251,20 +233,20 @@
 
     • Full-screen
         less, vim, mc♢[2] .*
-        «lightweight, cool»♢[4] .*
+        «lightweight?, cool»♢[4] .*
 
 
 - fixtext: |
-    How to build a text user interface♢center♢@deemph[2]text
+    How to build a text user interface♢center♢@deemph[1]text
 
     • Decide on the type
-        Line-based? Full-screen TUI?♢[1] .*
-        Traditional GUI? Web UI?♢[2] .*
+        Line-based? Full-screen TUI?
+        Traditional GUI? Web UI?♢[1] .*
     • Parse command-line arguments
-        style? -u -xlib --gnu♢[3] .*
-    • Output the output
 
     • Handle input
+
+    • Output the output
   note:
     - Arguments: http://www.faqs.org/docs/artu/ch10s05.html
     - Arguments: Strict conventions
@@ -287,13 +269,11 @@
     • Subcommands
         git log
         git -c color=always log --oneline
-
+  note: GNU style!
 
 - text: |
     import «argparse»
     «hide≈replaces: optparse»
-
-    parses command-line arguments
 
 
 - pygments: true
@@ -329,7 +309,7 @@
 
 
 - fixtext: |
-    $ program.py -h
+    $ program.py --help
     usage: program.py [-h] [-v] filename
 
     positional arguments:
@@ -345,9 +325,6 @@
 
 - text: |
     pip install «docopt»
-
-    write the usage text
-    parse options from that
 
   note: http://docopt.org/
 
@@ -397,7 +374,6 @@
 
     Outputs ANSI escape sequences♢@emph[1] ANSI
 
-    «hide≈XXX: Program: listing, output»
   note: https://pypi.python.org/pypi/termcolor
 
 
@@ -416,35 +392,43 @@
 
 
 - text: |
-    import «colorama» «hide≈XXX: Github link»
+    import «colorama»
 
     Colorization wrapper for Windows
 
-    Replaces the sys.stdout & stderr objects, intercepts ANSI sequences, calls appropriate Windows functions
 
-    No-op on systems that understand ANSI
-    «deemph≈(by default)»
+    import colorama
+    colorama.init()
 
-    «hide≈XXX: Program?: listing?, output?»
-  note: https://pypi.python.org/pypi/colorama
-
+  note: 
+      - No-op on systems that understand ANSI (by default)
+      - https://pypi.python.org/pypi/colorama
 
 - text: |
     import «blessings»
 
-    Output colorization (ANSI sequences, «hide≈XXX:termcap»)
-    Simple
+    Output colorization, etc.
 
-    “Pipe-savvy”
-
-    «hide≈XXX: Program?: listing?, output?»
   note:
+    - Simple
+    - can also use Colorama
     - https://pypi.python.org/pypi/blessings/
     - https://github.com/erikrose/blessings
 
 
+- pygments: true
+  fixtext: |
+    from blessings import Terminal
+
+    term = Terminal()
+
+    print term.red('Hi there!')
+
+        «red≈Hello, World!»
+
+
 - text: |
-    Pipe friendliness
+    «Pipe friendliness»
 
     Default to color only for terminals
 
@@ -452,12 +436,14 @@
 
 
 - text: |
-    github.com/kennethreitz/«clint»
+    «clint»
 
-    Kitchen sink
-    colors, indents, columns, progress bars, implicit arguments, English-language join(), interactive prompting
+    colors, indents, columns,
+    progress bars, argument handling,♢[1] .*
+    interactive prompting,♢[2] .*
+    English-language join()♢[3] .*
 
-    TODO: unit tests, docs, py3k
+    TODO: unit tests, docs, py3k♢[4] .*
 
   note: https://github.com/kennethreitz/clint
 
@@ -466,7 +452,7 @@
     import «termios»
 
     Posix calls for tty I/O control
-    ♢reveal[1]
+
     ----------------------♢hr
 
     import «tty»
@@ -511,8 +497,6 @@
 
     No docstrings (Use man pages!)
 
-    No Windows support
-
   note: no buzzwords like “pythonic”; e.g. characters are ints
 
 
@@ -530,6 +514,8 @@
     curses.nocbreak()
     curses.echo()
     curses.endwin()
+  note: consistent? explicit?
+  skip: true
 
 
 - text: |
@@ -552,14 +538,12 @@
   fixtext: |
     ♢widget
 
-    widget = urwid.Pile([
-      urwid.Text(['ab', ('red', 'C'), 'd'],
-                  align='center'),
-      urwid.Text(['e', ('green', 'F'), 'gh'],
-                  align='center'),
+    pile = urwid.Pile([
+      urwid.Text('abcd', align='center'),
+      urwid.Text('efgh', align='center'),
     ])
 
-    widget = urwid.LineBox(widget)
+    widget = urwid.LineBox(pile)
 
 
 - pygments: true
@@ -589,7 +573,7 @@
 
 
     Keep it simple!
-    ♢reveal[1]
+
 
     questions?
 
@@ -601,6 +585,3 @@
     © 2013 Petr Viktorin, http://encukou.cz
     CC-BY-SA
 
-# XXX: Github? Mercurial/Googlecode?
-# XXX: Python 3 compatibility?
-# XXX: Author names?
