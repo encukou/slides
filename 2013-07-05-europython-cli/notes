@@ -1,0 +1,200 @@
+
+===
+
+Even in the age of iPhones and web apps, text-based interfaces are still
+important.
+
+This talk will briefly recount the history (and historical baggage) of the
+terminal, answer why text UIs are relevant, go through some tips on how to
+build them, and introduce the (mostly) awesome tools to do so: argparse,
+docopt; termcolor, colorama, blessings, curses, urwid. I’ll concentrate on tips
+to choose and use the tools effectively, from deciding whether to build a text
+UI at all, to details from pipe friendliness to mouse input.
+
+The talk should be accessible to any Python coder who’s ever piped two programs
+together in a shell. Familiarity with text-based tools like Git, vi, or
+Midnight Commander will make you right at home.
+
+The accompanying slides will run in a terminal emulator.
+
+===
+
+= About me
+- RH, pyvo
+
+= History (and historical baggage)
+ - A teleprinter (teletypewriter, Teletype or TTY) is an electromechanical
+   typewriter that can be used to send and receive typed messages from point to
+   point and point to multipoint over various types of communications channels.
+   - Evolved from stock tickers
+   - ASCII
+   - Started to be used for computer I/O because they were available
+     - Replaced batch processing
+   Understood e.g. word length, baud rate, flow control, parity
+
+terminfo
+
+UNIX
+- Files and processes. (and signals)
+  - files, pipes, sockets, directories, devices, TTYs
+    - read, write, ioctl()
+  - signals
+    - SIGHUP  ^D
+    - SIGINT  ^C (interactive attention)
+    - SIGQUIT ^\
+    - SIGPIPE
+    - SIGCHLD (info: process id, user id, exit status/termination signal, some execution time statistics)
+    - SIGSTOP (unconditional stop)
+    - SIGCONT
+    - SIGTSTP ^Z (after receiving, process usually sends SIGSTOP to itself)
+    - SIGTTIN (bg proc reads from tty)
+    - SIGTTOU (fg proc writes to tty)
+    - SIGWINCH - !!!
+
+ - PTY (pseudo terminal) -- xterm, screen/tmux
+
+- random topics
+  - basic line editing
+  - blocking I/O, ^S/^Q   (... modem hangup?!)
+  - session management (execution context; sessions,leaders; foreground process; signals,syscalls)
+  - termios(3), stty(1)
+  - keyboard/video handling (TTY emulation)
+
+- login(1) gives R/W access to a TTY device to you
+
+- Fancy fratures
+  - cursor movement
+  - colors, blinking
+  - unicode
+  - mouse
+
+- Windows!
+    All things are different :/
+
+Why are text UIs still relevant?
+Why use a text UI?
+- Easy
+    print("hello world!")
+- Universal
+    everyone has a console
+        browser?
+- Scriptable
+    example: Git plumbing
+- Lightweight
+    I'm recording this :)
+= Simple
+    Why not use Word?
+    Why not use HTML?
+- Cool?
+    do the simplest thing that works
+        a certain elegance (in the math sense of the word)
+        Presentation is NOT irrelevant. Dressing up is irrelevant.
+    movie scene
+
+= Types of text interfaces
+
+Line-based
+    Servers
+    Git (+ colors, interactivity)
+Full-screen
+    vim, mc, ...
+    Issues similar to GUIs (GTK, Qt)
+    Not scriptable, universal; breaks scrollback...
+
+= How to build text UIs
+
+- Parse arguments
+    You will need to do this for basically any program
+    - POSIX, GNU, X; conventions! [1]
+    - Important! Can't change this later!
+- Output
+    How fancy will it be?
+    Colors, columns
+- Input
+    Cbreak? Mouse?
+
+Tools
+- argparse
+    (and optparse, but let's not speak about that)
+    Good for 
+- docopt
+    magic - write the help, it generates options for you
+        wicked cool
+        caveats apply:
+            don't just use it without understanding what's going on
+            less powerful
+    not too useful for dynamic arguments
+- termcolor
+    ANSII color formatting
+    Simple!
+    No Windows support!
+- blessings
+    ANSII color, TTY detection; also cursor movements, full-screen
+    uses terminfo
+    No Windows support! (is windows support worth it? ... yes:)
+- colorama
+    ANSII→Windows filtering
+    (also for cursor movements)
+    provides termcolor functionality
+- clint
+    Kitchen sink full of things that might be useful
+    colors, indents, columns, progress bars, implicit arguments,
+        English-language join(), interactive prompting
+    TODO: unit tests, docs, py3k
+- curses
+    Abstraction layer for terminal handling (for C)
+        from back when
+            - "video terminal" meant "not a printer"
+            - 
+    "Cursor optimization" - programmer describes output, curses "draws" a
+        minimal diff
+    the name = what you'll emit when you try to use it
+        - cryptic 80-style identifiers
+        - WTFs
+- urwid
+    what I use here :)
+    demo
+    - mouse input
+
+Questions
+- Do I build a text UI at all?
+    - Target developers = do a text UI
+    - Do you have a UX designer? If not, build a TUI.
+- What kind of text UI?
+    - line based
+    - for full-screen, consider a GUI or web app
+- Pipe friendliness
+    - If you use colors
+        - always turn them off by default unless you're drawing to a terminal
+        - have a way (arg) to force them off/on
+            yes, both! blessing used to do this wrong (no way to force off)
+            (Why? good defaults/guesswork should never mean there's no way to
+                configure things explicitly)
+        - Bonus for heavily used apps: config option to turn them off by default
+    - If you show data, make sure there's a way to process it by machine
+        - May include adding an option (--batch, --raw)
+            these should turn off colors
+        - Preferrably, processing here means grep & sed
+            JSON may be a good idea, sometimes
+- Mouse input
+    - Avoid unless really needed: disables select+middle click (!!!)
+        - (and if you need it, why are you not building a GUI)
+- Good role models (if in doubt, copy others!)
+    git
+    less
+    vi
+- Write documentation!
+    - online --help
+        - terse, to the point: reminder to someone who already knows
+        - like docstrings for code
+    - man pages
+        - document everything, precisely
+        - provide examples!
+        - like Sphinx docs for code
+    - tutorials
+        - long, on web page
+
+Sources
+[0] http://www.linusakesson.net/programming/tty/
+    (Linus Åkesson's blog post on TTYs, used for history)
+[1] http://www.faqs.org/docs/artu/ch10s05.html

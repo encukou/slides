@@ -1,0 +1,8 @@
+
+Slides for my EuroPython 2013 talk.
+Install dependencies from requirements.txt, then run `slides.py`.
+
+Content license (slides.yaml): CC-BY-SA 3.0,
+http://creativecommons.org/licenses/by-sa/3.0/
+
+Code license (slides.py): MIT

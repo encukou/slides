@@ -1,0 +1,587 @@
+
+# Copyright 2013 by Petr Viktorin <encukou@gmail.com>
+# License: Creative Commons Attribution-ShareAlike 3.0 Unported
+# http://creativecommons.org/licenses/by-sa/3.0/
+
+- text: |
+    ┌───────────────────────────────────────┐
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                   X                   │♢animate X=/,-,\,|
+    │                                       │
+    │                                       │
+    │        calibration in progress        │
+    │                                       │
+    │                                       │
+    │         «deemph≈this shoud be visible»         │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    └───────────────────────────────────────┘
+
+- text: |
+    ♢
+
+
+
+    «Terminals,»
+    «Command Lines,»
+    «and Text User Interfaces»
+
+
+
+
+
+    Petr Viktorin
+    encukou.cz
+
+- text: |
+    Hello! I'm «Petr Viktorin»
+
+    I work at Red Hat
+    on the FreeIPA project
+    (LDAP & Kerberos)
+
+    «deemph≈but this talk is not about that»
+    ♢
+
+- text: |
+    I also help organize «Python meetups»
+
+    In «Brno» last Thursday of any month?
+    Join us at PyVo!
+    → «python.cz» ♢
+
+    «deemph≈but this talk is not about that»
+    «deemph≈either»
+
+- text: |
+    The Console
+
+    Terminal
+
+    TTY
+
+  note:
+    - Computers going batch→realtime
+    - History section will NOT be chronologically correct
+    - ASCII: 1960s
+
+
+- fixtext: |
+    UNIX and terminals♢center
+
+    ┌─────────┐               ┌────────┐
+    │         │ <- stdin ---- │        │
+    │         │               │ kernel │
+    │ process │ -- stdout --> │  TTY   │
+    │         │               │ driver │
+    │         │ -- stderr --> │        │
+    └─────────┘               └────────┘
+                                 ^  |
+                                 |  |
+                                 |  |
+                                 |  |
+                                 |  v
+                             ┌──────────┐
+                             │ terminal │
+                             └──────────┘
+
+  note:
+    - explain
+    - well, that's mostly a simplification
+
+- fixtext: |
+    Terminal emulators♢center
+
+    ┌─────────┐               ┌────────┐
+    │         │ <- stdin ---- │        │
+    │         │               │ kernel │
+    │ process │ -- stdout --> │  TTY   │
+    │         │               │ driver │
+    │         │ -- stderr --> │        │
+    └─────────┘               ├────────┤
+                Backspace     │ Pseudo │ ♢ [1] Backspace♢Note: briefly explain line discipline
+                  ioctl       │  TTY   │ ♢ [2] ioctl
+                   ^C         ├────────┤ ♢ [3] \^C
+                   ^Z         │  TTY   │ ♢ [4] \^Z
+               Window size    │emulator│ ♢ [5] Window size
+                      ┌───────┴────────┴─┐
+                      │ Graphical system │
+                      └──────────────────┘
+  note:
+    - explain
+    - resolution is 41×17
+
+- align: left
+  text:
+    $ stty -a
+
+
+    speed 38400 baud; «rows» 45; columns 266; line = 0;
+    «intr» = ^C; quit = ^\; erase = ^?; kill = ^U; eof = ^D; eol = <undef>; eol2 = <undef>; swtch = <undef>; start = ^Q; stop = ^S; susp = ^Z; rprnt = ^R; werase = ^W; lnext = ^V; flush = ^O; min = 1; time = 0;
+    -parenb -parodd cs8 -hupcl -cstopb cread -clocal -crtscts
+    -ignbrk -brkint -ignpar -parmrk -inpck -istrip -inlcr -igncr icrnl ixon ixoff -iuclc -ixany -imaxbel «iutf8»
+    opost -olcuc -ocrnl onlcr -onocr -onlret -ofill -ofdel nl0 cr0 tab0 bs0 vt0 ff0
+    isig icanon iexten «echo» echoe echok -echonl -noflsh -xcase -tostop -echoprt echoctl echoke
+
+- fixtext: |
+    Features  «»♢center
+
+    ┌─────────┐               ┌────────┐
+    │         │ <- stdin ---- │        │
+    │         │               │terminal│
+    │ process │ -- stdout --> │emulator│
+    │         │               │        │
+    │         │ -- stderr --> │        │
+    └─────────┘               └────────┘
+        Character sets                   ♢[7] Character sets
+                Backspace      Underline ♢[3] Underline
+              "Input mode"
+       Bold        ^C        Mouse       ♢[1] Bold♢[9] Mouse
+     Blinking      ^Z   Unicode          ♢[4] Blinking♢[8] Unicode
+               Window size       Beep    ♢[6] Beep
+            More Colors!                 ♢[2] Colors♢[10] More♢[10] !♢rainbow[10]
+             Cursor movement             ♢[5] Cursor movement
+
+
+- fixtext: |
+    «»
+
+
+
+
+                   «Ugh».
+
+
+
+        Character sets
+                Backspace      Underline
+              "Input mode"
+       Bold        ^C        Mouse
+     Blinking      ^Z   Unicode
+               Window size       Beep
+            More Colors!                 ♢rainbow[0]
+             Cursor movement
+  note: Why would I use this...?
+
+
+- text: |
+    Why do I use this?
+
+
+- fixtext: |
+    Why do I use this?♢center
+
+    TUIs are «simple»♢center
+
+
+    «print»('Hello world!')
+    raw_«input»('What is your name?')
+  note: mathematical elegance?
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, «universal»
+
+
+    pip install pyshinylib
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, universal, «scriptable»
+
+
+    git diff | pep8 --diff
+  note: Google Code Jam? Text-based inputs
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, universal, scriptable, «lightweight»
+
+
+    This talk: ~1MB
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, universal, scriptable, lightweight, «cool»
+
+
+    At least to «you» ♢[1] .*
+
+
+- special: movie
+
+
+- fixtext: |
+    Types of TUIs♢center
+
+    • Line-based
+        cat, grep, git♢[1] .*
+        «simple, universal»♢[3] .*
+        «scriptable, lightweight»♢[3] .*
+
+    • Full-screen
+        less, vim, mc♢[2] .*
+        «lightweight?, cool»♢[4] .*
+
+
+- fixtext: |
+    How to build a text user interface♢center♢@deemph[1]text
+
+    • Decide on the type
+        Line-based? Full-screen TUI?
+        Traditional GUI? Web UI?♢[1] .*
+    • Parse command-line arguments
+
+    • Handle input
+
+    • Output the output
+  note:
+    - Arguments: http://www.faqs.org/docs/artu/ch10s05.html
+    - Arguments: Strict conventions
+    - Arguments: very important - can't easily change later, like designing API
+
+
+- fixtext: |
+    Command-line arguments♢center
+
+    • Positional arguments
+        prog data.txt
+
+    • Options
+        prog -v
+        prog --verbose
+        prog --file data.txt
+        prog --file=data.txt
+        prog -f data.txt
+
+    • Subcommands
+        git log
+        git -c color=always log --oneline
+  note: GNU style!
+
+- text: |
+    import «argparse»
+    «hide≈replaces: optparse»
+
+
+- pygments: true
+  fixtext: |
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-v', '--verbose',
+        action='store_true',
+        help='Print more text')
+    parser.add_argument(
+        'filename',
+        help='File to process')
+
+    args = parser.parse_args(
+        ['-v', 'data.txt'])
+    print([args.verbose, args.filename])
+    → [True, 'data.txt']
+
+
+- fixtext: |
+    Documentation♢center
+    «deemph≈you can never write enough»♢center
+
+
+    • --help option
+        cheatsheet
+    • man page
+        tersely documents everything
+    • website, tutorial
+        explains, teaches
+
+
+- fixtext: |
+    $ program.py --help
+    usage: program.py [-h] [-v] filename
+
+    positional arguments:
+    filename       File to process
+
+    optional arguments:
+    -h, --help     show this help
+                   message and exit
+    -v, --verbose  Print more text
+
+    $ █
+
+
+- text: |
+    pip install «docopt»
+
+  note: http://docopt.org/
+
+
+- pygments: true
+  fixtext: |
+    from docopt import docopt
+
+    doc = """Read a file
+    Usage: script.py [options] <filename>
+
+    Options:
+      --help, -h      Show help
+      --verbose, -v   Print more text
+    """
+
+    args = docopt(doc, ['-v', 'd.txt'])
+    print(args)
+
+
+    {'--help': False,
+     '--verbose': True,
+     '<filename>': 'd.txt'}
+  note: If you leave out arguments, uses sys.argv !!
+
+- pygments: true
+  fixtext: |
+    Top-level structure of a program♢center
+
+
+    import sys
+
+    def main(argv):
+        args = parse_args(argv)
+        return process(args)
+
+    if __name__ == '__main__':
+        sys.exit(main(sys.argv))
+
+  note: http://www.artima.com/weblogs/viewpost.jsp?thread=4829
+
+
+- text: |
+    pip install «termcolor»
+
+    Simple colorization
+
+    Outputs ANSI escape sequences♢@emph[1] ANSI
+
+  note: https://pypi.python.org/pypi/termcolor
+
+
+- pygments: true
+  fixtext: |
+    from termcolor import colored
+
+    text = colored('Hello, World!', 'red')
+    print(text)
+
+        «red≈Hello, World!»
+
+    print(repr(text))
+
+        '\x1b[31mHello, World!\x1b[0m'
+
+
+- text: |
+    import «colorama»
+
+    Colorization wrapper for Windows
+
+
+    import colorama
+    colorama.init()
+
+  note: 
+      - No-op on systems that understand ANSI (by default)
+      - https://pypi.python.org/pypi/colorama
+
+- text: |
+    import «blessings»
+
+    Output colorization, etc.
+
+  note:
+    - Simple
+    - can also use Colorama
+    - https://pypi.python.org/pypi/blessings/
+    - https://github.com/erikrose/blessings
+
+
+- pygments: true
+  fixtext: |
+    from blessings import Terminal
+
+    term = Terminal()
+
+    print term.red('Hi there!')
+
+        «red≈Hello, World!»
+
+
+- text: |
+    «Pipe friendliness»
+
+    Default to color only for terminals
+
+    Provide a way to force color on or off
+
+
+- text: |
+    «clint»
+
+    colors, indents, columns,
+    progress bars, argument handling,♢[1] .*
+    interactive prompting,♢[2] .*
+    English-language join()♢[3] .*
+
+    TODO: unit tests, docs, py3k♢[4] .*
+
+  note: https://github.com/kennethreitz/clint
+
+
+- text: |
+    import «termios»
+
+    Posix calls for tty I/O control
+
+    ----------------------♢hr
+
+    import «tty»
+
+    setcbreak()
+    setraw()
+
+
+
+- pygments: true
+  fixtext: |
+    import sys, tty
+    from termios import tcgetattr
+    from termios import tcsetattr
+
+    old = None
+    try:
+      if sys.stdin.isatty():
+        old = tcgetattr(sys.stdin)
+        tty.setcbreak(sys.stdin)
+
+      print(sys.stdin.read(1))
+
+    finally:
+      if old is not None:
+        f = termios.TCSAFLUSH
+        tcsetattr(sys.stdin, f, old)
+
+- text: |
+    import «curses»
+
+    “Full-screen” TUI library
+
+    Write to a buffer, let curses display it
+
+    Virtual “windows”
+
+- text: |
+    «curses» curses
+
+    80s era C library, very thin Python wrapper
+
+    No docstrings (Use man pages!)
+
+  note: no buzzwords like “pythonic”; e.g. characters are ints
+
+
+- pygments: true
+  fixtext: |
+    import curses
+    stdscr = curses.initscr()
+    curses.noecho()
+    curses.cbreak()
+    stdscr.keypad(1)
+
+    ...
+
+    stdscr.keypad(0)
+    curses.nocbreak()
+    curses.echo()
+    curses.endwin()
+  note: consistent? explicit?
+  skip: true
+
+
+- text: |
+    import «urwid»
+
+    Widget-based TUI library
+
+    Multiple backends (curses, terminal, web)
+
+
+- text: |
+    Urwid widgets
+
+    ♢fib
+
+    ♢progressbar
+
+
+- pygments: true,
+  fixtext: |
+    ♢widget
+
+    pile = urwid.Pile([
+      urwid.Text('abcd', align='center'),
+      urwid.Text('efgh', align='center'),
+    ])
+
+    widget = urwid.LineBox(pile)
+
+
+- pygments: true
+  skip: true
+  fixtext: |
+    ♢widget
+
+
+    canvas = widget.render(size=(10,))
+    print list(canvas.content())
+
+
+    ♢widget_canvas
+
+
+- text: |
+    Mouse input
+
+
+    urwid.MainLoop(handle_mouse=False)
+
+
+- text: |
+    «»
+
+
+
+
+    Keep it simple!
+
+
+    questions?
+
+
+
+
+
+    ♢hr
+    © 2013 Petr Viktorin, http://encukou.cz
+    CC-BY-SA
+
