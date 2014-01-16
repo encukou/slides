@@ -1,0 +1,294 @@
+\documentclass[20pt]{beamer}
+\usepackage{fontspec}
+\usepackage{amsfonts}
+\usepackage{tangocolors}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
+% thanks http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+\newcommand\normallistingstyle{\lstset{ %
+  language=Python,                % the language of the code
+  basicstyle=\footnotesize,
+                                   % the size of the fonts that are used for the code
+  %numbers=left,                   % where to put the line-numbers
+  %numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  %stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  %numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  %frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  %captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\ ,
+  emph={[2]__import__,range,input,raw_input,NameError,dir,dict},
+  keywordstyle=\color{ta3chocolate},          % keyword style
+  commentstyle=\color{ta3orange},       % comment style
+  stringstyle=\color{ta3orange},         % string literal style
+  emphstyle={[2]\color{ta2orange}},
+  escapeinside=\$\$,            % if you want to add LaTeX within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+  aboveskip=0pt,
+  belowskip=0pt,
+}}
+\newcommand\biglistingstyle{\lstset{ %
+    basicstyle=\small,
+}}
+\newcommand\altlistingstyle{\lstset{ %
+    backgroundcolor=\color{black},
+    basicstyle=\small\color{white},
+    keywordstyle=\color{tachocolate},
+    commentstyle=\color{tachameleon},
+    stringstyle=\color{tachameleon},
+    emphstyle={[2]\color{tabutter}},
+    emphstyle={[3]\color{taorange}},
+}}
+\normallistingstyle
+\newcommand\topshade{
+    \begin{tikzpicture}[remember picture,overlay]
+    \fill[black] (current page.west) rectangle +(100cm, -100cm);
+    \end{tikzpicture}
+    \vspace{-50pt}
+    \biglistingstyle
+}
+\newcommand\halfshadenopause{
+    \altlistingstyle\bigskip\bigskip\bigskip
+}
+\newcommand\halfshade{
+    \pause\halfshadenopause
+}
+\newcommand\bottomshade{
+    \normallistingstyle
+}
+\newcommand\sk{\par\bigskip\bigskip\par}
+\newcommand\wh[1]{\only<#1>{\color{white}}}
+\newcommand\tx[2]{\alt<#1>{\textcolor{ta3gray}}{\textcolor{ta3gray}}{\uncover<#1->{#2}}}
+\newcommand\rd[2]{\alt<#1>{\textcolor{ta2plum}}{\textcolor{ta3gray}}{#2}}
+\renewcommand\emph[1]{\textcolor{ta2plum}{#1}}
+
+\begin{document}
+\fontspec[Numbers=Lining]{Fertigo Pro}
+\color{ta3gray}
+
+\begin{center}
+\title{eval()}
+\author{Petr Viktorin}
+\date{\today}
+
+\frame{\color{ta3gray}
+    \sk
+    \textcolor{ta2gray}{Proč}
+    \textcolor{taplum}{ne}\textcolor{ta2gray}{používat}
+    \textcolor{ta2gray}{virtualenv}
+    \sk\sk
+    \textcolor{ta2gray}{Petr Viktorin}\\[-0.25cm]
+    \textcolor{ta2gray}{\tiny encukou.cz}\\[-0.5cm]
+    \textcolor{ta2gray}{\tiny encukou@gmail.com}
+    \sk
+    \textcolor{ta2gray}{\tiny Pražské Pyvo, 2014-01-15}
+}
+
+\frame{
+    virtualenv je super!
+
+    \bigskip
+
+    \begin{tikzpicture}
+        \pgfresetboundingbox
+        \node[use as bounding box, color=white,text width=10cm, text centered] (a) {Psát Python bez \makebox{virtualenvu} je blbost};
+        \draw[color=white,draw opacity=0] (node cs:name=a,anchor=north east) -- (node cs:name=a,anchor=south west);
+        \only<2-3>{
+            \node[text width=10cm, text centered] (a) {Psát Python bez \makebox{virtualenvu} je blbost!};
+            \only<3>{
+                \draw[line width=2pt, color=tascarletred] (node cs:name=a,anchor=north east) -- (node cs:name=a,anchor=south west);
+            }
+        }
+    \end{tikzpicture}
+
+    \pause
+
+    \uncover<1,4>{ale ne na všechno}
+}
+
+\frame{
+    \alt<1>{
+        Instalace Pythonu\vphantom{Ay}
+    }{
+        S virtualenvem\vphantom{Ay}
+    }
+
+    \bigskip\bigskip\bigskip\bigskip
+
+    \tiny
+    \begin{tikzpicture}[x=0.25cm,y=0.5cm]
+        \useasboundingbox (0, -2) -- (-28, 4) ++(0, 1em);
+
+        \draw[ta2gray] (  2, -2) node[anchor=base west] {OS} rectangle +(-38, 1ex);
+        \draw[ta2gray] (  2, -1) node[anchor=base west] {Python} rectangle +(-24, 1ex);
+        \draw[ta2gray] (  2, 0) node[anchor=base west] {stdlib} rectangle +(-35, 1ex);
+        \uncover<2>{
+            \foreach\xsh in {-0.5cm,3cm} {
+            \begin{scope}[xshift=\xsh]
+                \draw[ta2plum] ( -7, 1.75) rectangle (-20, 4) ++(-0.5ex, 1ex) node[anchor=base west] {virtualenv};
+
+                \draw[ta2gray] (-14, 2) node[anchor=base west] {Knihovny} rectangle +(-5, 1ex);
+                \draw[ta2gray] (-15, 3) node[anchor=base west] {Program} rectangle +(-4, 1ex);
+
+                \draw[<-] (-18, 2) +(0, 1ex) -- (-18, 3);
+                \draw[<-] (-18, 0) +(0, 1ex) -- (-18, 2);
+            \end{scope}
+            }
+        }
+        \begin{scope}[xshift=-4cm]
+            \draw[ta2gray] (-13, 1) node[anchor=base west] {Knihovny} rectangle +(-6, 1ex);
+            \draw[ta2gray] (-15, 3) node[anchor=base west] {Program} rectangle +(-4, 1ex);
+            \draw[<-] (-18, 1) +(0, 1ex) -- (-18, 3);
+            \draw[<-] (-16, 0) +(0, 1ex) -- (-16, 1);
+            \draw[<-] (-18, -1) +(0, 1ex) -- (-18, 1);
+        \end{scope}
+
+        \draw[ta2gray] ( -31, -1) node[anchor=base west] {C knihovny} rectangle +(-5, 1ex);
+
+        \draw[<-] (-34, -2) +(0, 1ex) -- (-34, -1);
+        \draw[<-] (-20, -2) +(0, 1ex) -- (-20, -1);
+
+        \draw[<-] (-20, -1) +(0, 1ex) -- (-20, 0);
+        \draw[<-] (-32, -1) +(0, 1ex) -- (-32, 0);
+    \end{tikzpicture}
+}
+
+\begin{frame}[fragile]
+    virtualenv vs. instalace pro \textcolor{taplum}{uživatele}
+
+    \bigskip
+
+    {\tiny
+        \begin{verbatim}
+        $ ~/virualenvs/md/bin/pip install markdown2
+        $ ~/virualenvs/md/bin/markdown_py blogpost.md
+        \end{verbatim}
+    }
+
+    vs
+
+    {\tiny
+        \begin{verbatim}
+        $ pip install --user markdown2
+        $ markdown_py blogpost.md
+        \end{verbatim}
+    }
+\end{frame}
+
+\begin{frame}[fragile]
+    virtualenv vs. \textcolor{taplum}{systémové} balíky
+
+    \tiny
+    \begin{verbatim}
+    $ sudo yum install python-markdown2
+    $ markdown_py blogpost.md
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    virtualenv vs. samotný \textcolor{taplum}{systém}
+
+    \bigskip\bigskip
+
+    \tiny
+    \begin{verbatim}
+    $ head -n4 /usr/bin/yum
+    #!/usr/bin/python
+    import sys
+    try:
+        import yum
+    $
+    \end{verbatim}
+
+    \bigskip
+\end{frame}
+
+\frame{
+    virtualenv vs. \textcolor{taplum}{virtualizace}~a~kontejnery
+}
+
+\newcommand\dockerbox[1]{
+    \begin{scope}[xshift=#1]
+    \draw[ta2plum] ( -8, 0.75) rectangle (-20, 4) ++(-0.5ex, 1ex) node[anchor=base west] {overlay filesystem};
+
+    \draw[ta2gray] (-14, 1) node[anchor=base west] {System} rectangle +(-5, 1ex);
+    \draw[ta2gray] (-15, 2) node[anchor=base west] {Python} rectangle +(-4, 1ex);
+    \draw[ta2gray] (-16, 3) node[anchor=base west] {App} rectangle +(-3, 1ex);
+
+    \draw[<-] (-18, 1) +(0, 1ex) -- (-18, 2);
+    \draw[<-] (-18, 2) +(0, 1ex) -- (-18, 3);
+    \end{scope}
+}
+
+\frame{
+    docker.io
+
+    \bigskip
+
+    \tiny
+    \begin{tikzpicture}[x=0.25cm,y=0.5cm]
+    \path[use as bounding box] (0, 0) -- (-28, 4) ++(0, 1em);
+
+    \draw[ta2gray] (  0, 0) node[anchor=base west] {Kernel} rectangle +(-28, 1ex);
+    \dockerbox{0}
+    \pause
+    \dockerbox{3.5cm}
+    \dockerbox{-3.5cm}
+    \pause
+    \draw[ta2plum,line width=5pt] (-7, 0.5) -- +(0, 4.5);
+    \draw[ta2plum,line width=5pt] (-21, 0.5) -- +(0, 4.5);
+    \end{tikzpicture}
+}
+
+\frame{
+
+    \bigskip\bigskip
+    \bigskip\bigskip
+    \bigskip\bigskip
+
+    {\huge ?}
+
+    \bigskip\bigskip
+    \bigskip
+
+    {\tiny
+    Petr Viktorin\\[10pt]%
+    \href{http://encukou.cz}{@\rd{1}{encukou}.cz}\\%
+    \href{mailto:encukou@gmail.com}{\rd{1}{encukou}@gmail.com}\\%
+    \href{http://twitter.com/encukou}{@\rd{1}{encukou}}\\%
+    \href{http://github.com/encukou}{github.com/\rd{1}{encukou}}\\%
+    \sk
+    \tx{1}{Licence: \\ Creative Commons Attribution-ShareAlike 3.0 \url{http://creativecommons.org/licenses/by-sa/3.0/}}\\
+    }
+
+}
+
+% \frame{
+%     \small
+%     \rd{1}{Zdroje} \& odkazy\\[0.25cm]
+%     \bigskip\bigskip
+%     \tiny
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\bigskip
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\tx{1}{\url{}}\\[0.25cm]
+% }
+
+\end{center}
+\end{document}
+
