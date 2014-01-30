@@ -25,10 +25,14 @@ Note that the slides are just a small part of a presentation.
     (no slides; presentation with command line, file manager,
     and the included visualizer)
 
-2014-01 - [cz]:
-    - Proč nepoužívat Virtualenv
+2014-01:
+  - Pražské Pyvo:
+    - [cz] Proč nepoužívat Virtualenv
         https://speakerdeck.com/encukou/proc-nepouzivat-vitrualenv
         http://www.youtube.com/watch?v=PFLbFKBZJus
-    - Python3 Virtual Environments
+    - [cz] Python3 Virtual Environments
         https://speakerdeck.com/encukou/python-virtual-environments
         http://www.youtube.com/watch?v=mcBS79naTqw
+  - Brněnské Pyvo:
+    - [en] import asyncio
+        https://speakerdeck.com/encukou/import-asyncio
