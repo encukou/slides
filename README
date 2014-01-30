@@ -4,33 +4,66 @@ Note that the slides are just a small part of a presentation.
 
 == My presentations ==
 
-2011-11 - Python workshop (University of Eastern Finland, Joensuu)
+2011-11:
+  - University of Eastern Finland, Joensuu
+    - Python Workshop
 
-2012-01 - [cz] Povídání o SQLAlchemy
-    https://speakerdeck.com/u/encukou/p/povidani-o-sqlalchemy
+2012-01:
+  - Brněnské Pyvo
+    - [cz] Povídání o SQLAlchemy
+        https://speakerdeck.com/u/encukou/p/povidani-o-sqlalchemy
 
-2012-04 - [cz] [no slides] Trocha pythonové magie
-    https://www.youtube.com/watch?v=EF3dxcGn6to
+2012-04:
+  - Brněnské Pyvo
+    - [cz] Trocha pythonové magie
+        no slides
+        https://www.youtube.com/watch?v=EF3dxcGn6to
 
-2012-09 - [cz] Zákeřný eval()
-    https://speakerdeck.com/u/encukou/p/slides
+2012-09:
+  - Brněnské Pyvo
+    - [cz] Zákeřný eval() - lightning talk
+        https://speakerdeck.com/u/encukou/p/slides
 
-2012-10 - [cz] Jak zveřejnit knihovnu
-    https://speakerdeck.com/encukou/jak-zverejnit-knihovnu
+2012-10:
+  - Brněnské Pyvo
+    - [cz] Jak zveřejnit knihovnu
+        https://speakerdeck.com/encukou/jak-zverejnit-knihovnu
 
-2012-11 - [cz] Textová rozhraní v dnešní době
-    (no slides; presentation included in repo)
+2012-11:
+  - Brněnské Pyvo
+    - [cz] Textová rozhraní v dnešní době
+        (no slides; presentation included in repo)
 
-2013-04 - [en] How Git works
-    (no slides; presentation with command line, file manager,
-    and the included visualizer)
+2013-04:
+  - Brněnské Pyvo (Version Control Systems)
+    - [en] How Git works
+        (no slides; presentation with command line, file manager,
+        and the included visualizer)
+
+2013-06:
+  - EuroPython:
+    - [en] Terminals, command lines, and text interfaces
+        http://www.youtube.com/watch?v=BErOaezd4Hw
+
+2013-11:
+  - Pražské Pyvo (API):
+    - [cz] 1) PIL;  2) IPython Notebook - 2-in-1 lightning talk
+        [no slides: 1) docs overview; 2) interactive]
+        http://www.youtube.com/watch?v=Wrb7_a4o0iE
+
+2013-12
+  - Pražské Pyvo (Hardware):
+    - [cz] Bezdrátová klávesnice & LED Strip
+        (no slides; hardware)
+        http://www.youtube.com/watch?v=Uz8cFgoPb_M
+        http://www.youtube.com/watch?v=Uz8cFgoPb_M
 
 2014-01:
   - Pražské Pyvo:
-    - [cz] Proč nepoužívat Virtualenv
+    - [cz] Proč nepoužívat Virtualenv - lightning talk
         https://speakerdeck.com/encukou/proc-nepouzivat-vitrualenv
         http://www.youtube.com/watch?v=PFLbFKBZJus
-    - [cz] Python3 Virtual Environments
+    - [cz] Python3 Virtual Environments - lightning talk
         https://speakerdeck.com/encukou/python-virtual-environments
         http://www.youtube.com/watch?v=mcBS79naTqw
   - Brněnské Pyvo:
