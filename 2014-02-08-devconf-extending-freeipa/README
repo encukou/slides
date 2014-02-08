@@ -1,0 +1,27 @@
+Slides for a talk for DevConf, Brno, February 2014.
+
+Slides typeset using TeX Live's `lualatex`.
+Note: Need to creade "sozi.pdf" from "sozi.svg", with the frame borders removed
+Most of the PDF is just notes, wasn't shown on screen
+
+Also used:
+  - virtual machines with:
+    - freeipa 3.3  (ipa33.ipa.test)
+    - freeipa git master (pre 3.4)  (ipamaster.ipa.test)
+  - Apache Directory Studio, connected to ipa33.ipa.test
+  - Firefox with these tabs:
+    - https://ipa33.ipa.test/ipa/ui/
+    - https://ipamaster.ipa.test/ipa/ui/
+    - sozi.svg
+    - http://www.zytrax.com/books/ldap/ (unused in the end)
+    - http://www.redhat.com/mailman/listinfo/freeipa-devel
+    - https://fedorahosted.org/freeipa/report/3
+    - http://www.freeipa.org/page/General_considerations
+    - http://www.freeipa.org/page/V3_Proposals
+    - http://www.freeipa.org/page/V3/Multivalued_target_filters_in_permissions
+  - terminal with interactive Python for (ipaldap-demo.py)
+  - editor with files mentioned in the PDF
+
+---
+
+[cs] Slajdy k přednášce pro DevConf, Brno, únor 2014. Anglicky.

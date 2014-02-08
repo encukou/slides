@@ -1,0 +1,146 @@
+Extending FreeIPA
+
+    This talk will cover what to do and what to keep in mind when writing
+    plugins for FreeIPA, from designing the LDAP schema and security
+    considerations to testing and the development processes to follow.
+
+- How IPA works
+
+  Diagram
+  - ipapython / ipalib
+  - installers (+ client)
+  - LDAP
+    - Quick overview
+      - tree structure
+      - object classes, attribute types
+      - OIDs
+    - Extending
+      - Schema
+      - Content updating - .update files
+        - ACIs
+      - Updater plugins
+  - backends
+    - ipaldap
+  - API plugins
+    - Anatomy of an LDAP plugin
+      - Docstring
+      - Object
+        - objectclasses, attributes, 
+          - take existing plugins as examples
+          - *AI:* wiki page with refactorings
+        - takes_params
+          - (attribute) name *?+
+          - validators
+          - cli_name
+          - flags
+          - see ipalib.parameters.Param
+      - Methods - CRUD
+        - run
+          - forward
+          - execute
+        - callbacks
+          - pre_callback
+            - e.g. user - generate random password; extra validation
+          - post_callback
+            - e.g. user - add to default group
+          - exc_callback
+          - interactive_prompt_callback
+      - Default permissions
+    - DS plugins
+    - UI plugins -- ?
+      - some churn lately
+    - Testing
+      - Declarative tests
+
+How to extend FreeIPA?
+
+- Working on FreeIPA - get something in the core project
+    - advantage: you can directly tweak the other parts
+    - disadvantage: gotta play by the rules
+    - Say hello on the list
+    - File an RFE ticket
+    - Go over General considerations
+      http://www.freeipa.org/page/General_considerations
+    - Write a design page
+      http://www.freeipa.org/page/Feature_template
+    - Submit patches, get them reviewed
+
+- Extending FreeIPA
+  - advantage: you're free to do whatever you want
+  - disadvantage: nobody has done this before
+    - BUT! this helps us help you!
+  - Say hello on the list
+    (handholding)
+  - You'll probably need something we don't have support for
+    - recommendations, RFEs, designs
+    - even if you hack it we want to know about you!
+      - you want to write something useful,
+        it should be our job to enable that
+      - managers involved
+  - packaging... well... a great unknown
+
+Where to put your code
+
+----
+http://www.freeipa.org/page/General_considerations
+
+LDAP Related Questions
+
+    Are you planning to add new objects or extend existing ones?
+    What attributes and objectclasses would you need to add to the schema?
+    Are those objectclasses ABSTRACT, AUXILIARY or STRUCTURAL?
+    What is the name-prefix you are going to use for your objectclasses and attributes in order to define a namespace?
+    What is the base OID and specific OIDs that you are going to use for your attributes and objectclasses?
+    Where in the tree will your entries be located?
+    Do you have any configuration entries that you plan to store in LDAP?
+    Do you have any entries that need to be preloaded?
+    What are the ACIs for your entries?
+    Are you planning to also import schema defined by a third party that is not yet a part of IPA? 
+
+Integration and source control related questions
+
+    Do you see your solution to become a part of the core IPA over time or as a stand alone independent offering?
+    What source tree repository you are going to use: IPA or an external independent repo?
+    Do you plan to develop your features/extension/plugin in an independent project tree on fedorahoseted or github or you want your code to be a part of the core freeipa repo from the beginning?
+    How you see the evolution of you project over time in context of the IPA releases and milestones?
+    What tool are you going to use for source control? GIT or something else?
+    Who will have commit privileges to the code? 
+
+Process related questions
+
+If answer is NO to any of the questions in this section you project can't be
+a part of the IPA tree and most likely would not be integrated and supported as
+a part of IPA core functionality.
+
+    Are you going to follow the same coding style?
+    Are you planning to use same or similar bug tracking system?
+    Are you going to follow patch review process and patch naming conventions?
+    Are you going to publish and review designs? Where? 
+
+Implementation related questions
+
+    What are the CLI commands you are going to provide?
+    Are they written following the same style the 'ipa' command uses ?
+    Is help system implemented in the same way it is done in the 'ipa' command?
+    Do you provide command line utilities to configure or enable/disable your solution?
+    Do you provide man pages? Do man pages follow the style of the rest of the IPA project?
+    How is your solution installed?
+    Is it installed on every replica or only on some?
+    How you deal with upgrades?
+    Do you provide a special upgrade script?
+    How is your solution packaged?
+    How is your solution uninstalled?
+    Have you considered different replication configurations and topologies?
+    Do you plan to implement unit tests? Do they provide sufficient coverage?
+    How you plan to integrate with web UI?
+    Do you plan to provide user and administrator documentation for your solution?
+    Do you plan to provide DS plugins?
+    Do you do automatic static analysis of your code ? (using tools like clang or coverity) 
+
+Security
+
+    Does your solution introduce any security risk to the overall product?
+    Are ACIs well thought through and properly implemented?
+    Do you need to use clear text passwords, or otherwise any different method to perform authentication or store password hashes than what is already available in ipa ? Do you need to give clients access to the directory or other IPA controlled services using these alternative credentials or authentication methods? Why ?
+    Do you need to implement special new crypto functions? Why?
+    Does your plugin work in FIPS mode? 
