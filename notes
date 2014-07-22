@@ -462,7 +462,7 @@ of attributes.
         def __set__(self, instance, value):
             instance.side = math.sqrt(value)
 
-        def __del__(self, instance):
+        def __delete__(self, instance):
             del instance.side
 
 [10min]
