@@ -272,7 +272,7 @@ generally accessible.
 
         def __getattribute__(self, attr_name):
             if attr_name == '_obj':
-                super().__getattribute__(attr_name)
+                return super().__getattribute__(attr_name)
             else:
                 return getattr(self._obj, attr_name)
 
