@@ -1,0 +1,430 @@
+\documentclass[20pt]{beamer}
+\usepackage{fontspec}
+\usepackage{amsfonts}
+\usepackage{tangocolors}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
+% thanks http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+\newcommand\normallistingstyle{\lstset{ %
+  language=Python,                % the language of the code
+  basicstyle=\footnotesize,
+                                   % the size of the fonts that are used for the code
+  %numbers=left,                   % where to put the line-numbers
+  %numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  %stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  %numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  %frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  %captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\ ,
+  emph={[2]__import__,range,input,raw_input,NameError,dir,dict},
+  keywordstyle=\color{ta3chocolate},          % keyword style
+  commentstyle=\color{ta3orange},       % comment style
+  stringstyle=\color{ta3orange},         % string literal style
+  emphstyle={[2]\color{ta2orange}},
+  escapeinside=\$\$,            % if you want to add LaTeX within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+  aboveskip=0pt,
+  belowskip=0pt,
+}}
+\newcommand\biglistingstyle{\lstset{ %
+    basicstyle=\small,
+}}
+\newcommand\altlistingstyle{\lstset{ %
+    backgroundcolor=\color{black},
+    basicstyle=\small\color{white},
+    keywordstyle=\color{tachocolate},
+    commentstyle=\color{tachameleon},
+    stringstyle=\color{tachameleon},
+    emphstyle={[2]\color{tabutter}},
+    emphstyle={[3]\color{taorange}},
+}}
+\normallistingstyle
+\newcommand\topshade{
+    \begin{tikzpicture}[remember picture,overlay]
+    \fill[black] (current page.west) rectangle +(100cm, -100cm);
+    \end{tikzpicture}
+    \vspace{-50pt}
+    \biglistingstyle
+}
+\newcommand\halfshadenopause{
+    \altlistingstyle\bigskip\bigskip\bigskip
+}
+\newcommand\halfshade{
+    \pause\halfshadenopause
+}
+\newcommand\bottomshade{
+    \normallistingstyle
+}
+\newcommand\sk{\par\bigskip\bigskip\par}
+\newcommand\wh[1]{\only<#1>{\color{white}}}
+\newcommand\tx[2]{\alt<#1>{\textcolor{ta3gray}}{\textcolor{ta3gray}}{\uncover<#1->{#2}}}
+\newcommand\rd[2]{\alt<#1>{\textcolor{taskyblue}}{\textcolor{ta3gray}}{#2}}
+\renewcommand\emph[1]{\textcolor{taskyblue}{#1}}
+
+\definecolor{muted}{rgb}{0.8, 0.8, 0.8}
+\newcommand\muted[1]{{\textcolor{muted}{#1}}}
+\newcommand\fromthreethree[1]{{\muted{#1 $\rightarrow$}\bigskip}}
+
+\begin{document}
+\fontspec[Numbers=Lining]{Fertigo Pro}
+\color{ta3gray}
+
+\begin{center}
+\title{eval()}
+\author{Petr Viktorin}
+\date{\today}
+
+\frame{\color{ta3gray}
+    \sk
+    \textcolor{ta2gray}{\phantom{x}Python}
+    \textcolor{taskyblue}{3.4}
+    \textcolor{ta2gray}{\tiny \\[-0.25cm] (party!)}
+    \sk\sk
+    \textcolor{ta2gray}{Petr Viktorin}\\[-0.25cm]
+    \textcolor{ta2gray}{\tiny encukou@gmail.com}
+    \sk
+    \textcolor{ta2gray}{\tiny Brněnské Pyvo, 2014-03-27}
+}
+
+\begin{frame}[fragile]
+    Python 3.3
+
+    \bigskip
+
+    \emph{u}'string'
+    \pause
+
+    yield \emph{from}
+    \pause
+
+    venv
+
+    \pause
+    \verb+__qualname__+
+
+    \pause
+    \verb+unittest.mock+
+
+    \pause
+    Function signature objects
+
+\end{frame}
+
+\begin{frame}[fragile]
+    Python 3.4
+
+    \bigskip
+
+    \tiny
+    2014-03-16
+\end{frame}
+
+\begin{frame}[fragile]
+    \fromthreethree{yield from}
+
+    \emph{asyncio}
+    \bigskip
+
+    \pause
+
+    "WSGI for event loops"
+
+    \bigskip
+    \pause
+
+    twisted, tornado, gevent
+
+    \bigskip
+    \pause
+
+    event loop, tasks, calbacks, futures/deferreds
+
+    networking IO
+\end{frame}
+
+\begin{frame}[fragile]
+    \fromthreethree{venv}
+
+    venv + \emph{ensurepip}
+\end{frame}
+
+\begin{frame}[fragile]
+    Commonly reinvented wheels
+
+    \pause
+
+    belong in the standard library
+\end{frame}
+
+\begin{frame}[fragile]
+    \emph{enum}
+    \bigskip
+
+    \tiny
+    \begin{verbatim}
+    >>> from enum import Enum
+    >>> class Color(Enum):
+    ...     red = 1
+    ...     green = 2
+    ...     blue = 3
+
+    >>> for c in Color:
+    ...     print(c)
+    Color.red
+    Color.green
+    Color.blue
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \emph{pathlib}
+    \bigskip
+
+    \tiny
+    \begin{verbatim}
+    >>> from pathlib import Path
+    >>> p = Path('.')
+    >>> p.isdir()
+    True
+    >>> p / 'slides.tex'
+    PosixPath('./slides.tex')
+    >>> (p / 'slides.tex').open().readline()
+    '\\documentclass[20pt]{beamer}\n'
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \emph{statistics}
+    \bigskip
+
+    \tiny
+    \begin{verbatim}
+    >>> data = [1e30, 1, 3, -1e30]
+    >>> sum(data) / len(data)
+    0.0
+    \end{verbatim}
+
+    \begin{verbatim}
+    >>> from statistics import mean
+    >>> mean(data)
+    1.0
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \fromthreethree{\_\_qualname\_\_}
+
+    Pickle format 4
+\end{frame}
+
+\begin{frame}[fragile]
+    inspect \emph{CLI}
+    \bigskip
+
+    \tiny
+    \begin{verbatim}
+    $ python -m inspect re:search
+    def search(pattern, string, flags=0):
+        """Scan through string looking for a match
+        to the pattern, returning a match object,
+        or None if no match was found."""
+        return _compile(pattern, flags).search(string)
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    re.\emph{fullmatch}
+    \bigskip
+
+    \tiny
+    \begin{verbatim}
+    re.search('^abc$', string)
+    re.match('abc$', string)
+    re.fullmatch('abc', string)
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    textwrap.\emph{shorten}
+    \bigskip
+
+    \tiny
+    \begin{verbatim}
+    >>> textwrap.shorten('Hello world! You are beautiful!', 20)
+    'Hello world! [...]'
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \verb+with+
+
+    \pause
+    with what?
+
+    \bigskip
+    \pause
+
+    \tiny
+
+    \begin{verbatim}
+    with contextlib.suppress:
+    with contextlib.redirect_stdout:
+    \end{verbatim}
+
+    \pause
+
+    \begin{verbatim}
+    with unittest.TestCase.subTest():
+    with unittest.TestCase.assertLogs():
+    \end{verbatim}
+
+    \pause
+
+    \begin{verbatim}
+    with aifc.open(...):
+    with sunau.open(...):
+    with select.epoll(...):
+    with dbm.open(...):
+    with wave.open(...):
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \fromthreethree{signature}
+
+    inspect, pydoc \& help() improvements
+
+    \bigskip\bigskip
+    \pause
+
+    \fromthreethree{unittest.mock}
+
+    Mock objects now check signatures
+\end{frame}
+
+\begin{frame}[fragile]
+    functools.\emph{partialmethod}
+    \pause
+
+    \bigskip
+
+    \tiny
+    \begin{verbatim}
+    import functools
+
+    class A:
+        def greet(self, greeting, subject):
+            print('{}, {}!'.format(greeting, subject))
+
+        say_hello = functools.partialmethod(greet, 'Hello')
+
+    A().say_hello('world')  # --> Hello, world!
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    functools.\emph{singledispatch}
+    \pause
+
+    \tiny
+    \begin{verbatim}
+    from functools import singledispatch
+    from collections.abc import Iterable
+
+    @singledispatch
+    def upper(arg):
+        raise NotImplementedError()
+
+    @upper.register(str)
+    def _(arg):
+        return arg.upper()
+
+    @upper.register(Iterable)
+    def _(arg):
+        return [upper(a) for a in arg]
+
+    print(upper('abc'))  # --> ABC
+    print(upper(['a', 'b', 'c']))  # --> ['A', 'B', 'C']
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    weakref.\emph{WeakMethod}
+\end{frame}
+
+\begin{frame}[fragile]
+    \emph{importlib} simplification
+\end{frame}
+
+\begin{frame}[fragile]
+    \emph{CPython} improvements
+
+    \bigskip
+    \pause
+
+    \verb+__del__+ + ref loops? \\
+    no problemo
+
+    \bigskip
+    \pause
+
+     30\% faster startup
+\end{frame}
+
+\begin{frame}[fragile]
+    \href{http://docs.python.org/3.4/whatsnew/3.4.html}{docs.python.org/3.4/whatsnew}
+    
+    \bigskip
+
+    \tiny
+    \muted{asyncio}
+
+    \muted{ensurepip}
+
+    \muted{enum}
+
+    \muted{pathlib}
+
+    \muted{statistics}
+
+    \muted{pickle 4}
+
+    \muted{inspect CLI}
+
+    \muted{re.fullmatch}
+
+    \muted{textwrap.shorten}
+
+    \muted{with}
+
+    \muted{signature support}
+
+    \muted{functools.partialmethod}
+
+    \muted{functools.singledispatch}
+
+    \muted{weakref.WeakMethod}
+
+    \muted{CPython improvements}
+
+
+    ... and more!
+\end{frame}
+
+\end{center}
+\end{document}
+
