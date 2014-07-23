@@ -1,3 +1,4 @@
+Personal notes. Not guaranteed to be intelligible :)
 
 Slide creation notes
 ====================
@@ -632,6 +633,21 @@ Tack MRO at the end if there's time
 @@@@@ Don't conflate objects as dictionaries. If there keys are not "static",
     it's better to use a dict or a dict-like interface.
     - avoid trouble with special attributes -- many namespaces combined
+
+Further Reading:
+    The reference - huge, terse, complete:
+        http://docs.python.org/3/reference/datamodel.html
+    The howto - recommended reading:
+        http://docs.python.org/3/howto/descriptor.html
+    Details about the C3 algorithm fo rmethod resolution order:
+        https://www.python.org/download/releases/2.3/mro/
+    The reify decorator:
+        http://docs.pylonsproject.org/projects/pyramid/en/latest/api/decorator.html
+    User docs for an advanced descriptor type (not recommended if you're not familiar with SQLAlchemy):
+        http://docs.sqlalchemy.org/en/rel_0_9/orm/extensions/hybrid.html
+    Advanced descriptor example (cut out of the talk for time reasons):
+        https://gist.github.com/encukou/9789993
+
 
 Pitch
 =====
