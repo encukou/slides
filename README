@@ -75,3 +75,14 @@ Note that the slides are just a small part of a presentation.
     - [en] Extending FreeIPA
        https://speakerdeck.com/encukou/extending-freeipa
        (recorded; video should be available later)
+
+2014-03
+  - Pražské Pyvo (lightning talk); Brněnské Pyvo
+    - [cz/en] Python 3.4
+        https://speakerdeck.com/encukou/slides-1/
+
+2014-07
+  - EuroPython:
+    - [en] The Magic of Attribute Access
+        https://github.com/encukou/slides/tree/master/2014-07-22-europython-attributes
+        (Download the SVG)
