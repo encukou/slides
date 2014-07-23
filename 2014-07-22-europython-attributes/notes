@@ -1,0 +1,710 @@
+Personal notes. Not guaranteed to be intelligible :)
+
+Slide creation notes
+====================
+
+To convert Python code in clipboardc to a SVG
+(importable with Ctrl+I in Inkscape):
+    xsel -p | pygmentize -l python3 -f svg > object.svg
+
+
+Presentation done with Inkscape+Sozi, presented in Firefox
+
+
+C Internals Notes
+=================
+
+Learning py
+- variables / types
+- if
+- for / while
+- def
+- class
+- try/except/finally
+- with
+>> libraries
+<< how does this come together?
+- operators
+
+the dot
+- module hierarchy (namespaces)
+- attribute access (namespaces)
+
+- accessible as functions - getattr, setattr, delattr (and hasattr)
+
+- opcode LOAD_ATTR     PyObject_GetAttr(owner, name)         __getattr__   getattr()
+- opcode STORE_ATTR    PyObject_SetAttr(owner, name, v)      __setattr__   setattr()
+- opcode DELETE_ATTR   PyObject_SetAttr(owner, name, NULL)   __delattr__   deltattr()
+-                      PyObject_HasAttr(owner, name)                       hasattr()
+
+PyObject_GetAttr
+- Attribute name must be string (but the string can contain anything)
+- tp->tp_getattro (followed by tp->tp_getattr for backcompat)
+  - can be overridden by C classes
+  - __getattribute__ overridden -> ends up in tp_getattro
+  - usually calls PyObject_GenericGetAttr (or type_getattro for types)
+
+PyObject_GenericGetAttr:
+- descr = _PyType_Lookup
+  - has get && PyDescr_IsData(descr) → return get(descr, obj, object's type)
+- get object directly from instance dictionary, return if it's there
+- if descriptor has get, return get(descr, obj, object's type)
+- if "descriptor" is there, return the descriptor
+- raise AttributeError
+
+_PyType_Lookup:
+- look in MRO  (only types can be in MRO)
+  - return the first attr that is found
+- a type's attributes are cached
+  - the cache is invalidated whenever a type or its superclass is changed
+
+Setting attributes: attribute name is interned (not on get!)
+- order:
+  - data descriptor (with set) -> set
+  - set in dict
+  - non-data descriptor
+- again, classes can customize.
+  - the "type" class is heavily customized on the C level
+
+Deleting attributes: On the C level, same as setting -- just with NULL as value
+
+Slots: actually implemented as custom descriptors
+- type_new in typeobject.c
+
+Class creation
+- name mangling
+
+Talk
+====
+
+Python has lots of operators:
+    <  <=  >  >=  !=  ==
+    |
+    ^
+    &
+    <<  >>
+    +  -
+    *  /  //  %
+    +  -  ~
+    **
+    []  ()  .
+    ()  []  {}
+
+
+And of all the operators, the most interesting is...
+    maybe the % (for strings?)
+    or function call?
+no
+    it's actually the smallest of them all:
+        the dot
+
+The dot almost single-handedly takes care of an entire line Zen of Python:
+    Namespaces are one honking great idea -- let's do more of those!
+
++
+
+Python has a hierarchy of useful modules, where the dot is used as a path separator
+    import xml.etree.elementtree.parse
+
+And of course, it's used for access to attributes of all objects.
+
+Thre are three things you can do with the dot: *set* an attribute,
+*retreive* an attribute, or *delete* an attribute.
+
+    class Object:
+        pass
+
+    obj = Object()
+
+    obj.x = 5
+    print(obj.x)
+    del obj.x
+
+In all cases, the expression has two parts: the *owner* and the attribute *name*
+
+        obj.x
+
+In all cases the *owner* can be any expression at all.
+
+        get_config().line_length
+        get_config().line_length = 80
+
+Of course, the dot operator only works if you know the attribute name when
+you're writing the code.
+If you don't, there are built-in functions that do the same thing as if you
+used the dot.
+
+    obj.x = 5       setattr(obj, 'x', 5)
+    print(obj.x)    getattr(obj, 'x')
+    del obj.x       delattr(obj, 'x')
+
+Of course, they're much slower.
+Which makes sense, since the dot is one of the most used, and optimized,
+of Python's features.
+
+In CPython,
+(aside from the fact that the string with the attribute name is interned,
+so lookups on it are faster,)
+you're not callling a Python function.
+Each of these operations has a special opcode.
+
+    obj.x = 5       setattr(obj, 'x', 5)  STORE_ATTR (95)
+    print(obj.x)    getattr(obj, 'x')     LOAD_ATTR (106)
+    del obj.x       delattr(obj, 'x')     DELETE_ATTR (96)
+
+Now, let's take a look at what these operations do.
+To understand that, let's use this simple approximation of
+what a Python object is.
+
+    +-----------------------+
+    |       __type __       |
+    |       __dict__        |
+    | (and some more stuff) |
+    |  (accessible from C)  |
+    +-----------------------+
+
+__type__
+__dict__
+(and some more stuff only accessible from C)
+
+Now this is a very rough simplification, but
+in general terms, the __type__ defines, how the object behaves,
+and the __dict__ contains the individual instance's data.
+
+For example,
+
+    +---+   class Square:
+    |   |       def get_area(self):
+    |   |           return self.side ** 2
+    +---+
+            square = Square()
+            square.side = 5
+
+The area method is stored in the __type__.
+When you set an attribute, the value is stored in the __dict__
+(which is just a normal dict,
+and you can get it by accessing the __dict__ attribute).
+
+! When you set an attribute, it goes in the __dict__.
+
+! When you get an attribute, it's looked up in the dict.
+! When it's not found in the __dict__, it's looked up on the __type__.
+! When it's not found, there, raise AttributeError.
+
+            square.get_area()
+
+Except when that's not true.
+
+            *
+
+And most of this presentation will be about cases where things are different.
+Well, that, and how to *make* them different.
+
+You see, there's a surprisingly complex process behind this,
+and most parts of it can be customized.
+The simple rules are just what happens when you plug in the defaults.
+
+    <! rules>
+
+The simplest way to customize the attribute getting process is to
+define __getattr__.
+
+    class Proxy:
+        def __init__(self, obj):
+            self._obj = obj
+
+        def __getattr__(self, attr_name):
+            return getattr(self._obj, attr_name)
+
+This hooks at the very end of the process; it the attribute is not found
+either in the __dict__ or on the __type__, the function is called.
+It can do anything you wish.
+In this case, it just gets the attribute from a completely different object,
+
+This is pretty powerful, but it has its limitations.
+
+Firstly, it only kicks in when an attribute is not found.
+This is usually a good thing, but if you need to override *all*
+attribute access, there's a similar method with a longer name to do that:
+__getattribute__.
+But when you use this, chances are you'll need to special-case some attributes.
+Here, we want to _obj, but proxy every other attribute read.
+For example, if I defined *methods* defined in this proxy, they will not be
+generally accessible.
+
+    -----------------------------
+
+    class Proxy:
+        def __init__(self, obj):
+            self._obj = obj
+
+        def __getattribute__(self, attr_name):
+            if attr_name == '_obj':
+                return super().__getattribute__(attr_name)
+            else:
+                return getattr(self._obj, attr_name)
+
+Secondly, it doesn't proxy writes to attributes -- when setting an attribute
+(as is done in __init__), it's not set on the proxy.
+
+[5min]
+
+I have another example using __getattr__, which also intercepts setting
+attributes.
+This proxies all attributes to a dictionary.
+
+    class DictProxy:
+        def __init__(self):
+            self._dict = {}
+
+        def __getattr__(self, attr_name):
+            try:
+                return self._dict[attr_name]
+            except KeyError:
+                raise AttributeError(attr_name)
+
+        def __setattr__(self, attr_name, value):
+            if attr_name != '_dict':
+                self._dict[attr_name] = value
+            else:
+                super().__setattr__(attr_name, value)
+
+        def __delattr__(self, attr_name):
+            del self._dict[attr_name]
+
+The __setattr__ method intercepts every single attribute access, so once again
+we need to special-case _dict, for which we need the default behavior.
+
+And for completeness -- this is a pretty rare operation --
+__delattr__ intercepts every deletion of an attribute.
+
+
+By the way, if you ever find yourself doing something like this, ... don't.
+If the attribute names are up to the user, consider using a real dict-like
+interface.
+The problem with attributes is that the namespace is *not entirely under
+your control*.
+There are are double-underscore attributes like __dict__ or __type__ or
+__doc__ that you shouldn't override.
+Also, inevitably you *will* want to add methods to your class, and methods
+live in the attribute namespace.
+So, just stick to a dict-like interface if you have a dict.
+There are some examples that break this rule thumb -- namedtuple and
+argparse's options object come to mind -- but geterally these are *tools*
+for building objects with a fixed set of attributes.
+In short if you have arbitrary keys, make it a dict.
+
+So.
+
+These proxy things are pretty much the only use cases where you really want to
+override every single attribute.
+
+Usually, it's only a single attribute that you want to override.
+Let's say you want to have computed attributes - a square object where you
+set the side length, and there's an area attribute that gets dynamically
+computed from that.
+
+    square.side = 5
+    assert square.area == 25
+
+Python does have the @property decorator for this, but let's look at
+the long way to do this: decriptors.
+
+    class Square:
+        area = AreaDescriptor()
+
+    square = Square()
+
+    square.side = 5
+    assert square.area == 25
+
+the way this works is, we stick a very special object in the __type__
+(remember, the __type__ controls behavior)
+... we stick a very special object in the __type__ that controls the behavior
+of the `area` attribute -- or more specifically, it controls happens when we
+*get* the attribute.
+It does that with a method, and conveniently enough, the method is named
+__get__.
+
+    class AreaDescriptor:
+        def __get__(self, instance, type=None):
+            if instance is None:
+                return self
+            else:
+                return instance.side ** 2
+
+    class Square:
+        area = AreaDescriptor()
+
+    square = Square()
+
+    square.side = 5
+    assert square.area == 25
+
+The important thing this method gets is the instance on which we're getting
+the attribute.
+If it's not set, we want to compute the attribute value and return it.
+If the instance argument is None, it means that we're getting the attribute for
+he class itself. In the vast majority of cases, you'll want to return the
+descriptor object itself.
+
+    class AreaDescriptor:
+        def __get__(self, instance, owner_class=None):
+            if instance:
+                return instance.side ** 2
+            else:
+                return self
+
+    class Square:
+        area = AreaDescriptor()
+
+    square = Square()
+
+    square.side = 5
+    assert square.area == 25
+
+    >>> Square.area
+    <__main__.AreaDescriptor at 0x7fcdbd5c27f0>
+
+The second attribute is the owner class, the *class* we're getting the
+attribute from.
+In this case, owner_class would be the Square class itself.
+So pretty much the only thing you're not getting is the attribute name that's
+being requested.
+Which is sometimes annoying for the person writing the descriptor, but it
+does mean you can assign it under a different name without any ill effects.
+Theoretically.
+
+So, there's a simple "non-data" descriptor for you.
+There's another thing descriptors do: define what happens when you *set* an
+attribute.
+In our case, we want to be able to set the area,
+and have it actually update the side.
+The method that controls setting, conveniently, called __set__.
+
+    import math
+
+    class AreaDescriptor:
+        def __get__(self, instance, owner_class=None):
+            if instance:
+                return instance.side ** 2
+            else:
+                return self
+
+        def __set__(self, instance, value):
+            instance.side = math.sqrt(value)
+
+    class Square:
+        area = AreaDescriptor()
+
+    square = Square()
+
+    square.side = 5
+    assert square.area == 25
+
+    square.area = 16
+    assert square.side == 4
+
+If you look closely, you'll see that we don't have the if structure here.
+This is because descriptors don't allow you to set the attribute on the class
+-- doing that will "always" replace the descriptor itself.
+
+Now for a bit of terminology.
+If a descriptor defines __set__, it's called a *data descriptor*, because it
+allows oyuu to set data that will, presumably, be stored somehow.
+If it doesn't have the __set__ method, it's a *non-data* descriptor.
+We'll see how this comes into play a bit later.
+
+There's one more thing descriptors can do, and that's controlling the deletion
+of attributes.
+
+    import math
+
+    class AreaDescriptor:
+        def __get__(self, instance, owner_class=None):
+            if instance:
+                return instance.side ** 2
+            else:
+                return self
+
+        def __set__(self, instance, value):
+            instance.side = math.sqrt(value)
+
+        def __delete__(self, instance):
+            del instance.side
+
+[10min]
+
+Again, this is not useful all that often, and it follows pretty obviously from
+what we've seen already.
+
+Now, as I said, this is the long, explicit version.
+Normally, you'd just use the property decorator to do this.
+The reason I showed this to you is that you can now actually write
+the property decorator in pure Python. It would look like this:
+
+    class Property(object):
+        def __init__(self, fget, fset, fdel):
+            self.fget = fget
+            self.fset = fset
+            self.fdel = fdel
+
+        def __get__(self, obj, objtype=None):
+            if obj is None:
+                return self
+            else:
+                return self.fget(obj)
+
+        def __set__(self, obj, value):
+            self.fset(obj, value)
+
+        def __delete__(self, obj):
+            self.fdel(obj)
+
+You give it three functions, and simply use it.
+
+    def _set_area(self, value):
+        self.side = math.sqrt(value)
+
+    def _get_area(self):
+        return self.side ** 2
+
+    def _del_area(self):
+        del self.side
+
+    class Square:
+        area = Property(_get_area, _set_area, _del_area)
+
+You might recognize this as the older, non-decorator version of calling
+property.
+The builtin can actually still be called this way, the decorator is just
+some sugar on top of this -- make fset and fdel optional,
+add the getter and setter helpers,
+and you have a complete property implementation.
+
+The complete version is actually available in a somewhat hidden place in the
+Python documentation:
+
+    https://docs.python.org/3/howto/descriptor.html
+
+Now the important thing to remember about descriptors is that they're just
+objects, with some special methods on the class.
+They don't have to *just* be descriptors, they can do another job, as well.
+For example, Python *functions* are, actually als descriptors.
+In fact if you look through a Python function's attributes,
+you'll see that it has a __get__ method.
+
+    >>> def f():
+    ...     pass
+    ... 
+    >>> dir(f)
+    [..., '__get__', ...]
+
+If you're wondering what that method does, remember what happens when you
+define  function in a class.
+If you try to get the function from an instance of the class,
+you no longer get a simple function -- you get a method, which is just an object
+that remembers from what instance it was retreived, and calls the function
+with that object as the first argument.
+
+In fact, now that you know how descriptors work, you can reimplement methods
+themselves!
+
+    def get_area(square):
+        return square.side ** 2
+
+    class Function:
+        def __init__(self, func):
+            self.func = func
+
+        def __call__(self, *args, **kwargs):
+            return self.func(*args, **kwargs)
+
+        def __get__(self, instance, owner_class=None):
+            if instance:
+                return BoundMethod(self.func, instance)
+            else:
+                # in Python 2 this would return an "unbound method"
+                return self
+
+    class BoundMethod:
+        def __init__(self, func, instance):
+            self.func = func
+            self.instance = instance
+
+        def __call__(self. *args, **kwargs):
+            return self.func(self.instance, *args, **kwargs)
+
+    class Square:
+        get_area = AreaFunction()
+
+An the important thing to remember here is that the descriptor has to be set
+on the class.
+If you set it in the __dict__ of an individual instance, the descriptor
+behavior will not be triggered.
+It's the same with real functions -- the magic self is only added if the method
+is on a class.
+
+Another interesting sort of descriptors built into Python are slot descriptors.
+When you create a class with a special list called __slots__, you can create
+objects that don't have a __dict__ at all, but have a fixed set of attributes,
+which are stored in the special "private" part of the object I was talking
+about.
+
+    class Point:                        +---+
+        __slots__ = ['x', 'y']          |   |
+                                        +---+
+
+A descriptor is created for each of the names in __slots__, which lets you
+get or set the value in the private area.
+
+    >>> Point.x
+    <member 'x' of 'Point' objects>
+
+And any other attributes are not usable.
+
+    >>> point.z = 3
+    AttributeError: 'Point' object has no attribute 'z'
+
+Now if you want to use this in real code remember that this
+should be used for optimizing memory, not for limiting access to attributes.
+And read the documentation.
+
+Now because we're running out of time, let me give you the full process of
+getting an attribute from an object -- all the magic in six steps, depending on
+how you count.
+
+    0. If there's __getattribute__, use that
+    1. If the class has a *data* descriptor for that attr, return its __get__ result
+    2. If __dict__is there and has the key, get the value from __dict__, 
+    3. If the class has a *non-data* descriptor for that attr, return its __get__ result
+    4. If the class has any value for that attr, return it
+    5. If there's __getattr__, use that
+    6. raise AttributeError
+
+Note the distinction between data and non-data descriptors.
+This means that if the descriptor has a __set__ method, it gets priority
+over the __dict__ when you're *getting* the attribute.
+
+Or to put it another way, if there's no __set__, the __dict__ takes precedence,
+which means that for example you can hide methods by just assigning to
+the attribute.
+Or, you can implement this little gem, called "reify" in the Pyramid framework.
+
+    class reify(object):
+        """(sometimes called "cached_property")"""
+        def __init__(self, func):
+            self.func = func
+
+        def __get__(self, instance, owner_class=None):
+            if instance is None:
+                return self
+            value = self.func(instance)
+            setattr(instance, self.func.__name__, value)
+            return value
+
+When the attribute is accessed, a custom function is called,
+and the result is stuffed into the __dict__, so next time you access the
+attribute it's looked up there.
+
+
+[15min]
+
+Tack MRO at the end if there's time
+
+
+***** method resolution order, with a nod to the C3 algorithm
+***** instance-, class-, and metaclass-level variables
+***** `__dict__` and `__slots__`
+***** data/non-data descriptors
+***** special methods (`__getattr__`, `__getattribute__`, `__setattr__`, `__dir__`)
+
+##### A proxy object using `__getattr__`
+##### Generic desciptor - an ORM column sketch
+##### the rudimentary `@property`, method, `staticmethod` reimplemented in
+  pure Python (explained [here][2] and elsewhere), which lead to
+##### SQLAlchemy's [`@hybrid_proprerty`][4]
+##### Pyramid's deceptively simple memoizing decorator, [`@reify`][5]
+##### An ["Unpacked" tuple properties][6] example to drive home the idea that
+  descriptors can do more than provide attribute access
+  (and mention weak dicts as a way to non-intrusively store data on an object)
+
+
+@@@@@ Don't conflate objects as dictionaries. If there keys are not "static",
+    it's better to use a dict or a dict-like interface.
+    - avoid trouble with special attributes -- many namespaces combined
+
+Further Reading:
+    The reference - huge, terse, complete:
+        http://docs.python.org/3/reference/datamodel.html
+    The howto - recommended reading:
+        http://docs.python.org/3/howto/descriptor.html
+    Details about the C3 algorithm fo rmethod resolution order:
+        https://www.python.org/download/releases/2.3/mro/
+    The reify decorator:
+        http://docs.pylonsproject.org/projects/pyramid/en/latest/api/decorator.html
+    User docs for an advanced descriptor type (not recommended if you're not familiar with SQLAlchemy):
+        http://docs.sqlalchemy.org/en/rel_0_9/orm/extensions/hybrid.html
+    Advanced descriptor example (cut out of the talk for time reasons):
+        https://gist.github.com/encukou/9789993
+
+
+Pitch
+=====
+
+The first part of this talk will describe what exactly happens when you
+read or write an attribute in Python.
+
+While this behavior is, of course, explained in the Python docs,
+more precisely in the [Data model][1] section and [related][2] [writeups][3],
+the documentation gives one a "bag of tools" and leaves combining them
+to the reader.
+
+This talk, on the other hand, will present one chunk of functionality,
+the attribute lookup, and show how its mechanisms and customization
+options work together to provide the flexibility (and gotchas) Python provides.
+The topics covered will be:
+
+* method resolution order, with a nod to the C3 algorithm
+* instance-, class-, and metaclass-level variables
+* `__dict__` and `__slots__`
+* data/non-data descriptors
+* special methods (`__getattr__`, `__getattribute__`, `__setattr__`, `__dir__`)
+
+
+In the second part of the talk, I will show how to use the customization
+primitives explained before on several interesting and/or useful examples:
+
+* A proxy object using `__getattr__`
+* Generic desciptor - an ORM column sketch
+* the rudimentary `@property`, method, `staticmethod` reimplemented in
+  pure Python (explained [here][2] and elsewhere), which lead to
+* SQLAlchemy's [`@hybrid_proprerty`][4]
+* Pyramid's deceptively simple memoizing decorator, [`@reify`][5]
+* An ["Unpacked" tuple properties][6] example to drive home the idea that
+  descriptors can do more than provide attribute access
+  (and mention weak dicts as a way to non-intrusively store data on an object)
+
+
+(These are subject to change as I compose the talk. Also some examples may
+end up interleaved with the theory.)
+
+Hopefully I'll have time to conclude with a remark about how Python
+manages to be
+a "simple language" despite having these relatively complex mechanisms.
+
+
+[1]: http://docs.python.org/3/reference/datamodel.html
+[2]: http://docs.python.org/3/howto/descriptor.html
+[3]: https://www.python.org/download/releases/2.3/mro/
+[4]: http://docs.sqlalchemy.org/en/rel_0_9/orm/extensions/hybrid.html
+[5]: http://docs.pylonsproject.org/projects/pyramid/en/latest/api/decorator.html
+[6]: https://gist.github.com/encukou/9789993
+
+
+Abstract
+========
+
+Have you ever wondered how the "self" argument appears when you call a method?
+Did you know there is a general mechanism behind it? Come learn all about
+attributes and descriptors.

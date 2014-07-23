@@ -1,0 +1,27 @@
+
+Slides for my EuroPython 2014 talk.
+The slides are a SVG file. Tested on Firefox.
+
+Content license: CC-BY-SA 3.0,
+http://creativecommons.org/licenses/by-sa/3.0/
+
+
+Further reading:
+
+    The Descriptor howto - recommended reading:
+        http://docs.python.org/3/howto/descriptor.html
+
+    The reference - huge, terse, complete:
+        http://docs.python.org/3/reference/datamodel.html
+
+    Details about the C3 algorithm fo rmethod resolution order:
+        https://www.python.org/download/releases/2.3/mro/
+
+    The reify decorator:
+        http://docs.pylonsproject.org/projects/pyramid/en/latest/api/decorator.html
+
+    User docs for an advanced descriptor type (not recommended if you're not familiar with SQLAlchemy):
+        http://docs.sqlalchemy.org/en/rel_0_9/orm/extensions/hybrid.html
+
+    Advanced descriptor example (cut out of the talk for time reasons):
+        https://gist.github.com/encukou/9789993
