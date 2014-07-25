@@ -2,6 +2,9 @@ Slides from various talks/courses I've given
 
 Note that the slides are just a small part of a presentation.
 
+Here's a Youtube playlist with recordings of my talks:
+  https://www.youtube.com/playlist?list=PLFt-PM7J_H3GK-Ry_7X2pKdVfdlUPzZM2
+
 == My presentations ==
 
 2011-11:
@@ -74,7 +77,7 @@ Note that the slides are just a small part of a presentation.
   - DevConf:
     - [en] Extending FreeIPA
        https://speakerdeck.com/encukou/extending-freeipa
-       (recorded; video should be available later)
+       https://www.youtube.com/watch?v=w2cMBuKn_gk
 
 2014-03
   - Pražské Pyvo (lightning talk); Brněnské Pyvo
@@ -84,5 +87,5 @@ Note that the slides are just a small part of a presentation.
 2014-07
   - EuroPython:
     - [en] The Magic of Attribute Access
-        https://github.com/encukou/slides/tree/master/2014-07-22-europython-attributes
-        (Download the SVG)
+        https://www.youtube.com/watch?v=y420yZMRdLw
+    - [en] Blinky's Async Adventure - lightning talk
