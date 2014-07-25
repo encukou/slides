@@ -6,7 +6,7 @@ and an external printing function for Blinky to use.
 
 Right now, Blinky is sad, because Blinky has no friends.
 So, let's invite some friends.
-To give each blinky a separate life, we'll use the threading module,
+To give a separate life to each blinky, we'll use the threading module,
 because threads are easy, right?
 [02-threading.py]
 Not much has changed here, an import, a different printing function,
@@ -22,13 +22,13 @@ owerwriting each other's unfinished lines... it's not very pretty.
 Both threads and greenlets has the some problem - you never know
 at what point in your stack something will switch to a different
 context, be it thread or greenlet.
-It's especially bad if you monkey-patch builtin libraries.
+It's especially bad if you use gevent and monkey-patch builtin libraries.
 
 What to do about this? Let's do what Node.JS does.
 [04-callback.py]
-Now this is not the best syntax -- Twisted or Node use this idea but have
-better syntax -- but the idea is when we call a blocking, or long-running,
-function, we specify a function to be called when the blocking call is done.
+Sorry for the syntax -- Twisted or Node use this idea but have better syntax
+for it -- but the idea is when we call a long-running, non-blocking,
+task, we specify a function to be called when the task is done.
 Anything that's scheduled this way will run as a single block,
 with no interruptions.
 If the print function needed to include a blocking call,
@@ -37,7 +37,7 @@ context switches can happen inside.
 
 The problem with this code is that these functions are a loop.
 Well, it's actually trampolined recursion, but what we want and what it
-does is a loop. It doesn't look like a loop, though.
+does is a loop. We'd like it to look like a loop.
 Also debugging this can be a nightmare -- the term is "callback hell".
 
 [05-asyncio.py]
