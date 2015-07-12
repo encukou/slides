@@ -1,0 +1,513 @@
+
+Whatever you need to do with Python, you can probably import a library for it.
+But what exactly happens when you use that import statement?
+How does a source file that you've installed or written become a Python module
+object, providing methods or classes for you to play with?
+
+While the import mechanism is relatively well-documented in the reference and
+dozens of PEPs, sometimes even Python veterans are caught by surprise.
+And some details are little-known: did you know you can import from zip
+archives? Write CPython modules in C, or a dialect of Lisp?
+Or even import from URLs (which might not be a good idea)?
+
+This talk explains exactly what can happen when you use the import statement –
+from the mundane machinery of searching PYTHONPATH through subtle details
+of packages and import loops, to deep internals of custom importers and
+C extension loading.
+
+
+Import deep dive
+- The Basics: File-based importing
+  - Import statement
+  - __import__ function
+    - importlib
+    - imp
+  - Finding
+    - PEP 235 (Import on Case-Insensitive Platforms)
+  - Code
+    - PEP 263 (Defining Python Source Code Encodings)
+    - PEP 3120 (Using UTF-8 as the default source encoding)
+  - Cache
+    - PEP 3147 (PYC Repository Directories)
+    - Filename tags
+  - sys.path
+- Reloading modules
+  - What reload() does
+  - IPython's %autoreload
+  - Reload in Web frameworks
+- Packages
+  - Absolute vs. relative imports
+    - PEP 328 (Imports: Multi-Line and Absolute/Relative)
+  - Import loops
+  - Namespace packages
+    - Classic: __path__ manipulation
+    - Now: PEP 420 (Implicit Namespace Packages)
+- The machinery
+  - PEP 302 (New Import Hooks)
+  - PEP 451 (A ModuleSpec Type for the Import System)
+  - The Meta Path
+  - Finders
+  - ModuleSpec
+  - Loaders
+  - Importers (Finder+Loader combined)
+- Built-in Modules
+- Frozen Modules
+  - Module Matrix (compiled-in vs external ; Python vs C)
+- Extension modules
+  - Extension modules
+    - Module cache
+    - ABI tags
+    - PEP 3149 (ABI version tagged .so files)
+    - PEP 489 (Redesigning extension module loading)
+- Custom finders
+  - Zip imports (and zipapp)
+    - PEP 441 (Improving Python ZIP Application Support)
+  - Cython's pyximport
+  - importlib.abc
+    - InspectLoader
+      - URL imports
+      - (Git imports)
+- Other Loader Functionality
+  - get_data() (ResourceLoader)
+  - get_code() (InspectLoader)
+- The -m switch and runpy
+  - How the __main__ module is special
+  - PEP 338 (Executing modules as scripts)
+
+*******************************************************************************
+
+__import__ function
+- why is it there?
+- use it?
+
+sys.meta_path
+finders
+sys.path
+path hooks
+sys.path_importer_cache
+loaders
+
+Circular imports
+
+__pycache__ / .pyc
+removing the .py file now works
+
+Module types
+* source
+* built-in
+* extension
+* frozen
+
+Reloading
+
+It took Brett Canon 2.5 years to write importlib
+
+*******************************************************************************
+
+[4m ] intro & high level
+[4m ] packages ; circular imports
+[4m-] the meta_path ; logging imports
+[4m ] sys.path & path hooks ; file types
+[4m-] PYC cache ; how that works
+[4m ] import loops
+
+*******************************************************************************
+
+
+
+*******************************************************************************
+
+[5min] __import__ && sys.modules
+[5min] Find, common case.
+[5min] Load, common case. Packages. Import loops.
+[5min] Loaders in detail; sys.path; sys.metapath; Different loaders (module types). Finders in detail; different finders
+[5min] Reloading; __main__
+
+*******************************************************************************
+
+Whatever you need to do with Python, you can probably import a library for it.
+But what exactly happens when you use that import statement?
+
+Let's say I import some random Python module.
+
+    import random
+
+Now, of all the kinds of statements in Python, `import` is, on its own, one of
+the least magical -- right after `pass`, `assert`, and Python 2's `print`.
+What do I mean by "least magical"? Well, it's very easy to replace it by
+a function:
+
+    random = __import__('random')
+
+That's all import does: call a function (which is largely written in Python),
+and assign the result to a variable.
+
+If you're importing a subpackage
+
+    import httplib.parse
+
+the top-level module is actually returned and assigned:
+
+    httplib = __import__('httplib.parse')
+
+It *can* get a bit more complicated if you're importing individual items from
+a module, like:
+
+    from random import randint, randrange
+
+which roughly corresponds to:
+
+    _random = __import__('random', fromlist=['randint', 'randrange'])
+    randint = _random.randint
+    randrange = _random.randrange
+
+Yet more complicated is the case of a relative import from a package:
+
+    import .util
+
+in which case, the __import__ function needs a bit more context:
+
+    util = __import__('util', globals=globals(), level=1)
+
+And it gets more complicated if you're importing everything from a module:
+
+    from math import *
+
+where the algorithm for figuring out what actually gets assigned is not
+entirely trivial:
+
+    _math = __import__('math', fromlist=['*'])
+    try:
+        _names = _math.__all__
+    except AttributeError:
+        _names = [n for n in dir(_math) if not n.startswith('_')]
+    for _name in getattr(_math, '__all__', dir(_math)):
+        globals()[_name] = getattr(_math, _name)
+
+... okay, so maybe I lied about the import statement not being very magical.
+But, well, it's pretty close.
+The point is, it figures out arguments to an __import__ function,
+calls it, and gets back a module object.
+Then, it assigns either the module or some of its attributes to names.
+Here's the full signature:
+
+    __import__(name, globals=None, locals=None, fromlist=(), level=0)
+
+Now, the __import__ function is a bit of historical baggage.
+You can replace it with your own implementation, but doing that sanely
+is quite messy, and there are better ways to customize importing,
+which I'll talk about later.
+You can also call it yourself, but there's a better newer alternative,
+`importlib.import_module`, which is better suited for programmatic use
+and isn't bogged down by backwards compatibility requirements.
+You simply give it the module name:
+
+    >>> import importlib
+
+    >>> math = importlib.import_module('math')
+    >>> math
+    <module 'math' from ...>
+
+For relative imports, you need to give it the name of the package you're
+importing from:
+
+    >>> mod = importlib.import_module('..mod', 'pkg.subpkg')
+    >>> mod
+    <module 'pkg.mod' from ...>
+
+Et voilà, out pops a module object, ready to use.
+In fact, import_module is just as powerful as __import__; in fact,
+both are just a front-end for the *import machinery*.
+
+So, where are we? When you run your import statement, two things happen:
+
+    * call the *import machinery*, out pops a module
+    * assign the result (or parts of it) to names
+
+The rest of this talk will be about *import machinery*.
+It's called a "deep dive", because we start at the top, and delve into the
+details of the importing algorithm.
+
+Now, the first thing the import machinery does when asked to load a module
+is to look into the `sys.modules` dictionary.
+
+    * call the *import machinery*
+      * is it in `sys.modules`?
+        * yes -> return
+        * no
+          * import it
+    * assign the result (or parts of it) to names
+
+
+This is Python's record of all modules that are currently loaded.
+If the requested module is already there, it just gets returned.
+Look at this: if I import a module, stash it somewhere, then import it again,
+I get the same exact module object.
+
+    >>> import math
+    >>> previous = math
+    >>> import math
+    >>> math is previous
+    True
+
+No kind of re-loading takes place, so the second import is very fast.
+
+Now, this record can be easily invalidated: `sys.modules` is just a regular
+dictionary:
+
+    >>> import sys
+    >>> sys.modules
+    {'__main__': <module '__main__' (built-in)>,
+     ...
+     'math': <module 'math' from '...'>,
+     'sys': <module 'sys' (built-in)>,}
+
+I can certainly delete a module from this dict, which will cause the
+import machinery to load it again!
+
+    >>> import math
+    >>> previous = math
+    >>> del sys.modules['math']
+    >>> import math
+    >>> math is previous
+    False
+
+We can even "poison the cache", putting a non-module object in.
+The import machinery doesn't care in the slightest:
+
+    >>> sys.modules['impostor'] = "Hey! I'm not a module!"
+    >>> import impostor
+    >>> impostor
+    "Hey! I'm not a module!"
+
+This is considered a feature.
+Some wacky modules actually go so far as to replace themselves in sys.modules
+*while they're being imported*, tricking the import machinery to return
+a replacement object.
+In fact, the import algorithm is carefully designed to allow this:
+after doing the hard work of importing, it explicitly reaches into
+sys.modules to retrieve the object it returns.
+
+    * call the *import machinery*
+      * is it in `sys.modules`?
+        * yes
+          * return it!
+        * no
+          * do the import (which puts it in sys.modules)
+          * return the sys.modules entry
+    * out pops a module
+    * assign the result (or parts of it) to names
+
+*******************************************************************************
+
+Now. How do we do an import?
+There are two main things to do. When importing some random module,
+
+    import random
+
+First, Python *finds* a corresponding file – on my system, it's in some system
+directory in this case:
+
+    /usr/lib64/python3.4/random.py
+
+and once it's found that, it reads and compiles and runs the file to give me
+a module object. This is known as *loading*.
+
+    * call the *import machinery*
+      * if it is in `sys.modules`, return it!
+      * ???
+      * find source file
+      * load the module (which puts it in sys.modules)
+      * return the sys.modules entry
+      -> out pops a module
+    * assign the result (or parts of it) to names
+
+And there's also an additional step before finding the source.
+Can anyone guess what it is?
+
+    * call the *import machinery*
+      * if it is in `sys.modules`, return it!
+      * ??? (packages)
+      * if it is in `sys.modules`, return it!
+      * find source file
+      * load the module (which puts it in sys.modules)
+      * return the sys.modules entry
+      -> out pops a module
+    * assign the result (or parts of it) to names
+
+Well, there's the usual sys.modules check, but there's one more step still,
+and it has to do with packages.
+We'll get to it in due time; now let's examine how finding and loading works.
+
+First, finding. Finding is done by a Finder, and for the common case of
+loading from a Python file on disk, it goes like this:
+
+   * Loop through sys.path
+     * Once a module is found, construct a "ModuleSpec"
+
+There's a list of all the filesystem paths where Python modules may be found,
+in order of priority.
+You can add to it at runtime, or set the PYTHONPATH environment
+variable before starting Python to add extra paths to it.
+On my system, it looks like this:
+
+    >>> sys.path
+    ['', '/usr/lib64/python34.zip', '/usr/lib64/python3.4',
+     '/usr/lib64/python3.4/plat-linux', '/usr/lib64/python3.4/lib-dynload',
+     '/home/petr/.local/lib/python3.4/site-packages',
+     '/usr/lib64/python3.4/site-packages', '/usr/lib/python3.4/site-packages']
+
+  *** *** *** TODO *** *** *** virtualenv comes in here
+  *** *** *** TODO *** *** *** importlib.util.find_spec()
+
+Is there a `random.py` in the current directory? No.
+Is there a `random.py` in `/usr/lib64/python34.zip`? No.
+Is there a `random.py` in `/usr/lib64/python3.4`? Why, yes! Yes it's there!
+
+In realyty, not just `.py` files are checked. There's also `.pyc` files
+for sourceless compiled modules, or `.so` or `.pyd` for extension modules,
+and some monster extensions for version-tagged extension modules
+
+    .cpython-36dm-x86_64-linux-gnu.so
+    .abi3.so
+    .so
+    .py
+    .pyc
+
+So the search goes:
+
+Is there a `random.cpython-36dm-x86_64-linux-gnu.so` in the current directory? No.
+Is there a `random.abi3.so` in the current directory? No.
+Is there a `random.so` in the current directory? No.
+Is there a `random.py` in the current directory? No.
+Is there a `random.pyc` in the current directory? No.
+
+Is there a `random.cpython-36dm-x86_64-linux-gnu.so` in `/usr/lib64/python34.zip`? No.
+... ... ...
+
+And this happens for each directory. There's some caching going on,
+so that Python doesn't actually ask the file system each time.
+Python is smart to invalidate the cache when files are added to or removed
+from the directory, but just in case, in case you ever add or remove module
+files at runtime, you should clear this cache:
+
+    importlib.invalidate_caches()
+
+Anyway, if all this searching doesn't find a module, then other Finders
+are given a chance – I'll talk about that later – and if the module isn't found
+at all you get an ImportError.
+
+If the module *is* found, on the other hand, the finder writes up a formal
+report of its findings: a ModuleSpec.
+Think of it as a ticket, a prescription, a passport, documenting the basic
+properties of the and how it is be loaded, something that the rest of the
+machinery can look at and follow as the module is created, and that acts as
+a permanent record of how the module was loaded.
+With the ModuleSpec created, the Finder's job is done.
+
+Now, the ModuleSpec is quite a simple object. It has a bunch of data
+attributes, which should only ever be set by the finder. These are:
+
+    ModuleSpec:
+        name
+
+The all-important name of the module, the key for the sys.modules dict.
+
+        origin
+
+The path where the file should be loaded from
+
+        cached
+
+The path where the a pre-compiled version of the file is to be found
+
+        loader
+
+The object responsible for loading the module, gotten – in this case – from
+the extension.
+
+        loader_state
+
+And some further info for use by the loader, which is actually unused in all
+the loaders that come with Python.
+
+When you're importing a submodule, the parent package's name is also
+put in the ModuleSpec:
+
+        parent
+
+And when importing a package, there's an additional info about where to find
+submodules:
+
+        submodule_search_locations
+
+That's all the info the Finder finds, bundled up and ready to go to the Loader.
+
+    * call the *import machinery*
+      * if it is in `sys.modules`, return it!
+      * ??? (packages)
+      * if it is in `sys.modules`, return it!
+      * find source file
+        * go through sys.path until a suitable file is found
+        * produce a ModuleSpec
+      * load the module (which puts it in sys.modules)
+      * return the sys.modules entry
+      -> out pops a module
+    * assign the result (or parts of it) to names
+
+*******************************************************************************
+
+As for loading, the process is described quite well in PEP 451.
+Here's the overview:
+
+    * create a module object (Loader.create_module)
+
+First, the loader creates a module object. This is similar to any old object
+that you can put attributes on. A __name__ attribute is filled in at this step.
+
+    * set module attributes
+      * __name__
+      * __loader__
+      * __package__
+      * __spec__
+      * __file__
+      * __cached__
+
+Then, some special attributes are copied over from the ModuleSpec.
+This is common to all modules; the Loader doesn't have a say in it.
+
+And then comes the hard work: the Loader is asked to "execute" the module,
+run its code to populate it with classes and functions we're importing it for.
+In our case, it's a lot of work indeed:
+
+    * Loader.load_module
+      * Check pre-compiled bytecode file (from __pycache__)
+      * If it doesn't exist:
+        * read origin (__file__)
+        * compile the code
+        * write the bytecode (-B permitting)
+      * Execute the bytecode “inside” then module object
+
+
+
+__builtins__, '__doc__
+
+
+*** [Don't forget] Loader functions to get partial results
+*** [Don't forget] sys.path_hooks
+*** [Don't forget] __path__ & attributes for submodules ***   ... os.path vs urllib.parse
+*** [Don't forget] sys.modules entry replacement ***
+*** [Don't forget] thread lock (do I get concurrent imports if there's an import statement inside a function?)
+*** [Don't forget] why keep init files small
+*** [Don't forget] zip files are basically interchangeable with directories
+*** [Don't forget] WHY! Top-down approach; if you wan to read the source, here's a map
+
+*** [forget?] Namespace packages
+
+*******************************************************************************
+
+podcast notes
+- The machinery is all in Python now
+
+tutorial notes
+- zip files, __main__
