@@ -1,0 +1,575 @@
+<html>
+    <head>
+        <meta charset="utf-8" /> 
+        <link rel="stylesheet" href="reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="reveal.js/css/theme/serif.css">
+        <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+        <style>
+            .reveal ul {
+                list-style: none;
+            }
+            .reveal .left {
+                width: 48%;
+                float: left;
+                -x-border: 1px solid black;
+            }
+            .reveal .right {
+                width: 48%;
+                float: right;
+                -x-border: 1px solid black;
+            }
+            .reveal .centered {
+                width: 48%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .reveal .col1 {
+                width: 32%;
+                float: left;
+                -x-border: 1px solid black;
+            }
+            .reveal .col2 {
+                width: 33%;
+                float: left;
+                -x-border: 1px solid black;
+            }
+            .reveal .col3 {
+                width: 32%;
+                float: right;
+                -x-border: 1px solid black;
+            }
+            pre, .reveal section img {
+                border-width: 0;
+                box-shadow: none !important;
+                background: transparent;
+            }
+            .muted {
+                opacity: 0.45;
+            }
+            .reveal h1, .reveal h2, .reveal h3 {
+                font-family: "Patua One";
+            }
+            .reveal mark, .reveal mark * {
+                background-color: black;
+                color: #FEBA87 !important;
+            }
+            .lol {
+                font-family: Comic Sans, Coming Soon, Gloria Hallelujah !important;
+                position: absolute;
+                font-weight: bold !important;
+                font-size: 120%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <img src="logo-plain.png" style="height:5em;">
+
+                    <h2>
+                        What <code style="font-size:89%">await</code>s you
+                        <br>in Python 3
+                    </h2>
+
+                    <br>
+                    <br>Petr Viktorin
+                    <br><i class="muted">pviktori@redhat.com</i>
+                </section>
+                <section>
+                    <div class="left" class="fragment">
+                        <h1>1991</h1>
+
+                        <ul>
+                            <li>Python 0.9.0</li>
+                            <li class="muted">First Web page</li>
+                            <li class="muted">Linux 0.01</li>
+                            <li class="muted">Visual Basic</li>
+                        </ul>
+                    </div>
+                    <div class="right fragment">
+                        <h1>2008</h1>
+
+                        <ul>
+                            <li>Python 3.0</li>
+                            <li class="muted">Android</li>
+                            <li class="muted">Wayland</li>
+                            <li class="muted">Github</li>
+                            </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="centered">
+                        <pre class="python"><code data-noescape>
+def cook(spam, eggs):
+    ...
+<div class="fragment" data-fragment-index="0">
+def cook(*ingredients):
+    ...
+</div>
+                        </code></pre>
+                    </div>
+                    <div class="left fragment" data-fragment-index="1">
+                        Python 2
+                        <pre class="python"><code data-noescape>
+print 'Hello, I am', name
+<div class="fragment" data-fragment-index="3">
+print >> sys.stderr, 'Hello'
+</div>
+                        </code></pre>
+                    </div>
+                    <div class="left">
+                        <div class="fragment" data-fragment-index="1">
+                        Python 3
+                        <pre class="python"><code data-noescape>
+print('Hello, I am', name)
+<div class="fragment" data-fragment-index="4">
+print('Hello', file=sys.stderr)
+</div>
+                        </code></pre>
+                    </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="col1">
+                        Lists are great
+                        <pre class="python"><code data-noescape style="overflow: hidden;">
+range()
+<div class="fragment" data-fragment-index="3">
+dict.keys()
+dict.values()
+dict.items()
+</div>
+                        </code></pre>
+                    </div>
+                    <div class="col2 fragment" data-fragment-index="2">
+                        Iterators are better
+                        <pre class="python"><code data-noescape style="overflow: hidden;">
+xrange()
+<div class="fragment" data-fragment-index="4">
+dict.iterkeys()
+dict.itervalues()
+dict.iteritems()
+</div>
+                        </code></pre>
+                    </div>
+                    <div class="col3 fragment" data-fragment-index="5">
+                        Views are best
+                        <pre class="python"><code data-noescape style="overflow: hidden;">
+
+
+dict.viewkeys()
+dict.viewvalues()
+dict.viewitems()
+
+                        </code></pre>
+                    </div>
+                    <small class="fragment" data-fragment-index="6">... what's next?</small>
+                </section>
+                <section>
+                    <h1>
+                        What is
+                        <br>a string?
+                    </h1>
+                </section>
+                <section>
+                    <div class="col1">
+                        <img src="logo-plain.png">
+                    </div>
+                    <div class="col2 fragment">
+                        <pre class="bash"><code>
+$ ls -hs
+ 24K python-logo.jpg
+128K python-logo.png
+420K python-logo.gif
+2.4M python-logo.xbm
+                        </code></pre>
+                    </div>
+                    <div class="col3 fragment">
+                        <img src="logo-jpg-cutout.png">
+                        <small><code>python-logo.jpg</code></small>
+                    </div>
+                </section>
+                <section>
+                    python-logo.png
+<pre>
+00000000  89 50 4e 47 0d 0a 1a 0a  00 00 00 0d 49 48 44 52  |.PNG........IHDR|
+00000010  00 00 06 d8 00 00 06 f4  08 06 00 00 00 72 2b 17  |.............r+.|
+00000020  d9 00 00 00 01 73 52 47  42 01 d9 c9 2c 7f 00 00  |.....sRGB...,...|
+00000030  00 06 62 4b 47 44 00 00  00 b3 00 de 5f 30 04 e5  |..bKGD......_0..|
+00000040  00 00 00 09 70 48 59 73  00 00 cd 8f 00 00 cd 8f  |....pHYs........|
+00000050  01 8d 25 cf 75 00 00 00  07 74 49 4d 45 07 dd 0a  |..%.u....tIME...|
+00000060  10 0a 0a 33 30 75 e6 25  00 01 fe 6c 49 44 41 54  |...30u.%...lIDAT|
+00000070  78 da ec dd 09 b7 95 e5  99 e0 6f 3f 4b 3e c1 df  |x.........o?K>..|
+00000080  d8 36 ad 65 40 da 10 8d  31 a9 74 6a 48 57 55 67  |.6.e@...1.tjHWUg|
+00000090  a8 0c a6 22 6a 30 11 83  20 10 31 11 82 43 9c 92  |..."j0.. .1..C..|
+</pre>
+                    python-logo.gif
+<pre>
+00000000  47 49 46 38 39 61 d8 06  f4 06 f7 00 00 ff d4 3c  |GIF89a.........&lt;|
+00000010  ff d7 42 ff d8 46 ff d7  49 ff da 4c ff dd 54 ff  |..B..F..I..L..T.|
+00000020  df 59 ff e0 5d ff dd 64  ff df 6b ff e2 63 ff e5  |.Y..]..d..k..c..|
+00000030  6b ff e7 71 ff e8 73 ff  e3 7b ff e9 7b 32 6b 9b  |k..q..s..{..{2k.|
+00000040  39 6f 9c 35 70 9f 3c 72  9e 36 71 a1 39 75 a5 3d  |9o.5p.&lt;r.6q.9u.=|
+00000050  78 a7 3b 77 a8 3d 7a ab  42 76 a1 43 79 a4 4b 7d  |x.;w.=z.Bv.Cy.K}|
+00000060  a5 40 7e af 48 7f ab 41  7f b0 47 80 af 4b 82 ae  |.@~.H..A..G..K..|
+00000070  52 83 ab 59 86 ac 5d 89  ae 44 82 b4 4b 85 b4 4d  |R..Y..]..D..K..M|
+00000080  88 b7 47 86 b9 48 87 ba  49 8a bc 51 86 b1 54 89  |..G..H..I..Q..T.|
+00000090  b4 5d 8c b2 53 8d bb 59  8f ba 5f 90 b7 56 90 be  |.]..S..Y.._..V..|
+</pre>
+                </section>
+                <section>
+                        Hello, world!
+                        <br><br><br><br><br>
+                    <div class="col1">&nbsp;</div>
+                    <div class="col2">
+                        <pre class="bash fragment"><code>
+$ ls -s
+   4 hello.txt
+                        </code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h1>
+                        “Plain text”
+                        <br>is
+                        <br>naïve ☺
+                    </h1>
+                </section>
+                <section>
+                    <pre>
+ASCII:
+    110, 97, 105, 118, 101, 32, 58, 41
+    "naive :)"
+
+CP 1252:
+    110, 97, 239, 118, 101, 32, 58, 41
+    "naïve :)"
+
+UTF-8:
+    110, 97, 195, 175, 118, 101, 32, 226, 152, 186
+    "naïve ☺"
+
+UTF-16-LE:
+    110, 0, 97, 0, 239, 0, 118, 0, 101, 0, 32, 0, 58, 38
+    "naïve ☺"
+                    <pre>
+                </section>
+                <section>
+                    <pre class="python"><code>
+>>> list("naïve ☺".encode('utf-8'))
+[110, 97, 195, 175, 118, 101, 32, 226, 152, 186]
+>>> bytes([110,97,195,175,118,101,32,226,152,186]).decode('utf-8')
+'naïve ☺'
+                    </code></pre>
+                    <pre class="fragment python"><code data-trim>
+>>> number = 1234
+>>> list(number.to_bytes(4, byteorder='little'))
+[210, 4, 0, 0]
+>>> int.from_bytes([210, 4, 0, 0], byteorder='little')
+1234
+                    </code></pre>
+                </section>
+                <section>
+                    <h3>Based on the<br>“plain text” myth:</h3>
+                    <ul>
+                        <li>HTTP</li>
+                        <li>E-mail</li>
+                        <li>UNIX filenames</li>
+                        <li>...</li>
+                    </ul>
+                    <h1 class="fragment">☹</h1>
+                </section>
+                <section>
+                    <h3>Chained Exceptions</h3>
+                        <pre class="python"><code>
+try:
+    convert_value(v)
+except ValueError:
+    log("could not convert value")
+    raise
+
+def log(message):
+    with open("file.log") as f:
+        f.write(message)
+                        </code></pre>
+                        <pre class="python fragment"><code>
+Traceback (most recent call last):
+  File "f.py", line 2, in &lt;module>
+  File "f.py", line 1, in convert_value
+ValueError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "f.py", line 4, in &lt;module>
+  File "f.py", line 2, in log
+FileNotFoundError: [Errno 2] No such file or directory: 'file.log'
+                        </code></pre>
+                </section>
+
+                <section>
+                    <h2>Keyword-only Arguments</h2>
+                        <pre class="python"><code data-noescape>
+def compare(a, b, case_sensitive=False): ...
+
+compare(3, 4, True)
+<div class="fragment">
+# Please use this!
+compare(3, 4, case_sensitive=True)
+</div><div class="fragment">
+# Python 3: Keyword-only arguments
+def compare(a, b, *, case_sensitive=True): ...
+</div><div class="fragment">
+# Next version?
+def compare(a, b, c, *, case_sensitive=False): ...
+</div>
+                        </code></pre>
+                </section>
+
+                <section>
+                    <h2>Extended Unpacking</h2>
+                        <pre class="python"><code data-noescape>
+# Unpacking
+x, y = get_point()
+
+a, b = b, a
+<div class="fragment">
+# Extended unpacking (Python 3.0)
+head, *tail = sequence
+</div><div class="fragment">
+# Unpacking in a list (Python 3.5)
+lower_left = 0, 0
+upper_right = 1, 1
+
+vertices = [*lower_left, *upper_right]  # → [0, 0, 1, 1]
+</div>
+                        </code></pre>
+                </section>
+
+                <section>
+                    <h2>Dict Unpacking</h2>
+                        <pre class="python"><code data-noescape>
+defaults = {'color': 'blue', 'size': 'small'}
+overrides = {'color': 'red'}
+
+# Python 2
+result = dict(defaults)
+result.update(overrides)
+<div class="fragment">
+# Python 3.5
+result = {**defaults, **overrides}
+</div>
+                        </code></pre>
+                </section>
+
+                <section>
+                    <h2>Matrix Multiplication</h2>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mrow>
+                            <mi>S</mi>
+                            <mo>=</mo>
+                            <msup>
+                                <mrow>
+                                    <mo form="prefix">(</mo>
+                                    <mi>H</mi>
+                                    <mi>&#x003B2;</mi>
+                                    <mo>-</mo>
+                                    <mi>r</mi>
+                                    <mo form="postfix">)</mo>
+                                </mrow>
+                                <mi>T</mi>
+                            </msup>
+                            <msup>
+                                <mrow>
+                                    <mo form="prefix">(</mo>
+                                    <mi>H</mi>
+                                    <mi>V</mi>
+                                    <msup>
+                                        <mi>H</mi>
+                                        <mi>T</mi>
+                                    </msup>
+                                    <mo form="postfix">)</mo>
+                                </mrow>
+                                <mn>-1</mn>
+                            </msup>
+                            <mrow>
+                                <mo form="prefix">(</mo>
+                                <mi>H</mi>
+                                <mi>&#x003B2;</mi>
+                                <mo>-</mo>
+                                <mi>r</mi>
+                                <mo form="postfix">)</mo>
+                            </mrow>
+                        </mrow>
+                    </math>
+
+                    <pre class="python fragment"><code data-noescape>
+# Numpy
+S = (H.dot(beta) - r).T.dot(
+        inv(H.dot(V).dot(H.T))).dot(H.dot(beta) - r)
+<div class="fragment">
+# Python 3.5 + Numpy 1.10
+S = (H @ beta - r).T @ inv(H @ V @ H.T) @ (H @ beta - r)
+</div>
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Async</h2>
+                    <pre class="python"><code data-noescape>
+def process_url(url):
+    response = requests.get(url)
+    result = process_text(response.text)
+    print(result.summary)
+    return result
+                    </code></pre>
+                    <pre class="python fragment"><code data-noescape># Python 3.5
+<mark>async</mark> def process_url(url):
+    response = <mark>await</mark> session.get(url)
+    result = process_text(response.text)
+    print(result.summary)
+    return result
+<div class="fragment">
+import asyncio
+
+loop = asyncio.get_event_loop()
+result = loop.run_until_complete(process_url('...'))
+</div>
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>No more PYC “Ghosts”</h2>
+                    <pre class="python"><code data-noescape>
+mymodule.py
+mymodule.pyc
+                    </code></pre>
+                    <pre class="python fragment"><code data-noescape># Python 3.5
+mymodule.py
+__pycache__/
+    mymodule.cpython-35.pyc
+    mymodule.cpython-36.pyc
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Gradual Typing Annotations</h2>
+                    <pre class="python"><code data-noescape># Python 3.5
+import typing
+
+def int_max(seq: typing.Sequence[int], default:int=0):
+    if seq:
+        return max(seq)
+    else:
+        return default
+                    </code></pre>
+                    <ul>
+                        <li class="fragment">to be checked by an external analyzer</li>
+                        <li class="fragment">not in the standard library</li>
+                        <li class="fragment">useful for stable APIs and large, rigid codebases</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Interpolated String Literals</h2>
+                    <pre class="python"><code data-noescape>
+# Python 1
+a = 2
+b = 3
+result = 2 + 3
+print "%s + %s = %s" % (a, b, result)
+
+# Python 2.6
+a = 2
+b = 3
+print("{0} + {1} = {result}".format(a, b, result=a + b))
+                    </code></pre>
+                    <pre class="python fragment"><code data-noescape>
+# Python 3.6 (!)
+a = 2
+b = 3
+print(f"{a} + {b} = {a + b}")
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Can I Use It Yet?</h2>
+                    <h3>PyPI</h3>
+                    <ul>
+                        <li>26% projects on PyPI are ported</li>
+                        <li>64% of the “actively maintained” ones</li>
+                        <li>79% of the “most downloaded” ones</li>
+                    </ul>
+                    <br><br>
+                    <div><i><small>from <a href="http://nothingbutsnark.svbtle.com/python-3-support-on-pypi">survey by Brett Cannon</a>, 2015</small></i></div>
+                </section>
+
+                <section>
+                    <h3>Linux Packages</h3>
+                    <div>http://fedora.portingdb.xyz</div>
+                    <img src="portingdb-graph.png" style="width:50%">
+                </section>
+
+                <section>
+                    <img src="doge-screenshot.png">
+                    <div class="fragment" data-fragment-index="1">
+                        <div class="lol" style="color: #FF00FF; top: 35%; left: 53%; -moz-transform: rotate(-9deg);">lol 40%</div>
+                        <div class="lol" style="color: #00FF00; top: 55%; left: 55%; -moz-transform: rotate( 4deg);">such unported</div>
+                        <div class="lol" style="color: #FFFF00; top: 25%; left: 17%; -moz-transform: rotate( 6deg);">many production infrastrukture</div>
+                        <div class="lol" style="color: #00FFFF; top: 84%; left: 60%; -moz-transform: rotate(-4deg);">omg 300 loc</div>
+                    </div>
+                    <div class="lol" style="color: #FFFFFF; top: 10%; left: 18%; -moz-transform: rotate(-5deg);"><span class="fragment" data-fragment-index="1">wtf</span> sudo dnf install doge</div>
+                </section>
+
+                <section>
+                    <h3>Python 3 in Fedora</h3>
+                    <div>Workstation, Atomic &amp; Cloud Live CDs<br>don't install Python 2 by default</div>
+                    <div>(Server blocked by FreeIPA &amp; Samba)</div>
+                    <br>
+                    <h3>Python 3.5</h3>
+                    <ul>
+                        <li>- in Rawhide</li>
+                        <li>- f23: <a href="https://copr.fedorainfracloud.org/coprs/mstuchli/Python3.5/">mstuchli/Python3.5</a> COPR</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>?</h1>
+                    <br><i class="muted">Petr Viktorin</i>
+                    <br><i class="muted">pviktori@redhat.com</i>
+                    <br><i class="muted">Twitter: @encukou</i>
+                    <br><br><br>
+                    <div><small>demo?  </small></div>
+                </section>
+
+            </div>
+        </div>
+        <script src="reveal.js/lib/js/head.min.js"></script>
+        <script src="reveal.js/js/reveal.js"></script>
+        <script>
+             Reveal.initialize({
+                transitionSpeed: 'fast',
+                transition: 'fade',
+                history: true,
+                dependencies: [
+                    // Interpret Markdown in <section> elements
+                    { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+                    // Syntax highlight for <code> elements
+                    { src: 'reveal.js/plugin/highlight/highlight.js', callback: function() { hljs.initHighlightingOnLoad(); } },
+
+                    // Zoom in and out with Alt+click
+                    { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+
+                    // Speaker notes
+                    { src: 'reveal.js/plugin/notes/notes.js', async: true },
+
+                    // MathJax
+                    //{ src: 'reveal.js/plugin/math/math.js', async: true }
+                ],
+            });
+        </script>
+    </body>
+</html>

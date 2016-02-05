@@ -1,0 +1,393 @@
+Python 3 is a better language than Python 2.
+Unfortunately, for most projects, "porting to Python 3" means writing code that works on both versions unchanged: a subset that is, ironically, a worse language than Python 2.7.
+
+So, why are we doing this? What's the silver lining? What awaits you in the future – on the day when you can drop support for Python 2?
+
+Why should you care about chained exceptions, dict views, nonlocal variables, extended unpacking, keyword-only arguments, async functions, matrix multiplication, isolated mode, or or type annotations?
+How can these features help you write better programs, find bugs faster, describe your logic more clearly, and have more fun doing it?
+
+Python website: https://www.python.org/
+There may be a live demo, but if it fails the talk will still work. 
+
+-----
+
+XXX:
+WARNING: Python 3.5 is not in Fedora yet! Use a COPR!
+
+-----
+
+Python is a pretty good language.
+It's also a very old language: it was first released in 1991 –
+along with, for example, the first web page, or the very first version of Linux.
+The world was very different from today.
+
+As time went by, Python accumulated new features and better
+ways of doing things: packages, exception classes, "new-style classes" with sane
+multiple inheritance rules, generators.
+All this time, backwards compatibility was maintained, and features got
+deprecated but were not removed entirely.
+
+Until about seven years ago.
+
+Python 3 is the cleaned up version of the language. It was first released in
+2009, and for about two years it was developed in parallel with Python 2.
+The main goal of the backwards-incompatible version was to remove old cruft,
+warts, and annoyances: `print` and `exec` are functions instead of special
+constructs; ordering unorderable items raises an exceptions rather than picking
+an arbitrary order; there's just one kind of integers.
+
+[5 min] ---------------------------------------------------------------------###
+
+Print as a function ------------------------------------------------------------
+
+XXX !!! .,.... . ...... ......
+
+Dict views ---------------------------------------------------------------------
+
+XXX !!! .,.... . ...... ......
+
+And then, there's the strings.
+
+Text is a weird kind of data. If you have a bunch of bytes, you can interpret
+them in different ways: a picture; a sound; an executable program,
+a string of symbols.
+Generally, it doesn't make sense to interpret a JSON file as a picture, or an
+executable as sound.
+It also doesn't help to say a file contains an image – PNG, JPEG and GIF
+all need different kinds of decoding.
+But text is special. Programmers (especially in the old days) liked to treat
+at any heap of bytes as text.
+Unlike PNG, JPEG, and GIF, there is an universal standard for encoding text,
+ASCII, but that is only applicable to English – and worse, only a *subset*
+of English.
+Neverteless, programmers created a myth called "plain text", which,
+unfortunately, survives in some form to this day.
+
+    “plain text”
+        is
+      naïve ☺
+
+(You could always get by without the diacritics, and straighten the quotes,
+but you can't really ignore emojis these days.)
+
+    ASCII:      110, 97, 105, 118, 101, 32, 58, 41                   → naive :)
+    CP 1252:    110, 97, 239, 118, 101, 32, 58, 41                   → naive :)
+    UTF-8:      110, 97, 195, 175, 118, 101, 32, 226, 152, 186       → naïve ☺
+    UTF-16-LE:  110, 0, 97, 0, 239, 0, 118, 0, 101, 0, 32, 0, 58, 38 → naïve ☺
+
+Python 3 makes the distinction between "bytes, as written on disk,
+that need to be decoded to be used", and "text", as clear as the distinction
+between on-disk representation of numbers and, well, numbers themselves.
+
+This makes it somewhat harder to implement low-level protocols that are
+directly based on the "plain text" myth – which unfortunately, include HTTP
+or e-mail, but for any other use, the distinction prevents confusing bugs.
+
+It also fundamentally changes what a string is.
+In Python 2, str[ing] and bytes were synonymous.
+In Python 3, "str" is an array of Unicode codepoints; and "bytes" is an
+array of bytes -- numbers from 0 to 255.
+This change touches virtually any code where strings are used. Even the
+language identifiers are text strings in Python 3
+(although you definitely shouldn't use non-English identifiers if you
+want to share your code!).
+
+This change to strings is the main reason the transition from Python 2
+to Python 3 is taking so long – it's been 7 years already, and by now,
+XXX% of PyPI packages and 40% of Fedora's packages are ported.
+
+To support both old and new code, for many libraries "porting to Python 3"
+means porting to a subset of Python 2 that will also work the same on Python 3
+– a subset that is, somewhat surprisingly, rather usable.
+But although, as we'll see later, Python 3 is a better language than Python 2,
+this subset is, necessarily, a strictly worse language than both.
+
+So, why are we doing this?
+What does Python 3 bring? Why is this new language so much better that the
+greatest fans of Python 2 – its developers – have moved to it?
+
+Some of the new features are useful without changing the code.
+
+Chained exceptions -------------------------------------------------------------
+
+You might have seen code like this.
+
+    try:
+        convert_value(v)
+    except ValueError:
+        log("could not convert value")
+        raise
+
+    def log(message):
+        with open("file.log") as f:
+            f.write(message)
+
+The "log" function fails, because it didn't open the file for writing.
+In Python 2, the original exception is lost; but in Python 3, it is saved and
+displayed in tracebacks.
+This makes debugging odd corner cases much easier.
+
+If you don't limit yourself to Python 2, you can even chain exceptions
+manually, to explicitly say that both errors are useful:
+
+    try:
+        convert_value(v)
+    except ValueError as exc:
+        raise ValueError('could not convert value') from exc
+
+Dict views ---------------------------------------------------------------------
+
+XXX ???
+
+Nonlocal variables -------------------------------------------------------------
+
+XXX ???
+
+Keyword-only Arguments ---------------------------------------------------------
+
+The next enhancement I'll be talking about is about letting you make nicer APIs:
+keyword-only arguments.
+
+Some functions take arguments in ways that don't make the call obvious without
+having the signature memorized:
+
+    def compare(a, b, case_sensitive=False): ...
+
+    compare(3, 4, True)
+
+Traditionally, the documentation for such a function said "please, call this
+using the argument name":
+
+    compare(3, 4, case_sensitive=True)
+
+Python 3 allows making this behavior mandatory: a lone star in the formal
+argument list makes the subsequent arguments keyword-only.
+
+    def compare(a, b, *, case_sensitive=True)
+
+This is not just about forcing people to write nice code – despite all the PEP8
+fanatics you might have encountered, Python as a language doesn't really care
+about that.
+Keyword-only arguments allow adding, re-arranging or deprecating argumentss
+without breaking the API. For example, if my compare function can grow a third
+positional argument without any trouble:
+
+    def compare(a, b, c, *, case_sensitive=False): ...
+
+
+Extended unpacking -------------------------------------------------------------
+
+Python's so-called “destructuring assignment” – the ability to unpack
+a sequence into individual variables – is extremely useful 
+
+Destructuring assignment:
+
+    x, y = get_point()
+
+Swapping variables:
+
+    a, b = b, a
+
+Python 3 takes this a bit further: you can unpack sequences of arbitrary length,
+with values at the beginning or end assigned to individual variables,
+and the rest to an extra list. It uses a syntax familiar from function calls:
+
+    head, *tail = sequence
+
+    XXX Good example!!
+
+Hand in hand with this goes extended packing literals (which are new in
+Python 3.5 – for Fedora, you currently need to get it from COPR).
+So you can embed small lists in a larger one:
+
+    lower_left = 0, 0
+    upper_left = 0, 1
+    upper_right = 1, 1
+    lower_right = 1, 0
+
+    vertices = [*lower_left, *upper_left, *upper_right, *lower_right]
+
+Or splice a list easily:
+
+    >>> seq = list(range(10))
+    >>> [*seq[:5], 123, *seq[5:]]
+    [0, 1, 2, 3, 4, 123, 5, 6, 7, 8, 9]
+
+
+This is also available for dictionaries, where it's quite useful for
+overriding a set of defaults:
+
+    defaults = {'color': 'blue', 'size': 'small'}
+    overrides = {'color': 'red'}
+
+    result = {**defaults, **overrides, 'shape': 'circle'}
+
+The way to do this in Python 2 was more verbose and unclear:
+
+    result = dict(defaults)
+    result.update(overrides)
+
+Mat mult -----------------------------------------------------------------------
+
+It's these little things that eash make the language a bit more pleasant to use.
+I don't know how many of you use Python's scientific libraries, like Numpy,
+but here's a change that community has been wanting for years: an easy way
+to do matrix multiplication.
+
+Say you're doing some linear hypothesis testing, and need to work with formulas
+like these:
+
+    S = ( H β − r ) ^T ( H V H ^T ) ^{−1} ( H β − r )
+
+All the variables are vectors and matrices, and they're all being multiplied
+together in various ways.
+Now, can you spot the matrix multiplication operator there?
+You can't! Matrix multiplication is such a fundamental operation, the
+mathematical symbol for it is literally nothing – you just put two variables
+next to each other.
+
+In Python 2 (with Numpy), this would read as:
+
+    S = (H.dot(beta) - r).T.dot(inv(H.dot(V).dot(H.T))).dot(H.dot(beta) - r)
+
+The "dot" method was the best thing the Numpy library could come up with for
+this operation – and while they've had two decades to search for solutions,
+using it results in an unreadable mess of parentheses.
+
+Python 3.5 designated the at-sign to be the mat-mult operator, and while
+nothing in Python itself implements it, Numpy operations become much more
+readable – or, well, at least much more similar to the "pure math":
+
+    S = (H @ beta - r).T @ inv(H @ V @ H.T) @ (H @ beta - r)
+
+And being much more readable means they're much more understandable by beginner
+programmers, and much more refactorable by the experts.
+
+
+Async functions ----------------------------------------------------------------
+
+But maybe you're not a data cruncher? Maybe you're a web developer,
+and you want the new shiny hotness instead of math.
+You might have heard of async programming from node.js; let's look at the tools
+Python 3.5 gives you.
+
+Let's say you have a function like this:
+
+    def process_url(url):
+        response = requests.get(url)
+        result = process_text(response.text)
+        print(result.summary)
+        return result
+
+When you start profiling this code, you see that most time is spent waiting
+on the network, in `get`. If you had many of these functions running in
+parallel, you could do useful work on one response while waiting for another
+one.
+You could use threads, but then you'd run into problems, like having to put
+a lock around the print() function – otherwise you could end up printing
+several values at one time to the same terminal (or log file), which would
+not end well.
+
+With the async style, you get to specify explicit points at which execution
+is paused and another, waiting funciton can take over the processor.
+But between such points, your code is the only thing running.
+
+To do this, you define an *async* function:
+
+    async def process_url(url):
+        response = await session.get(url)
+        result = process_text(response.text)
+        print(result.summary)
+        return result
+
+And then unfortunately, you need to use an async library instead of your
+usual blocking one; and whenever you want to call an async function, you
+need to either use await, or schedule it on an event loop:
+
+    import asyncio
+
+    loop = asyncio.get_event_loop()
+    result = loop.run_until_complete(process_url('...'))
+
+Do all this, and the effect will be the same as the original.
+But, if you schedule multiple async functions, without waiting on the result
+immediately, they will all start running in parallel, so your processor is
+always busy.
+Note that this still runs in a single thread, on a single processor. But,
+avoiding the locks is a pretty nice feature.
+
+
+
+
+Isolated mode ------------------------------------------------------------------
+
+XXX ???
+
+Type annotations ---------------------------------------------------------------
+
+XXX ???
+
+Misc ---------------------------------------------------------------------------
+
+* Stable ABI
+* venv
+* namespace packages
+* safe finalization
+
+
+-----
+
+References:
+    PEP 3134: Chained exceptions
+    PEP 3104: nonlocal
+    PEP 465: Matrix multiplication
+    498: Literal String Interpolation
+
+
+-----
+
+print is a function
+text/bytes
+
+
+chained exceptions
+dict views
+nonlocal variables
+extended unpacking
+  - PEP 3132
+  - 
+keyword-only arguments
+async functions
+matrix multiplication
+isolated mode
+type annotations
+
+
+
+OrderedDict
+
+Stable ABI
+yield from
+venv (3.2) & ensurepip (3.4)
+namespace packages
+safe finalization (3.4) -- mention daemon hreads?
+
+
+
+
+------
+
+* chained exceptions
+* dict views
+  nonlocal variables
+* extended unpacking
+* keyword-only arguments
+* async functions
+* matrix multiplication
+  isolated mode
+* type annotations?
+
+* write better programs
+* find bugs faster
+* describe your logic more clearly
+* and have more fun doing it

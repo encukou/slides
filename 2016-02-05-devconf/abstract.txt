@@ -1,0 +1,62 @@
+Discover Python 3 with all its advantages, learn why and how Fedora will make it the default Python implementation and how you can benefit from switching to it. Notes on porting included!
+
+====
+
+DevConf (Developer Conference) is focused on general Linux development, advanced topics of administration, Enterprise Java development, and emerging technologies. 
+
+Presentation types:
+
+ *   Presentation & discussion for up to 200 people (40 minutes)
+ *   Hands-on lab/workshop for up to 40 people (propose a duration)
+ *   Lightning talks (up to 10 minutes)
+
+The entire conference is in English.
+
+Deadline for submitting proposals is November 30, 2015. 
+
+* Required
+
+    Proposed topic: What's New in Python 3
+    Session type: Presentation (40 minutes)
+    Brief abstract: |
+        Please describe your topic and provide link to the project. Is a live demo part of your session?
+
+Python 3 is a better language than Python 2.
+Unfortunately, for most projects, "porting to Python 3" means writing code
+that works on both versions unchanged: a subset that is, ironically, a worse
+language than Python 2.7.
+
+So, why are we doing this? What's the silver lining? What awaits you in
+the future – on the day when you can drop support for Python 2?
+
+Why should you care about chained exceptions, dict views, nonlocal variables,
+extended unpacking, keyword-only arguments, async functions,
+matrix multiplication, isolated mode, or or type annotations?
+How can these features help you write better programs, find bugs faster,
+describe your logic more clearly, and have more fun doing it?
+
+Python website: https://www.python.org/
+There may be a live demo, but if it fails the talk will still work.
+
+    Proposed category
+    Security, Cloud, JBoss, Containers, Virtualization, Fedora, Kernel, Networking, Development, Desktop, Userspace, Testing...
+
+    Technical level of your session: Application - minimal background knowledge is required, however attendees should have general development/admin skills
+
+    Presenter name: Petr Viktorin
+    Email: pviktori@redhat.com
+    Brief background info: |
+        What company do you work for? What job do you do? What open-source projects are you involved in? ...
+
+As a Python developer on Red Hat's developer experience team, my main job is
+porting things to Python 3.
+If you go to any Python meetup in the country, you'll probably find me there.
+
+    Link(s) to a blog, a profile/personal page, Twitter: encukou.cz, @encukou
+
+    Link to a preferred photo:
+
+    I collect Fedora badges and my FAS username is: pviktori
+
+    Have you been to DevConf.cz before?: Yes, as a presenter/workshop leader
+    Size: M
