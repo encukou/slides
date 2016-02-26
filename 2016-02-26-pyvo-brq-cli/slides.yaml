@@ -1,0 +1,441 @@
+
+# Copyright 2013 by Petr Viktorin <encukou@gmail.com>
+# License: Creative Commons Attribution-ShareAlike 3.0 Unported
+# http://creativecommons.org/licenses/by-sa/3.0/
+
+- text: |
+    ┌───────────────────────────────────────┐
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                   X                   │♢animate X=/,-,\,|
+    │                                       │
+    │                                       │
+    │        calibration in progress        │
+    │                                       │
+    │                                       │
+    │         «deemph≈this shoud be visible»         │
+    │                                       │
+    │                                       │
+    │                                       │
+    │                                       │
+    └───────────────────────────────────────┘
+
+- text: |
+    ♢
+
+
+
+    «Terminals,»
+    «Command Lines,»
+    «and Text User Interfaces»
+
+
+
+
+
+    Petr Viktorin
+    encukou.cz
+
+- text: |
+    The Console
+
+    Terminal
+
+    TTY
+
+  note:
+    - Computers going batch→realtime
+    - History section will NOT be chronologically correct
+    - ASCII: 1960s
+
+
+- fixtext: |
+    UNIX and terminals♢center
+
+    Everything is a file
+
+    • data files♢[1] .*
+    • directories♢[2] .*
+    • devices♢[3] .*
+    • sockets♢[4] .*
+    • terminal♢[5] .*
+
+- fixtext: |
+    UNIX and terminals♢center
+
+    ┌─────────┐               ┌────────┐
+    │         │ <- stdin ---- │        │
+    │         │               │ kernel │
+    │ process │ -- stdout --> │  TTY   │
+    │         │               │ driver │
+    │         │ -- stderr --> │        │
+    └─────────┘               └────────┘
+                                 ^  |
+                                 |  |
+                                 |  |
+                                 |  |
+                                 |  v
+                             ┌──────────┐
+                             │ terminal │
+                             └──────────┘
+
+  note:
+    - explain
+    - well, that's mostly a simplification
+
+- fixtext: |
+    Terminal emulators♢center
+
+    ┌─────────┐               ┌────────┐
+    │         │ <- stdin ---- │        │
+    │         │               │ kernel │
+    │ process │ -- stdout --> │  TTY   │
+    │         │               │ driver │
+    │         │ -- stderr --> │        │
+    └─────────┘               ├────────┤
+                Backspace     │ Pseudo │ ♢ [1] Backspace♢Note: briefly explain line discipline
+                  ioctl       │  TTY   │ ♢ [2] ioctl
+                   ^C         ├────────┤ ♢ [3] \^C
+                   ^Z         │  TTY   │ ♢ [4] \^Z
+               Window size    │emulator│ ♢ [5] Window size
+                      ┌───────┴────────┴─┐
+                      │ Graphical system │
+                      └──────────────────┘
+  note:
+    - explain
+    - resolution is 41×17
+
+- align: left
+  text:
+    $ stty -a
+
+
+    speed 38400 baud; «rows» 45; columns 266; line = 0;
+    «intr» = ^C; quit = ^\; erase = ^?; kill = ^U; eof = ^D; eol = <undef>; eol2 = <undef>; swtch = <undef>; start = ^Q; stop = ^S; susp = ^Z; rprnt = ^R; werase = ^W; lnext = ^V; flush = ^O; min = 1; time = 0;
+    -parenb -parodd cs8 -hupcl -cstopb cread -clocal -crtscts
+    -ignbrk -brkint -ignpar -parmrk -inpck -istrip -inlcr -igncr icrnl ixon ixoff -iuclc -ixany -imaxbel «iutf8»
+    opost -olcuc -ocrnl onlcr -onocr -onlret -ofill -ofdel nl0 cr0 tab0 bs0 vt0 ff0
+    isig icanon iexten «echo» echoe echok -echonl -noflsh -xcase -tostop -echoprt echoctl echoke
+
+- fixtext: |
+    Features  «»♢center
+
+    ┌─────────┐               ┌────────┐
+    │         │ <- stdin ---- │        │
+    │         │               │terminal│
+    │ process │ -- stdout --> │emulator│
+    │         │               │        │
+    │         │ -- stderr --> │        │
+    └─────────┘               └────────┘
+        Character sets                   ♢[7] Character sets
+                Backspace      Underline ♢[3] Underline
+              "Input mode"
+       Bold        ^C        Mouse       ♢[1] Bold♢[9] Mouse
+     Blinking      ^Z   Unicode          ♢[4] Blinking♢[8] Unicode
+               Window size       Beep    ♢[6] Beep
+            More Colors!                 ♢[2] Colors♢[10] More♢[10] !♢rainbow[10]
+             Cursor movement             ♢[5] Cursor movement
+
+
+- fixtext: |
+    «»
+
+
+
+
+                   «Ugh».
+
+
+
+        Character sets
+                Backspace      Underline
+              "Input mode"
+       Bold        ^C        Mouse
+     Blinking      ^Z   Unicode
+               Window size       Beep
+            More Colors!                 ♢rainbow[0]
+             Cursor movement
+  note: Why would I use this...?
+
+
+- text: |
+    Why do I use this?
+
+
+- fixtext: |
+    Why do I use this?♢center
+
+    TUIs are «simple»♢center
+
+
+    «print»('Hello world!')
+    «input»('What is your name?')
+  note: mathematical elegance?
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, «universal»
+
+
+    pip install requests
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, universal, «scriptable»
+
+
+    git diff | pep8 --diff
+  note: Google Code Jam? Text-based inputs
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, universal, scriptable, «lightweight»
+
+
+    This talk: ~1MB
+
+
+- text: |
+    Why do I use this?
+
+    TUIs are simple, universal, scriptable, lightweight, «cool»
+
+
+    At least to «you» ♢[1] .*
+
+
+- special: movie
+
+
+- fixtext: |
+    Types of TUIs♢center
+
+    • Line-based
+        cat, grep, git♢[1] .*
+        «simple, universal»♢[3] .*
+        «scriptable, lightweight»♢[3] .*
+
+    • Full-screen
+        less, vim, mc♢[2] .*
+        «lightweight?, cool»♢[4] .*
+
+
+- fixtext: |
+    How to build a text user interface♢center♢@deemph[1]text
+
+    • Decide on the type
+        Line-based? Full-screen TUI?
+        Traditional GUI? Web UI?♢[1] .*
+    • Parse command-line arguments
+
+    • Handle input
+
+    • Output the output
+  note:
+    - Arguments: http://www.faqs.org/docs/artu/ch10s05.html
+    - Arguments: Strict conventions
+    - Arguments: very important - can't easily change later, like designing API
+
+
+- fixtext: |
+    Command-line arguments♢center
+
+    • Positional arguments
+        prog data.txt
+
+    • Options
+        prog -v
+        prog --verbose
+        prog --file data.txt
+        prog --file=data.txt
+        prog -f data.txt
+
+    • Subcommands
+        git log
+        git -c color=always log --oneline
+  note: GNU style!
+
+
+- fixtext: |
+    Documentation♢center
+    «deemph≈you can never write enough»♢center
+
+
+    • --help option
+        cheatsheet
+    • man page
+        tersely documents everything
+    • website, tutorial
+        explains, teaches
+
+
+- fixtext: |
+    $ program.py --help
+    usage: program.py [-h] [-v] filename
+
+    positional arguments:
+    filename       File to process
+
+    optional arguments:
+    -h, --help     show this help
+                   message and exit
+    -v, --verbose  Print more text
+
+    $ █
+
+
+- fixtext: |
+    pip install «click»
+
+        «deemph≈often the best choice»
+
+
+    pip install «docopt»
+
+        «deemph≈help-driven»
+
+
+    import «argparse»
+
+        «deemph≈in standard library»
+
+  note: http://docopt.org/
+
+
+- pygments: true
+  fixtext: |
+    Top-level structure of a program♢center
+    (Except click)♢center
+
+
+    import sys
+
+    def main(argv):
+        args = parse_args(argv)
+        return process(args)
+
+    if __name__ == '__main__':
+        sys.exit(main(sys.argv))
+
+  note: http://www.artima.com/weblogs/viewpost.jsp?thread=4829
+
+
+- fixtext: |
+    import «blessings»
+
+        «deemph≈Output colorization, etc.»
+
+
+    import «colorama»
+
+        «deemph≈Colorization wrapper for Windows»
+
+  note:
+    - Simple
+    - can also use Colorama
+    - https://pypi.python.org/pypi/blessings/
+    - https://github.com/erikrose/blessings
+
+
+- text: |
+    «Pipe friendliness»
+
+    Default to color only for terminals
+
+    Provide a way to force color on or off
+
+
+    git diff | pep8 --diff
+
+
+- text: |
+    pip install «urwid»
+
+    Widget-based TUI library
+
+    Multiple backends (curses, terminal, web)
+
+
+- text: |
+    Urwid widgets
+
+    ♢fib
+
+    ♢progressbar
+
+
+- pygments: true,
+  fixtext: |
+    ♢widget
+
+    pile = urwid.Pile([
+      urwid.Text('abcd', align='center'),
+      urwid.Text('efgh', align='center'),
+    ])
+
+    widget = urwid.LineBox(pile)
+
+
+- pygments: true
+  skip: true
+  fixtext: |
+    ♢widget
+
+
+    canvas = widget.render(size=(10,))
+    print list(canvas.content())
+
+
+    ♢widget_canvas
+
+
+- text: |
+    Mouse input
+
+
+    urwid.MainLoop(handle_mouse=False)
+
+
+- text: |
+    «»
+
+    Keep it simple!
+
+    «deemph≈(use click)»
+
+
+
+    questions?
+
+
+
+
+    ♢hr
+    © 2013-2016 Petr Viktorin, http://encukou.cz
+    CC-BY-SA
+
+- fixtext: |
+    pip install «click»
+        «deemph≈often the best choice»
+
+    pip install «docopt»
+        «deemph≈help-driven»
+
+    import «argparse»
+        «deemph≈in standard library»
+
+    pip install «blessings»
+        «deemph≈Output colorization, etc.»
+
+    pip install «colorama»
+        «deemph≈Colorization wrapper for Windows»
+
+    pip install «urwid»
+        «deemph≈Widget-based TUI library»
