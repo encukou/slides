@@ -1,0 +1,123 @@
+Hands-on: Weakrefs, Function signatures and Descriptors
+
+During the session we'll iterate to build a signaling library, similar
+in intent to [blinker](http://pythonhosted.org/blinker/).
+The project is small but practical, and allows using several advanced Python
+techniques to help the library's usability.
+A concrete project allows you to see the concepts in real-world context,
+but the concepts you'll learn can be useful in many other libraries that you'll
+write in the future.
+
+The session will explore three main topics: weak references,
+function signatures, and descriptors.
+Each topic will have a (mostly) theoretical overview, followed by hands-on hacking.
+
+* 30 min: setup, explanation of the session format, walkthrough of basic library
+* 20 min: explanation: weak references
+* 20 min: coding/walkthrough: weak references to listeners
+* 5 min, quick explanation: decorators
+* 5 min: coding/walkthrough: adding a decorator
+* 20 min: explanation: function signatures
+* 20 min: coding/walkthrough: improving introspectability with call signatures
+* 25 min: explanation: descriptors
+* 25 min: coding/walkthrough: using descriptors for per-instance signals
+* 10 min: additional questions & reflection
+
+A test suite will be provided for each stage of the project,
+so if you move faster than the rest, you'll be free to explore the concepts
+and customize your library without breaking prerequisites for later steps.
+
+Everyone who's written a class in Python is welcome.
+If you don't yet know how to write a decorator, be prepared for some
+very intense learning – I encourage you to pair up with someone.
+
+You will need a laptop with Python 3.3+, and the pytest library (or working pip).
+If you know the basics of Git, please have it configured on your laptop.
+
+
+
+
+
+
+
+
+Learn about interesting Python language features while implementing a
+signaling library.
+The concepts we will learn and explore are:
+* weak references
+* decorators (briefly)
+* Python 3 function signatutes
+* descriptors
+
+
+
+
+
+-----
+
+I have an idea for a tutorial session. Well, something between a
+tutorial and a [Prepared Kata
+Dojo](http://codingdojo.org/cgi-bin/index.pl?PreparedKata).
+
+During the session we'll iterate to build a signaling library, similar
+in intent to [blinker](http://pythonhosted.org/blinker/). Each stage
+in the evolution of the library introduces an interesting concept:
+1. basic connecting/disconnecting of listeners, calling (here the
+concept is the session format itself ☺)
+2. creating *weak references* to listeners
+3. making it easier to use with a *decorator*
+4. helping introspection with *call signatures*
+5. making it a *descriptor* to create per-instance signals
+
+Another twist is that everyone's code is automatically tested;
+everyone's status is shown to everyone else.
+if someone finishes early and is bored, they can either go help
+others, or write more tests and try to break others' code.
+
+The session would take 3 hours. Rough time sketch:
+- 0:00: 30 min: setup, explanation of the session format, walkthrough of stage 1
+- 0:30: 20 min: introduction of stage 2, explanation of weak references
+- 0:50: 20 min: walkthrough of stage 2
+- 1:10: 5 min, introduction of stage 3, quick description of decorator
+- 1:20: 5 min: walkhtrough of stage 3
+- 1:30: 20 min: introduction of stage 4, explanation of call signatures
+- 1:50: 20 min: walkhtrough of stage 4
+- 2:10: 25 min: introduction of stage 5, explanation of descriptors
+- 2:40: 25 min: walkthrough of stage 5
+- 2:50: 10 min: additional questions & reflection
+- 3:00 end
+
+
+Some details:
+
+Title: Let's build a signal library
+Description for attendees:
+Learn about interesting Python language features while implementing a
+signaling library.
+The concepts we will learn and explore are:
+* weak references
+* decorators (briefly)
+* Python 3 function signatutes
+* descriptors
+
+Everyone who's written a class in Python is welcome.
+If you don't know how to write a decorator yet, you can come for some
+very intense learning. You're encouraged to pair up with someone.
+If you're an expert in one or more of the concepts, you can either
+cooperate and help others, or go on the offensive and try writing
+tests that break others' code.
+
+You will need a laptop with Git, Python 3.3+, and the pytest library
+(or working pip). Also, sign up for github.com if you don't already
+have an account.
+
+---
+Technical requirements: Working internet connection for everyone, a
+projector, and an extra monitor to display people's progress. And
+since this basically includes 3 short talks, I'd prefer if it was
+recorded for Youtube.
+About me: Red Hatter working on the FreeIPA project; meetup organizer
+& PyLadies Brno mentor in Brno
+Requirements to attend: See description
+
+See you at Pycon PL! :)

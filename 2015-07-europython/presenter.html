@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Presenter View</title>
+		<style>
+			html{
+				color:#333;
+				font-family: sans-serif;
+			}
+
+			#information {
+				text-align: center;
+				font-size: 1.5em;
+				padding: 4px;
+				
+			}
+			
+			#val_time, #val_pagethis, #val_pagecount {
+				font-weight: bold; 
+			}
+			
+			
+			#notes{
+				clear: both;
+				padding: 4px;
+				margin-top: 10px;
+				border-top: 3px solid #ccc;
+				height: 50px;
+				font-size: 1.5em;
+			}
+
+			#pane{
+				margin-top: 10px;
+				font-size: 1.4em;
+			}
+
+			#time{
+				float: left;
+				text-align: center;
+				font-size: 3em;
+				width: 22%;
+				margin-top: 1em;
+			}
+
+			#slideleft, #slideright {
+				float: left;
+				padding: 4px;
+				width: 38%;
+			}
+
+			#val_slideleft, #val_slideright{
+				max-width: 100%;
+			}
+
+			#datetime{
+				font-size: 0.5em;
+			}
+		</style>
+
+		<script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+		<script>
+			var uren = 0;
+			var seconden = 0;
+			var clock = 0;
+			var previousslide = 0;
+			var refreshtime = 1000;
+			var isPaused = false;
+			
+			function display_clock(){
+				uren = Math.floor(clock/60);
+				seconden = clock - uren*60;
+				seconden = (seconden < 10) ? "0" + seconden : seconden;
+				$("#val_time").text(uren + ":" + seconden);
+			}
+			
+			function update_clock(){
+				setTimeout ("update_clock()", 1000);
+				clock = clock + 1;
+				// console.log(clock);
+				display_clock();
+			}
+
+			function display_time(){
+				var currentTime = new Date();
+				var hours = currentTime.getHours();
+				var minutes = currentTime.getMinutes();
+				var seconds = currentTime.getSeconds();
+				if (minutes < 10){
+					minutes = "0" + minutes;
+				}
+				if (seconds < 10){
+					seconds = "0" + seconds;
+				}
+				$("#datetime").text(hours + ":" + minutes + ":" + seconds);
+			};
+			
+			function make_call(){
+				$.ajaxSetup({'beforeSend': function(xhr){
+					if (xhr.overrideMimeType){
+						xhr.overrideMimeType("text/plain");
+					}
+					}
+				});
+				
+				$.getJSON("./json.txt",
+					function(data){
+						$("#val_pagethis").text(data.current_page);
+						$("#val_pagecount").text(data.page_count);
+						$("#notes").html(data.notes);
+
+						if (previousslide != data.current_page){
+						clock = data.current_time;
+						$("#val_slideleft").attr("src", "./slides/slide-"+(data.current_page-1)+".png");
+						if (data.current_page < data.page_count)
+							$("#val_slideright").attr("src", "./slides/slide-"+(data.current_page)+".png");
+
+						$("#val_text").text(" ");
+					}
+
+					previousslide = data.current_page;
+					display_clock();  		    	
+					display_time();
+
+					
+				});	
+				setTimeout ("make_call()", refreshtime);
+			}
+			
+			$(document).ready(function(){
+				make_call();
+				update_clock();
+			});     
+		</script>
+	</head>
+	
+	<body>
+		<div id="information">
+			Currently at slide 
+			<span id="val_pagethis">?</span> of <span id="val_pagecount">?</span>
+		</div>
+		
+		<div id="pane">
+			<div id="slideleft">
+				Current slide:<br>
+				<img id="val_slideleft" src="./slides/slide-0.png">
+			</div>
+			
+			<div id="time">
+				<span id="val_time">?</span><br>
+				<span id="datetime">?</span>
+			</div>
+			
+			<div id="slideright">
+				Next slide:<br>
+				<img id="val_slideright" src="./slides/slide-1.png">
+			</div>
+		</div>
+		<div id="notes"></div>
+	</body>
+</html>

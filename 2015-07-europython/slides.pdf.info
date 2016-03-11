@@ -1,0 +1,475 @@
+import json
+
+def UpdateInfo():
+    global FileName, FileList, PageCount
+    global DocumentTitle
+    global Pcurrent, Pnext, Tcurrent, Tnext, InitialPage
+    global RTrunning, RTrestart, StartTime, PageEnterTime, CurrentTime
+
+    with open('json.txt', 'w') as io:
+        json.dump(({"page_count": PageCount, "current_page": Pcurrent, "previous_page": Pnext, "start_time": StartTime, "pageenter_time": PageEnterTime, "current_time": CurrentTime, "notes": PageProps[Pcurrent]['notes']}), io)
+
+PageProps = {
+    1: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    2: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    3: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    4: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    5: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    6: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    7: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    8: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    9: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    10: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    11: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    12: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    13: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    14: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    15: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    16: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    17: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    18: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    19: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    20: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    21: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    22: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    23: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    24: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    25: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    26: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    27: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    28: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    29: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    30: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    31: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    32: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    33: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    34: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    35: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    36: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    37: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    38: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    39: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    40: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    41: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    42: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    43: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    44: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    45: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    46: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    47: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    48: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    49: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    50: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    51: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    52: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    53: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    54: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    55: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    56: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    57: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    58: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    59: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    60: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    61: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    62: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    63: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    64: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    65: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    66: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    67: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    68: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    69: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    70: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    71: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    72: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    73: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    74: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    75: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    76: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    },
+    77: {
+        'transition': None,
+        'overview': True,
+        'notes': '',
+        'OnEnter': UpdateInfo
+    }
+}
