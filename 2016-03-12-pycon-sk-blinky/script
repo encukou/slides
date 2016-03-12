@@ -1,0 +1,47 @@
+[01-single.py]
+Hello!
+This is Blinky down here, and here's Blinky's source.
+Nothing too fancy -- a loop with some delays, wrapped in a class,
+and an external printing function for Blinky to use.
+
+Right now, Blinky is sad, because Blinky has no friends.
+So, let's invite some friends.
+To give a separate life to each blinky, we'll use the threading module,
+because threads are easy, right?
+[02-threading.py]
+Not much has changed here, an import, a different printing function,
+and we have to create and start a list of blinkies.
+
+Hooray! 15 blinkies may not be cloud-scale, but Blinky is now happy.
+At least until a system upgrade comes along, with a reworked,
+enterprise-ready print_blinkies 2.0 function that
+does some more complex stuff under the hood.
+[03-uh-oh.py]
+Now, each of the 15 threads tries to print the blinkies at once,
+owerwriting each other's unfinished lines... it's not very pretty.
+Both threads and greenlets has the some problem - you never know
+at what point in your stack something will switch to a different
+context, be it thread or greenlet.
+It's especially bad if you use gevent and monkey-patch builtin libraries.
+
+What to do about this? Let's do what Node.JS does.
+[04-callback.py]
+Sorry for the syntax -- Twisted or Node use this idea but have better syntax
+for it -- but the idea is when we call a long-running, non-blocking,
+task, we specify a function to be called when the task is done.
+Anything that's scheduled this way will run as a single block,
+with no interruptions.
+If the print function needed to include a blocking call,
+it would have to change its signature, alerting all its users that
+context switches can happen inside.
+
+The problem with this code is that these functions are a loop.
+Well, it's actually trampolined recursion, but what we want and what it
+does is a loop. We'd like it to look like a loop.
+Also debugging this can be a nightmare -- the term is "callback hell".
+
+[05-asyncio.py]
+This is where asyncio coroutines come in, where we can use "yield from"
+to say we're calling a function that could cause a context switch.
+Suddenly, we can use a loop and have it look like a loop,
+even though inside it's still futures and callbacks.
