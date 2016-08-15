@@ -1,0 +1,141 @@
+Even though Fedora Workstation 23 shipped without Python 2 installed by default, the full transition to Python 3 is still going on. How are we doing on that? What still needs to be done, both upstream and in Fedora? And how you can help? And more importantly – how are we making life easier for future packagers? Now that Copr can build RPMs directly from the Python Package Index, will getting a Python library into Fedora be less of a chore? And how will system-python – an effort to slim down minimal installs – affect Python packaging? 
+
+Tuesday, August 2 • 13:30 - 14:20 
+                    14:10 QA start?
+
+Projector resolution 1280x800
+
+== Python 3 ==
+13:30 - 13:40
+
+        Python 3 status
+        - Porting DB
+        - Call to action; badges
+        - Upstream - Python 2 clock
+        - Upstream - the py3 manifesto thing
+
+So, what is the state of packaging in Fedora?
+I can't really have this talk without giving an update on the state of
+Python 3, so let's get that out of the way.
+Python 3 is the current version of the language, and it breaks backwards
+compatibility with the 2.x series in some ways – most notably in text string
+support. Almost all codebases have to be updated to support Python 3, but for
+most the change is not disruptive – I've been told by programmers in other
+languages that they don't see much why there's all the fuss about the new
+version, and frankly it does scare people away from even looking at the
+possibility of switching. Anyway, for Python, the backwards compat break is
+unprecedented; and it's likely similar things won't be done in the future,
+either.
+
+Now, Python 3 is now close to 8 years old, and, upstream, it's in bugfix-only
+mode: no new features are being added, though fixes will be provided until
+2020. But 2020 is not that far away. If you want to know exactly how far, the
+Python 2 clock gives quite a precise time.
+Authors of several important libraries, most notably ones in the scientific
+stack, are declaring that new versions will start only supporting Python 3
+well before that date. Most widely-used pure-Python libraries have Python 3
+support. Some, however, have not made the switch yet; some representative
+examples being:
+- egenix-mx-base
+- Samba (freeIPA)
+- Koji (bodhi, fedmsg, pulp)
+- wxPython (GTK2, PySide)
+- Gimp (Inkscape, Sugar)
+- Mercurial (Bazaar, Trac)
+- OpenStack (Twisted)
+
+In most projects that aren't there yet, someone upstream is aware of the
+situation and actively working on the port.
+
+So, what's the situation in Fedora?
+Currently, based on some totally non-scientific heuristics, more than 50%
+of software that's packaged in Fedora is compatible with Python 3.
+However, less than 50% is actually packaged to *use* Python 3, even though
+for years (Check!!) the Guidelines have required the py3 version if it exists
+upstream.
+Some 130 packages need help with packaging – and that's where you can help.
+We have a comprehensive guide on how to get all the py3 goodness into Fedora,
+and if you chip in, you can even get a badge or two! Or three!
+All of this is tracked at fedora.portingdb.xyz, and you can find links to
+instructions there.
+If you're a proficient packager, this shouldn't be a problem for you;
+and if you're new to packaging, or trying to get in, this is the perfect place.
+(Also, we'll be sprinting later, so come jump in and make Fedora better!
+ -- check!!)
+
+== pyp2rpm and COPR ==
+13:50 - 14:00
+
+        Ease turning setup.py into RPMs
+        (Ease turning *wheels* into RPMs...?)
+        Automatic COPR rebuilds
+        - these are coming!
+
+        Automatic provides
+        - python3.5dist(requests)
+
+        dnf pip
+
+With that, I have a letdown.
+Packaging is a chore.
+The point of packaging does is checking that the software is OK –
+the license is acceptable so you can use it without restrictions,
+you're not bombarded with ads when using it, it doesn't duplicate
+what's already available in the system, and it integrates with other
+software in Fedora – or at least coexists peacefully.
+To make this kind of coordination possible, we have extensive guidelines
+and processes in place. Those keep the quality high, but unfortunately,
+they also make it so packagers have to navigate a maze of best practices,
+reccommendations and guides to get the package in. It's not difficult, but
+it's certainly more difficult than it could be, so packagers aren't plentiful
+Some software is only available in language-specific upstream collections
+for language-specific installers – NPM, Gems, or in Python's case, PyPI and
+Pip.
+PyPI and Pip have a long way to go to match RPM and DNF in features like
+dependency management and non-Python dependencies, but for developers,
+they're much easier to use. And it's the developers that matter.
+Unlike packagers, which work in distros, developers work in languages,
+so like we have Fedora packagers and Debian packagers and Arch packagers,
+there are Python developers and Ruby developers and Javascript developers.
+Instead of system-specific tools, they create language-specific tools;
+instead of packaging for distros they release to PyPI. And anyone can,
+nowadays, easily install from PyPI.
+
+
+
+
+XXX: py2pack
+
+== system-python, and breaking down the stdlib ==
+14:00 - 14:10
+
+System Python
+- Solving two problems at once, and for Fedora only = wrong approach
+- smaller standard library
+- isolated from local package installation
+
+
+++ Packaging Draft ++
+== RH python-maint vs. python-devel - Apology & Plans ==
+
+++ removing patches
+
+== Python 3.6 ==
+13:40 - 13:50
+
+- Release schedules
+    Fedora                                              Python
+    2016-08-09      F25 Alpha Freeze                    2016-05-17  3.6.0 Alpha 1
+    2016-09-20      F25 Beta Freeze                     2016-09-12  3.6.0 Beta 1
+    2016-10-25      F25 Final Freeze                    2016-12-05  3.6.0 RC 1
+    2016-12-1~(?)   F26 Branches from Rawhide           2016-12-16  3.6.0 Final
+    2016-01-0~(?)   F26 Mass Rebuild                    2016-12-16  3.6.0 Final
+- Plan to get this in Rawhide ASAP – that is, at RC1
+
+- show off(?) new features
+  - Format Strings
+  - Bytecode → Wordcode
+  - Metaclass __prepare__; descriptor __set_name__
+  
+
+
