@@ -1,0 +1,22 @@
+
+Slides for an introductory talk on zeros & ones, and computer memory.
+Czech only.
+Typeset using TeX Live's `lualatex`.
+
+License: CC-BY-SA 4.0,
+http://creativecommons.org/licenses/by-sa/4.0/
+
+Image sources/attributions are in source code (and in the resulting PDF,
+if needed).
+
+
+---
+
+Slajdy k začátačnické přednášce o jedničkách a nulách, a o počítačové paměti.
+Sázeno pomocí `lualatex` z balíčku TeX Live.
+
+Šířeno pod licencí CC-BY-SA 4.0,
+http://creativecommons.org/licenses/by-sa/4.0/
+
+Zdroje/autoři obrázků jsou uvedeni ve zdrojovém kódu (a ve výsledném PDF,
+pokud to licence požaduje).
