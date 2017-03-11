@@ -1,0 +1,827 @@
+\documentclass[20pt]{beamer}
+\usepackage{pgfpages}
+\usepackage{fontspec}
+\usepackage{amsfonts}
+\usepackage{tangocolors}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
+\newcommand\sk{\par\bigskip\bigskip\par}
+\newcommand\wh[1]{\only<#1>{\color{white}}}
+\newcommand\tx[2]{\alt<#1>{\textcolor{ta3gray}}{\textcolor{ta2gray}}{\uncover<#1->{#2}}}
+\newcommand\rd[2]{\alt<#1>{\textcolor{tachameleon}}{\textcolor{ta3aluminium!50!tachameleon}}{\uncover<#1->{#2}}}
+
+\newcommand\hlt[2]{\alt<#1->{{\textcolor{tachameleon}{#2}}}{{#2}}}
+
+\renewcommand\emph{\textcolor{tachameleon}}
+
+\setbeameroption{show notes on second screen=bottom}
+
+\setbeamercolor{item projected}{fg=black}
+\setbeamerfont{enumerate item}{family={\fontspec{Fertigo Pro}}}
+
+\setbeamertemplate{note page}[plain]
+\setbeamercolor{note page}{bg=white!90!black, fg=black}
+
+\setbeamertemplate{note page}{%
+  \nointerlineskip%
+  \insertvrule{1\paperheight}{note page.bg}%
+  \vskip-1\paperheight%
+  \insertnote%
+
+  ~
+}
+
+\setbeamertemplate{enumerate item}
+{
+  {\hbox{%
+      \color{black}\insertenumlabel.% original: [fg]
+  }}%
+}
+
+\newcommand\bg[1]{
+\usebackgroundtemplate{
+    \vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil
+    \begin{tikzpicture}
+    \node[opacity=0.05]{
+        \includegraphics[height=\paperheight]{circles/#1}};
+    \end{tikzpicture}
+    \hfil}\vfil}
+}
+}
+
+\begin{document}
+\fontspec{Fertigo Pro}
+
+\section{B}
+
+\begin{center}
+\title{The Balance of Python}
+\author{Petr Viktorin}
+\date{\today}
+
+
+\frame{
+
+    “We were after the C++~programmers.
+
+    We managed to drag a~lot~of~them\\
+    about half way to~Lisp.”
+
+    \bigskip\bigskip
+    \scalebox{.4}{– Guy Steele, co-author of the Java spec }
+
+}
+
+\frame{
+    What Made \alt<1>{Lisp}{\alt<2>{Java}{Python}} Different
+
+    {\scriptsize
+        \enumerate {\itemsep0em 
+            \item \emph{Conditionals}
+            \item \hlt{3}{First-class functions}
+            \item \emph{Recursion}
+            \item \hlt{3}{Dynamic typing}
+            \item \hlt{2}{Garbage-collection}
+            \item Programs composed of expressions
+            \item A symbol type
+            \item Code == trees of symbols and constants
+            \item No separate compilation
+            \item[]~
+        }
+    }
+
+    \scalebox{.4}{\alt<1>{– “Revenge of the Nerds” by Paul Graham}{~}}
+}
+
+\frame{
+    \sk
+    \textcolor{ta2gray}{\emph{The Balance of Python}}\\
+    \sk\sk
+    \textcolor{ta2gray}{Petr Viktorin}\\[-0.25cm]
+    \textcolor{ta2gray}{\tiny encukou@gmail.com}\\[-0.25cm]
+    \textcolor{ta2gray}{\tiny github.com/encukou}
+    \sk
+    \textcolor{ta2gray}{\tiny PyCon SK 2017}
+}
+
+\frame{
+    This is a talk about language design.
+
+}
+
+\note {
+ And it's full of stereotypes.
+
+Some other languages might not be portrayed here in the best light,
+as I don't have time to explain all the nuances.
+
+Anyway, if I'm talking about Python's language design, I have to mention...
+}
+
+\frame{
+    \scriptsize
+    Beautiful is better than ugly.
+    
+    \medskip
+    Explicit is better than implicit.
+    
+    \medskip
+    Simple is better than complex.
+    
+    \medskip
+    Complex is better than complicated.
+    
+    \medskip
+    Flat is better than nested.
+
+    \medskip
+    Sparse is better than dense.
+
+    \medskip
+    Readability counts.
+
+    \medskip
+    \hlt{2}{Special cases aren't special enough to break the rules.}
+
+    \medskip
+    \hlt{2}{Although practicality beats purity.}
+
+    \medskip
+    Errors should never pass silently.
+
+    \medskip
+    Unless explicitly silenced.
+
+    \medskip
+    In the face of ambiguity, refuse the temptation to guess.
+
+    \note {
+    The Zen of Python.
+
+    which I'm sure you've heard about
+    
+    Now, something that always bothered me about these nuggets of wisdom
+    is that sometimes they...
+    }
+}
+
+\note {
+...give conflicting advice.
+
+Apparently, some special cases *are* enough to break the rules.
+But how do I know which ones?
+
+Or in the second half of the Zen...
+}
+
+\frame{
+    \scriptsize
+    There should be one– and preferably only one –obvious way to do it.
+
+    \medskip
+    Although that way may not be obvious at first unless you're Dutch.
+
+    \medskip
+    \hlt{2}{Now is better than never.}
+
+    \medskip
+    \hlt{2}{Although never is often better than \textit{right} now.}
+
+    \medskip
+    If the implementation is hard to explain, it's a bad idea.
+
+    \medskip
+    If the implementation is easy to explain, it may be a good idea.
+
+    \medskip
+    Namespaces are one honking great idea – let's do more of those!
+}
+
+\note {
+When is it a good time to do anything?
+
+Are these guidelines any good?
+
+Well, they are.
+}
+
+\frame{
+    Like all design,\\
+    language design is about \\
+    trade-offs.
+
+    \bigskip
+    \small
+    Decisions.
+
+    \bigskip
+    \scriptsize
+    Compromises.
+
+    \bigskip
+    \tiny
+    Balancing.
+}
+
+\note {
+*
+
+If you see conflicting guidelines, it's telling you that there's a place
+to weigh your options more carefully than usual,
+with more thought about what you're designing.
+
+Each programming language does this balancing, and each finds the right balance
+somewhere else.
+}
+
+\frame{
+    C code is close to the machine\\
+    {\small while still portable}
+
+    \bigskip
+    Java code is straightforward\\
+    {\small while still interesting}
+
+    \bigskip
+    Python code is hackable\\
+    {\small while still maintainable}
+}
+
+\note {
+*
+
+Now I find it interesting to look at different languages and see how they
+solve their problems –
+
+how they solve your problems; what tools they give you to solve your problems.
+}
+
+\frame{
+    C: Functions, structures, pointers
+
+    \bigskip
+    Java: Objects, methods  % XXX: -- Native types
+
+    \bigskip
+    C++: Functions, classes, {\\\small pointers, references, templates}
+
+    \bigskip
+    Lisp: Functions, macros
+}
+
+\note {
+\scriptsize
+C gives you functions, values, structures, and pointers.
+You need to construct everything out of these really basic,
+down to the metal elements.
+
+Java gives you objects and methods, and not too much else.
+
+C++ gives you *, exceptions, lots of different concepts to play with.
+
+Lisp gives you functions and macros, just a few basic building blocks,
+but ones you can build any of the above with.
+
+~
+
+And that results in different programming styles.
+}
+
+\frame{
+    C: Explicit is the only option
+
+    \bigskip
+    Java: “OONF” {\\\small $\rightarrow$ Design patterns}
+
+    \bigskip
+    C++: What do I use? {\\\small $\rightarrow$ Conflicting styles}
+
+    \bigskip
+    Lisp: Design a Language
+}
+
+\note {
+\scriptsize
+In C, you tend to build everything from scratch, but you have lots of control
+over everything.
+
+In Java – well, this is not a real acronym.
+Who here studied database normal forms?
+
+Basically, you have to adapt all behavior to fit the model of objects
+and named methods, sometimes in ways that feel contrived and impractical
+to Python programmers.
+And similar behavior is grouped into design patterns – different ways to use
+the object model.
+
+In C++, there's just too much for a person to keep in mind.
+Some programmers limit themselves to a subset of C++ – for example, they use
+references rather than pointers, or they disable exceptions.
+That works – until you have to use a library that makes different choices.
+
+In Lisp, you solve a problem by first building a language to solve similar
+problems, and then you write a rivial script in that language.
+It's quite elegant, but it forces everyone to be a language designer.
+And language design is hard.
+
+~
+}
+
+\begin{frame}[fragile]
+    Python
+    % XXX: In different languages
+
+    \small
+    \bigskip
+Iterators\\
+Callables\\
+Attribute \& Item access\\
+Classes\\
+Context managers\\
+Generators\\
+Coroutines\\
+\end{frame}
+
+\note {
+In Python, you get a rather large set of mechanisms to work with.
+
+Not as large as C++ – there aren't several tools that solve the same problem –
+but larger than C, or Javascript, or Lisp.
+
+How did this variety come to be?
+}
+
+\begin{frame}[fragile]
+    Blessing design patterns
+
+\begin{verbatim}
+f = open("data.txt")
+try:
+    process(f)
+finally:
+    close(f)
+\end{verbatim}
+
+    $\downarrow$
+
+\begin{verbatim}
+with open("data.txt") as f:
+    process(f)
+\end{verbatim}
+
+\note {
+\scriptsize
+In Python, when a large part of the community has a problem that is impractical
+to solve using current syntax, new syntax is added to the language.
+
+This is quite rare, and the discussions involved are excruciating.
+The new feature needs to work well with all of the rest of the language.
+
+The important thing about adding new syntax is that not only the rest of the
+language, but also libraries are empowered to use it.
+
+Custom classes can implement all of Python's operators–
+}
+
+% XXX: - must be useful to many users of the language, with no good workaround
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+    Extensibility
+
+    \bigskip
+    \verb+__iter__+\\
+    \verb+__call__+\\
+    \verb+__getattr__+ ~ \verb+__getitem__+\\
+    \verb+metaclass+\\
+    \verb+__enter__+ ~ \verb+__exit__+\\
+    \verb+__next__+\\
+    \verb+__await__+\\
+
+\end{frame}
+
+\note {
+and virtually all behavior of the built-in types and special syntax.
+
+It's reasonably easy to do, you just implement a method but...
+the names are pretty ugly.
+
+Why are thry ugly?
+
+To remind you that when you're using Numpy or Scrapy or Flask...
+You don't need these!
+}
+
+% 
+% {
+% \setbeamertemplate{navigation symbols}{}%remove navigation symbols
+% \begin{frame}[fragile]
+%     \begin{tikzpicture}[remember picture, overlay, transform shape]
+%         \node [anchor=south east, inner sep=0pt]
+%             at (current page.south east)
+%             {\tiny \textcolor{black!50!white}{\texttt{
+%                 Gauge Icon © Freepik (freepik.com) from Flaticon.com, CC-BY 3.0}}};
+%     \end{tikzpicture}
+% 
+%     \bigskip
+% 
+%     \begin{tikzpicture}
+%     \node {\includegraphics[width=4cm]{gauge}};
+% 
+%     \node[anchor=north east] at (210:2cm) {\small Crystal Clear};
+% 
+%     \node[anchor=south east] at (160:2cm) {\small Familiar};
+% 
+%     \node[anchor=south] at (90:2cm) {\small Understandable};
+% 
+%     \node[anchor=south west] at (20:2cm) {\small Magic};
+% 
+%     \node[anchor=north west] at (-30:2cm) {\small More magic};
+%     \end{tikzpicture}
+% \end{frame}
+% }
+
+\begin{frame}[fragile]
+
+    \_\_warning\_\_
+
+    \bigskip
+    \bigskip
+    great responsibility\\
+    follows inseparably\\
+    from great power
+
+    \scalebox{.4}{– \textit{Collection Générale des Décrets Rendus par la~Convention Nationale} (Paris, 1793)}
+\end{frame}
+
+\note {
+    As we've known for hundreds of years [223],
+    with great power comes great responsibility.
+
+    If you dabble in magic, you should understand the consequences.
+}
+
+
+\begin{frame}[fragile]
+
+    Simple things should be easy.
+
+    Complex things should be possible.
+
+    \pause
+    ~
+
+    Simple is better than complex.
+
+    \pause
+    $\Downarrow$
+
+    Complex things should be simplified.
+    % XXX: But you need to understand the complexity
+
+\end{frame}
+% 
+% \begin{frame}[fragile]
+% 
+%     Complex things should be simplified.
+%     % XXX: But you need to understand the complexity
+% 
+%     \bigskip
+% 
+%     Library authors know how to simplify
+% 
+%     % XXX: How? Experience
+%     
+% \end{frame}
+% 
+% \begin{frame}[fragile]
+% 
+%     % Python is built on idioms
+%     “Pythonic” code
+% 
+%     \small
+% \begin{verbatim}
+% for i in range(len(items)):
+%     item = items[i]
+%     ...
+% \end{verbatim}
+% 
+% $×$
+% 
+% \begin{verbatim}
+% for i, item in enumerate(items):
+%     ...
+% \end{verbatim}
+% 
+%     % Why?
+%     % - Uglier (??)
+%     % Not as generic - won't work on all iterables
+% 
+% \end{frame}
+
+\begin{frame}[fragile]
+    % XXX: In different languages
+
+    \small
+    \bigskip
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{centering}
+Iterators\\
+Callables\\
+Attributes, Items\\
+Classes\\
+Context managers\\
+Generators\\
+Coroutines\\
+\end{centering}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{centering}
+Performance\\
+Modularity\\
+Composability\\
+Safety\\
+Generality\\
+Readability\\
+Extensibility\\
+\end{centering}
+\end{column}
+\end{columns}
+\end{frame}
+
+\note {
+    Whenever you're writing a library – code that simplifies a common task –
+    you have to keep in mind not only the tools of the language,
+    but also general concepts like *.
+
+    Of course you should keep these in mind always, but it's much more important
+    for the library.
+
+    This gives us a pyramid of use cases – different levels
+}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{pyramid.jpg}}%
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+\begin{frame}[fragile]
+    \begin{tikzpicture}[remember picture, overlay, transform shape]
+        \node [anchor=south east, inner sep=0pt]
+            at (current page.south east)
+            {\tiny \textcolor{black!50!white}{\texttt{
+                Kheops pyramid, © Nina Aldin Thune, CC-BY-SA 3.0}}};
+    \end{tikzpicture}
+
+
+    \uncover<5->{Language Designers}  % XXX: Toolsmiths of toolsmiths
+    % Make tools for the toolsmiths
+    % If the ecosystem leaders decide they need new syntax or a new operator,
+    % they go to people who know everything there's to know about Python,
+    % who can balance the needs of everyone using the language.
+
+    \bigskip
+    \bigskip
+
+    \uncover<4->{Ecosystem Leaders}
+    % People writing Numpy, or MicroPython, or Flask
+    % They solve problems of a whole class of people
+    % and decide conventions for a whole subcommunity.
+
+    \bigskip
+    \bigskip
+
+    \uncover<3->{Library Authors}
+    % XXX: These people know more. It's probably most of you here – the people
+    % who go to conferences to learn their craft.
+    % % - They Make the tools to solve the users' specific problens
+    % %   - but also document their use
+    % % - Handle the necessary magic for you
+    % %   - but also tell you what to do
+
+    \bigskip
+    \bigskip
+
+    \uncover<2->{General Users}
+    % People writing computations with Numpy, or blinking Micro:bit LEDs,
+    % or creating webs with Flask
+    % THIS SHOULD BE EVERYBODY!
+
+    \note {{\tiny
+        This gives us a pyramid of use cases – different levels
+
+        1. People writing computations with Numpy, or blinking Micro:bit LEDs,
+        or creating webs with Flask. THIS SHOULD BE EVERYBODY!
+
+        2. These people know more. It's probably most of you here – the people
+            who go to conferences to learn their craft.
+            - They Make the tools to solve the users' specific problens
+            - but also document their use
+            - Handle the necessary magic for you
+            - but also tell you what to do
+        
+    3. People writing Numpy, or MicroPython, or Flask
+    They solve problems of a whole class of people
+    and decide conventions for a whole subcommunity.
+        
+    4. Make tools for the toolsmiths
+    If the ecosystem leaders decide they need new syntax or a new operator,
+    they go to people who know everything there's to know about Python,
+    who can balance the needs of everyone using the language.
+
+~ It's not about people, but about roles.
+If I'm writing a library, I need to design it much more carefully than
+application code.
+When I'm writing documentation for my library, I need to stick to what
+its users will know.
+And if I'm making them write a metaclass... I'm probably not doing my job
+very well. I'm probably not really simplifying.
+
+[cont - READ]
+
+        ~
+    }}
+
+\end{frame}
+}
+
+
+\begin{frame}[fragile]
+    Readability counts.
+    
+    \scalebox{.4}{ – Zen of Python}
+
+    \bigskip
+    \small
+    
+     “Programs must be written for people to read, and only incidentally for machines to execute.”
+
+    \scalebox{.4}{ – Harold Abelson, Structure and Interpretation of Computer Programs (1984)}
+\end{frame}
+
+\note {
+    ... you can use tools from higher levels at the lower levels, too
+    ... you can a metaclass, or monkeypatch a global, in user code as well.
+    The language doesn't prevent you from doing that.
+    ... it's pretty useful for debugging
+    No one is PREVENTING you from doing anything
+    BUT
+    It's important to keep to the levels, because
+    other people at this level will READ the code.
+}
+
+\begin{frame}[fragile]
+    Readability is the ease with which a reader can understand a written text.
+    
+    \small
+    In natural language, the readability of text depends on its content
+    (\hlt{2}{complexity of its vocabulary} \& syntax) and its presentation
+    (such as \hlt{2}{typographic aspects} like font size, line height, and line length).
+    
+    \scalebox{.5}{ – Wikipedia}
+    
+
+    \note {
+        So, what's readability?
+
+        Here's the Wikipedia definition.
+
+        *
+
+        Now, Wikipedia has a separate section specifically for code readability,
+        but the part about natural language readability applies...
+        interestingly well.
+
+        Let's highlight two parts of this definition; *
+
+    }
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{centering}
+    \fbox{\includegraphics[width=5cm]{thing-explainer}}
+\end{centering}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{center}
+Complexity of vocabulary
+
+\textasciitilde
+
+Familiarity
+
+~
+
+~
+
+\tiny “through”
+\end{center}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\note {
+    The complexity of vocabulary is not just the length of the words we use,
+    but, I think, familiarity plays a big role as well.
+
+    Take an ordinary word like “through”.
+    It's not not a particularly easy word to spell, but it's common.
+    You learn it early on, and then you don't think about the weirdness.
+}
+
+\begin{frame}[fragile]
+Idioms
+
+\begin{verbatim}
+temp = a
+a = b
+b = temp
+\end{verbatim}
+
+\hfill $×$ \hfill\hfill\hfill\hfill\hfill\hfill
+
+\begin{verbatim}
+b, a = a, b
+\end{verbatim}
+\end{frame}
+
+\note {
+    It's the same with Python idioms.
+    
+    You only have to learn the trick of swapping two variables once.
+    Then it's not magic any more.
+}
+
+
+\begin{frame}[fragile]
+Typography
+
+\bigskip
+{\small
+
+    Put a space after a comma.\\
+    Separate paragraphs well. $^\dag$\\
+    Use capitals where they belong.\\
+    66 characters per line is ideal. $^\dag$\\
+    Avoid 3+ consecutive hyphenated lines. $^\dag$\\
+}
+
+\scalebox{.5}{ $^\dag$~ R. Bringhurst, The Elements of Typographic Style (paraphrased)}
+\end{frame}
+
+\begin{frame}[fragile]
+Rules vs. Conventions
+\end{frame}
+
+\begin{frame}[fragile]
+We're all\\
+consenting adults.
+
+\bigskip
+\bigskip
+
+You can do anything!\\
+\pause
+{\small (but watch yourself in public)}
+\end{frame}
+
+\begin{frame}[fragile]
+Python managed to drag\\
+Java programmers\\
+another halfway to Lisp
+
+\pause
+\bigskip
+
+The concept of\\
+“Pythonic code”\\
+drags them\\
+halfway back to Java.
+\end{frame}
+
+\begin{frame}[fragile]
+\bigskip\bigskip\bigskip\bigskip\bigskip
+
+\scalebox{5}{?}
+
+\bigskip\bigskip\bigskip\bigskip
+\small Petr Viktorin
+
+{\tiny
+encukou@gmail.com\\
+github.com/encukou\\
+}
+\end{frame}
+
+
+\end{center}
+\end{document}
+
