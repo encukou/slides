@@ -2,7 +2,10 @@
 \usepackage{pgfpages}
 \usepackage{fontspec}
 \usepackage{amsfonts}
-\usepackage{tangocolors}
+
+\definecolor{ta3gray}{rgb}{0.18039, 0.20392, 0.21176}       % #2e3436
+\definecolor{tachameleon}{rgb}{0.44118, 0.78627, 0.10392}   % #8ae234
+\definecolor{ta2gray}{rgb}{0.33333, 0.34118, 0.32549}       % #555753
 
 \usepackage{tikz}
 \usetikzlibrary{shapes}
@@ -16,7 +19,7 @@
 
 \renewcommand\emph{\textcolor{tachameleon}}
 
-\setbeameroption{show notes on second screen=bottom}
+\setbeameroption{show notes on second screen=right}
 
 \setbeamercolor{item projected}{fg=black}
 \setbeamerfont{enumerate item}{family={\fontspec{Fertigo Pro}}}
@@ -63,6 +66,10 @@
 
 
 \frame{
+Hi!
+}
+
+\frame{
 
     “We were after the C++~programmers.
 
@@ -72,6 +79,10 @@
     \bigskip\bigskip
     \scalebox{.4}{– Guy Steele, co-author of the Java spec }
 
+}
+
+\note {
+    Here's a famous quote by the author of the Java language.
 }
 
 \frame{
@@ -93,6 +104,22 @@
     }
 
     \scalebox{.4}{\alt<1>{– “Revenge of the Nerds” by Paul Graham}{~}}
+
+    \note {
+        \tiny
+        Paul Graham provided a list of things that make Lisp different.
+
+        Two of them are already in C and C++.
+
+        Java added just a few more of these.
+
+        Python adds quite a lot more – you could say it dragged Java programmers
+        \emph{another half-way} to Lisp.
+        (Yes, Python's technically newer than Java, but I'm looking at
+        Python 2.5 or so here.)
+
+        Do we want to go the \emph{rest of the way}, and become Lisp?
+    }
 }
 
 \frame{
@@ -112,12 +139,13 @@
 }
 
 \note {
- And it's full of stereotypes.
+ And it's full of \emph{stereotypes}.
 
 Some other languages might not be portrayed here in the best light,
 as I don't have time to explain all the nuances.
 
 Anyway, if I'm talking about Python's language design, I have to mention...
+The \emph{Zen}!
 }
 
 \frame{
@@ -164,6 +192,8 @@ Anyway, if I'm talking about Python's language design, I have to mention...
     
     Now, something that always bothered me about these nuggets of wisdom
     is that sometimes they...
+    
+    \emph{conflict}!
     }
 }
 
@@ -202,7 +232,7 @@ Or in the second half of the Zen...
 \note {
 When is it a good time to do anything?
 
-Are these guidelines any good?
+Are these \emph{guidelines any good}?
 
 Well, they are.
 }
@@ -229,10 +259,11 @@ Well, they are.
 *
 
 If you see conflicting guidelines, it's telling you that there's a place
-to weigh your options more carefully than usual,
+to \emph{weigh} your \emph{options} more \emph{carefully} than usual,
 with more thought about what you're designing.
 
-Each programming language does this balancing, and each finds the right balance
+\emph{Each programming language} does this balancing,
+and each finds the right balance
 somewhere else.
 }
 
@@ -252,17 +283,17 @@ somewhere else.
 \note {
 *
 
-Now I find it interesting to look at different languages and see how they
+Now I find it interesting to \emph{look} at \emph{different languages} and see how they
 solve their problems –
 
-how they solve your problems; what tools they give you to solve your problems.
+by what \emph{tools} they give you to solve your problems.
 }
 
 \frame{
     C: Functions, structures, pointers
 
     \bigskip
-    Java: Objects, methods  % XXX: -- Native types
+    Java: Objects, methods
 
     \bigskip
     C++: Functions, classes, {\\\small pointers, references, templates}
@@ -274,14 +305,14 @@ how they solve your problems; what tools they give you to solve your problems.
 \note {
 \scriptsize
 C gives you functions, values, structures, and pointers.
-You need to construct everything out of these really basic,
+You need to \emph{construct everything} out of these really basic,
 down to the metal elements.
 
-Java gives you objects and methods, and not too much else.
+Java gives you objects and methods, and \emph{not too much else}.
 
-C++ gives you *, exceptions, lots of different concepts to play with.
+C++ gives you *, \emph{exceptions}, lots of \emph{different concepts} to play with.
 
-Lisp gives you functions and macros, just a few basic building blocks,
+Lisp gives you \emph{functions and macros}, just a few basic building blocks,
 but ones you can build any of the above with.
 
 ~
@@ -303,27 +334,27 @@ And that results in different programming styles.
 }
 
 \note {
-\scriptsize
-In C, you tend to build everything from scratch, but you have lots of control
+\tiny
+In C, you tend to build everything \emph{from scratch}, but you have lots of \emph{control}
 over everything.
 
-In Java – well, this is not a real acronym.
+In Java – well, this is \emph{not a real acronym}.
 Who here studied database normal forms?
 
 Basically, you have to adapt all behavior to fit the model of objects
-and named methods, sometimes in ways that feel contrived and impractical
+and named methods, sometimes in ways that feel \emph{contrived and impractical}
 to Python programmers.
-And similar behavior is grouped into design patterns – different ways to use
+And similar behavior is grouped into \emph{design patterns} – different ways to use
 the object model.
 
-In C++, there's just too much for a person to keep in mind.
-Some programmers limit themselves to a subset of C++ – for example, they use
+In C++, there's \emph{just too much} for a person to keep in mind.
+Some programmers \emph{limit} themselves to a subset of C++ – for example, they use
 references rather than pointers, or they disable exceptions.
-That works – until you have to use a library that makes different choices.
+That works – until you have to use a \emph{library} that makes \emph{different choices}.
 
-In Lisp, you solve a problem by first building a language to solve similar
+In Lisp, you solve a problem by first \emph{building a language} to solve similar
 problems, and then you write a rivial script in that language.
-It's quite elegant, but it forces everyone to be a language designer.
+It's quite elegant, but it forces everyone to be a \emph{language designer}.
 And language design is hard.
 
 ~
@@ -345,12 +376,12 @@ Coroutines\\
 \end{frame}
 
 \note {
-In Python, you get a rather large set of mechanisms to work with.
+In Python, you get a \emph{rather large set} of mechanisms to work with.
 
-Not as large as C++ – there aren't several tools that solve the same problem –
+Not as large as C++ – there \emph{aren't several tools} that solve the same problem –
 but larger than C, or Javascript, or Lisp.
 
-How did this variety come to be?
+How did this variety \emph{come to be}?
 }
 
 \begin{frame}[fragile]
@@ -373,16 +404,16 @@ with open("data.txt") as f:
 
 \note {
 \scriptsize
-In Python, when a large part of the community has a problem that is impractical
+In Python, when a \emph{large part of the community} has a problem that is \emph{impractical}
 to solve using current syntax, new syntax is added to the language.
 
-This is quite rare, and the discussions involved are excruciating.
+This is quite rare, and the \emph{discussions} involved are \emph{excruciating}.
 The new feature needs to work well with all of the rest of the language.
 
 The important thing about adding new syntax is that not only the rest of the
-language, but also libraries are empowered to use it.
+language, but also \emph{libraries are empowered} to use it.
 
-Custom classes can implement all of Python's operators–
+Custom classes can implement all of Python's \emph{operators}–
 }
 
 % XXX: - must be useful to many users of the language, with no good workaround
@@ -407,13 +438,15 @@ Custom classes can implement all of Python's operators–
 \note {
 and virtually all behavior of the built-in types and special syntax.
 
-It's reasonably easy to do, you just implement a method but...
+It's \emph{reasonably easy} to do, you just implement a method but...
 the names are pretty ugly.
 
-Why are thry ugly?
+\emph{Why are they ugly}?
 
-To remind you that when you're using Numpy or Scrapy or Flask...
+To remind you that normally...
 You don't need these!
+
+Using these \emph{powerful} tools...
 }
 
 % 
@@ -459,10 +492,10 @@ You don't need these!
 \end{frame}
 
 \note {
-    As we've known for hundreds of years [223],
-    with great power comes great responsibility.
+    ...is a great \emph{responsibility},
+    as we've known for hundreds of years [223].
 
-    If you dabble in magic, you should understand the consequences.
+    If you \emph{dabble in magic}, you should understand the consequences.
 }
 
 
@@ -481,7 +514,15 @@ You don't need these!
     $\Downarrow$
 
     Complex things should be simplified.
-    % XXX: But you need to understand the complexity
+    
+
+\note {
+    So, how does this work?
+    
+    * 
+    
+    \emph{But you need to understand the complexity}
+}
 
 \end{frame}
 % 
@@ -555,14 +596,14 @@ Extensibility\\
 \end{frame}
 
 \note {
-    Whenever you're writing a library – code that simplifies a common task –
-    you have to keep in mind not only the tools of the language,
-    but also general concepts like *.
+    Whenever you're writing a library – code that \emph{simplifies} a common task –
+    you have to keep in mind not only the \emph{tools} of the language,
+    but also general \emph{concepts} like *.
 
-    Of course you should keep these in mind always, but it's much more important
+    Of course you should keep these in mind \emph{always}, but it's much more important
     for the library.
 
-    This gives us a pyramid of use cases – different levels
+    This gives us a \emph{pyramid} (or \emph{ladder}) of use cases – different levels
 }
 
 {
@@ -614,33 +655,33 @@ Extensibility\\
         This gives us a pyramid of use cases – different levels
 
         1. People writing computations with Numpy, or blinking Micro:bit LEDs,
-        or creating webs with Flask. THIS SHOULD BE EVERYBODY!
+        or creating webs with Flask. \emph{THIS SHOULD BE EVERYBODY}!
 
         2. These people know more. It's probably most of you here – the people
-            who go to conferences to learn their craft.
-            - They Make the tools to solve the users' specific problens
-            - but also document their use
-            - Handle the necessary magic for you
-            - but also tell you what to do
+            who go to \emph{conferences} to learn their craft.
+            - They \emph{Make the tools} to solve the users' specific problens
+            - but also \emph{document} their use
+            - Handle the necessary \emph{magic} for you
+            - but also \emph{tell you} what to do
         
     3. People writing Numpy, or MicroPython, or Flask
     They solve problems of a whole class of people
-    and decide conventions for a whole subcommunity.
+    and decide \emph{conventions} for a whole \emph{subcommunity}.
         
-    4. Make tools for the toolsmiths
-    If the ecosystem leaders decide they need new syntax or a new operator,
+    4. Make tools for the \emph{toolsmiths}
+    If the ecosystem leaders decide they need \emph{new syntax} or a new \emph{operator},
     they go to people who know everything there's to know about Python,
-    who can balance the needs of everyone using the language.
+    who can \emph{balance} the needs of \emph{everyone} using the language.
 
-~ It's not about people, but about roles.
-If I'm writing a library, I need to design it much more carefully than
+~ It's not about people, but about \emph{roles}.
+If I'm writing a library, I need to \emph{design} it much more carefully than
 application code.
-When I'm writing documentation for my library, I need to stick to what
+When I'm writing \emph{documentation} for my library, I need to stick to what
 its users will know.
-And if I'm making them write a metaclass... I'm probably not doing my job
+And if I'm making them write a \emph{metaclass}... I'm probably not doing my job
 very well. I'm probably not really simplifying.
 
-[cont - READ]
+[cont - \emph{READ}]
 
         ~
     }}
@@ -663,14 +704,14 @@ very well. I'm probably not really simplifying.
 \end{frame}
 
 \note {
-    ... you can use tools from higher levels at the lower levels, too
+    ... you can use tools from \emph{higher levels} at the lower levels, too
     ... you can a metaclass, or monkeypatch a global, in user code as well.
-    The language doesn't prevent you from doing that.
-    ... it's pretty useful for debugging
+    The language doesn't \emph{prevent you} from doing that.
+    ... it's pretty useful for \emph{debugging}
     No one is PREVENTING you from doing anything
     BUT
     It's important to keep to the levels, because
-    other people at this level will READ the code.
+    other people at this level will \emph{READ} the code.
 }
 
 \begin{frame}[fragile]
@@ -691,7 +732,7 @@ very well. I'm probably not really simplifying.
 
         *
 
-        Now, Wikipedia has a separate section specifically for code readability,
+        Now, Wikipedia has a separate section specifically for \emph{code readability},
         but the part about natural language readability applies...
         interestingly well.
 
@@ -730,11 +771,11 @@ Familiarity
 
 \note {
     The complexity of vocabulary is not just the length of the words we use,
-    but, I think, familiarity plays a big role as well.
+    but, I think, \emph{familiarity} plays a big role as well.
 
     Take an ordinary word like “through”.
-    It's not not a particularly easy word to spell, but it's common.
-    You learn it early on, and then you don't think about the weirdness.
+    It's not not a particularly easy word to spell, but it's \emph{common}.
+    You learn it early on, and then you don't think about the \emph{weirdness}.
 }
 
 \begin{frame}[fragile]
@@ -754,10 +795,14 @@ b, a = a, b
 \end{frame}
 
 \note {
-    It's the same with Python idioms.
-    
+    It's the same with Python \emph{idioms}.
+
     You only have to learn the trick of swapping two variables once.
-    Then it's not magic any more.
+    Then it's \emph{not magic} any more.
+
+    And as you learn more and more idioms, and concepts behind them,
+    they become less magic for you – but, when using them to write code,
+    you still have to keep your audience in mind.
 }
 
 
@@ -777,9 +822,34 @@ Typography
 \scalebox{.5}{ $^\dag$~ R. Bringhurst, The Elements of Typographic Style (paraphrased)}
 \end{frame}
 
+
+\note {
+    \tiny
+    The other part of readability is \emph{typography} – the layout of text on a page.
+    Here, Python takes a lot of inspiration from printed books as well.
+
+    \emph{PEP8}, the style guide, tells us to
+    put a space after a comma, separate function definitions with a certain
+    number of blank lines, use lowercase names with underscores,
+    limit line length, and avoid up very long lines.
+
+    Typography rules – except for whitespace in indentation – are not \emph{hard rules}.
+    It's not part of the syntax. You can \emph{break} these.
+
+    But you'll get \emph{ugly looks} from the community.
+}
+
 \begin{frame}[fragile]
 Rules vs. Conventions
 \end{frame}
+
+\note {
+    And the community, and the \emph{“soft” rules} it enforces, are a big reason why
+    Python is the language it is.
+    It's not just about syntax, it's about the idioms, the \emph{shared knowledge} of
+    the \emph{“one obvious way to do it”} – which is often not that obvious until
+    you learn it; until you \emph{think} about it.
+}
 
 \begin{frame}[fragile]
 We're all\\
@@ -793,6 +863,14 @@ You can do anything!\\
 {\small (but watch yourself in public)}
 \end{frame}
 
+\note {
+    You can break rules, and you can \emph{twist} the language in many weird ways.
+    Python's philosophy is to not prevent you, and instead, let the community
+    concept of \emph{“Pythonic code”} do the policing.
+
+    *
+}
+
 \begin{frame}[fragile]
 Python managed to drag\\
 Java programmers\\
@@ -805,6 +883,16 @@ The concept of\\
 “Pythonic code”\\
 drags them\\
 halfway back to Java.
+
+
+\note {
+    If Python dragged Java programmers \emph{half-way} to Lisp,
+    Pythonicity drags them right back to \emph{static typing}
+    and \emph{predicable, familiar} code to balance thigs out.
+
+    And that's great for \emph{maintainability}!
+}
+
 \end{frame}
 
 \begin{frame}[fragile]
@@ -821,6 +909,9 @@ github.com/encukou\\
 }
 \end{frame}
 
+\note {
+    Thanks for your attention!
+}
 
 \end{center}
 \end{document}
