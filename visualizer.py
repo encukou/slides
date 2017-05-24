@@ -18,7 +18,8 @@ import pygit2
 class VisualizationApp(App):
     def __init__(self):
         super().__init__()
-        self.blob_widgets = {}
+        self.object_widgets = {}
+        self.edge_widgets = []
         Clock.schedule_interval(self.update, 1/30)
         self.repo = pygit2.Repository('.')
 
@@ -34,13 +35,21 @@ class VisualizationApp(App):
             blob,
             x=self.layout.width/2, y=self.layout.height/2,
         )
-        self.layout.add_widget(widget)
-        self.blob_widgets[blob.id] = widget
+        self.layout.add_widget(widget, 0)
+        self.object_widgets[blob.hex] = widget
+        return widget
+
+    def add_edge_widget(self, a, b):
+        widget = EdgeWidget(
+            self.object_widgets[a.hex], self.object_widgets[b.hex],
+        )
+        self.layout.add_widget(widget, len(self.layout.children))
+        self.edge_widgets.append(widget)
         return widget
 
     def update(self, t):
-        for blob in self.blob_widgets.values():
-            for other in self.blob_widgets.values():
+        for blob in self.object_widgets.values():
+            for other in self.object_widgets.values():
                 fx, fy = self.interaction(blob, other)
 
                 # Attraction to center
@@ -97,7 +106,9 @@ class VisualizationApp(App):
         return fx, fy
 
     def rescan(self):
-        unvisited = set(self.blob_widgets)
+        self.layout.clear_widgets(self.edge_widgets)
+
+        unvisited = set(self.object_widgets)
         visited = set()
 
         def _scan(blob):
@@ -115,8 +126,10 @@ class VisualizationApp(App):
             if isinstance(blob, pygit2.Tree):
                 for child in blob:
                     _scan(child)
+                    self.add_edge_widget(blob, child)
             elif isinstance(blob, pygit2.Commit):
                 _scan(blob.tree)
+                self.add_edge_widget(blob, blob.tree)
 
         if self.repo.head:
             _scan(self.repo.head.peel())
@@ -130,9 +143,6 @@ class BlobWidget(Scatter):
     def __init__(self, blob, **kwargs):
         kwargs.setdefault('size', (50, 50))
         super().__init__(**kwargs)
-        #self.bind(pos=self.update_canvas)
-        #self.bind(size=self.update_canvas)
-        #self.update_canvas()
         self.pos = 0, 0
 
         if isinstance(blob, pygit2.Tree):
@@ -169,6 +179,25 @@ class BlobWidget(Scatter):
         x +=  - self.pos[0]
         y +=  - self.pos[1]
         return x**2 + y**2 < r ** 2
+
+class EdgeWidget(Widget):
+    size_hint = None, None
+    def __init__(self, a, b, **kwargs):
+        self.a = a
+        self.b = b
+        super().__init__(**kwargs)
+
+        a.bind(pos=self.update_points)
+        b.bind(pos=self.update_points)
+
+        with self.canvas.before:
+            graphics.Color(1, 1, 1, 1)
+            self.line = graphics.Line(
+                points=[a.x, a.y, b.x, b.y],
+            )
+
+    def update_points(self, x, y):
+        self.line.points = [self.a.x, self.a.y, self.b.x, self.b.y]
 
 
 VisualizationApp().run()
