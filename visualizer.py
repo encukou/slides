@@ -19,12 +19,14 @@ class VisualizationApp(App):
     def __init__(self):
         super().__init__()
         self.object_widgets = {}
-        self.edge_widgets = []
+        self.edges = {}
         Clock.schedule_interval(self.update, 1/30)
         self.repo = pygit2.Repository('.')
 
     def build(self):
         self.layout = RelativeLayout()
+        self.edge_widget = Widget()
+        self.layout.add_widget(self.edge_widget)
 
         self.rescan()
 
@@ -39,13 +41,13 @@ class VisualizationApp(App):
         self.object_widgets[blob.hex] = widget
         return widget
 
-    def add_edge_widget(self, a, b):
-        widget = EdgeWidget(
+    def add_edge(self, cls, a, b):
+        edge = cls(
             self.object_widgets[a.hex], self.object_widgets[b.hex],
+            self.edge_widget.canvas,
         )
-        self.layout.add_widget(widget, len(self.layout.children))
-        self.edge_widgets.append(widget)
-        return widget
+        self.edges.setdefault((a.hex, b.hex), []).append(edge)
+        return edge
 
     def update(self, t):
         for blob in self.object_widgets.values():
@@ -93,20 +95,22 @@ class VisualizationApp(App):
             fx += ndx * repulsion
             fy += ndy * repulsion
 
-        #for edge in self.edges.get((obj, obj2), {}).values():
-            #dfx, dfy = edge.force(distance, ndx, ndy, dx, dy)
-            #fx += dfx
-            #fy += dfy
-        #for edge in self.edges.get((obj2, obj), {}).values():
-            #dfx, dfy = edge.force(distance, -ndx, -ndy, -dx, -dy)
-            #fx -= dfx
-            #fy -= dfy
+        for edge in self.edges.get((obj.hex, obj2.hex), []):
+            dfx, dfy = edge.force(distance, ndx, ndy, dx, dy)
+            fx += dfx
+            fy += dfy
+        for edge in self.edges.get((obj2.hex, obj.hex), []):
+            dfx, dfy = edge.force(distance, -ndx, -ndy, -dx, -dy)
+            fx -= dfx
+            fy -= dfy
             #if obj2.reachable:
-                #obj.reachable = max(obj.reachable, obj2.reachable) * 0.9
+            #    obj.reachable = max(obj.reachable, obj2.reachable) * 0.9
+
         return fx, fy
 
     def rescan(self):
-        self.layout.clear_widgets(self.edge_widgets)
+        self.edge_widget.canvas.before.clear()
+        self.edges = {}
 
         unvisited = set(self.object_widgets)
         visited = set()
@@ -126,10 +130,10 @@ class VisualizationApp(App):
             if isinstance(blob, pygit2.Tree):
                 for child in blob:
                     _scan(child)
-                    self.add_edge_widget(blob, child)
+                    self.add_edge(TreeContentEdge, blob, child)
             elif isinstance(blob, pygit2.Commit):
                 _scan(blob.tree)
-                self.add_edge_widget(blob, blob.tree)
+                self.add_edge(CommitTreeEdge, blob, blob.tree)
 
         if self.repo.head:
             _scan(self.repo.head.peel())
@@ -144,6 +148,7 @@ class BlobWidget(Scatter):
         kwargs.setdefault('size', (50, 50))
         super().__init__(**kwargs)
         self.pos = 0, 0
+        self.hex = blob.hex
 
         if isinstance(blob, pygit2.Tree):
             color = 1/2, 1, 1/2
@@ -180,12 +185,12 @@ class BlobWidget(Scatter):
         y +=  - self.pos[1]
         return x**2 + y**2 < r ** 2
 
-class EdgeWidget(Widget):
+class Edge:
     size_hint = None, None
-    def __init__(self, a, b, **kwargs):
+    def __init__(self, a, b, canvas):
         self.a = a
         self.b = b
-        super().__init__(**kwargs)
+        self.canvas = canvas
 
         a.bind(pos=self.update_points)
         b.bind(pos=self.update_points)
@@ -198,6 +203,17 @@ class EdgeWidget(Widget):
 
     def update_points(self, x, y):
         self.line.points = [self.a.x, self.a.y, self.b.x, self.b.y]
+
+    def force(self, distance, ndx, ndy, dx, dy):
+        return -ndx * 30, -ndy * 30
+
+class TreeContentEdge(Edge):
+    def force(self, distance, ndx, ndy, dx, dy):
+        return -ndx * 40, -ndy * 40 + 20
+
+class CommitTreeEdge(Edge):
+    def force(self, distance, ndx, ndy, dx, dy):
+        return -ndx * 40, -ndy * 40 + 30
 
 
 VisualizationApp().run()
