@@ -28,7 +28,7 @@ class VisualizationApp(App):
         self.edge_widget = Widget()
         self.layout.add_widget(self.edge_widget)
 
-        self.rescan()
+        Clock.schedule_interval(lambda t: self.rescan(), 2)
 
         return self.layout
 
@@ -51,12 +51,15 @@ class VisualizationApp(App):
         return widget
 
     def add_edge(self, cls, a, b):
-        edge = cls(
-            self.visualization_widgets[a], self.visualization_widgets[b],
-            self.edge_widget.canvas,
-        )
-        self.edges.setdefault((a, b), []).append(edge)
-        return edge
+        try:
+            return self.edges[a, b]
+        except KeyError:
+            edge = cls(
+                self.visualization_widgets[a], self.visualization_widgets[b],
+                self.edge_widget.canvas,
+            )
+            self.edges[a, b] = edge
+            return edge
 
     def update(self, t):
         for blob in self.visualization_widgets.values():
@@ -64,21 +67,31 @@ class VisualizationApp(App):
                 fx, fy = self.interaction(blob, other)
 
                 # Attraction to center
-                fx += ((self.layout.width/2 - blob.x) / self.layout.width * 10) ** 3
-                fy += ((self.layout.height/2 - blob.y) / self.layout.height * 10) ** 3
+                cx = ((self.layout.width/2 - blob.x) / self.layout.width * 10) ** 3
+                cy = ((self.layout.height/2 - blob.y) / self.layout.height * 10) ** 3
+                if blob.reachable:
+                    fx += cx
+                    fy += cy
+                else:
+                    fx -= cx
+                    fy -= cy
 
                 if not blob._touches:
                     blob.x += fx * t
                     blob.y += fy * t
 
-                if blob.x < blob.radius:
-                    blob.x = blob.radius
-                if blob.y < blob.radius:
-                    blob.y = blob.radius
-                if blob.x > self.layout.width - blob.radius:
-                    blob.x = self.layout.width - blob.radius
-                if blob.y > self.layout.height - blob.radius:
-                    blob.y = self.layout.height - blob.radius
+                if blob.reachable:
+                    threshold = blob.radius
+                else:
+                    threshold = -blob.radius - 5
+                if blob.x < threshold:
+                    blob.x = threshold
+                if blob.y < threshold:
+                    blob.y = threshold
+                if blob.x > self.layout.width - threshold:
+                    blob.x = self.layout.width - threshold
+                if blob.y > self.layout.height - threshold:
+                    blob.y = self.layout.height - threshold
 
     def interaction(self, obj, obj2):
         fx = fy = 0
@@ -104,11 +117,13 @@ class VisualizationApp(App):
             fx += ndx * repulsion
             fy += ndy * repulsion
 
-        for edge in self.edges.get((obj.name, obj2.name), []):
+        edge = self.edges.get((obj.name, obj2.name))
+        if edge:
             dfx, dfy = edge.force(distance, ndx, ndy, dx, dy)
             fx += dfx
             fy += dfy
-        for edge in self.edges.get((obj2.name, obj.name), []):
+        edge = self.edges.get((obj2.name, obj.name))
+        if edge:
             dfx, dfy = edge.force(distance, -ndx, -ndy, -dx, -dy)
             fx -= dfx
             fy -= dfy
@@ -118,20 +133,32 @@ class VisualizationApp(App):
         return fx, fy
 
     def rescan(self):
-        self.edge_widget.canvas.before.clear()
-        self.edges = {}
+        print('rescan')
+        #self.edge_widget.canvas.before.clear()
 
-        unvisited = set(self.visualization_widgets)
+        unvisited_widgets = set(self.visualization_widgets)
+        unvisited_edges = set(self.edges)
         visited = set()
+        to_position = set()
+
+        def _reach(widget):
+            if not widget.reachable:
+                to_position.add(widget)
+            return widget
+
+        def _add_edge(cls, a, b):
+            edge = self.add_edge(cls, a, b)
+            unvisited_edges.discard((a, b))
+            return edge
 
         def _scan(obj):
             if obj.hex in visited:
-                return self.visualization_widgets[obj.hex]
+                return _reach(self.visualization_widgets[obj.hex])
             else:
                 visited.add(obj.hex)
 
-            if obj.hex in unvisited:
-                unvisited.discard(obj.hex)
+            if obj.hex in unvisited_widgets:
+                unvisited_widgets.discard(obj.hex)
             else:
                 self.add_object_widget(obj)
 
@@ -139,15 +166,15 @@ class VisualizationApp(App):
                 for entry in obj:
                     child = self.repo[entry.hex]
                     _scan(child)
-                    self.add_edge(TreeContentEdge, obj.hex, child.hex)
+                    _add_edge(TreeContentEdge, obj.hex, child.hex)
             elif isinstance(obj, pygit2.Commit):
                 _scan(obj.tree)
-                self.add_edge(CommitTreeEdge, obj.hex, obj.tree.hex)
+                _add_edge(CommitTreeEdge, obj.hex, obj.tree.hex)
                 for parent in obj.parents:
                     _scan(parent)
-                    self.add_edge(CommitParentEdge, obj.hex, parent.hex)
+                    _add_edge(CommitParentEdge, obj.hex, parent.hex)
 
-            return self.visualization_widgets[obj.hex]
+            return _reach(self.visualization_widgets[obj.hex])
 
         def _scan_ref(ref_name):
             try:
@@ -156,12 +183,12 @@ class VisualizationApp(App):
                 return
 
             if ref.name in visited:
-                return self.visualization_widgets[ref.name]
+                return _reach(self.visualization_widgets[ref.name])
             else:
                 visited.add(ref.name)
 
-            if ref.name in unvisited:
-                unvisited.discard(ref.name)
+            if ref.name in unvisited_widgets:
+                unvisited_widgets.discard(ref.name)
             else:
                 self.add_ref_widget(ref)
 
@@ -171,19 +198,26 @@ class VisualizationApp(App):
             else:
                 target_widget = _scan(self.repo[target])
             if target_widget:
-                self.add_edge(RefEdge,
-                              ref.name,
-                              target_widget.name)
+                _add_edge(RefEdge, ref.name, target_widget.name)
 
-            return self.visualization_widgets[ref.name]
+            return _reach(self.visualization_widgets[ref.name])
 
         _scan_ref('HEAD')
 
         for blob in self.repo.index:
             _scan(blob)
 
-        for old_id in unvisited:
-            raise ValueError('old object')
+        for old_id in unvisited_widgets:
+             self.visualization_widgets[old_id].reachable = False
+
+        for old_name in unvisited_edges:
+            self.edges[old_name].remove()
+            self.edges.pop(old_name)
+
+        for widget in to_position:
+            widget.reachable = True
+            widget.x = self.layout.width / 2
+            widget.y = self.layout.height / 2
 
 
 class VisualizationWidget(Scatter):
@@ -191,41 +225,48 @@ class VisualizationWidget(Scatter):
 
     def __init__(self, name, **kwargs):
         super().__init__(**kwargs)
+        self.reachable = False
 
         label = Label(
             text=name,
             x=-self.width/2, y=-self.height/2, size=self.size,
-            color=(0, 0, 0, 0),
+            color=(*self.text_color, 0),
             valign='center', halign='center',
             font_name='LiberationMono-Bold',
         )
         self.add_widget(label)
-        Animation(color=(0, 0, 0, 1), duration=0.1).start(label)
+        Animation(color=(*self.text_color, 1), duration=0.7).start(label)
 
 
 class ObjectWidget(VisualizationWidget):
     def __init__(self, blob, **kwargs):
         kwargs.setdefault('size', (50, 50))
-        super().__init__(blob.hex[:5], **kwargs)
-        self.name = blob.hex
+
 
         if isinstance(blob, pygit2.Tree):
-            color = 1/2, 1, 1/2
+            self.text_color = 1/2, 1, 1/2
         elif isinstance(blob, pygit2.Blob):
-            color = 1/2, 1/2, 1/2
+            self.text_color = 1/2, 1/2, 1/2
         elif isinstance(blob, pygit2.Commit):
-            color = 1/2, 1/2, 1
+            self.text_color = 1/2, 1/2, 1
         else:
-            color = 1, 1/2, 1/2
+            self.text_color = 1, 1/2, 1/2
+
+        super().__init__(blob.hex[:5], **kwargs)
+        self.name = blob.hex
 
         r = self.radius = self.width / 2
 
         with self.canvas.before:
-            graphics.Color(*color)
-            self.bg_ellipse = graphics.Ellipse(pos=(-r, -r), size=self.size)
+            graphics.Color(*self.text_color)
+            s = r * 2 + 4
+            self.bg_ellipse = graphics.Ellipse(pos=(-r-2, -r-2), size=(s, s))
+            graphics.Color(0, 0, 0, 0.95)
+            s = r * 2
+            self.bk_ellipse = graphics.Ellipse(pos=(-r, -r), size=(s, s))
 
         self.bg_ellipse.angle_end = 0
-        Animation(angle_end=360, duration=0.2).start(self.bg_ellipse)
+        Animation(angle_end=360, duration=0.5).start(self.bg_ellipse)
 
     def collide_point(self, x, y):
         r = self.size[0]/2
@@ -237,10 +278,10 @@ class ObjectWidget(VisualizationWidget):
 class RefWidget(VisualizationWidget):
     def __init__(self, ref, **kwargs):
         kwargs.setdefault('size', (80, 20))
+        color = 1/2, 1, 1
+        self.text_color = 0, 0, 0
         super().__init__(ref.shorthand, **kwargs)
         self.name = ref.name
-
-        color = 1/2, 1, 1
 
         self.radius = self.height / 2
 
@@ -273,10 +314,19 @@ class Edge:
         b.bind(pos=self.update_points)
 
         with self.canvas.before:
-            graphics.Color(*self.color, 1)
+            self.color_instruction = graphics.Color(*self.color, 0)
             self.line = graphics.Line(
                 points=[a.x, a.y, b.x, b.y],
+                width=1.1,
             )
+
+        anim = Animation(rgba=(*self.color, 0), duration=0.1)
+        anim += Animation(rgba=(*self.color, 1), duration=0.5)
+        anim.start(self.color_instruction)
+
+    def remove(self):
+        self.canvas.before.remove(self.color_instruction)
+        self.canvas.before.remove(self.line)
 
     def update_points(self, x, y):
         self.line.points = [self.a.x, self.a.y, self.b.x, self.b.y]
@@ -306,7 +356,7 @@ class RefEdge(Edge):
     color = 1/2, 1, 1
 
     def force(self, distance, ndx, ndy, dx, dy):
-        return -ndx * 50, -ndy * 50 + 30
+        return -ndx * 50 + 10, -ndy * 50 + 30
 
 
 VisualizationApp().run()
