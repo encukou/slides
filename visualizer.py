@@ -18,10 +18,10 @@ import pygit2
 class VisualizationApp(App):
     def __init__(self):
         super().__init__()
-        self.object_widgets = {}
+        self.visualization_widgets = {}
         self.edges = {}
         Clock.schedule_interval(self.update, 1/30)
-        self.repo = pygit2.Repository('.')
+        self.repo = pygit2.Repository('/tmp/testrepo')
 
     def build(self):
         self.layout = RelativeLayout()
@@ -32,26 +32,35 @@ class VisualizationApp(App):
 
         return self.layout
 
-    def add_blob_widget(self, blob):
-        widget = BlobWidget(
+    def add_object_widget(self, blob):
+        widget = ObjectWidget(
             blob,
             x=self.layout.width/2, y=self.layout.height/2,
         )
         self.layout.add_widget(widget, 0)
-        self.object_widgets[blob.hex] = widget
+        self.visualization_widgets[blob.hex] = widget
+        return widget
+
+    def add_ref_widget(self, ref):
+        widget = RefWidget(
+            ref,
+            x=self.layout.width/2, y=self.layout.height/2,
+        )
+        self.layout.add_widget(widget, 0)
+        self.visualization_widgets[ref.name] = widget
         return widget
 
     def add_edge(self, cls, a, b):
         edge = cls(
-            self.object_widgets[a.hex], self.object_widgets[b.hex],
+            self.visualization_widgets[a], self.visualization_widgets[b],
             self.edge_widget.canvas,
         )
-        self.edges.setdefault((a.hex, b.hex), []).append(edge)
+        self.edges.setdefault((a, b), []).append(edge)
         return edge
 
     def update(self, t):
-        for blob in self.object_widgets.values():
-            for other in self.object_widgets.values():
+        for blob in self.visualization_widgets.values():
+            for other in self.visualization_widgets.values():
                 fx, fy = self.interaction(blob, other)
 
                 # Attraction to center
@@ -95,11 +104,11 @@ class VisualizationApp(App):
             fx += ndx * repulsion
             fy += ndy * repulsion
 
-        for edge in self.edges.get((obj.hex, obj2.hex), []):
+        for edge in self.edges.get((obj.name, obj2.name), []):
             dfx, dfy = edge.force(distance, ndx, ndy, dx, dy)
             fx += dfx
             fy += dfy
-        for edge in self.edges.get((obj2.hex, obj.hex), []):
+        for edge in self.edges.get((obj2.name, obj.name), []):
             dfx, dfy = edge.force(distance, -ndx, -ndy, -dx, -dy)
             fx -= dfx
             fy -= dfy
@@ -112,38 +121,63 @@ class VisualizationApp(App):
         self.edge_widget.canvas.before.clear()
         self.edges = {}
 
-        unvisited = set(self.object_widgets)
+        unvisited = set(self.visualization_widgets)
         visited = set()
 
         def _scan(obj):
-            if obj.id in visited:
-                return
+            if obj.hex in visited:
+                return self.visualization_widgets[obj.hex]
             else:
-                visited.add(obj.id)
+                visited.add(obj.hex)
 
-            if obj.id in unvisited:
-                unvisited.discard(obj.id)
+            if obj.hex in unvisited:
+                unvisited.discard(obj.hex)
             else:
-                self.add_blob_widget(obj)
+                self.add_object_widget(obj)
 
             if isinstance(obj, pygit2.Tree):
                 for entry in obj:
-                    child = self.repo[entry.id]
+                    child = self.repo[entry.hex]
                     _scan(child)
-                    self.add_edge(TreeContentEdge, obj, child)
+                    self.add_edge(TreeContentEdge, obj.hex, child.hex)
             elif isinstance(obj, pygit2.Commit):
                 _scan(obj.tree)
-                self.add_edge(CommitTreeEdge, obj, obj.tree)
+                self.add_edge(CommitTreeEdge, obj.hex, obj.tree.hex)
                 for parent in obj.parents:
                     _scan(parent)
-                    self.add_edge(CommitParentEdge, obj, parent)
+                    self.add_edge(CommitParentEdge, obj.hex, parent.hex)
 
-        try:
-            head = self.repo.head
-        except pygit2.GitError:
-            pass
-        else:
-            _scan(head.peel())
+            return self.visualization_widgets[obj.hex]
+
+        def _scan_ref(ref_name):
+            try:
+                ref = self.repo.lookup_reference(ref_name)
+            except (KeyError, ValueError):
+                return
+
+            if ref.name in visited:
+                return self.visualization_widgets[ref.name]
+            else:
+                visited.add(ref.name)
+
+            if ref.name in unvisited:
+                unvisited.discard(ref.name)
+            else:
+                self.add_ref_widget(ref)
+
+            target = ref.target
+            if isinstance(target, str):
+                target_widget = _scan_ref(target)
+            else:
+                target_widget = _scan(self.repo[target])
+            if target_widget:
+                self.add_edge(RefEdge,
+                              ref.name,
+                              target_widget.name)
+
+            return self.visualization_widgets[ref.name]
+
+        _scan_ref('HEAD')
 
         for blob in self.repo.index:
             _scan(blob)
@@ -155,12 +189,25 @@ class VisualizationApp(App):
 class VisualizationWidget(Scatter):
     size_hint = None, None
 
+    def __init__(self, name, **kwargs):
+        super().__init__(**kwargs)
 
-class BlobWidget(VisualizationWidget):
+        label = Label(
+            text=name,
+            x=-self.width/2, y=-self.height/2, size=self.size,
+            color=(0, 0, 0, 0),
+            valign='center', halign='center',
+            font_name='LiberationMono-Bold',
+        )
+        self.add_widget(label)
+        Animation(color=(0, 0, 0, 1), duration=0.1).start(label)
+
+
+class ObjectWidget(VisualizationWidget):
     def __init__(self, blob, **kwargs):
         kwargs.setdefault('size', (50, 50))
-        super().__init__(**kwargs)
-        self.hex = blob.hex
+        super().__init__(blob.hex[:5], **kwargs)
+        self.name = blob.hex
 
         if isinstance(blob, pygit2.Tree):
             color = 1/2, 1, 1/2
@@ -171,24 +218,39 @@ class BlobWidget(VisualizationWidget):
         else:
             color = 1, 1/2, 1/2
 
-        r = self.radius = self.size[0] / 2
+        r = self.radius = self.width / 2
 
         with self.canvas.before:
             graphics.Color(*color)
             self.bg_ellipse = graphics.Ellipse(pos=(-r, -r), size=self.size)
 
-        label = Label(
-            text=blob.hex[:5],
-            x=-r, y=-r, size=self.size,
-            color=(0, 0, 0, 0),
-            valign='center', halign='center',
-            font_name='LiberationMono-Bold',
-        )
-        self.add_widget(label)
-
         self.bg_ellipse.angle_end = 0
         Animation(angle_end=360, duration=0.2).start(self.bg_ellipse)
-        Animation(color=(0, 0, 0, 1), duration=0.1).start(label)
+
+    def collide_point(self, x, y):
+        r = self.size[0]/2
+        x +=  - self.pos[0]
+        y +=  - self.pos[1]
+        return x**2 + y**2 < r ** 2
+
+
+class RefWidget(VisualizationWidget):
+    def __init__(self, ref, **kwargs):
+        kwargs.setdefault('size', (80, 20))
+        super().__init__(ref.shorthand, **kwargs)
+        self.name = ref.name
+
+        color = 1/2, 1, 1
+
+        self.radius = self.height / 2
+
+        pos = -self.width/2, -self.height/2
+        with self.canvas.before:
+            graphics.Color(*color)
+            self.bg_rect = graphics.Rectangle(pos=pos, size=self.size)
+
+        self.bg_rect.size = self.width, 0
+        Animation(size=self.size, duration=0.2).start(self.bg_rect)
 
 
     def collide_point(self, x, y):
@@ -239,6 +301,12 @@ class CommitParentEdge(Edge):
 
     def force(self, distance, ndx, ndy, dx, dy):
         return -ndx * 40 - 40, -ndy * 40 + 10
+
+class RefEdge(Edge):
+    color = 1/2, 1, 1
+
+    def force(self, distance, ndx, ndy, dx, dy):
+        return -ndx * 50, -ndy * 50 + 30
 
 
 VisualizationApp().run()
