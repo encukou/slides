@@ -55,21 +55,21 @@ class VisualizationApp(App):
                 fx, fy = self.interaction(blob, other)
 
                 # Attraction to center
-                fx += ((self.layout.width/2 - blob.x) / self.layout.width) ** 3
-                fy += ((self.layout.height/2 - blob.y) / self.layout.height) ** 3
+                fx += ((self.layout.width/2 - blob.x) / self.layout.width * 10) ** 3
+                fy += ((self.layout.height/2 - blob.y) / self.layout.height * 10) ** 3
 
                 if not blob._touches:
-                    blob.x += fx * t * 5
-                    blob.y += fy * t * 5
+                    blob.x += fx * t
+                    blob.y += fy * t
 
-                if blob.x < 0:
-                    blob.x = 0
-                if blob.y < 0:
-                    blob.y = 0
-                if blob.x > self.layout.width:
-                    blob.x = self.layout.width
-                if blob.y > self.layout.height:
-                    blob.y = self.layout.height
+                if blob.x < blob.radius:
+                    blob.x = blob.radius
+                if blob.y < blob.radius:
+                    blob.y = blob.radius
+                if blob.x > self.layout.width - blob.radius:
+                    blob.x = self.layout.width - blob.radius
+                if blob.y > self.layout.height - blob.radius:
+                    blob.y = self.layout.height - blob.radius
 
     def interaction(self, obj, obj2):
         fx = fy = 0
@@ -115,39 +115,51 @@ class VisualizationApp(App):
         unvisited = set(self.object_widgets)
         visited = set()
 
-        def _scan(blob):
-            print('scan', blob.id)
-            if blob.id in visited:
+        def _scan(obj):
+            if obj.id in visited:
                 return
             else:
-                visited.add(blob.id)
+                visited.add(obj.id)
 
-            if blob.id in unvisited:
-                unvisited.discard(blob.id)
+            if obj.id in unvisited:
+                unvisited.discard(obj.id)
             else:
-                self.add_blob_widget(blob)
+                self.add_blob_widget(obj)
 
-            if isinstance(blob, pygit2.Tree):
-                for child in blob:
+            if isinstance(obj, pygit2.Tree):
+                for entry in obj:
+                    child = self.repo[entry.id]
                     _scan(child)
-                    self.add_edge(TreeContentEdge, blob, child)
-            elif isinstance(blob, pygit2.Commit):
-                _scan(blob.tree)
-                self.add_edge(CommitTreeEdge, blob, blob.tree)
+                    self.add_edge(TreeContentEdge, obj, child)
+            elif isinstance(obj, pygit2.Commit):
+                _scan(obj.tree)
+                self.add_edge(CommitTreeEdge, obj, obj.tree)
+                for parent in obj.parents:
+                    _scan(parent)
+                    self.add_edge(CommitParentEdge, obj, parent)
 
-        if self.repo.head:
-            _scan(self.repo.head.peel())
+        try:
+            head = self.repo.head
+        except pygit2.GitError:
+            pass
+        else:
+            _scan(head.peel())
+
+        for blob in self.repo.index:
+            _scan(blob)
 
         for old_id in unvisited:
             raise ValueError('old object')
 
 
-class BlobWidget(Scatter):
+class VisualizationWidget(Scatter):
     size_hint = None, None
+
+
+class BlobWidget(VisualizationWidget):
     def __init__(self, blob, **kwargs):
         kwargs.setdefault('size', (50, 50))
         super().__init__(**kwargs)
-        self.pos = 0, 0
         self.hex = blob.hex
 
         if isinstance(blob, pygit2.Tree):
@@ -185,7 +197,10 @@ class BlobWidget(Scatter):
         y +=  - self.pos[1]
         return x**2 + y**2 < r ** 2
 
+
 class Edge:
+    color = 1, 1, 1
+
     size_hint = None, None
     def __init__(self, a, b, canvas):
         self.a = a
@@ -196,7 +211,7 @@ class Edge:
         b.bind(pos=self.update_points)
 
         with self.canvas.before:
-            graphics.Color(1, 1, 1, 1)
+            graphics.Color(*self.color, 1)
             self.line = graphics.Line(
                 points=[a.x, a.y, b.x, b.y],
             )
@@ -208,12 +223,22 @@ class Edge:
         return -ndx * 30, -ndy * 30
 
 class TreeContentEdge(Edge):
+    color = 1/2, 1, 1/2
+
+    def force(self, distance, ndx, ndy, dx, dy):
+        return -ndx * 50, -ndy * 50 + 30
+
+class CommitTreeEdge(Edge):
+    color = 1, 1, 1
+
     def force(self, distance, ndx, ndy, dx, dy):
         return -ndx * 40, -ndy * 40 + 20
 
-class CommitTreeEdge(Edge):
+class CommitParentEdge(Edge):
+    color = 1/2, 1/2, 1
+
     def force(self, distance, ndx, ndy, dx, dy):
-        return -ndx * 40, -ndy * 40 + 30
+        return -ndx * 40 - 40, -ndy * 40 + 10
 
 
 VisualizationApp().run()
