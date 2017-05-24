@@ -67,14 +67,14 @@ class VisualizationApp(App):
                 fx, fy = self.interaction(blob, other)
 
                 # Attraction to center
-                cx = ((self.layout.width/2 - blob.x) / self.layout.width * 10) ** 3
-                cy = ((self.layout.height/2 - blob.y) / self.layout.height * 10) ** 3
+                cx = ((self.layout.width/2 - blob.x) / self.layout.width * 10)
+                cy = ((self.layout.height/2 - blob.y) / self.layout.height * 10)
                 if blob.reachable:
-                    fx += cx
-                    fy += cy
+                    fx += cx ** 3
+                    fy += cy ** 3
                 else:
-                    fx -= cx
-                    fy -= cy
+                    fx -= cx * 30
+                    fy -= cy * 30
 
                 if not blob._touches:
                     blob.x += fx * t
@@ -204,8 +204,8 @@ class VisualizationApp(App):
 
         _scan_ref('HEAD')
 
-        for blob in self.repo.index:
-            _scan(blob)
+        for entry in self.repo.index:
+            _scan(self.repo[entry.id])
 
         for old_id in unvisited_widgets:
              self.visualization_widgets[old_id].reachable = False
@@ -216,8 +216,22 @@ class VisualizationApp(App):
 
         for widget in to_position:
             widget.reachable = True
-            widget.x = self.layout.width / 2
-            widget.y = self.layout.height / 2
+            positions = []
+            for other in self.visualization_widgets:
+                edge = self.edges.get((widget.name, other))
+                if edge:
+                    fx, fy = edge.force(0, 0, 0, 0, 0)
+                    positions.append((edge.b.x + fx*5, edge.b.y + fy*5))
+                edge = self.edges.get((other, widget.name))
+                if edge:
+                    fx, fy = edge.force(0, 0, 0, 0, 0)
+                    positions.append((edge.a.x - fx*5, edge.a.y - fy*5))
+            if not positions:
+                widget.x = self.layout.width / 2
+                widget.y = self.layout.height / 2
+            else:
+                widget.x = sum(p[0] for p in positions) / len(positions)
+                widget.y = sum(p[1] for p in positions) / len(positions)
 
 
 class VisualizationWidget(Scatter):
