@@ -11,6 +11,7 @@ from kivy.uix.widget import Widget
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.label import Label
 from kivy.clock import Clock
+from kivy.core.window import Window
 
 import pygit2
 
@@ -30,7 +31,27 @@ class VisualizationApp(App):
 
         Clock.schedule_interval(lambda t: self.rescan(), 2)
 
+        kbd = Window.request_keyboard(lambda: None, self.edge_widget, 'text')
+        kbd.bind(on_key_down=self._on_keyboard_down)
+
+        self.option_widgets = []
+        self.add_option('a', 'all', 'All', (1, 1, 1))
+        self.add_option('i', 'index', 'Idx', (1, 1, 1))
+        self.add_option('r', 'refs', 'Ref', (1/2, 1, 1))
+        self.add_option('t', 'trees', 'Tre', (1/2, 1, 1/2))
+        self.add_option('b', 'blobs', 'Blb', (1/2, 1/2, 1/2))
+        self.add_option('c', 'commits', 'Com', (1/2, 1/2, 1))
+
         return self.layout
+
+    def add_option(self, shortcut, ident, name, color):
+        self.options[ident] = False
+        widget = OptionWidget(
+            self, shortcut, ident, name, color,
+            pos=(0, 20 * len(self.option_widgets)),
+        )
+        self.option_widgets.append(widget)
+        self.layout.add_widget(widget)
 
     def add_object_widget(self, blob):
         widget = ObjectWidget(
@@ -152,6 +173,13 @@ class VisualizationApp(App):
             return edge
 
         def _scan(obj):
+            if isinstance(obj, pygit2.Commit) and not self.options['commits']:
+                return
+            if isinstance(obj, pygit2.Tree) and not self.options['trees']:
+                return
+            if isinstance(obj, pygit2.Blob) and not self.options['blobs']:
+                return
+
             if obj.hex in visited:
                 return _reach(self.visualization_widgets[obj.hex])
             else:
@@ -165,14 +193,14 @@ class VisualizationApp(App):
             if isinstance(obj, pygit2.Tree):
                 for entry in obj:
                     child = self.repo[entry.hex]
-                    _scan(child)
-                    _add_edge(TreeContentEdge, obj.hex, child.hex)
+                    if _scan(child):
+                        _add_edge(TreeContentEdge, obj.hex, child.hex)
             elif isinstance(obj, pygit2.Commit):
-                _scan(obj.tree)
-                _add_edge(CommitTreeEdge, obj.hex, obj.tree.hex)
+                if _scan(obj.tree):
+                    _add_edge(CommitTreeEdge, obj.hex, obj.tree.hex)
                 for parent in obj.parents:
-                    _scan(parent)
-                    _add_edge(CommitParentEdge, obj.hex, parent.hex)
+                    if _scan(parent):
+                        _add_edge(CommitParentEdge, obj.hex, parent.hex)
 
             return _reach(self.visualization_widgets[obj.hex])
 
@@ -182,30 +210,38 @@ class VisualizationApp(App):
             except (KeyError, ValueError):
                 return
 
-            if ref.name in visited:
-                return _reach(self.visualization_widgets[ref.name])
-            else:
-                visited.add(ref.name)
+            if self.options['refs']:
+                if ref.name in visited:
+                    return _reach(self.visualization_widgets[ref.name])
+                else:
+                    visited.add(ref.name)
 
-            if ref.name in unvisited_widgets:
-                unvisited_widgets.discard(ref.name)
-            else:
-                self.add_ref_widget(ref)
+                if ref.name in unvisited_widgets:
+                    unvisited_widgets.discard(ref.name)
+                else:
+                    self.add_ref_widget(ref)
 
             target = ref.target
             if isinstance(target, str):
                 target_widget = _scan_ref(target)
             else:
                 target_widget = _scan(self.repo[target])
-            if target_widget:
-                _add_edge(RefEdge, ref.name, target_widget.name)
 
-            return _reach(self.visualization_widgets[ref.name])
+            if self.options['refs']:
+                if target_widget:
+                    _add_edge(RefEdge, ref.name, target_widget.name)
+
+                return _reach(self.visualization_widgets[ref.name])
 
         _scan_ref('HEAD')
 
-        for entry in self.repo.index:
-            _scan(self.repo[entry.id])
+        if self.options['index']:
+            for entry in self.repo.index:
+                _scan(self.repo[entry.id])
+
+        if self.options['all']:
+            for oid in self.repo:
+                _scan(self.repo[oid])
 
         for old_id in unvisited_widgets:
              self.visualization_widgets[old_id].reachable = False
@@ -233,9 +269,18 @@ class VisualizationApp(App):
                 widget.x = sum(p[0] for p in positions) / len(positions)
                 widget.y = sum(p[1] for p in positions) / len(positions)
 
+    def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
+        num, letter = keycode
+        for option in self.option_widgets:
+            if option.shortcut == letter:
+                option.toggle()
+
 
 class VisualizationWidget(Scatter):
     size_hint = None, None
+
+    def on_keyboard_down(self, keyboard, keycode, text, modifiers):
+        print(keyboard, keycode, text, modifiers)
 
     def __init__(self, name, **kwargs):
         super().__init__(**kwargs)
@@ -371,6 +416,50 @@ class RefEdge(Edge):
 
     def force(self, distance, ndx, ndy, dx, dy):
         return -ndx * 50 + 10, -ndy * 50 + 30
+
+
+class OptionWidget(Widget):
+    size_hint = None, None
+
+    def __init__(self, app, shortcut, ident, name, color, **kwargs):
+        kwargs.setdefault('size', (50, 20))
+        super().__init__(**kwargs)
+        self.app = app
+        self.shortcut = shortcut
+        self.ident = ident
+        self.name = name
+        self.color = color
+
+        print(self.pos, kwargs)
+
+        with self.canvas.before:
+            self.bg_color = graphics.Color(1, 1, 1, 1)
+            self.bg_rect = graphics.Rectangle(pos=self.pos, size=self.size)
+
+        self.label = Label(
+            text=self.name,
+            pos=(10, self.y), height=self.height,
+            color=(*self.color, 1),
+            valign='center', halign='right',
+            font_name='LiberationMono-Bold',
+            size_hint=(1.0, 1.0),
+        )
+        self.label.bind(texture_size=self.label.setter('size'))
+        self.add_widget(self.label)
+        self.set_appearance()
+
+    def set_appearance(self):
+        if self.app.options[self.ident]:
+            self.bg_color.rgba = *self.color, 1/2
+            self.label.color = 0, 0, 0, 1
+        else:
+            self.bg_color.rgba = 0, 0, 0, 0
+            self.label.color = *self.color, 1/2
+
+    def toggle(self):
+        self.app.options[self.ident] = not self.app.options[self.ident]
+        self.set_appearance()
+        self.app.rescan()
 
 
 VisualizationApp().run()
