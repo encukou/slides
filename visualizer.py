@@ -18,6 +18,7 @@ import pygit2
 
 class VisualizationApp(App):
     def __init__(self):
+        self.scale = 1
         super().__init__()
         self.visualization_widgets = {}
         self.edges = {}
@@ -58,6 +59,7 @@ class VisualizationApp(App):
             blob,
             x=self.layout.width/2, y=self.layout.height/2,
         )
+        widget.scale = self.scale
         self.layout.add_widget(widget, 0)
         self.visualization_widgets[blob.hex] = widget
         return widget
@@ -98,8 +100,8 @@ class VisualizationApp(App):
                     fy -= cy * 30
 
                 if not blob._touches:
-                    blob.x += fx * t
-                    blob.y += fy * t
+                    blob.x += fx * t * self.scale ** 2
+                    blob.y += fy * t * self.scale ** 2
 
                 if blob.reachable:
                     threshold = blob.radius
@@ -118,8 +120,8 @@ class VisualizationApp(App):
         fx = fy = 0
         if obj is obj2:
             return 0, 0
-        dx = obj.x - obj2.x
-        dy = obj.y - obj2.y
+        dx = (obj.x - obj2.x) / self.scale
+        dy = (obj.y - obj2.y) / self.scale
         distance = math.sqrt(dx ** 2 + dy ** 2)
         if not distance:
             rx = random.random() - 0.5
@@ -271,9 +273,18 @@ class VisualizationApp(App):
 
     def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
         num, letter = keycode
+        if letter in ('=', '+'):
+            self.update_scale(1.1)
+        if letter in ('-', '_'):
+            self.update_scale(0.9)
         for option in self.option_widgets:
             if option.shortcut == letter:
                 option.toggle()
+
+    def update_scale(self, factor):
+        self.scale *= factor
+        for widget in self.visualization_widgets.values():
+            widget.scale = self.scale
 
 
 class VisualizationWidget(Scatter):
