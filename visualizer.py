@@ -23,7 +23,12 @@ class VisualizationApp(App):
         self.visualization_widgets = {}
         self.edges = {}
         Clock.schedule_interval(self.update, 1/30)
-        self.repo = pygit2.Repository('/tmp/testrepo')
+
+    def set_repo(self):
+        try:
+            self.repo = pygit2.Repository('/tmp/testrepo')
+        except KeyError:
+            pass
 
     def build(self):
         self.layout = RelativeLayout()
@@ -157,6 +162,16 @@ class VisualizationApp(App):
         return fx, fy
 
     def rescan(self):
+        try:
+            self.repo
+        except AttributeError:
+            self.set_repo()
+            try:
+                self.repo
+            except AttributeError:
+                print('no repo')
+                return
+
         print('rescan')
         #self.edge_widget.canvas.before.clear()
 
