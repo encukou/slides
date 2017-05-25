@@ -1,3 +1,7 @@
+# Hacky code to visualize a Git repo.
+#
+# Will crash on any nontrivial repo; use tho visualize very early history.
+
 import random
 import math
 
@@ -41,10 +45,12 @@ class VisualizationApp(App):
         kbd.bind(on_key_down=self._on_keyboard_down)
 
         self.option_widgets = []
+        # Finding objects to show
         self.add_option('a', 'all', 'All', (1, 1, 1))
         self.add_option('i', 'index', 'Idx', (1, 1/2, 1))
         self.add_option('f', 'list-refs', 'reF', (1/2, 1, 1))
         self.add_option('l', 'reflog', 'Log', (1, 1/2, 1/2), default=False)
+        # Filer shown objects
         self.add_option('b', 'blobs', 'Blb', (1/2, 1/2, 1/2))
         self.add_option('t', 'trees', 'Tre', (1/2, 1, 1/2))
         self.add_option('c', 'commits', 'Com', (1/2, 1/2, 1))
