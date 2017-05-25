@@ -1,0 +1,305 @@
+Start
+- virtualenv outside this dir
+  - click
+  - kivy
+  - pygit2
+- watch -tn.5 tree -a .
+- python .../visualizer.py .
+
+---
+
+You should already know what Git does. Here, I'll show you *how* it does it.
+
+What happens when you run git init?
+It seemingly does nothing.
+It creates a hidden directory called .git, in which all repository data is stored.
+
+    git init
+
+Let's take a look at what's inside.
+
+branches - we'll get to that later
+config - is an INI file storing per-repo configuration.
+    There ar 3 of these files. A system-wide one, /etc/gitconfig,
+    a per-user one, ~/.gitconfig, and a per-repository one, .git/config.
+    Anything set in thee per-repo one overrides what's in the other two.
+
+    For example, I only have my username set in my user config file,
+    and not my e-mail, because for some repos I use my personal address,
+    and sometimes I use my work address.
+    Let me set my e-mail for this repo.
+
+        git config user.email encukou@gmail.com
+
+    It appears in the .git/config file.
+    If I had used the --global flag, it'd get stored in my user file.
+    Also, I can make up option names as I like.
+    And I can remove options with --unset.
+
+        git config --unset some.option
+        git config some.option
+        git config --unset --global some.option
+        git config some.option
+
+    Other tools then use these options.
+
+description - this is just a file where you can describe the repository.
+    It's not pushed or pulled, so it's kind of useless nowadays.
+HEAD - this is the current branch.
+    I don't have a current branch yet -- there's no commit in this repo -- but
+    once I make a commit, it will go to the branch named here:
+    refs/heads/master, or master for short.
+hooks - these are little scripts that can run on various actions.
+    To activate one, rename it to remove the .sample part, and set the
+    executable bit.
+    For example, the sample pre-commit hooks checks that you use
+    ASCII filenames, and don't have trailing spaces at the end of lines.
+    You could, for example, run your test suite before each commit.
+
+        ... gedit; save as `pre-commit`
+        chmod +x .git/hooks/pre-commit
+
+    I'll remove the other hooks for now, so they don't take up space in my
+    directory listing.
+index - that's a binary file. It's pretty small now. We'll get to it later.
+info/exclude - here, we can mention files that are ignored by Git.
+    I like to put a personal TODO file here, with personal notes I don't want
+    anyone else to see.
+
+        gedit .git/info/exclude
+        gedit TODO.personal
+
+logs - or reflogs - are special, and we'll get to them later.
+objects - this is where all the data is stored. As we'll see later, all
+    the files, directories, and commits that Git keeps are stored here.
+refs - that's space for info about branches.
+
+-----
+
+So, that's all the contents of the .git directory. Let's fill it up.
+This will be a repo about... Tools to explore Git internals
+
+    gedit README
+
+Git is a content-addressable storage system.
+This means that if you know the content of a file, you can look it up in Git's
+database.
+Actually, you don't need the whole contents: you just need a hash.
+A hash is a relatively short string that identifies the contents of a file.
+It's the same if the contents are the same, and there's an extremely high
+probability it'll be different if the contents are different.
+
+So, how do we hash a blob (or, a file)?
+
+    git hash-object README
+
+That's our hash. If I do it again, I get the same answer.
+If I rename the file, I get the same answer, again.
+
+    mv README README.md
+
+If I change the file, I get a very different answer.
+
+This hash is Git's name for the file. Using the -w option, I can put the
+file in Git's object database:
+
+    git hash-object -w README.md
+
+It appeared under .git/objects: a directory of the first two letters,
+and the rest as filename. This is done so that there aren't too many files
+in one directory.
+
+So, the hash is Git's name of the file. If Git ever needs to store this exact
+file again, it won't have to store a copy.
+(And if it sees a different file with the same hash, it'll think it's a copy,
+and use the old one. You can't store two files with the same hash in Git.)
+
+So, what is this a hash of? Git uses a hashing algorithm called SHA-1,
+which is available on most unixy systems. I can get the SHA-1 hash of a file
+this way:
+
+    sha1sum README.md
+
+Whoa! It's a different hash than what Git gave me. Why is that?
+Maybe Git made some changes to the file? Let's find out!
+
+    sha1sum .git/objects/??/*
+
+A third hash! This file has yet different contents!
+Let's see what's inside.
+
+    less .git/objects/??/*
+
+It's some binary garbage! It's compressed! Let's write a program to
+decompress it.
+I like to use a library called *click* for scripts.
+
+    gedit inflate.py
+
+    python3 inflate.py .git/objects/??/*
+
+So here are the contents: 'blob ', a length of the file (in bytes),
+and then the contents themselves.
+The hash of that matches Git's name for the file.
+    
+    python3 inflate.py .git/objects/??/* | sha1sum
+
+And that is how Git stores files: 'blob' for 'file', length, and contents.
+But wait! How does Git know where this number ends and the contents begin?
+Well, there's a catch: this thing is also binary garbage.
+There's a null byte between the two pieces of data.
+
+So, that's it about representing files -- or blobs, in Git terminology.
+
+Let's add the file to the repo.
+
+    git add inflate.py
+
+This adds the blob to Git's object database.
+It also added the file to the staging area, also called the index.
+The reason the index exists is to make it easy to compare Git's state with
+what's on the disk, so gIt can quickly check if something changed.
+That's used for Git status:
+
+    git status
+
+Green are the staged files -- things that were stored in the index.
+Red are untracked -- files that aren't in the index yet.
+
+Let's look at the index file itself.
+
+    less .git/index
+
+Uhoh, it's binary. Let's dump it.
+
+    hexdump -C .git/index
+
+Not pretty, but maybe we can find something here.
+
+It also stores a blob hash for each file added to it.
+Here's the hash for inflate.py.
+Before that, there is some info about the file: last modification time,
+file size, and similar metadata.
+This makes it easy for Git to tell if something changed on disk, relative to
+the index.
+Let's add the README, and make a change to inflate.py.
+
+    git add README.md
+    gedit inflate.py
+    git status
+
+Both files are green -- this means they've been added to the index
+(since we don't have a commit yet).
+But Git also sees that inflate.py has changed since it looked at it -- it has
+a newer modification time and larger size -- so it compared the blob in the
+index to the file's contents, and saw there is a difference.
+
+The same thing happens when you do git diff, but instead of just naming the
+file, it computes the differences and shows them to you.
+
+So, let's add the last file, and make a commit!
+
+    git add inflate.py
+
+This added the blob to the object database...
+
+    git commit
+
+Uh-oh, we don't have a license!
+The commit hook from before prevented the commit before it was made.
+
+But, a new entry appeared in the object database.
+Let's see what's in there.
+
+    python inflate.py .git/objects/...
+
+It's some binary garbage, not text.
+Let me improve the tool to give me a representation of a binary file.
+
+    gedit inflate.py
+    python inflate.py .git/objects/...
+
+OK! So, what's in here?
+It's not a blob; it's a tree. And it's 111 bytes long.
+It has entries for the two files: for each one, there's a mode number
+telling us it's a file, the filename with a 0 at the end, and the binary hash.
+
+This is ugly to look at, so let's use a Git command to format it more nicely.
+
+    git cat-file -p ....
+
+Here's the same information, presented more nicely.
+
+This is how Git stores directories.
+A "tree" is an object that lists the directory contents, and their metadata.
+For example, the filename is stored here, not in the actual blob.
+And each entry has an associated hash that names the contents: either a blob,
+like here, or a tree.
+
+Graphically, it looks like this:
+
+    (show visualizer)
+
+A tree, and two blobs linked from that tree. Four objects in the database.
+Let's add a license:
+
+    gedit LICENSE
+
+And add it to the index:
+
+    git add LICENSE
+
+Now, to make a commit, Git will first have to make a tree.
+Let's do it in a separate step.
+
+    git write-tree
+
+Git made a whole new tree. But the old one didn't disappear.
+Git doesn't just delete data the moment it's no longer useful.
+Mostly, it's just new objects that are created.
+So we have a new tree, which has the two original files, plus a new one.
+
+And this is will actually get committed.
+
+    git commit -m 'Initial commit'
+
+Hooray! Here's a commit! Again, it's an object in Git's object database.
+Let's decompress it. This time, it's almost textual.
+
+It's a commit object, 181 bytes long.
+It refers to a tree -- the contents of our project.
+The commit also has info about who's the author of the changes (the
+person to thank for the change), and who's the author of the commit (the person
+to blame if things break).
+And after the headers, there's also the commit message, separated by a blank
+line.
+
+The visualization is getting a bit crowded. Let me destroy the unreachable
+objects.
+
+    git prune
+
+And here's our commit, in all its glory.
+The commit refers to the tree, and the tree then refers to the
+individual objects.
+To see which objects are necessary, git prune starts at the commits (and the
+the index), and determines which trees and blobs are "reachable" from them.
+The rest can be removed.
+
+- New commit, with another tree
+
+    inflate/
+    show parent in commit object
+
+- Refs: HEAD, master
+
+    show in file tree
+    enable in visualizer
+
+- Branch A: add docstring
+    "doc"
+- Branch B: add version
+    "version"
+- Merge
+- Rebase
+- prune; Reflog
