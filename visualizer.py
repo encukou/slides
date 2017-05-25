@@ -42,7 +42,7 @@ class VisualizationApp(App):
         self.add_option('b', 'blobs', 'Blb', (1/2, 1/2, 1/2))
         self.add_option('t', 'trees', 'Tre', (1/2, 1, 1/2))
         self.add_option('c', 'commits', 'Com', (1/2, 1/2, 1))
-        self.add_option('r', 'refs', 'Ref', (1/2, 1, 1))
+        self.add_option('r', 'refs', 'Ref', (1/2, 1, 1), default=False)
 
         return self.layout
 
