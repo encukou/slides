@@ -43,6 +43,7 @@ class VisualizationApp(App):
         self.option_widgets = []
         self.add_option('a', 'all', 'All', (1, 1, 1))
         self.add_option('i', 'index', 'Idx', (1, 1/2, 1))
+        self.add_option('f', 'list-refs', 'reF', (1/2, 1, 1))
         self.add_option('l', 'reflog', 'Log', (1, 1/2, 1/2), default=False)
         self.add_option('b', 'blobs', 'Blb', (1/2, 1/2, 1/2))
         self.add_option('t', 'trees', 'Tre', (1/2, 1, 1/2))
@@ -251,7 +252,6 @@ class VisualizationApp(App):
 
 
                 if self.options['reflog']:
-                    print('log', ref)
                     for item in ref.log():
                         if item.oid_old != pygit2.Oid(hex='0'*40):
                             target_widget = _scan(self.repo[item.oid_old])
@@ -269,6 +269,10 @@ class VisualizationApp(App):
         if self.options['all']:
             for oid in self.repo:
                 _scan(self.repo[oid])
+
+        if self.options['list-refs']:
+            for ref in self.repo.listall_references():
+                _scan_ref(ref)
 
         for old_id in unvisited_widgets:
              self.visualization_widgets[old_id].fade_out()
