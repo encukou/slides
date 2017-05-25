@@ -246,7 +246,9 @@ class VisualizationApp(App):
                 _scan(self.repo[oid])
 
         for old_id in unvisited_widgets:
-             self.visualization_widgets[old_id].reachable = False
+             self.visualization_widgets[old_id].fade_out()
+             del self.visualization_widgets[old_id]
+             #self.visualization_widgets[old_id].reachable = False
 
         for old_name in unvisited_edges:
             self.edges[old_name].remove()
@@ -297,15 +299,18 @@ class VisualizationWidget(Scatter):
         super().__init__(**kwargs)
         self.reachable = False
 
-        label = Label(
+        self.name_label = Label(
             text=name,
             x=-self.width/2, y=-self.height/2, size=self.size,
             color=(*self.text_color, 0),
             valign='center', halign='center',
             font_name='LiberationMono-Bold',
         )
-        self.add_widget(label)
-        Animation(color=(*self.text_color, 1), duration=0.7).start(label)
+        self.add_widget(self.name_label)
+        Animation(color=(*self.text_color, 1), duration=0.7).start(self.name_label)
+
+    def fade_out(self, *args):
+        self.parent.remove_widget(self)
 
 
 class ObjectWidget(VisualizationWidget):
@@ -331,8 +336,8 @@ class ObjectWidget(VisualizationWidget):
             graphics.Color(*self.text_color)
             s = r * 2 + 4
             self.bg_ellipse = graphics.Ellipse(pos=(-r-2, -r-2), size=(s, s))
-            graphics.Color(0, 0, 0, 0.95)
             s = r * 2
+            graphics.Color(0, 0, 0, 0.95)
             self.bk_ellipse = graphics.Ellipse(pos=(-r, -r), size=(s, s))
 
         self.bg_ellipse.angle_end = 0
@@ -343,6 +348,12 @@ class ObjectWidget(VisualizationWidget):
         x +=  - self.pos[0]
         y +=  - self.pos[1]
         return x**2 + y**2 < r ** 2
+
+    def fade_out(self, *args):
+        Animation(color=(*self.text_color, 0), duration=0.2).start(self.name_label)
+        anim = Animation(angle_start=360, duration=0.3)
+        anim.start(self.bg_ellipse)
+        anim.bind(on_complete=lambda *a: self.parent.remove_widget(self))
 
 
 class RefWidget(VisualizationWidget):
@@ -369,6 +380,11 @@ class RefWidget(VisualizationWidget):
         x +=  - self.pos[0]
         y +=  - self.pos[1]
         return x**2 + y**2 < r ** 2
+
+    def fade_out(self, *args):
+        anim = Animation(size=(self.width, 0), duration=0.1)
+        anim.start(self.bg_rect)
+        anim.bind(on_complete=lambda *a: self.parent.remove_widget(self))
 
 
 class Edge:
