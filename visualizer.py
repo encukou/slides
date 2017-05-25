@@ -38,15 +38,16 @@ class VisualizationApp(App):
         self.option_widgets = []
         self.add_option('a', 'all', 'All', (1, 1, 1))
         self.add_option('i', 'index', 'Idx', (1, 1/2, 1))
-        self.add_option('r', 'refs', 'Ref', (1/2, 1, 1))
-        self.add_option('t', 'trees', 'Tre', (1/2, 1, 1/2))
+        self.add_option('l', 'reflog', 'Log', (1, 1/2, 1/2), default=False)
         self.add_option('b', 'blobs', 'Blb', (1/2, 1/2, 1/2))
+        self.add_option('t', 'trees', 'Tre', (1/2, 1, 1/2))
         self.add_option('c', 'commits', 'Com', (1/2, 1/2, 1))
+        self.add_option('r', 'refs', 'Ref', (1/2, 1, 1))
 
         return self.layout
 
-    def add_option(self, shortcut, ident, name, color):
-        self.options[ident] = True
+    def add_option(self, shortcut, ident, name, color, default=True):
+        self.options[ident] = default
         widget = OptionWidget(
             self, shortcut, ident, name, color,
             pos=(0, 20 * len(self.option_widgets)),
@@ -232,6 +233,15 @@ class VisualizationApp(App):
             if self.options['refs']:
                 if target_widget:
                     _add_edge(RefEdge, ref.name, target_widget.name)
+
+
+                if self.options['reflog']:
+                    print('log', ref)
+                    for item in ref.log():
+                        if item.oid_old != pygit2.Oid(hex='0'*40):
+                            target_widget = _scan(self.repo[item.oid_old])
+                            if target_widget:
+                                _add_edge(RefLogEdge, ref.name, target_widget.name)
 
                 return _reach(self.visualization_widgets[ref.name])
 
@@ -443,6 +453,12 @@ class RefEdge(Edge):
 
     def force(self, distance, ndx, ndy, dx, dy):
         return -ndx * 50 + 10, -ndy * 50 + 30
+
+class RefLogEdge(Edge):
+    color = 1, 1/2, 1/2
+
+    def force(self, distance, ndx, ndy, dx, dy):
+        return -ndx * 5 + 5, -ndy * 5 + 5
 
 
 class OptionWidget(Widget):
