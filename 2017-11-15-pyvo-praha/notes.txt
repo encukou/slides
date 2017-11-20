@@ -1,0 +1,91 @@
+???
+- exc chaining
+
+3.0:
+- unicode encodings
+- print()
+- views/iterators
+- comparison
+- int
+- annotations, kw-only args, nonlocal, extended iterable unpacking, dict comprehensions
+- raise, with as, metaclass
+- ...
+- stdlib reorg
+- format()
+3.1:
+- ordered dict
+- zipapp support (__main__)
+- Counter
+- importlib
+3.2:
+- stable ABI
+- argparse
+- concurrent.futures
+- __pycache__, ABI tags for .so
+- WSGI 1.0.1
+- str.format_map
+- lru_cache
+- Unicode 6.0 (emoji)
+3.3:
+- yield from
+- u'unicode'
+- unittest.mock
+- venv
+- hash randomization
+- flexible string representation
+- exception context suppressing
+- qualname
+- imnspect.signature
+- importlib used by default!
+3.4:
+- ensurepip; pip bundled
+- asyncio
+- enum
+- pathlib
+- selectors
+- statistics
+- tracemalloc
+- __del__ works
+3.5:
+- async/await
+- @
+- typing
+- zipapp
+- Additional Unpacking Generalizations
+- EINTR retry
+- math.isclose()
+- Multi-phase extension module initialization
+3.6:
+- f strings
+- 1_000_000
+- variable annotations
+- async generators/comprehensions
+- secrets
+- ordered dicts (impl), **kwargs, class bodies
+- customization of class creation
+- utf-8 on win console
+- frame eval api
+- __iter__ = None
+- recursion tracebacks repeated
+- ModuleNotFoundError
+- asyncio stable
+- math.tau
+3.7:
+- Locale coercion (PEP 540)
+- breakpoint()
+- speedups! (Serhiy Storchaka)
+- removal of --without-threads support
+- documentation translations
+- nanosecond time functions
+
+Suggested:
+- dots in function names
+- Structural subtyping
+- Extension modules with -m
+- Instance Descriptors (X) 549
+- Execution Context
+- Multiple interpreters in stdlib
+- Data Classes (!) - https://github.com/ericvsmith/dataclasses
+- Generic subtypes - __class_getitem__, __mro_entry__
+- Module __getattr__ - 0562 - https://github.com/ilevkivskyi/cpython/pull/3/files
+- Stringified annotations

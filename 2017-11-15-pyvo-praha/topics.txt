@@ -1,0 +1,58 @@
+UNICODE
+- 3.0 Text vs. Bytes
+- 3.1 WSGI 1.0.1
+- 3.3 Memory-efficient text
+- 3.3 u'text'
+- 3.6 UTF-8 console (Windows)
+- 3.7 UTF-8 Locale coercion (*nix)
+
+EXCEPTIONS
+- 3.0 Exception chaining
+- 3.3 Context suppression
+
+FORMAT
+- 3.0 format()
+- 3.1 format_map()
+- 3.6 f'...'
+
+ZIPAPP
+- 3.1 __main__ module
+- 3.5 zipapp
+
+ORDERED
+- 3.1 OrderedDict()
+- 3.3 Hash Randomization
+- 3.6 Ordered **kwargs
+- 3.7 dict is officially ordered?
+
+TYPING
+- 3.0 function annotations
+- 3.3 mypy
+- 3.5 typing
+- 3.6 variable annotations
+- 3.7 cls[] ?
+- 3.7 string annotations ?
+
+ASYNC
+- 3.3 yield from
+- 3.4 asyncio
+- 3.5 async & await
+- 3.6 async generators
+- 3.6 asyncio stable
+
+VENV
+- 3.3 venv
+- 3.4 ensurepip
+- 3.7 regex/requests?
+
+NUMERIC & operators
+- 3.0 ...
+- 3.4 @
+- 3.7 a < b < c ?
+- 3.7 and, or ?
+
+IMPROVEMENTS
+- 3.7 breakpoint()
+- 3.7 doc translations
+- 3.7 dataclasses ?
+- 3.7 module getattr ?

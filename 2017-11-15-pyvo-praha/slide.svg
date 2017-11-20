@@ -1,0 +1,4773 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:ns1="https://launchpad.net/jessyink"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="600"
+   viewBox="0 0 211.66666 158.75"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="slide.svg">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="488.20972"
+     inkscape:cy="258.32441"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer8"
+     showgrid="false"
+     units="px"
+     inkscape:snap-bbox="true"
+     inkscape:snap-nodes="true"
+     inkscape:bbox-paths="true"
+     inkscape:snap-page="true"
+     inkscape:snap-others="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1030"
+     inkscape:window-x="0"
+     inkscape:window-y="20"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="true" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2349">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop2345" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop2347" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2349"
+       id="linearGradient2351"
+       x1="97.631248"
+       y1="158.75"
+       x2="97.631248"
+       y2="35.189579"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       gradientTransform="translate(2.7529297e-6,1.0454102e-5)"
+       inkscape:collect="always"
+       xlink:href="#linearGradient2349"
+       id="linearGradient2351-2"
+       x1="97.631248"
+       y1="158.75"
+       x2="97.631248"
+       y2="35.189579"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     ns1:masterSlide="masterSlide"
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="bg"
+     sodipodi:insensitive="true"
+     style="display:inline">
+    <rect
+       transform="translate(0,-138.24998)"
+       y="138.24998"
+       x="184.21469"
+       height="158.75"
+       width="25.741714"
+       id="rect5133"
+       style="fill:#ffe680;stroke:none;stroke-width:0.29135415" />
+    <rect
+       transform="translate(0,-138.24998)"
+       style="fill:#ffe680;stroke:none;stroke-width:0.29135415"
+       id="rect5131"
+       width="25.741714"
+       height="158.75"
+       x="132.64482"
+       y="138.24998" />
+    <rect
+       transform="translate(0,-138.24998)"
+       y="138.24998"
+       x="81.074989"
+       height="158.75"
+       width="25.741714"
+       id="rect5127"
+       style="fill:#ffe680;stroke:none;stroke-width:0.29135415" />
+    <rect
+       transform="translate(0,-138.24998)"
+       style="fill:#ffe680;stroke:none;stroke-width:0.29135415"
+       id="rect5123"
+       width="25.741714"
+       height="158.75"
+       x="29.505121"
+       y="138.24998" />
+    <text
+       transform="translate(0,-138.24998)"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="16.570709"
+       y="156.14894"
+       id="text5057"><tspan
+         sodipodi:role="line"
+         id="tspan5055"
+         x="16.570709"
+         y="156.14894"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#000000;stroke:none;stroke-width:0.26458332px">3.0</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       id="text5061"
+       y="156.14894"
+       x="42.297264"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#000000;stroke:none;stroke-width:0.26458332px"
+         y="156.14894"
+         x="42.297264"
+         id="tspan5059"
+         sodipodi:role="line">3.1</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="68.243843"
+       y="156.14894"
+       id="text5065"><tspan
+         sodipodi:role="line"
+         id="tspan5063"
+         x="68.243843"
+         y="156.14894"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#000000;stroke:none;stroke-width:0.26458332px">3.2</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       id="text5069"
+       y="156.14894"
+       x="94.04895"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#000000;stroke:none;stroke-width:0.26458332px"
+         y="156.14894"
+         x="94.04895"
+         id="tspan5067"
+         sodipodi:role="line">3.3</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="119.67338"
+       y="156.14894"
+       id="text5073"><tspan
+         sodipodi:role="line"
+         id="tspan5071"
+         x="119.67338"
+         y="156.14894"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#000000;stroke:none;stroke-width:0.26458332px">3.4</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       id="text5077"
+       y="156.14894"
+       x="145.6311"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#000000;stroke:none;stroke-width:0.26458332px"
+         y="156.14894"
+         x="145.6311"
+         id="tspan5075"
+         sodipodi:role="line">3.5</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="171.32288"
+       y="156.14894"
+       id="text5081"><tspan
+         sodipodi:role="line"
+         id="tspan5079"
+         x="171.32288"
+         y="156.14894"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#000000;stroke:none;stroke-width:0.26458332px">3.6</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       id="text5085"
+       y="156.14894"
+       x="196.97765"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#000000;stroke:none;stroke-width:0.26458332px"
+         y="156.14894"
+         x="196.97765"
+         id="tspan5083"
+         sodipodi:role="line">3.7</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;line-height:6.55840492px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="16.632906"
+       y="164.70157"
+       id="text5089"><tspan
+         sodipodi:role="line"
+         id="tspan5087"
+         x="16.632906"
+         y="164.70157"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#000000;stroke:none;stroke-width:0.26458332px">2008-12</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       id="text5093"
+       y="164.70157"
+       x="42.417835"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;line-height:6.55840492px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#000000;stroke:none;stroke-width:0.26458332px"
+         y="164.70157"
+         x="42.417835"
+         id="tspan5091"
+         sodipodi:role="line">2009-06</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;line-height:6.55840492px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="68.202774"
+       y="164.70157"
+       id="text5097"><tspan
+         sodipodi:role="line"
+         id="tspan5095"
+         x="68.202774"
+         y="164.70157"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#000000;stroke:none;stroke-width:0.26458332px">2011-02</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       id="text5101"
+       y="164.70157"
+       x="93.987701"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;line-height:6.55840492px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#000000;stroke:none;stroke-width:0.26458332px"
+         y="164.70157"
+         x="93.987701"
+         id="tspan5099"
+         sodipodi:role="line">2012-09</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;line-height:6.55840492px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="119.77262"
+       y="164.70157"
+       id="text5105"><tspan
+         sodipodi:role="line"
+         id="tspan5103"
+         x="119.77262"
+         y="164.70157"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#000000;stroke:none;stroke-width:0.26458332px">2014-04</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       id="text5109"
+       y="164.70157"
+       x="145.55754"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;line-height:6.55840492px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#000000;stroke:none;stroke-width:0.26458332px"
+         y="164.70157"
+         x="145.55754"
+         id="tspan5107"
+         sodipodi:role="line">2015-09</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;line-height:6.55840492px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="171.3425"
+       y="164.70157"
+       id="text5113"><tspan
+         sodipodi:role="line"
+         id="tspan5111"
+         x="171.3425"
+         y="164.70157"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#000000;stroke:none;stroke-width:0.26458332px">2016-12</tspan></text>
+    <text
+       transform="translate(0,-138.24998)"
+       id="text5117"
+       y="164.70157"
+       x="197.12741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;line-height:6.55840492px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.3499999px;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#000000;stroke:none;stroke-width:0.26458332px"
+         y="164.70157"
+         x="197.12741"
+         id="tspan5115"
+         sodipodi:role="line">2018-06</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="title"
+     style="display:none">
+    <path
+       inkscape:connector-curvature="0"
+       inkscape:connector-type="polyline"
+       id="path5573"
+       d="M 241.80542,62.079313 238.09241,44.878561"
+       style="display:inline;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#0088aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:connector-curvature="0"
+       inkscape:connector-type="polyline"
+       id="path5575"
+       d="M 242.44291,87.791955 226.91569,61.383334"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="95.483223"
+       x="222.36987"
+       height="14.287499"
+       width="31.750002"
+       id="rect5577"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.26458332" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208337"
+       y="119.75565"
+       x="221.28725"
+       height="17.197916"
+       width="33.602085"
+       id="rect5579"
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.26458332" />
+    <circle
+       r="5"
+       cy="30.983324"
+       cx="226.98541"
+       id="circle5581"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle5583"
+       cx="248.94583"
+       cy="32.30624"
+       r="5" />
+    <rect
+       style="fill:url(#linearGradient2351);fill-opacity:1;stroke:none;stroke-width:0.40945262;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2343"
+       width="211.66667"
+       height="123.56042"
+       x="2.5313085e-14"
+       y="35.189579" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.91351891px;line-height:9.8614769px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="106.4977"
+       y="77.670479"
+       id="text2341"><tspan
+         sodipodi:role="line"
+         id="tspan2339"
+         x="106.4977"
+         y="77.670479"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none">The evolution of Python 3</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="unicode"
+     style="display:none">
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="32.591633"
+       x="151.27119"
+       height="32.279167"
+       width="44.714588"
+       id="rect5453"
+       style="fill:#0044aa;stroke:none;stroke-width:0.3137325" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="97.55201"
+       x="95.711914"
+       height="13.493751"
+       width="29.751284"
+       id="rect5447"
+       style="fill:#0044aa;stroke:none;stroke-width:0.16545998" />
+    <rect
+       style="fill:#0044aa;stroke:none;stroke-width:0.2790978"
+       id="rect5445"
+       width="38.893753"
+       height="29.36875"
+       x="71.082298"
+       y="41.004391"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="95.314438"
+       x="35.859131"
+       height="19.579166"
+       width="45.772919"
+       id="rect5433"
+       style="fill:#0044aa;stroke:none;stroke-width:0.2472152" />
+    <text
+       id="text5145"
+       y="107.95001"
+       x="59.062023"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5143"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="107.95001"
+         x="59.062023"
+         sodipodi:role="line">WSGI 1.0.1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="110.65577"
+       y="107.15625"
+       id="text5151"><tspan
+         sodipodi:role="line"
+         x="110.65577"
+         y="107.15625"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5149">u'text'</tspan></text>
+    <text
+       id="text5155"
+       y="50.006252"
+       x="90.282852"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5153"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="50.006252"
+         x="90.282852"
+         sodipodi:role="line">memory</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="57.767365"
+         x="90.282852"
+         sodipodi:role="line"
+         id="tspan5441">efficient</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="65.528473"
+         x="90.282852"
+         sodipodi:role="line"
+         id="tspan5443">text</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="173.62659"
+       y="43.391663"
+       id="text5159"><tspan
+         sodipodi:role="line"
+         x="174.59673"
+         y="43.391663"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5157">UTF-8 </tspan><tspan
+         sodipodi:role="line"
+         x="173.62659"
+         y="51.152775"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5161">console</tspan><tspan
+         sodipodi:role="line"
+         x="173.62659"
+         y="58.913887"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5455">(Windows)</tspan></text>
+    <rect
+       style="fill:#0044aa;stroke:none;stroke-width:0.26458332"
+       id="rect5429"
+       width="41.275002"
+       height="24.870832"
+       x="5.5562506"
+       y="31.48542"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="26.354809"
+       y="41.900978"
+       id="text5137"><tspan
+         sodipodi:role="line"
+         x="26.354809"
+         y="41.900978"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5139">Text</tspan><tspan
+         sodipodi:role="line"
+         x="26.354809"
+         y="49.66209"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5439">vs Bytes</tspan></text>
+    <circle
+       style="fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="path5431"
+       cx="13.466666"
+       cy="82.577087"
+       r="5" />
+    <circle
+       r="5"
+       cy="80.460419"
+       cx="63.737495"
+       id="circle5435"
+       style="fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       style="fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle5449"
+       cx="88.079163"
+       cy="82.04792"
+       r="5" />
+    <circle
+       r="5"
+       cy="82.841667"
+       cx="99.985413"
+       id="circle5451"
+       style="fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <rect
+       style="fill:#0044aa;stroke:none;stroke-width:0.31678379"
+       id="rect5457"
+       width="37.835423"
+       height="38.893749"
+       x="161.58997"
+       y="101.11871"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <text
+       id="text5167"
+       y="111.3"
+       x="180.58916"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5165"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="111.3"
+         x="180.58916"
+         sodipodi:role="line">UTF-8</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="119.06111"
+         x="180.58916"
+         sodipodi:role="line"
+         id="tspan5459">locale</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="126.82223"
+         x="180.58916"
+         sodipodi:role="line"
+         id="tspan5171">coercion</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="134.58334"
+         x="180.58916"
+         sodipodi:role="line"
+         id="tspan5461">(*nix)</tspan></text>
+    <circle
+       style="fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle5463"
+       cx="170.09999"
+       cy="78.60833"
+       r="5" />
+    <circle
+       r="5"
+       cy="82.04792"
+       cx="196.82291"
+       id="circle5465"
+       style="fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 62.744852,85.360816 -2.016245,9.953622"
+       id="path5483"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5435"
+       inkscape:connection-end="#rect5433" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 88.541896,77.069472 89.164302,70.37314"
+       id="path5489"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5449"
+       inkscape:connection-end="#rect5445" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 102.20028,87.32424 5.0536,10.22777"
+       id="path5491"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5451"
+       inkscape:connection-end="#rect5447" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 170.68641,73.64293 171.7224,64.8708"
+       id="path5493"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5463"
+       inkscape:connection-end="#rect5453" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94117647"
+       d="m 194.87278,86.65185 -6.12784,14.46686"
+       id="path5495"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5465"
+       inkscape:connection-end="#rect5457" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 15.030278,77.827894 22.099547,56.356253"
+       id="path5497"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path5431"
+       inkscape:connection-end="#rect5429" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer13"
+     inkscape:label="exc-chaining"
+     style="display:none">
+    <rect
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.45432979"
+       id="rect2255"
+       width="51.064587"
+       height="26.19375"
+       x="77.450562"
+       y="49.302025"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="54.593693"
+       x="2.0443151"
+       height="26.19375"
+       width="51.064587"
+       id="rect5577-10"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.45432979" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="27.656189"
+       y="65.693443"
+       id="text5244"><tspan
+         sodipodi:role="line"
+         x="27.656189"
+         y="65.693443"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5242">exception</tspan><tspan
+         sodipodi:role="line"
+         x="27.656189"
+         y="73.454552"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5246">chaining</tspan></text>
+    <text
+       id="text5252"
+       y="60.178192"
+       x="103.04349"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5250"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="60.178192"
+         x="103.04349"
+         sodipodi:role="line">context</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="67.939301"
+         x="103.04349"
+         sodipodi:role="line"
+         id="tspan5256">suppression</tspan></text>
+    <circle
+       r="5"
+       cy="91.958382"
+       cx="15.655688"
+       id="circle5581-9"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle2253"
+       cx="94.766106"
+       cy="89.047966"
+       r="5" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 17.860164,87.470657 3.282952,-6.683214"
+       id="path2257"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5581-9"
+       inkscape:connection-end="#rect5577-10" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 96.239299,84.270014 2.705375,-8.774239"
+       id="path2259"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle2253"
+       inkscape:connection-end="#rect2255" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="format"
+     style="display:none">
+    <circle
+       r="5"
+       cy="87.047913"
+       cx="17.19791"
+       id="circle5581-3"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle1023"
+       cx="66.939575"
+       cy="88.900002"
+       r="5" />
+    <circle
+       r="5"
+       cy="88.370834"
+       cx="172.7729"
+       id="circle1025"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="55.372616"
+       x="16.988825"
+       height="14.2875"
+       width="31.750002"
+       id="rect5577-1"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.26458332" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="94.985413"
+       x="85.460419"
+       height="14.2875"
+       width="53.975002"
+       id="rect5577-0"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.34497443" />
+    <rect
+       rx="5.8208327"
+       ry="5.8208332"
+       y="55.033333"
+       x="167.74583"
+       height="14.2875"
+       width="21.960419"
+       id="rect5577-9"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.22004469" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="32.869511"
+       y="65.407837"
+       id="text5262"><tspan
+         id="tspan5260"
+         sodipodi:role="line"
+         x="32.869511"
+         y="65.407837"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px">format</tspan></text>
+    <text
+       id="text5268"
+       y="104.16229"
+       x="112.55592"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="104.16229"
+         x="112.55592"
+         sodipodi:role="line"
+         id="tspan5266">format_map</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="178.92879"
+       y="65.089394"
+       id="text5272"><tspan
+         id="tspan5270"
+         sodipodi:role="line"
+         x="178.92879"
+         y="65.089394"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px">f'...'</tspan></text>
+    <path
+       style="fill:#0044aa;fill-opacity:1;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 19.888957,82.833952 8.41285,-13.173836"
+       id="path1060"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5581-3"
+       inkscape:connection-end="#rect5577-1" />
+    <path
+       style="fill:#0044aa;fill-opacity:1;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 71.740806,90.295707 17.451343,5.073062"
+       id="path1062"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle1023"
+       inkscape:connection-end="#rect5577-0" />
+    <path
+       style="fill:#0044aa;fill-opacity:1;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 173.881,83.495232 3.22146,-14.174399"
+       id="path1064"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle1025"
+       inkscape:connection-end="#rect5577-9" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="zipapp"
+     style="display:none">
+    <rect
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.27959168"
+       id="rect1074"
+       width="35.45417"
+       height="14.2875"
+       x="126.20625"
+       y="64.293747"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <rect
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.42250565"
+       id="rect1072"
+       width="53.975002"
+       height="21.43125"
+       x="18.25625"
+       y="61.647915"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="45.241852"
+       y="71.270241"
+       id="text5294"><tspan
+         sodipodi:role="line"
+         x="45.241852"
+         y="71.270241"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5292">__main__</tspan><tspan
+         sodipodi:role="line"
+         x="45.241852"
+         y="79.031349"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan1076">module</tspan></text>
+    <text
+       id="text5298"
+       y="73.370193"
+       x="143.9485"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5296"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="73.370193"
+         x="143.9485"
+         sodipodi:role="line">zipapp</tspan></text>
+    <circle
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle1070"
+       cx="42.333328"
+       cy="99.218742"
+       r="5" />
+    <circle
+       r="5"
+       cy="97.102074"
+       cx="145.7854"
+       id="circle1078"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <path
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 42.872041,94.247909 44.082449,83.079165"
+       id="path1080"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle1070"
+       inkscape:connection-end="#rect1072" />
+    <path
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 145.42552,92.115085 144.44886,78.581247"
+       id="path1082"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle1078"
+       inkscape:connection-end="#rect1074" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="odict"
+     style="display:inline">
+    <rect
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.42885026"
+       id="rect1952"
+       width="40.216667"
+       height="29.633333"
+       x="166.40605"
+       y="105.21042"
+       ry="5.8208332"
+       rx="5.8208337" />
+    <rect
+       rx="5.8208337"
+       ry="5.8208332"
+       y="48.325005"
+       x="105.81647"
+       height="23.547916"
+       width="75.40625"
+       id="rect1950"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.52347064" />
+    <rect
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.44494748"
+       id="rect1948"
+       width="62.970833"
+       height="20.372917"
+       x="62.689392"
+       y="109.97292"
+       ry="5.8208332"
+       rx="5.8208337" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="143.46654"
+       y="59.079559"
+       id="text5280"><tspan
+         id="tspan5278"
+         sodipodi:role="line"
+         x="143.46654"
+         y="59.079559"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px">Ordered **kwargs</tspan><tspan
+         sodipodi:role="line"
+         x="143.46654"
+         y="66.840668"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5282">and class bodies</tspan></text>
+    <text
+       id="text5288"
+       y="115.12713"
+       x="186.3647"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5286"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="115.12713"
+         x="186.3647"
+         sodipodi:role="line">dict is</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="122.88824"
+         x="186.3647"
+         sodipodi:role="line"
+         id="tspan2412">officially</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="130.64935"
+         x="186.3647"
+         sodipodi:role="line"
+         id="tspan1946">ordered</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="94.152069"
+       y="119.13998"
+       id="text5346"><tspan
+         sodipodi:role="line"
+         x="94.152069"
+         y="119.13998"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5350">Hash</tspan><tspan
+         sodipodi:role="line"
+         x="94.152069"
+         y="126.90108"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan1944">Randomization</tspan></text>
+    <rect
+       rx="5.8208337"
+       ry="5.8208332"
+       y="48.854172"
+       x="3.68731"
+       height="14.2875"
+       width="51.329166"
+       id="rect5577-6"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.33641294" />
+    <circle
+       r="5"
+       cy="87.806351"
+       cx="65.982018"
+       id="circle5581-2"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle1936"
+       cx="93.498688"
+       cy="88.07093"
+       r="5" />
+    <circle
+       r="5"
+       cy="87.012596"
+       cx="169.69868"
+       id="circle1938"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle1940"
+       cx="196.4216"
+       cy="86.218849"
+       r="5" />
+    <text
+       id="text5276"
+       y="58.737503"
+       x="28.899504"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="58.737503"
+         x="28.899504"
+         sodipodi:role="line"
+         id="tspan5274">OrderedDict</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 62.206809,84.52808 37.578532,63.141672"
+       id="path1969"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5581-2"
+       inkscape:connection-end="#rect5577-6" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 93.604015,93.069745 0.356159,16.903175"
+       id="path1971"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle1936"
+       inkscape:connection-end="#rect1948" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 166.21243,83.428521 -11.24022,-11.5556"
+       id="path1973"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle1938"
+       inkscape:connection-end="#rect1950" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0088aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 195.03552,91.02285 -4.09347,14.18757"
+       id="path1975"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle1940"
+       inkscape:connection-end="#rect1952" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="237.12863"
+       y="57.508133"
+       id="text2263"
+       transform="rotate(20.640734)"><tspan
+         sodipodi:role="line"
+         id="tspan2261"
+         x="237.12863"
+         y="57.508133"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#ffffff;stroke-width:0.26458332px">?</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="annotations"
+     style="display:none">
+    <rect
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.26458335"
+       id="rect5429-8"
+       width="50.006252"
+       height="23.283331"
+       x="6.032002"
+       y="40.73291"
+       ry="5.8208337"
+       rx="5.8208332" />
+    <circle
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="path5431-9"
+       cx="16.112495"
+       cy="86.01667"
+       r="5" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="42.211197"
+       x="70.420807"
+       height="14.2875"
+       width="39.158337"
+       id="rect5541"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.26458332" />
+    <ellipse
+       cy="86.01667"
+       cx="105.0125"
+       id="circle5543"
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       rx="12.9375"
+       ry="5" />
+    <rect
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.26458332"
+       id="rect5545"
+       width="31.750002"
+       height="14.287499"
+       x="107.01154"
+       y="111.6228"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <circle
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle5547"
+       cx="169.83542"
+       cy="89.191658"
+       r="5" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="33.602085"
+       x="120.38541"
+       height="24.870832"
+       width="48.154171"
+       id="rect5549"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.26458332" />
+    <rect
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       id="rect5551"
+       width="33.602085"
+       height="17.197916"
+       x="172.07475"
+       y="43.555645"
+       ry="5.8208337"
+       rx="5.8208332" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="113.27284"
+       x="158.82887"
+       height="23.283333"
+       width="48.154167"
+       id="rect5553"
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.26458332" />
+    <circle
+       r="5"
+       cy="91.043739"
+       cx="144.17084"
+       id="circle5555"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       r="5"
+       cy="97.658325"
+       cx="195.23541"
+       id="circle5557"
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="188.97243"
+       y="54.504158"
+       id="text5232"><tspan
+         id="tspan5230"
+         sodipodi:role="line"
+         x="188.97243"
+         y="54.504158"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px">cls[]</tspan></text>
+    <text
+       id="text5238"
+       y="123.825"
+       x="182.88701"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="123.825"
+         x="182.88701"
+         sodipodi:role="line"
+         id="tspan5236">string</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="131.58611"
+         x="182.88701"
+         sodipodi:role="line"
+         id="tspan5240">annotations</tspan></text>
+    <text
+       id="text5224"
+       y="44.185413"
+       x="144.78702"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5222"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="44.185413"
+         x="144.78702"
+         sodipodi:role="line">variable</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="51.946526"
+         x="144.78702"
+         sodipodi:role="line"
+         id="tspan5226">annotations</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="123.09118"
+       y="120.64999"
+       id="text5220"><tspan
+         sodipodi:role="line"
+         x="123.09118"
+         y="120.64999"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5218">typing</tspan></text>
+    <text
+       id="text5411"
+       y="50.535408"
+       x="89.753654"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5409"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="50.535408"
+         x="89.753654"
+         sodipodi:role="line">mypy</tspan></text>
+    <text
+       id="text5214"
+       y="51.38549"
+       x="31.01618"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5212"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="51.38549"
+         x="31.01618"
+         sodipodi:role="line">function</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="59.146603"
+         x="31.01618"
+         sodipodi:role="line"
+         id="tspan5592">annotations</tspan></text>
+    <circle
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle5559"
+       cx="195.5"
+       cy="82.84166"
+       r="5" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 18.139848,81.446138 25.871232,64.016241"
+       id="path5561"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path5431-9"
+       inkscape:connection-end="#rect5429-8" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#0088aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 102.99025,81.078192 92.925252,56.498697"
+       id="path5563"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5543"
+       inkscape:connection-end="#rect5541" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 141.12602,95.00962 128.37118,111.6228"
+       id="path5565"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5555"
+       inkscape:connection-end="#rect5545" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 167.30124,84.881539 151.77402,58.472918"
+       id="path5567"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5547"
+       inkscape:connection-end="#rect5549" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#0088aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 194.445,77.954313 190.73199,60.753561"
+       id="path5569"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5559"
+       inkscape:connection-end="#rect5551" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#0088aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 193.17471,102.21383 -5.00259,11.05901"
+       id="path5571"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5557"
+       inkscape:connection-end="#rect5553" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="239.51231"
+       y="58.677582"
+       id="text2263-3"
+       transform="rotate(20.640734)"><tspan
+         sodipodi:role="line"
+         id="tspan2261-8"
+         x="239.51231"
+         y="58.677582"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#ffffff;stroke-width:0.26458332px">?</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="210.85703"
+       y="-11.38974"
+       id="text2263-7"
+       transform="rotate(20.640734)"><tspan
+         sodipodi:role="line"
+         id="tspan2261-9"
+         x="210.85703"
+         y="-11.38974"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#ffffff;stroke-width:0.26458332px">?</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer9"
+     inkscape:label="aio"
+     style="display:none">
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="46.391617"
+       x="46.229729"
+       height="14.2875"
+       width="43.920834"
+       id="rect5577-69"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.31119019" />
+    <circle
+       r="5"
+       cy="90.900047"
+       cx="93.972351"
+       id="circle5581-1"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle2006"
+       cx="119.37235"
+       cy="90.635468"
+       r="5" />
+    <circle
+       r="5"
+       cy="90.635468"
+       cx="144.77235"
+       id="circle2008"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle2010"
+       cx="165.93903"
+       cy="89.577133"
+       r="5" />
+    <circle
+       r="5"
+       cy="89.577133"
+       cx="177.05153"
+       id="circle2012"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <rect
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.26458332"
+       id="rect2014"
+       width="31.750002"
+       height="14.2875"
+       x="104.43806"
+       y="117.82912"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="41.629116"
+       x="124.28181"
+       height="20.108334"
+       width="34.925003"
+       id="rect2016"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.32920673" />
+    <rect
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.39507434"
+       id="rect2018"
+       width="45.508335"
+       height="22.225"
+       x="163.44014"
+       y="41.629116"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <rect
+       rx="5.8208327"
+       ry="5.8208332"
+       y="117.03536"
+       x="151.53389"
+       height="14.2875"
+       width="56.356255"
+       id="rect2020"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.35250205" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="68.322418"
+       y="55.827087"
+       id="text5310"><tspan
+         sodipodi:role="line"
+         x="68.322418"
+         y="55.827087"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5308">yield from</tspan></text>
+    <text
+       id="text5314"
+       y="126.86578"
+       x="120.30927"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5312"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="126.86578"
+         x="120.30927"
+         sodipodi:role="line">asyncio</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="141.61736"
+       y="49.881325"
+       id="text5318"><tspan
+         sodipodi:role="line"
+         x="141.61736"
+         y="49.881325"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5316">async</tspan><tspan
+         sodipodi:role="line"
+         x="141.61736"
+         y="57.642437"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan2022">&amp; await</tspan></text>
+    <text
+       id="text5322"
+       y="50.032047"
+       x="186.22084"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5320"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="50.032047"
+         x="186.22084"
+         sodipodi:role="line">async</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="57.793159"
+         x="186.22084"
+         sodipodi:role="line"
+         id="tspan2024">generators</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="179.70255"
+       y="126.14213"
+       id="text5326"><tspan
+         sodipodi:role="line"
+         x="179.70255"
+         y="126.14213"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5324">asyncio stable</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 91.132718,86.784729 73.119443,60.679117"
+       id="path2026"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5581-1"
+       inkscape:connection-end="#rect5577-69" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 119.50928,95.633525 0.60807,22.195595"
+       id="path2028"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle2006"
+       inkscape:connection-end="#rect2014" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 144.38484,85.650589 142.52589,61.73745"
+       id="path2030"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle2008"
+       inkscape:connection-end="#rect2016" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 167.78811,94.222609 9.0804,22.812751"
+       id="path2032"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle2010"
+       inkscape:connection-end="#rect2020" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 178.256,84.724431 5.18012,-20.870315"
+       id="path2034"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle2012"
+       inkscape:connection-end="#rect2018" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer10"
+     inkscape:label="venv"
+     style="display:none">
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="57.504116"
+       x="71.62973"
+       height="14.2875"
+       width="31.750002"
+       id="rect5577-2"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.26458332" />
+    <circle
+       r="5"
+       cy="84.814636"
+       cx="95.295273"
+       id="circle5581-26"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle2059"
+       cx="119.90152"
+       cy="84.550056"
+       r="5" />
+    <rect
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.3121261"
+       id="rect2061"
+       width="44.185417"
+       height="14.2875"
+       x="116.87349"
+       y="57.504116"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <text
+       id="text5330"
+       y="66.674995"
+       x="87.372414"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5328"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="66.674995"
+         x="87.372414"
+         sodipodi:role="line">venv</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="138.96616"
+       y="66.674965"
+       id="text5334"><tspan
+         sodipodi:role="line"
+         x="138.96616"
+         y="66.674965"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan5332">ensurepip</tspan></text>
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="107.20271"
+       x="161.58362"
+       height="26.458332"
+       width="38.100002"
+       id="rect5579-9"
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.34945011" />
+    <circle
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle5583-0"
+       cx="202.67084"
+       cy="84.402084"
+       r="5" />
+    <text
+       id="text2095"
+       y="115.88747"
+       x="180.50574"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan2093"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="115.88747"
+         x="180.50574"
+         sodipodi:role="line">regex</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="123.64857"
+         x="180.50574"
+         sodipodi:role="line"
+         id="tspan2097">requests</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="131.40968"
+         x="180.50574"
+         sodipodi:role="line"
+         id="tspan2414">lxml</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 93.493516,80.150568 90.264404,71.791616"
+       id="path2099"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5581-26"
+       inkscape:connection-end="#rect5577-2" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 123.36022,80.939418 8.76285,-9.147802"
+       id="path2101"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle2059"
+       inkscape:connection-end="#rect2061" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0088aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 188.72509,107.20271 11.3369,-18.535281"
+       id="path2103"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect5579-9"
+       inkscape:connection-end="#circle5583-0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="223.84793"
+       y="41.111382"
+       id="text2263-38"
+       transform="rotate(20.640734)"><tspan
+         sodipodi:role="line"
+         id="tspan2261-84"
+         x="223.84793"
+         y="41.111382"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#ffffff;stroke-width:0.26458332px">?</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="230.54984"
+       y="49.896152"
+       id="text2263-0"
+       transform="rotate(20.640734)"
+       inkscape:transform-center-y="-20.6375"><tspan
+         sodipodi:role="line"
+         id="tspan2261-0"
+         x="230.54984"
+         y="49.896152"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#ffffff;stroke-width:0.26458332px">?</tspan></text>
+    <text
+       inkscape:transform-center-y="-20.6375"
+       transform="rotate(20.640734)"
+       id="text2418"
+       y="63.714027"
+       x="226.14195"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#ffffff;stroke-width:0.26458332px"
+         y="63.714027"
+         x="226.14195"
+         id="tspan2416"
+         sodipodi:role="line">?</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer11"
+     inkscape:label="scientific"
+     style="display:none">
+    <rect
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.21194209"
+       id="rect2142"
+       width="20.372919"
+       height="14.2875"
+       x="115.57041"
+       y="54.410191"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="51.235191"
+       x="16.087076"
+       height="14.2875"
+       width="20.372919"
+       id="rect5577-60"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.21194209" />
+    <text
+       id="text5380"
+       y="58.833694"
+       x="26.224272"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="58.833694"
+         x="26.224272"
+         sodipodi:role="line"
+         id="tspan5378">...</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="125.76066"
+       y="64.132767"
+       id="text5384"><tspan
+         id="tspan5382"
+         sodipodi:role="line"
+         x="125.76066"
+         y="64.132767"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px">@</tspan></text>
+    <rect
+       rx="5.8208332"
+       ry="5.8208342"
+       y="108.58054"
+       x="170.05028"
+       height="23.018749"
+       width="27.516668"
+       id="rect5579-93"
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.27700028" />
+    <circle
+       r="5"
+       cy="81.456123"
+       cx="18.056767"
+       id="circle5581-5"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle5583-4"
+       cx="196.65053"
+       cy="78.281128"
+       r="5" />
+    <circle
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle2136"
+       cx="143.46927"
+       cy="85.424873"
+       r="5" />
+    <circle
+       r="5"
+       cy="93.097794"
+       cx="196.91512"
+       id="circle2140"
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <rect
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.24041896"
+       id="rect2144"
+       width="37.570835"
+       height="12.7"
+       x="163.17111"
+       y="49.313877"
+       ry="5.8208337"
+       rx="5.8208332" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="181.90536"
+       y="58.525028"
+       id="text2148"><tspan
+         id="tspan2146"
+         sodipodi:role="line"
+         x="181.90536"
+         y="58.525028"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px">a &lt; b &lt; c</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="183.91093"
+       y="119.07051"
+       id="text2152"><tspan
+         id="tspan2150"
+         sodipodi:role="line"
+         x="183.91093"
+         y="119.07051"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px">and</tspan><tspan
+         sodipodi:role="line"
+         x="183.91093"
+         y="126.83162"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         id="tspan2154">or</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 19.733893,76.745834 23.729961,65.522692"
+       id="path2156"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5581-5"
+       inkscape:connection-end="#rect5577-60" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 140.48985,81.409526 -9.48153,-12.77822"
+       id="path2158"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle2136"
+       inkscape:connection-end="#rect2142" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0088aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 189.39719,108.58054 5.33396,-10.984993"
+       id="path2160"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect5579-93"
+       inkscape:connection-end="#circle2140" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0088aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 193.92654,74.088314 186.082,62.013877"
+       id="path2162"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle5583-4"
+       inkscape:connection-end="#rect2144" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="228.11272"
+       y="56.186089"
+       id="text2263-8"
+       transform="rotate(20.640734)"><tspan
+         sodipodi:role="line"
+         id="tspan2261-6"
+         x="228.11272"
+         y="56.186089"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#ffffff;stroke-width:0.26458332px">?</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="208.41322"
+       y="-9.6209993"
+       id="text2263-82"
+       transform="rotate(20.640734)"><tspan
+         sodipodi:role="line"
+         id="tspan2261-3"
+         x="208.41322"
+         y="-9.6209993"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#ffffff;stroke-width:0.26458332px">?</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer12"
+     inkscape:label="three7"
+     style="display:none">
+    <rect
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.33013326"
+       id="rect2218"
+       width="53.975002"
+       height="16.668751"
+       x="111.25729"
+       y="96.89241"
+       ry="5.8208342"
+       rx="5.8208332" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208342"
+       y="123.08616"
+       x="114.16771"
+       height="22.225"
+       width="53.975002"
+       id="rect5579-3"
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.38120505" />
+    <rect
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.38417765"
+       id="rect2216"
+       width="66.939583"
+       height="14.2875"
+       x="102.33652"
+       y="60.903408"
+       ry="5.8208332"
+       rx="5.8208332" />
+    <rect
+       rx="5.8208332"
+       ry="5.8208332"
+       y="38.718712"
+       x="109.72973"
+       height="14.2875"
+       width="52.652084"
+       id="rect5577-4"
+       style="display:inline;fill:#0044aa;stroke:none;stroke-width:0.34072059" />
+    <text
+       id="text5356"
+       y="132.27165"
+       x="141.15332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5354"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="132.27165"
+         x="141.15332"
+         sodipodi:role="line">module</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="140.03276"
+         x="141.15332"
+         sodipodi:role="line"
+         id="tspan5360">__getattr__</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="138.22963"
+       y="108.08794"
+       id="text5366"><tspan
+         id="tspan5364"
+         sodipodi:role="line"
+         x="138.22963"
+         y="108.08794"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px">dataclasses</tspan></text>
+    <text
+       id="text5372"
+       y="70.90831"
+       x="135.79115"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px"
+         y="70.90831"
+         x="135.79115"
+         sodipodi:role="line"
+         id="tspan5370">doc translations</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="135.96861"
+       y="47.865269"
+       id="text5376"><tspan
+         id="tspan5374"
+         sodipodi:role="line"
+         x="135.96861"
+         y="47.865269"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1;font-family:Oxygen;-inkscape-font-specification:Oxygen;fill:#ffffff;stroke:none;stroke-width:0.26458332px">breakpoint()</tspan></text>
+    <circle
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle5583-6"
+       cx="203.47421"
+       cy="99.665916"
+       r="5" />
+    <circle
+       r="5"
+       cy="136.70758"
+       cx="204.26797"
+       id="circle2192"
+       style="display:inline;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       r="5"
+       cy="71.056305"
+       cx="195.57236"
+       id="circle5581-31"
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053" />
+    <circle
+       style="display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.30802053"
+       id="circle2214"
+       cx="196.3661"
+       cy="45.39172"
+       r="5" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0088aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 199.27199,136.50898 -31.12928,-1.23749"
+       id="path2220"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle2192"
+       inkscape:connection-end="#rect5579-3" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0088aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 165.2323,102.92608 33.26001,-2.83545"
+       id="path2222"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect2218"
+       inkscape:connection-end="#circle5583-6" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 169.26515,69.73177 21.31357,1.073111"
+       id="path2224"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect2216"
+       inkscape:connection-end="#circle5581-31" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0044aa;stroke-width:0.79374999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 191.36634,45.430745 -28.98453,0.226234"
+       id="path2226"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#circle2214"
+       inkscape:connection-end="#rect5577-4" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:#000000;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="191.8754"
+       y="52.30682"
+       id="text2263-85"
+       transform="rotate(20.640734)"><tspan
+         sodipodi:role="line"
+         id="tspan2261-05"
+         x="191.8754"
+         y="52.30682"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#ffffff;stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none">?</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;line-height:6.55840492px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#ffffff;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="205.51128"
+       y="80.250015"
+       id="text2263-9"
+       transform="rotate(20.640734)"><tspan
+         sodipodi:role="line"
+         id="tspan2261-2"
+         x="205.51128"
+         y="80.250015"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.75555611px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#ffffff;stroke-width:0.26458332px">?</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer14"
+     inkscape:label="end"
+     style="display:none">
+    <rect
+       style="display:inline;fill:url(#linearGradient2351-2);fill-opacity:1;stroke:none;stroke-width:0.40945262;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2343-1"
+       width="211.66667"
+       height="123.56042"
+       x="0"
+       y="35.18959" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.91351891px;line-height:9.8614769px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="106.49771"
+       y="77.670494"
+       id="text2341-7"><tspan
+         sodipodi:role="line"
+         id="tspan2339-8"
+         x="106.49771"
+         y="77.670494"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none">Questions?</tspan></text>
+  </g>
+  <script
+     id="JessyInk"
+     ns1:version="1.5.5">// Copyright 2008, 2009 Hannes Hochreiner
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see http://www.gnu.org/licenses/.
+
+// Set onload event handler.
+window.onload = jessyInkInit;
+
+// Creating a namespace dictionary. The standard Inkscape namespaces are taken from inkex.py.
+var NSS = new Object();
+NSS['sodipodi']='http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd';
+NSS['cc']='http://web.resource.org/cc/';
+NSS['svg']='http://www.w3.org/2000/svg';
+NSS['dc']='http://purl.org/dc/elements/1.1/';
+NSS['rdf']='http://www.w3.org/1999/02/22-rdf-syntax-ns#';
+NSS['inkscape']='http://www.inkscape.org/namespaces/inkscape';
+NSS['xlink']='http://www.w3.org/1999/xlink';
+NSS['xml']='http://www.w3.org/XML/1998/namespace';
+NSS['jessyink']='https://launchpad.net/jessyink';
+
+// Keycodes.
+var LEFT_KEY = 37; // cursor left keycode
+var UP_KEY = 38; // cursor up keycode
+var RIGHT_KEY = 39; // cursor right keycode
+var DOWN_KEY = 40; // cursor down keycode
+var PAGE_UP_KEY = 33; // page up keycode
+var PAGE_DOWN_KEY = 34; // page down keycode
+var HOME_KEY = 36; // home keycode
+var END_KEY = 35; // end keycode
+var ENTER_KEY = 13; // next slide
+var SPACE_KEY = 32;
+var ESCAPE_KEY = 27;
+
+// Presentation modes.
+var SLIDE_MODE = 1;
+var INDEX_MODE = 2;
+var DRAWING_MODE = 3;
+
+// Mouse handler actions.
+var MOUSE_UP = 1;
+var MOUSE_DOWN = 2;
+var MOUSE_MOVE = 3;
+var MOUSE_WHEEL = 4;
+
+// Parameters.
+var ROOT_NODE = document.getElementsByTagNameNS(NSS[&quot;svg&quot;], &quot;svg&quot;)[0];
+var HEIGHT = 0;
+var WIDTH = 0;
+var INDEX_COLUMNS_DEFAULT = 4;
+var INDEX_COLUMNS = INDEX_COLUMNS_DEFAULT;
+var INDEX_OFFSET = 0;
+var STATE_START = -1;
+var STATE_END = -2;
+var BACKGROUND_COLOR = null;
+var slides = new Array();
+
+// Initialisation.
+var currentMode = SLIDE_MODE;
+var masterSlide = null;
+var activeSlide = 0;
+var activeEffect = 0;
+var timeStep = 30; // 40 ms equal 25 frames per second.
+var lastFrameTime = null;
+var processingEffect = false;
+var transCounter = 0;
+var effectArray = 0;
+var defaultTransitionInDict = new Object();
+defaultTransitionInDict[&quot;name&quot;] = &quot;appear&quot;;
+var defaultTransitionOutDict = new Object();
+defaultTransitionOutDict[&quot;name&quot;] = &quot;appear&quot;;
+var jessyInkInitialised = false;
+
+// Initialise char and key code dictionaries.
+var charCodeDictionary = getDefaultCharCodeDictionary();
+var keyCodeDictionary = getDefaultKeyCodeDictionary();
+
+// Initialise mouse handler dictionary.
+var mouseHandlerDictionary = getDefaultMouseHandlerDictionary();
+
+var progress_bar_visible = false;
+var timer_elapsed = 0;
+var timer_start = timer_elapsed;
+var timer_duration = 15; // 15 minutes
+
+var history_counter = 0;
+var history_original_elements = new Array();
+var history_presentation_elements = new Array();
+
+var mouse_original_path = null;
+var mouse_presentation_path = null;
+var mouse_last_x = -1;
+var mouse_last_y = -1;
+var mouse_min_dist_sqr = 3 * 3;
+var path_colour = &quot;red&quot;;
+var path_width_default = 3;
+var path_width = path_width_default;
+var path_paint_width = path_width;
+
+var number_of_added_slides = 0;
+
+/** Initialisation function.
+ *  The whole presentation is set-up in this function.
+ */
+function jessyInkInit()
+{
+	// Make sure we only execute this code once. Double execution can occur if the onload event handler is set
+	// in the main svg tag as well (as was recommended in earlier versions). Executing this function twice does
+	// not lead to any problems, but it takes more time.
+	if (jessyInkInitialised)
+		return;
+
+	// Making the presentation scaleable.
+	var VIEWBOX = ROOT_NODE.getAttribute(&quot;viewBox&quot;);
+
+	if (VIEWBOX)
+	{
+		WIDTH = ROOT_NODE.viewBox.animVal.width;
+		HEIGHT = ROOT_NODE.viewBox.animVal.height;
+	}
+	else
+	{
+		HEIGHT = parseFloat(ROOT_NODE.getAttribute(&quot;height&quot;));
+		WIDTH = parseFloat(ROOT_NODE.getAttribute(&quot;width&quot;));
+		ROOT_NODE.setAttribute(&quot;viewBox&quot;, &quot;0 0 &quot; + WIDTH + &quot; &quot; + HEIGHT);
+	}
+
+	ROOT_NODE.setAttribute(&quot;width&quot;, &quot;100%&quot;);
+	ROOT_NODE.setAttribute(&quot;height&quot;, &quot;100%&quot;);
+
+	// Setting the background color.
+	var namedViews = document.getElementsByTagNameNS(NSS[&quot;sodipodi&quot;], &quot;namedview&quot;);
+
+	for (var counter = 0; counter &lt; namedViews.length; counter++)
+	{
+		if (namedViews[counter].hasAttribute(&quot;id&quot;) &amp;&amp; namedViews[counter].hasAttribute(&quot;pagecolor&quot;))
+		{
+			if (namedViews[counter].getAttribute(&quot;id&quot;) == &quot;base&quot;)
+			{
+				BACKGROUND_COLOR = namedViews[counter].getAttribute(&quot;pagecolor&quot;);
+				var newAttribute = &quot;background-color:&quot; + BACKGROUND_COLOR + &quot;;&quot;;
+
+				if (ROOT_NODE.hasAttribute(&quot;style&quot;))
+					newAttribute += ROOT_NODE.getAttribute(&quot;style&quot;);
+
+				ROOT_NODE.setAttribute(&quot;style&quot;, newAttribute);
+			}
+		}
+	}
+
+	// Defining clip-path.
+	var defsNodes = document.getElementsByTagNameNS(NSS[&quot;svg&quot;], &quot;defs&quot;);
+
+	if (defsNodes.length &gt; 0)
+	{
+		var existingClipPath = document.getElementById(&quot;jessyInkSlideClipPath&quot;);
+
+		if (!existingClipPath)
+		{
+			var rectNode = document.createElementNS(NSS[&quot;svg&quot;], &quot;rect&quot;);
+			var clipPath = document.createElementNS(NSS[&quot;svg&quot;], &quot;clipPath&quot;);
+
+			rectNode.setAttribute(&quot;x&quot;, 0);
+			rectNode.setAttribute(&quot;y&quot;, 0);
+			rectNode.setAttribute(&quot;width&quot;, WIDTH);
+			rectNode.setAttribute(&quot;height&quot;, HEIGHT);
+
+			clipPath.setAttribute(&quot;id&quot;, &quot;jessyInkSlideClipPath&quot;);
+			clipPath.setAttribute(&quot;clipPathUnits&quot;, &quot;userSpaceOnUse&quot;);
+
+			clipPath.appendChild(rectNode);
+			defsNodes[0].appendChild(clipPath);
+		}
+	}
+
+	// Making a list of the slide and finding the master slide.
+	var nodes = document.getElementsByTagNameNS(NSS[&quot;svg&quot;], &quot;g&quot;);
+	var tempSlides = new Array();
+	var existingJessyInkPresentationLayer = null;
+
+	for (var counter = 0; counter &lt; nodes.length; counter++)
+	{
+		if (nodes[counter].getAttributeNS(NSS[&quot;inkscape&quot;], &quot;groupmode&quot;) &amp;&amp; (nodes[counter].getAttributeNS(NSS[&quot;inkscape&quot;], &quot;groupmode&quot;) == &quot;layer&quot;))
+		{
+			if (nodes[counter].getAttributeNS(NSS[&quot;inkscape&quot;], &quot;label&quot;) &amp;&amp; nodes[counter].getAttributeNS(NSS[&quot;jessyink&quot;], &quot;masterSlide&quot;) == &quot;masterSlide&quot;)
+				masterSlide = nodes[counter];
+			else if (nodes[counter].getAttributeNS(NSS[&quot;inkscape&quot;], &quot;label&quot;) &amp;&amp; nodes[counter].getAttributeNS(NSS[&quot;jessyink&quot;], &quot;presentationLayer&quot;) == &quot;presentationLayer&quot;)
+				existingJessyInkPresentationLayer = nodes[counter];
+			else
+				tempSlides.push(nodes[counter].getAttribute(&quot;id&quot;));
+		}
+		else if (nodes[counter].getAttributeNS(NSS['jessyink'], 'element'))
+		{
+			handleElement(nodes[counter]);
+		}
+	}
+
+	// Hide master slide set default transitions.
+	if (masterSlide)
+	{
+		masterSlide.style.display = &quot;none&quot;;
+
+		if (masterSlide.hasAttributeNS(NSS[&quot;jessyink&quot;], &quot;transitionIn&quot;))
+			defaultTransitionInDict = propStrToDict(masterSlide.getAttributeNS(NSS[&quot;jessyink&quot;], &quot;transitionIn&quot;));
+
+		if (masterSlide.hasAttributeNS(NSS[&quot;jessyink&quot;], &quot;transitionOut&quot;))
+			defaultTransitionOutDict = propStrToDict(masterSlide.getAttributeNS(NSS[&quot;jessyink&quot;], &quot;transitionOut&quot;));
+	}
+
+	if (existingJessyInkPresentationLayer != null)
+	{
+		existingJessyInkPresentationLayer.parentNode.removeChild(existingJessyInkPresentationLayer);
+	}
+
+	// Set start slide.
+	var hashObj = new LocationHash(window.location.hash);
+
+	activeSlide = hashObj.slideNumber;
+	activeEffect = hashObj.effectNumber;
+
+	if (activeSlide &lt; 0)
+		activeSlide = 0;
+	else if (activeSlide &gt;= tempSlides.length)
+		activeSlide = tempSlides.length - 1;
+
+	var originalNode = document.getElementById(tempSlides[counter]);
+
+	var JessyInkPresentationLayer = document.createElementNS(NSS[&quot;svg&quot;], &quot;g&quot;);
+	JessyInkPresentationLayer.setAttributeNS(NSS[&quot;inkscape&quot;], &quot;groupmode&quot;, &quot;layer&quot;);
+	JessyInkPresentationLayer.setAttributeNS(NSS[&quot;inkscape&quot;], &quot;label&quot;, &quot;JessyInk Presentation Layer&quot;);
+	JessyInkPresentationLayer.setAttributeNS(NSS[&quot;jessyink&quot;], &quot;presentationLayer&quot;, &quot;presentationLayer&quot;);
+	JessyInkPresentationLayer.setAttribute(&quot;id&quot;, &quot;jessyink_presentation_layer&quot;);
+	JessyInkPresentationLayer.style.display = &quot;inherit&quot;;
+	ROOT_NODE.appendChild(JessyInkPresentationLayer);
+
+	// Gathering all the information about the transitions and effects of the slides, set the background
+	// from the master slide and substitute the auto-texts.
+	for (var counter = 0; counter &lt; tempSlides.length; counter++)
+	{
+		var originalNode = document.getElementById(tempSlides[counter]);
+		originalNode.style.display = &quot;none&quot;;
+		var node = suffixNodeIds(originalNode.cloneNode(true), &quot;_&quot; + counter);
+		JessyInkPresentationLayer.appendChild(node);
+		slides[counter] = new Object();
+		slides[counter][&quot;original_element&quot;] = originalNode;
+		slides[counter][&quot;element&quot;] = node;
+
+		// Set build in transition.
+		slides[counter][&quot;transitionIn&quot;] = new Object();
+
+		var dict;
+
+		if (node.hasAttributeNS(NSS[&quot;jessyink&quot;], &quot;transitionIn&quot;))
+			dict = propStrToDict(node.getAttributeNS(NSS[&quot;jessyink&quot;], &quot;transitionIn&quot;));
+		else
+			dict = defaultTransitionInDict;
+
+		slides[counter][&quot;transitionIn&quot;][&quot;name&quot;] = dict[&quot;name&quot;];
+		slides[counter][&quot;transitionIn&quot;][&quot;options&quot;] = new Object();
+
+		for (key in dict)
+			if (key != &quot;name&quot;)
+				slides[counter][&quot;transitionIn&quot;][&quot;options&quot;][key] = dict[key];
+
+		// Set build out transition.
+		slides[counter][&quot;transitionOut&quot;] = new Object();
+
+		if (node.hasAttributeNS(NSS[&quot;jessyink&quot;], &quot;transitionOut&quot;))
+			dict = propStrToDict(node.getAttributeNS(NSS[&quot;jessyink&quot;], &quot;transitionOut&quot;));
+		else
+			dict = defaultTransitionOutDict;
+
+		slides[counter][&quot;transitionOut&quot;][&quot;name&quot;] = dict[&quot;name&quot;];
+		slides[counter][&quot;transitionOut&quot;][&quot;options&quot;] = new Object();
+
+		for (key in dict)
+			if (key != &quot;name&quot;)
+				slides[counter][&quot;transitionOut&quot;][&quot;options&quot;][key] = dict[key];
+
+		// Copy master slide content.
+		if (masterSlide)
+		{
+			var clonedNode = suffixNodeIds(masterSlide.cloneNode(true), &quot;_&quot; + counter);
+			clonedNode.removeAttributeNS(NSS[&quot;inkscape&quot;], &quot;groupmode&quot;);
+			clonedNode.removeAttributeNS(NSS[&quot;inkscape&quot;], &quot;label&quot;);
+			clonedNode.style.display = &quot;inherit&quot;;
+
+			node.insertBefore(clonedNode, node.firstChild);
+		}
+
+		// Setting clip path.
+		node.setAttribute(&quot;clip-path&quot;, &quot;url(#jessyInkSlideClipPath)&quot;);
+
+		// Substitute auto texts.
+		substituteAutoTexts(node, node.getAttributeNS(NSS[&quot;inkscape&quot;], &quot;label&quot;), counter + 1, tempSlides.length);
+
+		node.removeAttributeNS(NSS[&quot;inkscape&quot;], &quot;groupmode&quot;);
+		node.removeAttributeNS(NSS[&quot;inkscape&quot;], &quot;label&quot;);
+
+		// Set effects.
+		var tempEffects = new Array();
+		var groups = new Object();
+
+		for (var IOCounter = 0; IOCounter &lt;= 1; IOCounter++)
+		{
+			var propName = &quot;&quot;;
+			var dir = 0;
+
+			if (IOCounter == 0)
+			{
+				propName = &quot;effectIn&quot;;
+				dir = 1;
+			}
+			else if (IOCounter == 1)
+			{
+				propName = &quot;effectOut&quot;;
+				dir = -1;
+			}
+
+			var effects = getElementsByPropertyNS(node, NSS[&quot;jessyink&quot;], propName);
+
+			for (var effectCounter = 0; effectCounter &lt; effects.length; effectCounter++)
+			{
+				var element = document.getElementById(effects[effectCounter]);
+				var dict = propStrToDict(element.getAttributeNS(NSS[&quot;jessyink&quot;], propName));
+
+				// Put every element that has an effect associated with it, into its own group.
+				// Unless of course, we already put it into its own group.
+				if (!(groups[element.id]))
+				{
+					var newGroup = document.createElementNS(NSS[&quot;svg&quot;], &quot;g&quot;);
+
+					element.parentNode.insertBefore(newGroup, element);
+					newGroup.appendChild(element.parentNode.removeChild(element));
+					groups[element.id] = newGroup;
+				}
+
+				var effectDict = new Object();
+
+				effectDict[&quot;effect&quot;] = dict[&quot;name&quot;];
+				effectDict[&quot;dir&quot;] = dir;
+				effectDict[&quot;element&quot;] = groups[element.id];
+
+				for (var option in dict)
+				{
+					if ((option != &quot;name&quot;) &amp;&amp; (option != &quot;order&quot;))
+					{
+						if (!effectDict[&quot;options&quot;])
+							effectDict[&quot;options&quot;] = new Object();
+
+						effectDict[&quot;options&quot;][option] = dict[option];
+					}
+				}
+
+				if (!tempEffects[dict[&quot;order&quot;]])
+					tempEffects[dict[&quot;order&quot;]] = new Array();
+
+				tempEffects[dict[&quot;order&quot;]][tempEffects[dict[&quot;order&quot;]].length] = effectDict;
+			}
+		}
+
+		// Make invisible, but keep in rendering tree to ensure that bounding box can be calculated.
+		node.setAttribute(&quot;opacity&quot;,0);
+		node.style.display = &quot;inherit&quot;;
+
+		// Create a transform group.
+		var transformGroup = document.createElementNS(NSS[&quot;svg&quot;], &quot;g&quot;);
+
+		// Add content to transform group.
+		while (node.firstChild)
+			transformGroup.appendChild(node.firstChild);
+
+		// Transfer the transform attribute from the node to the transform group.
+		if (node.getAttribute(&quot;transform&quot;))
+		{
+			transformGroup.setAttribute(&quot;transform&quot;, node.getAttribute(&quot;transform&quot;));
+			node.removeAttribute(&quot;transform&quot;);
+		}
+
+		// Create a view group.
+		var viewGroup = document.createElementNS(NSS[&quot;svg&quot;], &quot;g&quot;);
+
+		viewGroup.appendChild(transformGroup);
+		slides[counter][&quot;viewGroup&quot;] = node.appendChild(viewGroup);
+
+		// Insert background.
+		if (BACKGROUND_COLOR != null)
+		{
+			var rectNode = document.createElementNS(NSS[&quot;svg&quot;], &quot;rect&quot;);
+
+			rectNode.setAttribute(&quot;x&quot;, 0);
+			rectNode.setAttribute(&quot;y&quot;, 0);
+			rectNode.setAttribute(&quot;width&quot;, WIDTH);
+			rectNode.setAttribute(&quot;height&quot;, HEIGHT);
+			rectNode.setAttribute(&quot;id&quot;, &quot;jessyInkBackground&quot; + counter);
+			rectNode.setAttribute(&quot;fill&quot;, BACKGROUND_COLOR);
+
+			slides[counter][&quot;viewGroup&quot;].insertBefore(rectNode, slides[counter][&quot;viewGroup&quot;].firstChild);
+		}
+
+		// Set views.
+		var tempViews = new Array();
+		var views = getElementsByPropertyNS(node, NSS[&quot;jessyink&quot;], &quot;view&quot;);
+		var matrixOld = (new matrixSVG()).fromElements(1, 0, 0, 0, 1, 0, 0, 0, 1);
+
+		// Set initial view even if there are no other views.
+		slides[counter][&quot;viewGroup&quot;].setAttribute(&quot;transform&quot;, matrixOld.toAttribute());
+		slides[counter].initialView = matrixOld.toAttribute();
+
+		for (var viewCounter = 0; viewCounter &lt; views.length; viewCounter++)
+		{
+			var element = document.getElementById(views[viewCounter]);
+			var dict = propStrToDict(element.getAttributeNS(NSS[&quot;jessyink&quot;], &quot;view&quot;));
+
+			if (dict[&quot;order&quot;] == 0)
+			{
+				matrixOld = pointMatrixToTransformation(rectToMatrix(element)).mult((new matrixSVG()).fromSVGMatrix(slides[counter].viewGroup.getScreenCTM()).inv().mult((new matrixSVG()).fromSVGMatrix(element.parentNode.getScreenCTM())).inv());
+				slides[counter].initialView = matrixOld.toAttribute();
+			}
+			else
+			{
+				var effectDict = new Object();
+
+				effectDict[&quot;effect&quot;] = dict[&quot;name&quot;];
+				effectDict[&quot;dir&quot;] = 1;
+				effectDict[&quot;element&quot;] = slides[counter][&quot;viewGroup&quot;];
+				effectDict[&quot;order&quot;] = dict[&quot;order&quot;];
+
+				for (var option in dict)
+				{
+					if ((option != &quot;name&quot;) &amp;&amp; (option != &quot;order&quot;))
+					{
+						if (!effectDict[&quot;options&quot;])
+							effectDict[&quot;options&quot;] = new Object();
+
+						effectDict[&quot;options&quot;][option] = dict[option];
+					}
+				}
+
+				effectDict[&quot;options&quot;][&quot;matrixNew&quot;] = pointMatrixToTransformation(rectToMatrix(element)).mult((new matrixSVG()).fromSVGMatrix(slides[counter].viewGroup.getScreenCTM()).inv().mult((new matrixSVG()).fromSVGMatrix(element.parentNode.getScreenCTM())).inv());
+
+				tempViews[dict[&quot;order&quot;]] = effectDict;
+			}
+
+			// Remove element.
+			element.parentNode.removeChild(element);
+		}
+
+		// Consolidate view array and append it to the effect array.
+		if (tempViews.length &gt; 0)
+		{
+			for (var viewCounter = 0; viewCounter &lt; tempViews.length; viewCounter++)
+			{
+				if (tempViews[viewCounter])
+				{
+					tempViews[viewCounter][&quot;options&quot;][&quot;matrixOld&quot;] = matrixOld;
+					matrixOld = tempViews[viewCounter][&quot;options&quot;][&quot;matrixNew&quot;];
+
+					if (!tempEffects[tempViews[viewCounter][&quot;order&quot;]])
+						tempEffects[tempViews[viewCounter][&quot;order&quot;]] = new Array();
+
+					tempEffects[tempViews[viewCounter][&quot;order&quot;]][tempEffects[tempViews[viewCounter][&quot;order&quot;]].length] = tempViews[viewCounter];
+				}
+			}
+		}
+
+		// Set consolidated effect array.
+		if (tempEffects.length &gt; 0)
+		{
+			slides[counter][&quot;effects&quot;] = new Array();
+
+			for (var effectCounter = 0; effectCounter &lt; tempEffects.length; effectCounter++)
+			{
+				if (tempEffects[effectCounter])
+					slides[counter][&quot;effects&quot;][slides[counter][&quot;effects&quot;].length] = tempEffects[effectCounter];
+			}
+		}
+
+		node.setAttribute(&quot;onmouseover&quot;, &quot;if ((currentMode == INDEX_MODE) &amp;&amp; ( activeSlide != &quot; + counter + &quot;)) { indexSetActiveSlide(&quot; + counter + &quot;); };&quot;);
+
+		// Set visibility for initial state.
+		if (counter == activeSlide)
+		{
+			node.style.display = &quot;inherit&quot;;
+			node.setAttribute(&quot;opacity&quot;,1);
+		}
+		else
+		{
+			node.style.display = &quot;none&quot;;
+			node.setAttribute(&quot;opacity&quot;,0);
+		}
+	}
+
+	// Set key handler.
+	var jessyInkObjects = document.getElementsByTagNameNS(NSS[&quot;svg&quot;], &quot;g&quot;);
+
+	for (var counter = 0; counter &lt; jessyInkObjects.length; counter++)
+	{
+		var elem = jessyInkObjects[counter];
+
+		if (elem.getAttributeNS(NSS[&quot;jessyink&quot;], &quot;customKeyBindings&quot;))
+		{
+			if (elem.getCustomKeyBindings != undefined)
+				keyCodeDictionary = elem.getCustomKeyBindings();
+
+			if (elem.getCustomCharBindings != undefined)
+				charCodeDictionary = elem.getCustomCharBindings();
+		}
+	}
+
+	// Set mouse handler.
+	var jessyInkMouseHandler = document.getElementsByTagNameNS(NSS[&quot;jessyink&quot;], &quot;mousehandler&quot;);
+
+	for (var counter = 0; counter &lt; jessyInkMouseHandler.length; counter++)
+	{
+		var elem = jessyInkMouseHandler[counter];
+
+		if (elem.getMouseHandler != undefined)
+		{
+			var tempDict = elem.getMouseHandler();
+
+			for (mode in tempDict)
+			{
+				if (!mouseHandlerDictionary[mode])
+					mouseHandlerDictionary[mode] = new Object();
+
+				for (handler in tempDict[mode])
+					mouseHandlerDictionary[mode][handler] = tempDict[mode][handler];
+			}
+		}
+	}
+
+	// Check effect number.
+	if ((activeEffect &lt; 0) || (!slides[activeSlide].effects))
+	{
+		activeEffect = 0;
+	}
+	else if (activeEffect &gt; slides[activeSlide].effects.length)
+	{
+		activeEffect = slides[activeSlide].effects.length;
+	}
+
+	createProgressBar(JessyInkPresentationLayer);
+	hideProgressBar();
+	setProgressBarValue(activeSlide);
+	setTimeIndicatorValue(0);
+	setInterval(&quot;updateTimer()&quot;, 1000);
+	setSlideToState(activeSlide, activeEffect);
+	jessyInkInitialised = true;
+}
+
+/** Function to subtitute the auto-texts.
+ *
+ *  @param node the node
+ *  @param slideName name of the slide the node is on
+ *  @param slideNumber number of the slide the node is on
+ *  @param numberOfSlides number of slides in the presentation
+ */
+function substituteAutoTexts(node, slideName, slideNumber, numberOfSlides)
+{
+	var texts = node.getElementsByTagNameNS(NSS[&quot;svg&quot;], &quot;tspan&quot;);
+
+	for (var textCounter = 0; textCounter &lt; texts.length; textCounter++)
+	{
+		if (texts[textCounter].getAttributeNS(NSS[&quot;jessyink&quot;], &quot;autoText&quot;) == &quot;slideNumber&quot;)
+			texts[textCounter].firstChild.nodeValue = slideNumber;
+		else if (texts[textCounter].getAttributeNS(NSS[&quot;jessyink&quot;], &quot;autoText&quot;) == &quot;numberOfSlides&quot;)
+			texts[textCounter].firstChild.nodeValue = numberOfSlides;
+		else if (texts[textCounter].getAttributeNS(NSS[&quot;jessyink&quot;], &quot;autoText&quot;) == &quot;slideTitle&quot;)
+			texts[textCounter].firstChild.nodeValue = slideName;
+	}
+}
+
+/** Convenience function to get an element depending on whether it has a property with a particular name.
+ *	This function emulates some dearly missed XPath functionality.
+ *
+ *  @param node the node
+ *  @param namespace namespace of the attribute
+ *  @param name attribute name
+ */
+function getElementsByPropertyNS(node, namespace, name)
+{
+	var elems = new Array();
+
+	if (node.getAttributeNS(namespace, name))
+		elems.push(node.getAttribute(&quot;id&quot;));
+
+	for (var counter = 0; counter &lt; node.childNodes.length; counter++)
+	{
+		if (node.childNodes[counter].nodeType == 1)
+			elems = elems.concat(getElementsByPropertyNS(node.childNodes[counter], namespace, name));
+	}
+
+	return elems;
+}
+
+/** Function to dispatch the next effect, if there is none left, change the slide.
+ *
+ *  @param dir direction of the change (1 = forwards, -1 = backwards)
+ */
+function dispatchEffects(dir)
+{
+	if (slides[activeSlide][&quot;effects&quot;] &amp;&amp; (((dir == 1) &amp;&amp; (activeEffect &lt; slides[activeSlide][&quot;effects&quot;].length)) || ((dir == -1) &amp;&amp; (activeEffect &gt; 0))))
+	{
+		processingEffect = true;
+
+		if (dir == 1)
+		{
+			effectArray = slides[activeSlide][&quot;effects&quot;][activeEffect];
+			activeEffect += dir;
+		}
+		else if (dir == -1)
+		{
+			activeEffect += dir;
+			effectArray = slides[activeSlide][&quot;effects&quot;][activeEffect];
+		}
+
+		transCounter = 0;
+		startTime = (new Date()).getTime();
+		lastFrameTime = null;
+		effect(dir);
+	}
+	else if (((dir == 1) &amp;&amp; (activeSlide &lt; (slides.length - 1))) || (((dir == -1) &amp;&amp; (activeSlide &gt; 0))))
+	{
+		changeSlide(dir);
+	}
+}
+
+/** Function to skip effects and directly either put the slide into start or end state or change slides.
+ *
+ *  @param dir direction of the change (1 = forwards, -1 = backwards)
+ */
+function skipEffects(dir)
+{
+	if (slides[activeSlide][&quot;effects&quot;] &amp;&amp; (((dir == 1) &amp;&amp; (activeEffect &lt; slides[activeSlide][&quot;effects&quot;].length)) || ((dir == -1) &amp;&amp; (activeEffect &gt; 0))))
+	{
+		processingEffect = true;
+
+		if (slides[activeSlide][&quot;effects&quot;] &amp;&amp; (dir == 1))
+			activeEffect = slides[activeSlide][&quot;effects&quot;].length;
+		else
+			activeEffect = 0;
+
+		if (dir == 1)
+			setSlideToState(activeSlide, STATE_END);
+		else
+			setSlideToState(activeSlide, STATE_START);
+
+		processingEffect = false;
+	}
+	else if (((dir == 1) &amp;&amp; (activeSlide &lt; (slides.length - 1))) || (((dir == -1) &amp;&amp; (activeSlide &gt; 0))))
+	{
+		changeSlide(dir);
+	}
+}
+
+/** Function to change between slides.
+ *
+ *  @param dir direction (1 = forwards, -1 = backwards)
+ */
+function changeSlide(dir)
+{
+	processingEffect = true;
+	effectArray = new Array();
+
+	effectArray[0] = new Object();
+	if (dir == 1)
+	{
+		effectArray[0][&quot;effect&quot;] = slides[activeSlide][&quot;transitionOut&quot;][&quot;name&quot;];
+		effectArray[0][&quot;options&quot;] = slides[activeSlide][&quot;transitionOut&quot;][&quot;options&quot;];
+		effectArray[0][&quot;dir&quot;] = -1;
+	}
+	else if (dir == -1)
+	{
+		effectArray[0][&quot;effect&quot;] = slides[activeSlide][&quot;transitionIn&quot;][&quot;name&quot;];
+		effectArray[0][&quot;options&quot;] = slides[activeSlide][&quot;transitionIn&quot;][&quot;options&quot;];
+		effectArray[0][&quot;dir&quot;] = 1;
+	}
+	effectArray[0][&quot;element&quot;] = slides[activeSlide][&quot;element&quot;];
+
+	activeSlide += dir;
+	setProgressBarValue(activeSlide);
+
+	effectArray[1] = new Object();
+
+	if (dir == 1)
+	{
+		effectArray[1][&quot;effect&quot;] = slides[activeSlide][&quot;transitionIn&quot;][&quot;name&quot;];
+		effectArray[1][&quot;options&quot;] = slides[activeSlide][&quot;transitionIn&quot;][&quot;options&quot;];
+		effectArray[1][&quot;dir&quot;] = 1;
+	}
+	else if (dir == -1)
+	{
+		effectArray[1][&quot;effect&quot;] = slides[activeSlide][&quot;transitionOut&quot;][&quot;name&quot;];
+		effectArray[1][&quot;options&quot;] = slides[activeSlide][&quot;transitionOut&quot;][&quot;options&quot;];
+		effectArray[1][&quot;dir&quot;] = -1;
+	}
+
+	effectArray[1][&quot;element&quot;] = slides[activeSlide][&quot;element&quot;];
+
+	if (slides[activeSlide][&quot;effects&quot;] &amp;&amp; (dir == -1))
+		activeEffect = slides[activeSlide][&quot;effects&quot;].length;
+	else
+		activeEffect = 0;
+
+	if (dir == -1)
+		setSlideToState(activeSlide, STATE_END);
+	else
+		setSlideToState(activeSlide, STATE_START);
+
+	transCounter = 0;
+	startTime = (new Date()).getTime();
+	lastFrameTime = null;
+	effect(dir);
+}
+
+/** Function to toggle between index and slide mode.
+*/
+function toggleSlideIndex()
+{
+	var suspendHandle = ROOT_NODE.suspendRedraw(500);
+
+	if (currentMode == SLIDE_MODE)
+	{
+		hideProgressBar();		
+		INDEX_OFFSET = -1;
+		indexSetPageSlide(activeSlide);
+		currentMode = INDEX_MODE;
+	}
+	else if (currentMode == INDEX_MODE)
+	{
+		for (var counter = 0; counter &lt; slides.length; counter++)
+		{
+			slides[counter][&quot;element&quot;].setAttribute(&quot;transform&quot;,&quot;scale(1)&quot;);
+
+			if (counter == activeSlide)
+			{
+				slides[counter][&quot;element&quot;].style.display = &quot;inherit&quot;;
+				slides[counter][&quot;element&quot;].setAttribute(&quot;opacity&quot;,1);
+				activeEffect = 0;
+			}
+			else
+			{
+				slides[counter][&quot;element&quot;].setAttribute(&quot;opacity&quot;,0);
+				slides[counter][&quot;element&quot;].style.display = &quot;none&quot;;
+			}
+		}
+		currentMode = SLIDE_MODE;
+		setSlideToState(activeSlide, STATE_START);
+		setProgressBarValue(activeSlide);
+
+		if (progress_bar_visible)
+		{
+			showProgressBar();
+		}
+	}
+
+	ROOT_NODE.unsuspendRedraw(suspendHandle);
+	ROOT_NODE.forceRedraw();
+}
+
+/** Function to run an effect.
+ *
+ *  @param dir direction in which to play the effect (1 = forwards, -1 = backwards)
+ */
+function effect(dir)
+{
+	var done = true;
+
+	var suspendHandle = ROOT_NODE.suspendRedraw(200);
+
+	for (var counter = 0; counter &lt; effectArray.length; counter++)
+	{
+		if (effectArray[counter][&quot;effect&quot;] == &quot;fade&quot;)
+			done &amp;= fade(parseInt(effectArray[counter][&quot;dir&quot;]) * dir, effectArray[counter][&quot;element&quot;], transCounter, effectArray[counter][&quot;options&quot;]);
+		else if (effectArray[counter][&quot;effect&quot;] == &quot;appear&quot;)
+			done &amp;= appear(parseInt(effectArray[counter][&quot;dir&quot;]) * dir, effectArray[counter][&quot;element&quot;], transCounter, effectArray[counter][&quot;options&quot;]);
+		else if (effectArray[counter][&quot;effect&quot;] == &quot;pop&quot;)
+			done &amp;= pop(parseInt(effectArray[counter][&quot;dir&quot;]) * dir, effectArray[counter][&quot;element&quot;], transCounter, effectArray[counter][&quot;options&quot;]);
+		else if (effectArray[counter][&quot;effect&quot;] == &quot;view&quot;)
+			done &amp;= view(parseInt(effectArray[counter][&quot;dir&quot;]) * dir, effectArray[counter][&quot;element&quot;], transCounter, effectArray[counter][&quot;options&quot;]);
+	}
+
+	ROOT_NODE.unsuspendRedraw(suspendHandle);
+	ROOT_NODE.forceRedraw();
+
+	if (!done)
+	{
+		var currentTime = (new Date()).getTime();
+		var timeDiff = 1;
+
+		transCounter = currentTime - startTime;
+
+		if (lastFrameTime != null)
+		{
+			timeDiff = timeStep - (currentTime - lastFrameTime);
+
+			if (timeDiff &lt;= 0)
+				timeDiff = 1;
+		}
+
+		lastFrameTime = currentTime;
+
+		window.setTimeout(&quot;effect(&quot; + dir + &quot;)&quot;, timeDiff);
+	}
+	else
+	{
+		window.location.hash = (activeSlide + 1) + '_' + activeEffect;
+		processingEffect = false;
+	}
+}
+
+/** Function to display the index sheet.
+ *
+ *  @param offsetNumber offset number
+ */
+function displayIndex(offsetNumber)
+{
+	var offsetX = 0;
+	var offsetY = 0;
+
+	if (offsetNumber &lt; 0)
+		offsetNumber = 0;
+	else if (offsetNumber &gt;= slides.length)
+		offsetNumber = slides.length - 1;
+
+	for (var counter = 0; counter &lt; slides.length; counter++)
+	{
+		if ((counter &lt; offsetNumber) || (counter &gt; offsetNumber + INDEX_COLUMNS * INDEX_COLUMNS - 1))
+		{
+			slides[counter][&quot;element&quot;].setAttribute(&quot;opacity&quot;,0);
+			slides[counter][&quot;element&quot;].style.display = &quot;none&quot;;
+		}
+		else
+		{
+			offsetX = ((counter - offsetNumber) % INDEX_COLUMNS) * WIDTH;
+			offsetY = Math.floor((counter - offsetNumber) / INDEX_COLUMNS) * HEIGHT;
+
+			slides[counter][&quot;element&quot;].setAttribute(&quot;transform&quot;,&quot;scale(&quot;+1/INDEX_COLUMNS+&quot;) translate(&quot;+offsetX+&quot;,&quot;+offsetY+&quot;)&quot;);
+			slides[counter][&quot;element&quot;].style.display = &quot;inherit&quot;;
+			slides[counter][&quot;element&quot;].setAttribute(&quot;opacity&quot;,0.5);
+		}
+
+		setSlideToState(counter, STATE_END);
+	}
+
+	//do we need to save the current offset?
+	if (INDEX_OFFSET != offsetNumber)
+		INDEX_OFFSET = offsetNumber;
+}
+
+/** Function to set the active slide in the slide view.
+ *
+ *  @param nbr index of the active slide
+ */
+function slideSetActiveSlide(nbr)
+{
+	if (nbr &gt;= slides.length)
+		nbr = slides.length - 1;
+	else if (nbr &lt; 0)
+		nbr = 0;
+
+	slides[activeSlide][&quot;element&quot;].setAttribute(&quot;opacity&quot;,0);
+	slides[activeSlide][&quot;element&quot;].style.display = &quot;none&quot;;
+
+	activeSlide = parseInt(nbr);
+
+	setSlideToState(activeSlide, STATE_START);
+	slides[activeSlide][&quot;element&quot;].style.display = &quot;inherit&quot;;
+	slides[activeSlide][&quot;element&quot;].setAttribute(&quot;opacity&quot;,1);
+
+	activeEffect = 0;
+	setProgressBarValue(nbr);
+}
+
+/** Function to set the active slide in the index view.
+ *
+ *  @param nbr index of the active slide
+ */
+function indexSetActiveSlide(nbr)
+{
+	if (nbr &gt;= slides.length)
+		nbr = slides.length - 1;
+	else if (nbr &lt; 0)
+		nbr = 0;
+
+	slides[activeSlide][&quot;element&quot;].setAttribute(&quot;opacity&quot;,0.5);
+
+	activeSlide = parseInt(nbr);
+	window.location.hash = (activeSlide + 1) + '_0';
+
+	slides[activeSlide][&quot;element&quot;].setAttribute(&quot;opacity&quot;,1);
+}
+
+/** Function to set the page and active slide in index view. 
+ *
+ *  @param nbr index of the active slide
+ *
+ *  NOTE: To force a redraw,
+ *  set INDEX_OFFSET to -1 before calling indexSetPageSlide().
+ *
+ *  This is necessary for zooming (otherwise the index might not
+ *  get redrawn) and when switching to index mode.
+ *
+ *  INDEX_OFFSET = -1
+ *  indexSetPageSlide(activeSlide);
+ */
+function indexSetPageSlide(nbr)
+{
+	if (nbr &gt;= slides.length)
+		nbr = slides.length - 1;
+	else if (nbr &lt; 0)
+		nbr = 0;
+
+	//calculate the offset
+	var offset = nbr - nbr % (INDEX_COLUMNS * INDEX_COLUMNS);
+
+	if (offset &lt; 0)
+		offset = 0;
+
+	//if different from kept offset, then record and change the page
+	if (offset != INDEX_OFFSET)
+	{
+		INDEX_OFFSET = offset;
+		displayIndex(INDEX_OFFSET);
+	}
+
+	//set the active slide
+	indexSetActiveSlide(nbr);
+}
+
+/** Event handler for key press.
+ *
+ *  @param e the event
+ */
+function keydown(e)
+{
+	if (!e)
+		e = window.event;
+
+	code = e.keyCode || e.charCode;
+
+	if (!processingEffect &amp;&amp; keyCodeDictionary[currentMode] &amp;&amp; keyCodeDictionary[currentMode][code])
+		return keyCodeDictionary[currentMode][code]();
+	else
+		document.onkeypress = keypress;
+}
+// Set event handler for key down.
+document.onkeydown = keydown;
+
+/** Event handler for key press.
+ *
+ *  @param e the event
+ */
+function keypress(e)
+{
+	document.onkeypress = null;
+
+	if (!e)
+		e = window.event;
+
+	str = String.fromCharCode(e.keyCode || e.charCode);
+
+	if (!processingEffect &amp;&amp; charCodeDictionary[currentMode] &amp;&amp; charCodeDictionary[currentMode][str])
+		return charCodeDictionary[currentMode][str]();
+}
+
+/** Function to supply the default char code dictionary.
+ *
+ * @returns default char code dictionary
+ */
+function getDefaultCharCodeDictionary()
+{
+	var charCodeDict = new Object();
+
+	charCodeDict[SLIDE_MODE] = new Object();
+	charCodeDict[INDEX_MODE] = new Object();
+	charCodeDict[DRAWING_MODE] = new Object();
+
+	charCodeDict[SLIDE_MODE][&quot;i&quot;] = function () { return toggleSlideIndex(); };
+	charCodeDict[SLIDE_MODE][&quot;d&quot;] = function () { return slideSwitchToDrawingMode(); };
+	charCodeDict[SLIDE_MODE][&quot;D&quot;] = function () { return slideQueryDuration(); };
+	charCodeDict[SLIDE_MODE][&quot;n&quot;] = function () { return slideAddSlide(activeSlide); };
+	charCodeDict[SLIDE_MODE][&quot;p&quot;] = function () { return slideToggleProgressBarVisibility(); };
+	charCodeDict[SLIDE_MODE][&quot;t&quot;] = function () { return slideResetTimer(); };
+	charCodeDict[SLIDE_MODE][&quot;e&quot;] = function () { return slideUpdateExportLayer(); };
+
+	charCodeDict[DRAWING_MODE][&quot;d&quot;] = function () { return drawingSwitchToSlideMode(); };
+	charCodeDict[DRAWING_MODE][&quot;0&quot;] = function () { return drawingResetPathWidth(); };
+	charCodeDict[DRAWING_MODE][&quot;1&quot;] = function () { return drawingSetPathWidth(1.0); };
+	charCodeDict[DRAWING_MODE][&quot;3&quot;] = function () { return drawingSetPathWidth(3.0); };
+	charCodeDict[DRAWING_MODE][&quot;5&quot;] = function () { return drawingSetPathWidth(5.0); };
+	charCodeDict[DRAWING_MODE][&quot;7&quot;] = function () { return drawingSetPathWidth(7.0); };
+	charCodeDict[DRAWING_MODE][&quot;9&quot;] = function () { return drawingSetPathWidth(9.0); };
+	charCodeDict[DRAWING_MODE][&quot;b&quot;] = function () { return drawingSetPathColour(&quot;blue&quot;); };
+	charCodeDict[DRAWING_MODE][&quot;c&quot;] = function () { return drawingSetPathColour(&quot;cyan&quot;); };
+	charCodeDict[DRAWING_MODE][&quot;g&quot;] = function () { return drawingSetPathColour(&quot;green&quot;); };
+	charCodeDict[DRAWING_MODE][&quot;k&quot;] = function () { return drawingSetPathColour(&quot;black&quot;); };
+	charCodeDict[DRAWING_MODE][&quot;m&quot;] = function () { return drawingSetPathColour(&quot;magenta&quot;); };
+	charCodeDict[DRAWING_MODE][&quot;o&quot;] = function () { return drawingSetPathColour(&quot;orange&quot;); };
+	charCodeDict[DRAWING_MODE][&quot;r&quot;] = function () { return drawingSetPathColour(&quot;red&quot;); };
+	charCodeDict[DRAWING_MODE][&quot;w&quot;] = function () { return drawingSetPathColour(&quot;white&quot;); };
+	charCodeDict[DRAWING_MODE][&quot;y&quot;] = function () { return drawingSetPathColour(&quot;yellow&quot;); };
+	charCodeDict[DRAWING_MODE][&quot;z&quot;] = function () { return drawingUndo(); };
+
+	charCodeDict[INDEX_MODE][&quot;i&quot;] = function () { return toggleSlideIndex(); };
+	charCodeDict[INDEX_MODE][&quot;-&quot;] = function () { return indexDecreaseNumberOfColumns(); };
+	charCodeDict[INDEX_MODE][&quot;=&quot;] = function () { return indexIncreaseNumberOfColumns(); };
+	charCodeDict[INDEX_MODE][&quot;+&quot;] = function () { return indexIncreaseNumberOfColumns(); };
+	charCodeDict[INDEX_MODE][&quot;0&quot;] = function () { return indexResetNumberOfColumns(); };
+
+	return charCodeDict;
+}
+
+/** Function to supply the default key code dictionary.
+ *
+ * @returns default key code dictionary
+ */
+function getDefaultKeyCodeDictionary()
+{
+	var keyCodeDict = new Object();
+
+	keyCodeDict[SLIDE_MODE] = new Object();
+	keyCodeDict[INDEX_MODE] = new Object();
+	keyCodeDict[DRAWING_MODE] = new Object();
+
+	keyCodeDict[SLIDE_MODE][LEFT_KEY] = function() { return dispatchEffects(-1); };
+	keyCodeDict[SLIDE_MODE][RIGHT_KEY] = function() { return dispatchEffects(1); };
+	keyCodeDict[SLIDE_MODE][UP_KEY] = function() { return skipEffects(-1); };
+	keyCodeDict[SLIDE_MODE][DOWN_KEY] = function() { return skipEffects(1); };
+	keyCodeDict[SLIDE_MODE][PAGE_UP_KEY] = function() { return dispatchEffects(-1); };
+	keyCodeDict[SLIDE_MODE][PAGE_DOWN_KEY] = function() { return dispatchEffects(1); };
+	keyCodeDict[SLIDE_MODE][HOME_KEY] = function() { return slideSetActiveSlide(0); };
+	keyCodeDict[SLIDE_MODE][END_KEY] = function() { return slideSetActiveSlide(slides.length - 1); };
+	keyCodeDict[SLIDE_MODE][SPACE_KEY] = function() { return dispatchEffects(1); };
+
+	keyCodeDict[INDEX_MODE][LEFT_KEY] = function() { return indexSetPageSlide(activeSlide - 1); };
+	keyCodeDict[INDEX_MODE][RIGHT_KEY] = function() { return indexSetPageSlide(activeSlide + 1); };
+	keyCodeDict[INDEX_MODE][UP_KEY] = function() { return indexSetPageSlide(activeSlide - INDEX_COLUMNS); };
+	keyCodeDict[INDEX_MODE][DOWN_KEY] = function() { return indexSetPageSlide(activeSlide + INDEX_COLUMNS); };
+	keyCodeDict[INDEX_MODE][PAGE_UP_KEY] = function() { return indexSetPageSlide(activeSlide - INDEX_COLUMNS * INDEX_COLUMNS); };
+	keyCodeDict[INDEX_MODE][PAGE_DOWN_KEY] = function() { return indexSetPageSlide(activeSlide + INDEX_COLUMNS * INDEX_COLUMNS); };
+	keyCodeDict[INDEX_MODE][HOME_KEY] = function() { return indexSetPageSlide(0); };
+	keyCodeDict[INDEX_MODE][END_KEY] = function() { return indexSetPageSlide(slides.length - 1); };
+	keyCodeDict[INDEX_MODE][ENTER_KEY] = function() { return toggleSlideIndex(); };
+
+	keyCodeDict[DRAWING_MODE][ESCAPE_KEY] = function () { return drawingSwitchToSlideMode(); };
+
+	return keyCodeDict;
+}
+
+/** Function to handle all mouse events.
+ *
+ *	@param	evnt	event
+ *	@param	action	type of event (e.g. mouse up, mouse wheel)
+ */
+function mouseHandlerDispatch(evnt, action)
+{
+	if (!evnt)
+		evnt = window.event;
+
+	var retVal = true;
+
+	if (!processingEffect &amp;&amp; mouseHandlerDictionary[currentMode] &amp;&amp; mouseHandlerDictionary[currentMode][action])
+	{
+		var subRetVal = mouseHandlerDictionary[currentMode][action](evnt);
+
+		if (subRetVal != null &amp;&amp; subRetVal != undefined)
+			retVal = subRetVal;
+	}
+
+	if (evnt.preventDefault &amp;&amp; !retVal)
+		evnt.preventDefault();
+
+	evnt.returnValue = retVal;
+
+	return retVal;
+}
+
+// Set mouse event handler.
+document.onmousedown = function(e) { return mouseHandlerDispatch(e, MOUSE_DOWN); };
+document.onmouseup = function(e) { return mouseHandlerDispatch(e, MOUSE_UP); };
+document.onmousemove = function(e) { return mouseHandlerDispatch(e, MOUSE_MOVE); };
+
+// Moz
+if (window.addEventListener)
+{
+	window.addEventListener('DOMMouseScroll', function(e) { return mouseHandlerDispatch(e, MOUSE_WHEEL); }, false);
+}
+
+// Opera Safari OK - may not work in IE
+window.onmousewheel = function(e) { return mouseHandlerDispatch(e, MOUSE_WHEEL); };
+
+/** Function to supply the default mouse handler dictionary.
+ *
+ * @returns default mouse handler dictionary
+ */
+function getDefaultMouseHandlerDictionary()
+{
+	var mouseHandlerDict = new Object();
+
+	mouseHandlerDict[SLIDE_MODE] = new Object();
+	mouseHandlerDict[INDEX_MODE] = new Object();
+	mouseHandlerDict[DRAWING_MODE] = new Object();
+
+	mouseHandlerDict[SLIDE_MODE][MOUSE_DOWN] = function(evnt) { return dispatchEffects(1); };
+	mouseHandlerDict[SLIDE_MODE][MOUSE_WHEEL] = function(evnt) { return slideMousewheel(evnt); };
+
+	mouseHandlerDict[INDEX_MODE][MOUSE_DOWN] = function(evnt) { return toggleSlideIndex(); };
+
+	mouseHandlerDict[DRAWING_MODE][MOUSE_DOWN] = function(evnt) { return drawingMousedown(evnt); };
+	mouseHandlerDict[DRAWING_MODE][MOUSE_UP] = function(evnt) { return drawingMouseup(evnt); };
+	mouseHandlerDict[DRAWING_MODE][MOUSE_MOVE] = function(evnt) { return drawingMousemove(evnt); };
+
+	return mouseHandlerDict;
+}
+
+/** Function to switch from slide mode to drawing mode.
+*/
+function slideSwitchToDrawingMode()
+{
+	currentMode = DRAWING_MODE;
+
+	var tempDict;
+
+	if (ROOT_NODE.hasAttribute(&quot;style&quot;))
+		tempDict = propStrToDict(ROOT_NODE.getAttribute(&quot;style&quot;));
+	else
+		tempDict = new Object();
+
+	tempDict[&quot;cursor&quot;] = &quot;crosshair&quot;;
+	ROOT_NODE.setAttribute(&quot;style&quot;, dictToPropStr(tempDict));
+}
+
+/** Function to switch from drawing mode to slide mode.
+*/
+function drawingSwitchToSlideMode()
+{
+	currentMode = SLIDE_MODE;
+
+	var tempDict;
+
+	if (ROOT_NODE.hasAttribute(&quot;style&quot;))
+		tempDict = propStrToDict(ROOT_NODE.getAttribute(&quot;style&quot;));
+	else
+		tempDict = new Object();
+
+	tempDict[&quot;cursor&quot;] = &quot;auto&quot;;
+	ROOT_NODE.setAttribute(&quot;style&quot;, dictToPropStr(tempDict));
+}
+
+/** Function to decrease the number of columns in index mode.
+*/
+function indexDecreaseNumberOfColumns()
+{
+	if (INDEX_COLUMNS &gt;= 3)
+	{
+		INDEX_COLUMNS -= 1;
+		INDEX_OFFSET = -1
+			indexSetPageSlide(activeSlide);
+	}
+}
+
+/** Function to increase the number of columns in index mode.
+*/
+function indexIncreaseNumberOfColumns()
+{
+	if (INDEX_COLUMNS &lt; 7)
+	{
+		INDEX_COLUMNS += 1;
+		INDEX_OFFSET = -1
+			indexSetPageSlide(activeSlide);
+	}
+}
+
+/** Function to reset the number of columns in index mode.
+*/
+function indexResetNumberOfColumns()
+{
+	if (INDEX_COLUMNS != INDEX_COLUMNS_DEFAULT)
+	{
+		INDEX_COLUMNS = INDEX_COLUMNS_DEFAULT;
+		INDEX_OFFSET = -1
+			indexSetPageSlide(activeSlide);
+	}
+}
+
+/** Function to reset path width in drawing mode.
+*/
+function drawingResetPathWidth()
+{
+	path_width = path_width_default;
+	set_path_paint_width();
+}
+
+/** Function to set path width in drawing mode.
+ *
+ * @param width new path width
+ */
+function drawingSetPathWidth(width)
+{
+	path_width = width;
+	set_path_paint_width();
+}
+
+/** Function to set path colour in drawing mode.
+ *
+ * @param colour new path colour
+ */
+function drawingSetPathColour(colour)
+{
+	path_colour = colour;
+}
+
+/** Function to query the duration of the presentation from the user in slide mode.
+*/
+function slideQueryDuration()
+{
+	var new_duration = prompt(&quot;Length of presentation in minutes?&quot;, timer_duration);
+
+	if ((new_duration != null) &amp;&amp; (new_duration != ''))
+	{
+		timer_duration = new_duration;
+	}
+
+	updateTimer();
+}
+
+/** Function to add new slide in slide mode.
+ *
+ * @param afterSlide after which slide to insert the new one
+ */
+function slideAddSlide(afterSlide)
+{
+	addSlide(afterSlide);
+	slideSetActiveSlide(afterSlide + 1);
+	updateTimer();
+}
+
+/** Function to toggle the visibility of the progress bar in slide mode.
+*/
+function slideToggleProgressBarVisibility()
+{
+	if (progress_bar_visible)
+	{
+		progress_bar_visible = false;
+		hideProgressBar();
+	}
+	else
+	{
+		progress_bar_visible = true;
+		showProgressBar();
+	}
+}
+
+/** Function to reset the timer in slide mode.
+*/
+function slideResetTimer()
+{
+	timer_start = timer_elapsed;
+	updateTimer();
+}
+
+/** Convenience function to pad a string with zero in front up to a certain length.
+ */
+function padString(str, len)
+{
+	var outStr = str;
+
+	while (outStr.length &lt; len)
+	{
+		outStr = '0' + outStr;
+	}
+
+	return outStr;
+}
+
+/** Function to update the export layer.
+ */
+function slideUpdateExportLayer()
+{
+	// Suspend redraw since we are going to mess with the slides.
+	var suspendHandle = ROOT_NODE.suspendRedraw(2000);
+
+	var tmpActiveSlide = activeSlide;
+	var tmpActiveEffect = activeEffect;
+	var exportedLayers = new Array();
+
+	for (var counterSlides = 0; counterSlides &lt; slides.length; counterSlides++)
+	{
+		var exportNode;
+
+		setSlideToState(counterSlides, STATE_START);
+
+		var maxEffect = 0;
+
+		if (slides[counterSlides].effects)
+		{
+			maxEffect = slides[counterSlides].effects.length;
+		}
+
+		exportNode = slides[counterSlides].element.cloneNode(true);
+		exportNode.setAttributeNS(NSS[&quot;inkscape&quot;], &quot;groupmode&quot;, &quot;layer&quot;);
+		exportNode.setAttributeNS(NSS[&quot;inkscape&quot;], &quot;label&quot;, &quot;slide_&quot; + padString((counterSlides + 1).toString(), slides.length.toString().length) + &quot;_effect_&quot; + padString(&quot;0&quot;, maxEffect.toString().length));
+
+		exportedLayers.push(exportNode);
+
+		if (slides[counterSlides][&quot;effects&quot;])
+		{	
+			for (var counter = 0; counter &lt; slides[counterSlides][&quot;effects&quot;].length; counter++)
+			{
+				for (var subCounter = 0; subCounter &lt; slides[counterSlides][&quot;effects&quot;][counter].length; subCounter++)
+				{
+					var effect = slides[counterSlides][&quot;effects&quot;][counter][subCounter];
+					if (effect[&quot;effect&quot;] == &quot;fade&quot;)
+						fade(parseInt(effect[&quot;dir&quot;]), effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;appear&quot;)
+						appear(parseInt(effect[&quot;dir&quot;]), effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;pop&quot;)
+						pop(parseInt(effect[&quot;dir&quot;]), effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;view&quot;)
+						view(parseInt(effect[&quot;dir&quot;]), effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+				}
+
+				var layerName = &quot;slide_&quot; + padString((counterSlides + 1).toString(), slides.length.toString().length) + &quot;_effect_&quot; + padString((counter + 1).toString(), maxEffect.toString().length);
+				exportNode = slides[counterSlides].element.cloneNode(true);
+				exportNode.setAttributeNS(NSS[&quot;inkscape&quot;], &quot;groupmode&quot;, &quot;layer&quot;);
+				exportNode.setAttributeNS(NSS[&quot;inkscape&quot;], &quot;label&quot;, layerName);
+				exportNode.setAttribute(&quot;id&quot;, layerName);
+
+				exportedLayers.push(exportNode);
+			}
+		}
+	}
+
+	activeSlide = tmpActiveSlide;
+	activeEffect = tmpActiveEffect;
+	setSlideToState(activeSlide, activeEffect);
+
+	// Copy image.
+	var newDoc = document.documentElement.cloneNode(true);
+
+	// Delete viewbox form new imag and set width and height.
+	newDoc.removeAttribute('viewbox');
+	newDoc.setAttribute('width', WIDTH);
+	newDoc.setAttribute('height', HEIGHT);
+
+	// Delete all layers and script elements.
+	var nodesToBeRemoved = new Array();
+
+	for (var childCounter = 0; childCounter &lt;  newDoc.childNodes.length; childCounter++)
+	{
+		var child = newDoc.childNodes[childCounter];
+
+		if (child.nodeType == 1)
+		{
+			if ((child.nodeName.toUpperCase() == 'G') || (child.nodeName.toUpperCase() == 'SCRIPT'))
+			{
+				nodesToBeRemoved.push(child);
+			}
+		}
+	}
+
+	for (var ndCounter = 0; ndCounter &lt; nodesToBeRemoved.length; ndCounter++)
+	{
+		var nd = nodesToBeRemoved[ndCounter];
+
+		// Before removing the node, check whether it contains any definitions.
+		var defs = nd.getElementsByTagNameNS(NSS[&quot;svg&quot;], &quot;defs&quot;);
+
+		for (var defsCounter = 0; defsCounter &lt; defs.length; defsCounter++)
+		{
+			if (defs[defsCounter].id)
+			{
+				newDoc.appendChild(defs[defsCounter].cloneNode(true));
+			}
+		}
+
+		// Remove node.
+		nd.parentNode.removeChild(nd);
+	}
+
+	// Set current layer.
+	if (exportedLayers[0])
+	{
+		var namedView;
+
+		for (var nodeCounter = 0; nodeCounter &lt; newDoc.childNodes.length; nodeCounter++)
+		{
+			if ((newDoc.childNodes[nodeCounter].nodeType == 1) &amp;&amp; (newDoc.childNodes[nodeCounter].getAttribute('id') == 'base'))
+			{
+				namedView = newDoc.childNodes[nodeCounter];
+			}
+		}
+
+		if (namedView)
+		{
+			namedView.setAttributeNS(NSS['inkscape'], 'current-layer', exportedLayers[0].getAttributeNS(NSS['inkscape'], 'label'));
+		}
+	}
+
+	// Add exported layers.
+	while (exportedLayers.length &gt; 0)
+	{
+		var nd = exportedLayers.pop();
+
+		nd.setAttribute(&quot;opacity&quot;,1);
+		nd.style.display = &quot;inherit&quot;;
+
+		newDoc.appendChild(nd);
+	}
+
+	// Serialise the new document.
+  window.location = 'data:application/svg+xml;base64;charset=utf-8,' + window.btoa(unescape(encodeURIComponent((new XMLSerializer()).serializeToString(newDoc))));
+
+	// Unsuspend redraw.
+	ROOT_NODE.unsuspendRedraw(suspendHandle);
+	ROOT_NODE.forceRedraw();
+}
+
+/** Function to undo last drawing operation.
+*/
+function drawingUndo()
+{
+	mouse_presentation_path = null;
+	mouse_original_path = null;
+
+	if (history_presentation_elements.length &gt; 0)
+	{
+		var p = history_presentation_elements.pop();
+		var parent = p.parentNode.removeChild(p);
+
+		p = history_original_elements.pop();
+		parent = p.parentNode.removeChild(p);
+	}
+}
+
+/** Event handler for mouse down in drawing mode.
+ *
+ *  @param e the event
+ */
+function drawingMousedown(e)
+{
+	var value = 0;
+
+	if (e.button)
+		value = e.button;
+	else if (e.which)
+		value = e.which;
+
+	if (value == 1)
+	{
+		history_counter++;
+
+		var p = calcCoord(e);
+
+		mouse_last_x = e.clientX;
+		mouse_last_y = e.clientY;
+		mouse_original_path = document.createElementNS(NSS[&quot;svg&quot;], &quot;path&quot;);
+		mouse_original_path.setAttribute(&quot;stroke&quot;, path_colour);
+		mouse_original_path.setAttribute(&quot;stroke-width&quot;, path_paint_width);
+		mouse_original_path.setAttribute(&quot;fill&quot;, &quot;none&quot;);
+		mouse_original_path.setAttribute(&quot;id&quot;, &quot;path &quot; + Date());
+		mouse_original_path.setAttribute(&quot;d&quot;, &quot;M&quot; + p.x + &quot;,&quot; + p.y);
+		slides[activeSlide][&quot;original_element&quot;].appendChild(mouse_original_path);
+		history_original_elements.push(mouse_original_path);
+
+		mouse_presentation_path = document.createElementNS(NSS[&quot;svg&quot;], &quot;path&quot;);
+		mouse_presentation_path.setAttribute(&quot;stroke&quot;, path_colour);
+		mouse_presentation_path.setAttribute(&quot;stroke-width&quot;, path_paint_width);
+		mouse_presentation_path.setAttribute(&quot;fill&quot;, &quot;none&quot;);
+		mouse_presentation_path.setAttribute(&quot;id&quot;, &quot;path &quot; + Date() + &quot; presentation copy&quot;);
+		mouse_presentation_path.setAttribute(&quot;d&quot;, &quot;M&quot; + p.x + &quot;,&quot; + p.y);
+
+		if (slides[activeSlide][&quot;viewGroup&quot;])
+			slides[activeSlide][&quot;viewGroup&quot;].appendChild(mouse_presentation_path);
+		else
+			slides[activeSlide][&quot;element&quot;].appendChild(mouse_presentation_path);
+
+		history_presentation_elements.push(mouse_presentation_path);
+
+		return false;
+	}
+
+	return true;
+}
+
+/** Event handler for mouse up in drawing mode.
+ *
+ *  @param e the event
+ */
+function drawingMouseup(e)
+{
+	if(!e)
+		e = window.event;
+
+	if (mouse_presentation_path != null)
+	{
+		var p = calcCoord(e);
+		var d = mouse_presentation_path.getAttribute(&quot;d&quot;);
+		d += &quot; L&quot; + p.x + &quot;,&quot; + p.y;
+		mouse_presentation_path.setAttribute(&quot;d&quot;, d);
+		mouse_presentation_path = null;
+		mouse_original_path.setAttribute(&quot;d&quot;, d);
+		mouse_original_path = null;
+
+		return false;
+	}
+
+	return true;
+}
+
+/** Event handler for mouse move in drawing mode.
+ *
+ *  @param e the event
+ */
+function drawingMousemove(e)
+{
+	if(!e)
+		e = window.event;
+
+	var dist = (mouse_last_x - e.clientX) * (mouse_last_x - e.clientX) + (mouse_last_y - e.clientY) * (mouse_last_y - e.clientY);
+
+	if (mouse_presentation_path == null)
+	{
+		return true;
+	}
+
+	if (dist &gt;= mouse_min_dist_sqr)
+	{
+		var p = calcCoord(e);
+		var d = mouse_presentation_path.getAttribute(&quot;d&quot;);
+		d += &quot; L&quot; + p.x + &quot;,&quot; + p.y;
+		mouse_presentation_path.setAttribute(&quot;d&quot;, d);
+		mouse_original_path.setAttribute(&quot;d&quot;, d);
+		mouse_last_x = e.clientX;
+		mouse_last_y = e.clientY;
+	}
+
+	return false;
+}
+
+/** Event handler for mouse wheel events in slide mode.
+ *  based on http://adomas.org/javascript-mouse-wheel/
+ *
+ *  @param e the event
+ */
+function slideMousewheel(e)
+{
+	var delta = 0;
+
+	if (!e)
+		e = window.event;
+
+	if (e.wheelDelta)
+	{ // IE Opera
+		delta = e.wheelDelta/120;
+	}
+	else if (e.detail)
+	{ // MOZ
+		delta = -e.detail/3;
+	}
+
+	if (delta &gt; 0)
+		skipEffects(-1);
+	else if (delta &lt; 0)
+		skipEffects(1);
+
+	if (e.preventDefault)
+		e.preventDefault();
+
+	e.returnValue = false;
+}
+
+/** Event handler for mouse wheel events in index mode.
+ *  based on http://adomas.org/javascript-mouse-wheel/
+ *
+ *  @param e the event
+ */
+function indexMousewheel(e)
+{
+	var delta = 0;
+
+	if (!e)
+		e = window.event;
+
+	if (e.wheelDelta)
+	{ // IE Opera
+		delta = e.wheelDelta/120;
+	}
+	else if (e.detail)
+	{ // MOZ
+		delta = -e.detail/3;
+	}
+
+	if (delta &gt; 0)
+		indexSetPageSlide(activeSlide - INDEX_COLUMNS * INDEX_COLUMNS);
+	else if (delta &lt; 0)
+		indexSetPageSlide(activeSlide + INDEX_COLUMNS * INDEX_COLUMNS);
+
+	if (e.preventDefault)
+		e.preventDefault();
+
+	e.returnValue = false;
+}
+
+/** Function to set the path paint width.
+*/
+function set_path_paint_width()
+{
+	var svgPoint1 = document.documentElement.createSVGPoint();
+	var svgPoint2 = document.documentElement.createSVGPoint();
+
+	svgPoint1.x = 0.0;
+	svgPoint1.y = 0.0;
+	svgPoint2.x = 1.0;
+	svgPoint2.y = 0.0;
+
+	var matrix = slides[activeSlide][&quot;element&quot;].getTransformToElement(ROOT_NODE);
+
+	if (slides[activeSlide][&quot;viewGroup&quot;])
+		matrix = slides[activeSlide][&quot;viewGroup&quot;].getTransformToElement(ROOT_NODE);
+
+	svgPoint1 = svgPoint1.matrixTransform(matrix);
+	svgPoint2 = svgPoint2.matrixTransform(matrix);
+
+	path_paint_width = path_width / Math.sqrt((svgPoint2.x - svgPoint1.x) * (svgPoint2.x - svgPoint1.x) + (svgPoint2.y - svgPoint1.y) * (svgPoint2.y - svgPoint1.y));
+}
+
+/** The view effect.
+ *
+ *  @param dir direction the effect should be played (1 = forwards, -1 = backwards)
+ *  @param element the element the effect should be applied to
+ *  @param time the time that has elapsed since the beginning of the effect
+ *  @param options a dictionary with additional options (e.g. length of the effect); for the view effect the options need to contain the old and the new matrix.
+ */
+function view(dir, element, time, options)
+{
+	var length = 250;
+	var fraction;
+
+	if (!options[&quot;matrixInitial&quot;])
+	{
+		var tempString = slides[activeSlide][&quot;viewGroup&quot;].getAttribute(&quot;transform&quot;);
+
+		if (tempString)
+			options[&quot;matrixInitial&quot;] = (new matrixSVG()).fromAttribute(tempString);
+		else
+			options[&quot;matrixInitial&quot;] = (new matrixSVG()).fromSVGElements(1, 0, 0, 1, 0, 0);
+	}
+
+	if ((time == STATE_END) || (time == STATE_START))
+		fraction = 1;
+	else
+	{
+		if (options &amp;&amp; options[&quot;length&quot;])
+			length = options[&quot;length&quot;];
+
+		fraction = time / length;
+	}
+
+	if (dir == 1)
+	{
+		if (fraction &lt;= 0)
+		{
+			element.setAttribute(&quot;transform&quot;, options[&quot;matrixInitial&quot;].toAttribute());
+		}
+		else if (fraction &gt;= 1)
+		{
+			element.setAttribute(&quot;transform&quot;, options[&quot;matrixNew&quot;].toAttribute());
+
+			set_path_paint_width();
+
+			options[&quot;matrixInitial&quot;] = null;
+			return true;
+		}
+		else
+		{
+			element.setAttribute(&quot;transform&quot;, options[&quot;matrixInitial&quot;].mix(options[&quot;matrixNew&quot;], fraction).toAttribute());
+		}
+	}
+	else if (dir == -1)
+	{
+		if (fraction &lt;= 0)
+		{
+			element.setAttribute(&quot;transform&quot;, options[&quot;matrixInitial&quot;].toAttribute());
+		}
+		else if (fraction &gt;= 1)
+		{
+			element.setAttribute(&quot;transform&quot;, options[&quot;matrixOld&quot;].toAttribute());
+			set_path_paint_width();
+
+			options[&quot;matrixInitial&quot;] = null;
+			return true;
+		}
+		else
+		{
+			element.setAttribute(&quot;transform&quot;, options[&quot;matrixInitial&quot;].mix(options[&quot;matrixOld&quot;], fraction).toAttribute());
+		}
+	}
+
+	return false;
+}
+
+/** The fade effect.
+ *
+ *  @param dir direction the effect should be played (1 = forwards, -1 = backwards)
+ *  @param element the element the effect should be applied to
+ *  @param time the time that has elapsed since the beginning of the effect
+ *  @param options a dictionary with additional options (e.g. length of the effect)
+ */
+function fade(dir, element, time, options)
+{
+	var length = 250;
+	var fraction;
+
+	if ((time == STATE_END) || (time == STATE_START))
+		fraction = 1;
+	else
+	{
+		if (options &amp;&amp; options[&quot;length&quot;])
+			length = options[&quot;length&quot;];
+
+		fraction = time / length;
+	}
+
+	if (dir == 1)
+	{
+		if (fraction &lt;= 0)
+		{
+			element.style.display = &quot;none&quot;;
+			element.setAttribute(&quot;opacity&quot;, 0);
+		}
+		else if (fraction &gt;= 1)
+		{
+			element.style.display = &quot;inherit&quot;;
+			element.setAttribute(&quot;opacity&quot;, 1);
+			return true;
+		}
+		else
+		{
+			element.style.display = &quot;inherit&quot;;
+			element.setAttribute(&quot;opacity&quot;, fraction);
+		}
+	}
+	else if (dir == -1)
+	{
+		if (fraction &lt;= 0)
+		{
+			element.style.display = &quot;inherit&quot;;
+			element.setAttribute(&quot;opacity&quot;, 1);
+		}
+		else if (fraction &gt;= 1)
+		{
+			element.setAttribute(&quot;opacity&quot;, 0);
+			element.style.display = &quot;none&quot;;
+			return true;
+		}
+		else
+		{
+			element.style.display = &quot;inherit&quot;;
+			element.setAttribute(&quot;opacity&quot;, 1 - fraction);
+		}
+	}
+	return false;
+}
+
+/** The appear effect.
+ *
+ *  @param dir direction the effect should be played (1 = forwards, -1 = backwards)
+ *  @param element the element the effect should be applied to
+ *  @param time the time that has elapsed since the beginning of the effect
+ *  @param options a dictionary with additional options (e.g. length of the effect)
+ */
+function appear(dir, element, time, options)
+{
+	if (dir == 1)
+	{
+		element.style.display = &quot;inherit&quot;;
+		element.setAttribute(&quot;opacity&quot;,1);
+	}
+	else if (dir == -1)
+	{
+		element.style.display = &quot;none&quot;;
+		element.setAttribute(&quot;opacity&quot;,0);
+	}
+	return true;
+}
+
+/** The pop effect.
+ *
+ *  @param dir direction the effect should be played (1 = forwards, -1 = backwards)
+ *  @param element the element the effect should be applied to
+ *  @param time the time that has elapsed since the beginning of the effect
+ *  @param options a dictionary with additional options (e.g. length of the effect)
+ */
+function pop(dir, element, time, options)
+{
+	var length = 500;
+	var fraction;
+
+	if ((time == STATE_END) || (time == STATE_START))
+		fraction = 1;
+	else
+	{
+		if (options &amp;&amp; options[&quot;length&quot;])
+			length = options[&quot;length&quot;];
+
+		fraction = time / length;
+	}
+
+	if (dir == 1)
+	{
+		if (fraction &lt;= 0)
+		{
+			element.setAttribute(&quot;opacity&quot;, 0);
+			element.setAttribute(&quot;transform&quot;, &quot;scale(0)&quot;);
+			element.style.display = &quot;none&quot;;
+		}
+		else if (fraction &gt;= 1)
+		{
+			element.setAttribute(&quot;opacity&quot;, 1);
+			element.removeAttribute(&quot;transform&quot;);
+			element.style.display = &quot;inherit&quot;;
+			return true;
+		}
+		else
+		{
+			element.style.display = &quot;inherit&quot;;
+			var opacityFraction = fraction * 3;
+			if (opacityFraction &gt; 1)
+				opacityFraction = 1;
+			element.setAttribute(&quot;opacity&quot;, opacityFraction);
+			var offsetX = WIDTH * (1.0 - fraction) / 2.0;
+			var offsetY = HEIGHT * (1.0 - fraction) / 2.0;
+			element.setAttribute(&quot;transform&quot;, &quot;translate(&quot; + offsetX + &quot;,&quot; + offsetY + &quot;) scale(&quot; + fraction + &quot;)&quot;);
+		}
+	}
+	else if (dir == -1)
+	{
+		if (fraction &lt;= 0)
+		{
+			element.setAttribute(&quot;opacity&quot;, 1);
+			element.setAttribute(&quot;transform&quot;, &quot;scale(1)&quot;);
+			element.style.display = &quot;inherit&quot;;
+		}
+		else if (fraction &gt;= 1)
+		{
+			element.setAttribute(&quot;opacity&quot;, 0);
+			element.removeAttribute(&quot;transform&quot;);
+			element.style.display = &quot;none&quot;;
+			return true;
+		}
+		else
+		{
+			element.setAttribute(&quot;opacity&quot;, 1 - fraction);
+			element.setAttribute(&quot;transform&quot;, &quot;scale(&quot; + 1 - fraction + &quot;)&quot;);
+			element.style.display = &quot;inherit&quot;;
+		}
+	}
+	return false;
+}
+
+/** Function to set a slide either to the start or the end state.
+ *  
+ *  @param slide the slide to use
+ *  @param state the state into which the slide should be set
+ */
+function setSlideToState(slide, state)
+{
+	slides[slide][&quot;viewGroup&quot;].setAttribute(&quot;transform&quot;, slides[slide].initialView);
+
+	if (slides[slide][&quot;effects&quot;])
+	{	
+		if (state == STATE_END)
+		{
+			for (var counter = 0; counter &lt; slides[slide][&quot;effects&quot;].length; counter++)
+			{
+				for (var subCounter = 0; subCounter &lt; slides[slide][&quot;effects&quot;][counter].length; subCounter++)
+				{
+					var effect = slides[slide][&quot;effects&quot;][counter][subCounter];
+					if (effect[&quot;effect&quot;] == &quot;fade&quot;)
+						fade(effect[&quot;dir&quot;], effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;appear&quot;)
+						appear(effect[&quot;dir&quot;], effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;pop&quot;)
+						pop(effect[&quot;dir&quot;], effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;view&quot;)
+						view(effect[&quot;dir&quot;], effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+				}
+			}
+		}
+		else if (state == STATE_START)
+		{
+			for (var counter = slides[slide][&quot;effects&quot;].length - 1; counter &gt;= 0; counter--)
+			{
+				for (var subCounter = 0; subCounter &lt; slides[slide][&quot;effects&quot;][counter].length; subCounter++)
+				{
+					var effect = slides[slide][&quot;effects&quot;][counter][subCounter];
+					if (effect[&quot;effect&quot;] == &quot;fade&quot;)
+						fade(parseInt(effect[&quot;dir&quot;]) * -1, effect[&quot;element&quot;], STATE_START, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;appear&quot;)
+						appear(parseInt(effect[&quot;dir&quot;]) * -1, effect[&quot;element&quot;], STATE_START, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;pop&quot;)
+						pop(parseInt(effect[&quot;dir&quot;]) * -1, effect[&quot;element&quot;], STATE_START, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;view&quot;)
+						view(parseInt(effect[&quot;dir&quot;]) * -1, effect[&quot;element&quot;], STATE_START, effect[&quot;options&quot;]);	
+				}
+			}
+		}
+		else
+		{
+			setSlideToState(slide, STATE_START);
+
+			for (var counter = 0; counter &lt; slides[slide][&quot;effects&quot;].length &amp;&amp; counter &lt; state; counter++)
+			{
+				for (var subCounter = 0; subCounter &lt; slides[slide][&quot;effects&quot;][counter].length; subCounter++)
+				{
+					var effect = slides[slide][&quot;effects&quot;][counter][subCounter];
+					if (effect[&quot;effect&quot;] == &quot;fade&quot;)
+						fade(effect[&quot;dir&quot;], effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;appear&quot;)
+						appear(effect[&quot;dir&quot;], effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;pop&quot;)
+						pop(effect[&quot;dir&quot;], effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+					else if (effect[&quot;effect&quot;] == &quot;view&quot;)
+						view(effect[&quot;dir&quot;], effect[&quot;element&quot;], STATE_END, effect[&quot;options&quot;]);	
+				}
+			}
+		}
+	}
+
+	window.location.hash = (activeSlide + 1) + '_' + activeEffect;
+}
+
+/** Convenience function to translate a attribute string into a dictionary.
+ *
+ *	@param str the attribute string
+ *  @return a dictionary
+ *  @see dictToPropStr
+ */
+function propStrToDict(str)
+{
+	var list = str.split(&quot;;&quot;);
+	var obj = new Object();
+
+	for (var counter = 0; counter &lt; list.length; counter++)
+	{
+		var subStr = list[counter];
+		var subList = subStr.split(&quot;:&quot;);
+		if (subList.length == 2)
+		{
+			obj[subList[0]] = subList[1];
+		}	
+	}
+
+	return obj;
+}
+
+/** Convenience function to translate a dictionary into a string that can be used as an attribute.
+ *
+ *  @param dict the dictionary to convert
+ *  @return a string that can be used as an attribute
+ *  @see propStrToDict
+ */
+function dictToPropStr(dict)
+{
+	var str = &quot;&quot;;
+
+	for (var key in dict)
+	{
+		str += key + &quot;:&quot; + dict[key] + &quot;;&quot;;
+	}
+
+	return str;
+}
+
+/** Sub-function to add a suffix to the ids of the node and all its children.
+ *	
+ *	@param node the node to change
+ *	@param suffix the suffix to add
+ *	@param replace dictionary of replaced ids
+ *  @see suffixNodeIds
+ */
+function suffixNoneIds_sub(node, suffix, replace)
+{
+	if (node.nodeType == 1)
+	{
+		if (node.getAttribute(&quot;id&quot;))
+		{
+			var id = node.getAttribute(&quot;id&quot;)
+				replace[&quot;#&quot; + id] = id + suffix;
+			node.setAttribute(&quot;id&quot;, id + suffix);
+		}
+
+		if ((node.nodeName == &quot;use&quot;) &amp;&amp; (node.getAttributeNS(NSS[&quot;xlink&quot;], &quot;href&quot;)) &amp;&amp; (replace[node.getAttribute(NSS[&quot;xlink&quot;], &quot;href&quot;)]))
+			node.setAttribute(NSS[&quot;xlink&quot;], &quot;href&quot;, node.getAttribute(NSS[&quot;xlink&quot;], &quot;href&quot;) + suffix);
+
+		if (node.childNodes)
+		{
+			for (var counter = 0; counter &lt; node.childNodes.length; counter++)
+				suffixNoneIds_sub(node.childNodes[counter], suffix, replace);
+		}
+	}
+}
+
+/** Function to add a suffix to the ids of the node and all its children.
+ *	
+ *	@param node the node to change
+ *	@param suffix the suffix to add
+ *  @return the changed node
+ *  @see suffixNodeIds_sub
+ */
+function suffixNodeIds(node, suffix)
+{
+	var replace = new Object();
+
+	suffixNoneIds_sub(node, suffix, replace);
+
+	return node;
+}
+
+/** Function to build a progress bar.
+ *	
+ *  @param parent node to attach the progress bar to
+ */
+function createProgressBar(parent_node)
+{
+	var g = document.createElementNS(NSS[&quot;svg&quot;], &quot;g&quot;);
+	g.setAttribute(&quot;clip-path&quot;, &quot;url(#jessyInkSlideClipPath)&quot;);
+	g.setAttribute(&quot;id&quot;, &quot;layer_progress_bar&quot;);
+	g.setAttribute(&quot;style&quot;, &quot;display: none;&quot;);
+
+	var rect_progress_bar = document.createElementNS(NSS[&quot;svg&quot;], &quot;rect&quot;);
+	rect_progress_bar.setAttribute(&quot;style&quot;, &quot;marker: none; fill: rgb(128, 128, 128); stroke: none;&quot;);
+	rect_progress_bar.setAttribute(&quot;id&quot;, &quot;rect_progress_bar&quot;);
+	rect_progress_bar.setAttribute(&quot;x&quot;, 0);
+	rect_progress_bar.setAttribute(&quot;y&quot;, 0.99 * HEIGHT);
+	rect_progress_bar.setAttribute(&quot;width&quot;, 0);
+	rect_progress_bar.setAttribute(&quot;height&quot;, 0.01 * HEIGHT);
+	g.appendChild(rect_progress_bar);
+
+	var circle_timer_indicator = document.createElementNS(NSS[&quot;svg&quot;], &quot;circle&quot;);
+	circle_timer_indicator.setAttribute(&quot;style&quot;, &quot;marker: none; fill: rgb(255, 0, 0); stroke: none;&quot;);
+	circle_timer_indicator.setAttribute(&quot;id&quot;, &quot;circle_timer_indicator&quot;);
+	circle_timer_indicator.setAttribute(&quot;cx&quot;, 0.005 * HEIGHT);
+	circle_timer_indicator.setAttribute(&quot;cy&quot;, 0.995 * HEIGHT);
+	circle_timer_indicator.setAttribute(&quot;r&quot;, 0.005 * HEIGHT);
+	g.appendChild(circle_timer_indicator);
+
+	parent_node.appendChild(g);
+}
+
+/** Function to hide the progress bar.
+ *	
+ */
+function hideProgressBar()
+{
+	var progress_bar = document.getElementById(&quot;layer_progress_bar&quot;);
+
+	if (!progress_bar)
+	{
+		return;
+	}
+
+	progress_bar.setAttribute(&quot;style&quot;, &quot;display: none;&quot;);
+}
+
+/** Function to show the progress bar.
+ *	
+ */
+function showProgressBar()
+{
+	var progress_bar = document.getElementById(&quot;layer_progress_bar&quot;);
+
+	if (!progress_bar)
+	{
+		return;
+	}
+
+	progress_bar.setAttribute(&quot;style&quot;, &quot;display: inherit;&quot;);
+}
+
+/** Set progress bar value.
+ *	
+ *	@param value the current slide number
+ *
+ */
+function setProgressBarValue(value)
+{
+	var rect_progress_bar = document.getElementById(&quot;rect_progress_bar&quot;);
+
+	if (!rect_progress_bar)
+	{
+		return;
+	}
+
+	if (value &lt; 1)
+	{
+		// First slide, assumed to be the title of the presentation
+		var x = 0;
+		var w = 0.01 * HEIGHT;
+	}
+	else if (value &gt;= slides.length - 1)
+	{
+		// Last slide, assumed to be the end of the presentation
+		var x = WIDTH - 0.01 * HEIGHT;
+		var w = 0.01 * HEIGHT;
+	}
+	else
+	{
+		value -= 1;
+		value /= (slides.length - 2);
+
+		var x = WIDTH * value;
+		var w = WIDTH / (slides.length - 2);
+	}
+
+	rect_progress_bar.setAttribute(&quot;x&quot;, x);
+	rect_progress_bar.setAttribute(&quot;width&quot;, w);
+}
+
+/** Set time indicator.
+ *	
+ *	@param value the percentage of time elapse so far between 0.0 and 1.0
+ *
+ */
+function setTimeIndicatorValue(value)
+{
+	var circle_timer_indicator = document.getElementById(&quot;circle_timer_indicator&quot;);
+
+	if (!circle_timer_indicator)
+	{
+		return;
+	}
+
+	if (value &lt; 0.0)
+	{
+		value = 0.0;
+	}
+
+	if (value &gt; 1.0)
+	{
+		value = 1.0;
+	}
+
+	var cx = (WIDTH - 0.01 * HEIGHT) * value + 0.005 * HEIGHT;
+	circle_timer_indicator.setAttribute(&quot;cx&quot;, cx);
+}
+
+/** Update timer.
+ *	
+ */
+function updateTimer()
+{
+	timer_elapsed += 1;
+	setTimeIndicatorValue((timer_elapsed - timer_start) / (60 * timer_duration));
+}
+
+/** Convert screen coordinates to document coordinates.
+ *
+ *  @param e event with screen coordinates
+ *
+ *  @return coordinates in SVG file coordinate system	
+ */
+function calcCoord(e)
+{
+	var svgPoint = document.documentElement.createSVGPoint();
+	svgPoint.x = e.clientX + window.pageXOffset;
+	svgPoint.y = e.clientY + window.pageYOffset;
+
+	var matrix = slides[activeSlide][&quot;element&quot;].getScreenCTM();
+
+	if (slides[activeSlide][&quot;viewGroup&quot;])
+		matrix = slides[activeSlide][&quot;viewGroup&quot;].getScreenCTM();
+
+	svgPoint = svgPoint.matrixTransform(matrix.inverse());
+	return svgPoint;
+}
+
+/** Add slide.
+ *
+ *	@param after_slide after which slide the new slide should be inserted into the presentation
+ */
+function addSlide(after_slide)
+{
+	number_of_added_slides++;
+
+	var g = document.createElementNS(NSS[&quot;svg&quot;], &quot;g&quot;);
+	g.setAttribute(&quot;clip-path&quot;, &quot;url(#jessyInkSlideClipPath)&quot;);
+	g.setAttribute(&quot;id&quot;, &quot;Whiteboard &quot; + Date() + &quot; presentation copy&quot;);
+	g.setAttribute(&quot;style&quot;, &quot;display: none;&quot;);
+
+	var new_slide = new Object();
+	new_slide[&quot;element&quot;] = g;
+
+	// Set build in transition.
+	new_slide[&quot;transitionIn&quot;] = new Object();
+	var dict = defaultTransitionInDict;
+	new_slide[&quot;transitionIn&quot;][&quot;name&quot;] = dict[&quot;name&quot;];
+	new_slide[&quot;transitionIn&quot;][&quot;options&quot;] = new Object();
+
+	for (key in dict)
+		if (key != &quot;name&quot;)
+			new_slide[&quot;transitionIn&quot;][&quot;options&quot;][key] = dict[key];
+
+	// Set build out transition.
+	new_slide[&quot;transitionOut&quot;] = new Object();
+	dict = defaultTransitionOutDict;
+	new_slide[&quot;transitionOut&quot;][&quot;name&quot;] = dict[&quot;name&quot;];
+	new_slide[&quot;transitionOut&quot;][&quot;options&quot;] = new Object();
+
+	for (key in dict)
+		if (key != &quot;name&quot;)
+			new_slide[&quot;transitionOut&quot;][&quot;options&quot;][key] = dict[key];
+
+	// Copy master slide content.
+	if (masterSlide)
+	{
+		var clonedNode = suffixNodeIds(masterSlide.cloneNode(true), &quot;_&quot; + Date() + &quot; presentation_copy&quot;);
+		clonedNode.removeAttributeNS(NSS[&quot;inkscape&quot;], &quot;groupmode&quot;);
+		clonedNode.removeAttributeNS(NSS[&quot;inkscape&quot;], &quot;label&quot;);
+		clonedNode.style.display = &quot;inherit&quot;;
+
+		g.appendChild(clonedNode);
+	}
+
+	// Substitute auto texts.
+	substituteAutoTexts(g, &quot;Whiteboard &quot; + number_of_added_slides, &quot;W&quot; + number_of_added_slides, slides.length);
+
+	g.setAttribute(&quot;onmouseover&quot;, &quot;if ((currentMode == INDEX_MODE) &amp;&amp; ( activeSlide != &quot; + (after_slide + 1) + &quot;)) { indexSetActiveSlide(&quot; + (after_slide + 1) + &quot;); };&quot;);
+
+	// Create a transform group.
+	var transformGroup = document.createElementNS(NSS[&quot;svg&quot;], &quot;g&quot;);
+
+	// Add content to transform group.
+	while (g.firstChild)
+		transformGroup.appendChild(g.firstChild);
+
+	// Transfer the transform attribute from the node to the transform group.
+	if (g.getAttribute(&quot;transform&quot;))
+	{
+		transformGroup.setAttribute(&quot;transform&quot;, g.getAttribute(&quot;transform&quot;));
+		g.removeAttribute(&quot;transform&quot;);
+	}
+
+	// Create a view group.
+	var viewGroup = document.createElementNS(NSS[&quot;svg&quot;], &quot;g&quot;);
+
+	viewGroup.appendChild(transformGroup);
+	new_slide[&quot;viewGroup&quot;] = g.appendChild(viewGroup);
+
+	// Insert background.
+	if (BACKGROUND_COLOR != null)
+	{
+		var rectNode = document.createElementNS(NSS[&quot;svg&quot;], &quot;rect&quot;);
+
+		rectNode.setAttribute(&quot;x&quot;, 0);
+		rectNode.setAttribute(&quot;y&quot;, 0);
+		rectNode.setAttribute(&quot;width&quot;, WIDTH);
+		rectNode.setAttribute(&quot;height&quot;, HEIGHT);
+		rectNode.setAttribute(&quot;id&quot;, &quot;jessyInkBackground&quot; + Date());
+		rectNode.setAttribute(&quot;fill&quot;, BACKGROUND_COLOR);
+
+		new_slide[&quot;viewGroup&quot;].insertBefore(rectNode, new_slide[&quot;viewGroup&quot;].firstChild);
+	}
+
+	// Set initial view even if there are no other views.
+	var matrixOld = (new matrixSVG()).fromElements(1, 0, 0, 0, 1, 0, 0, 0, 1);
+
+	new_slide[&quot;viewGroup&quot;].setAttribute(&quot;transform&quot;, matrixOld.toAttribute());
+	new_slide.initialView = matrixOld.toAttribute();
+
+	// Insert slide
+	var node = slides[after_slide][&quot;element&quot;];
+	var next_node = node.nextSibling;
+	var parent_node = node.parentNode;
+
+	if (next_node)
+	{
+		parent_node.insertBefore(g, next_node);
+	}
+	else
+	{
+		parent_node.appendChild(g);
+	}
+
+	g = document.createElementNS(NSS[&quot;svg&quot;], &quot;g&quot;);
+	g.setAttributeNS(NSS[&quot;inkscape&quot;], &quot;groupmode&quot;, &quot;layer&quot;);
+	g.setAttributeNS(NSS[&quot;inkscape&quot;], &quot;label&quot;, &quot;Whiteboard &quot; + number_of_added_slides);
+	g.setAttribute(&quot;clip-path&quot;, &quot;url(#jessyInkSlideClipPath)&quot;);
+	g.setAttribute(&quot;id&quot;, &quot;Whiteboard &quot; + Date());
+	g.setAttribute(&quot;style&quot;, &quot;display: none;&quot;);
+
+	new_slide[&quot;original_element&quot;] = g;
+
+	node = slides[after_slide][&quot;original_element&quot;];
+	next_node = node.nextSibling;
+	parent_node = node.parentNode;
+
+	if (next_node)
+	{
+		parent_node.insertBefore(g, next_node);
+	}
+	else
+	{
+		parent_node.appendChild(g);
+	}
+
+	before_new_slide = slides.slice(0, after_slide + 1);
+	after_new_slide = slides.slice(after_slide + 1);
+	slides = before_new_slide.concat(new_slide, after_new_slide);
+
+	//resetting the counter attributes on the slides that follow the new slide...
+	for (var counter = after_slide+2; counter &lt; slides.length; counter++)
+	{
+		slides[counter][&quot;element&quot;].setAttribute(&quot;onmouseover&quot;, &quot;if ((currentMode == INDEX_MODE) &amp;&amp; ( activeSlide != &quot; + counter + &quot;)) { indexSetActiveSlide(&quot; + counter + &quot;); };&quot;);
+	}
+}
+
+/** Convenience function to obtain a transformation matrix from a point matrix.
+ *
+ *	@param mPoints Point matrix.
+ *	@return A transformation matrix.
+ */
+function pointMatrixToTransformation(mPoints)
+{
+	mPointsOld = (new matrixSVG()).fromElements(0, WIDTH, WIDTH, 0, 0, HEIGHT, 1, 1, 1);
+
+	return mPointsOld.mult(mPoints.inv());
+}
+
+/** Convenience function to obtain a matrix with three corners of a rectangle.
+ *
+ *	@param rect an svg rectangle
+ *	@return a matrixSVG containing three corners of the rectangle
+ */
+function rectToMatrix(rect)
+{
+	rectWidth = rect.getBBox().width;
+	rectHeight = rect.getBBox().height;
+	rectX = rect.getBBox().x;
+	rectY = rect.getBBox().y;
+	rectXcorr = 0;
+	rectYcorr = 0;
+
+	scaleX = WIDTH / rectWidth;
+	scaleY = HEIGHT / rectHeight;
+
+	if (scaleX &gt; scaleY)
+	{
+		scaleX = scaleY;
+		rectXcorr -= (WIDTH / scaleX - rectWidth) / 2;
+		rectWidth = WIDTH / scaleX;
+	}	
+	else
+	{
+		scaleY = scaleX;
+		rectYcorr -= (HEIGHT / scaleY - rectHeight) / 2;
+		rectHeight = HEIGHT / scaleY;
+	}
+
+	if (rect.transform.baseVal.numberOfItems &lt; 1)
+	{
+		mRectTrans = (new matrixSVG()).fromElements(1, 0, 0, 0, 1, 0, 0, 0, 1);
+	}
+	else
+	{
+		mRectTrans = (new matrixSVG()).fromSVGMatrix(rect.transform.baseVal.consolidate().matrix);
+	}
+
+	newBasePoints = (new matrixSVG()).fromElements(rectX, rectX, rectX, rectY, rectY, rectY, 1, 1, 1);
+	newVectors = (new matrixSVG()).fromElements(rectXcorr, rectXcorr + rectWidth, rectXcorr + rectWidth, rectYcorr, rectYcorr, rectYcorr + rectHeight, 0, 0, 0);
+
+	return mRectTrans.mult(newBasePoints.add(newVectors));
+}
+
+/** Function to handle JessyInk elements.
+ *
+ *	@param	node	Element node.
+ */
+function handleElement(node)
+{
+	if (node.getAttributeNS(NSS['jessyink'], 'element') == 'core.video')
+	{
+		var url;
+		var width;
+		var height;
+		var x;
+		var y;
+		var transform;
+
+		var tspans = node.getElementsByTagNameNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;tspan&quot;);
+
+		for (var tspanCounter = 0; tspanCounter &lt; tspans.length; tspanCounter++)
+		{
+			if (tspans[tspanCounter].getAttributeNS(&quot;https://launchpad.net/jessyink&quot;, &quot;video&quot;) == &quot;url&quot;)
+			{
+				url = tspans[tspanCounter].firstChild.nodeValue;
+			}
+		}
+
+		var rects = node.getElementsByTagNameNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;);
+
+		for (var rectCounter = 0; rectCounter &lt; rects.length; rectCounter++)
+		{
+			if (rects[rectCounter].getAttributeNS(&quot;https://launchpad.net/jessyink&quot;, &quot;video&quot;) == &quot;rect&quot;)
+			{
+				x = rects[rectCounter].getAttribute(&quot;x&quot;);
+				y = rects[rectCounter].getAttribute(&quot;y&quot;);
+				width = rects[rectCounter].getAttribute(&quot;width&quot;);
+				height = rects[rectCounter].getAttribute(&quot;height&quot;);
+				transform = rects[rectCounter].getAttribute(&quot;transform&quot;);
+			}
+		}
+
+		for (var childCounter = 0; childCounter &lt; node.childNodes.length; childCounter++)
+		{
+			if (node.childNodes[childCounter].nodeType == 1)
+			{
+				if (node.childNodes[childCounter].style)
+				{
+					node.childNodes[childCounter].style.display = 'none';
+				}
+				else
+				{
+					node.childNodes[childCounter].setAttribute(&quot;style&quot;, &quot;display: none;&quot;);
+				}
+			}
+		}
+
+		var foreignNode = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;foreignObject&quot;);
+		foreignNode.setAttribute(&quot;x&quot;, x);
+		foreignNode.setAttribute(&quot;y&quot;, y);
+		foreignNode.setAttribute(&quot;width&quot;, width);
+		foreignNode.setAttribute(&quot;height&quot;, height);
+		foreignNode.setAttribute(&quot;transform&quot;, transform);
+
+		var videoNode = document.createElementNS(&quot;http://www.w3.org/1999/xhtml&quot;, &quot;video&quot;);
+		videoNode.setAttribute(&quot;src&quot;, url);
+
+		foreignNode.appendChild(videoNode);
+		node.appendChild(foreignNode);
+	}
+}
+
+/** Class processing the location hash.
+ *
+ *	@param str location hash
+ */
+function LocationHash(str)
+{
+	this.slideNumber = 0;
+	this.effectNumber = 0;
+
+	str = str.substr(1, str.length - 1);
+
+	var parts = str.split('_');
+
+	// Try to extract slide number.
+	if (parts.length &gt;= 1)
+	{
+		try
+		{
+			var slideNumber = parseInt(parts[0]);
+
+			if (!isNaN(slideNumber))
+			{
+				this.slideNumber = slideNumber - 1;
+			}
+		}
+		catch (e)
+		{
+		}
+	}
+	
+	// Try to extract effect number.
+	if (parts.length &gt;= 2)
+	{
+		try
+		{
+			var effectNumber = parseInt(parts[1]);
+
+			if (!isNaN(effectNumber))
+			{
+				this.effectNumber = effectNumber;
+			}
+		}
+		catch (e)
+		{
+		}
+	}
+}
+
+/** Class representing an svg matrix.
+*/
+function matrixSVG()
+{
+	this.e11 = 0; // a
+	this.e12 = 0; // c
+	this.e13 = 0; // e
+	this.e21 = 0; // b
+	this.e22 = 0; // d
+	this.e23 = 0; // f
+	this.e31 = 0;
+	this.e32 = 0;
+	this.e33 = 0;
+}
+
+/** Constructor function.
+ *
+ *	@param a element a (i.e. 1, 1) as described in the svg standard.
+ *	@param b element b (i.e. 2, 1) as described in the svg standard.
+ *	@param c element c (i.e. 1, 2) as described in the svg standard.
+ *	@param d element d (i.e. 2, 2) as described in the svg standard.
+ *	@param e element e (i.e. 1, 3) as described in the svg standard.
+ *	@param f element f (i.e. 2, 3) as described in the svg standard.
+ */
+matrixSVG.prototype.fromSVGElements = function(a, b, c, d, e, f)
+{
+	this.e11 = a;
+	this.e12 = c;
+	this.e13 = e;
+	this.e21 = b;
+	this.e22 = d;
+	this.e23 = f;
+	this.e31 = 0;
+	this.e32 = 0;
+	this.e33 = 1;
+
+	return this;
+}
+
+/** Constructor function.
+ *
+ *	@param matrix an svg matrix as described in the svg standard.
+ */
+matrixSVG.prototype.fromSVGMatrix = function(m)
+{
+	this.e11 = m.a;
+	this.e12 = m.c;
+	this.e13 = m.e;
+	this.e21 = m.b;
+	this.e22 = m.d;
+	this.e23 = m.f;
+	this.e31 = 0;
+	this.e32 = 0;
+	this.e33 = 1;
+
+	return this;
+}
+
+/** Constructor function.
+ *
+ *	@param e11 element 1, 1 of the matrix.
+ *	@param e12 element 1, 2 of the matrix.
+ *	@param e13 element 1, 3 of the matrix.
+ *	@param e21 element 2, 1 of the matrix.
+ *	@param e22 element 2, 2 of the matrix.
+ *	@param e23 element 2, 3 of the matrix.
+ *	@param e31 element 3, 1 of the matrix.
+ *	@param e32 element 3, 2 of the matrix.
+ *	@param e33 element 3, 3 of the matrix.
+ */
+matrixSVG.prototype.fromElements = function(e11, e12, e13, e21, e22, e23, e31, e32, e33)
+{
+	this.e11 = e11;
+	this.e12 = e12;
+	this.e13 = e13;
+	this.e21 = e21;
+	this.e22 = e22;
+	this.e23 = e23;
+	this.e31 = e31;
+	this.e32 = e32;
+	this.e33 = e33;
+
+	return this;
+}
+
+/** Constructor function.
+ *
+ *	@param attrString string value of the &quot;transform&quot; attribute (currently only &quot;matrix&quot; is accepted)
+ */
+matrixSVG.prototype.fromAttribute = function(attrString)
+{
+	str = attrString.substr(7, attrString.length - 8);
+
+	str = str.trim();
+
+	strArray = str.split(&quot;,&quot;);
+
+	// Opera does not use commas to separate the values of the matrix, only spaces.
+	if (strArray.length != 6)
+		strArray = str.split(&quot; &quot;);
+
+	this.e11 = parseFloat(strArray[0]);
+	this.e21 = parseFloat(strArray[1]);
+	this.e31 = 0;
+	this.e12 = parseFloat(strArray[2]);
+	this.e22 = parseFloat(strArray[3]);
+	this.e32 = 0;
+	this.e13 = parseFloat(strArray[4]);
+	this.e23 = parseFloat(strArray[5]);
+	this.e33 = 1;
+
+	return this;
+}
+
+/** Output function
+ *
+ *	@return a string that can be used as the &quot;transform&quot; attribute.
+ */
+matrixSVG.prototype.toAttribute = function()
+{
+	return &quot;matrix(&quot; + this.e11 + &quot;, &quot; + this.e21 + &quot;, &quot; + this.e12 + &quot;, &quot; + this.e22 + &quot;, &quot; + this.e13 + &quot;, &quot; + this.e23 + &quot;)&quot;;
+}
+
+/** Matrix nversion.
+ *
+ *	@return the inverse of the matrix
+ */
+matrixSVG.prototype.inv = function()
+{
+	out = new matrixSVG();
+
+	det = this.e11 * (this.e33 * this.e22 - this.e32 * this.e23) - this.e21 * (this.e33 * this.e12 - this.e32 * this.e13) + this.e31 * (this.e23 * this.e12 - this.e22 * this.e13);
+
+	out.e11 =  (this.e33 * this.e22 - this.e32 * this.e23) / det;
+	out.e12 = -(this.e33 * this.e12 - this.e32 * this.e13) / det;
+	out.e13 =  (this.e23 * this.e12 - this.e22 * this.e13) / det;
+	out.e21 = -(this.e33 * this.e21 - this.e31 * this.e23) / det;
+	out.e22 =  (this.e33 * this.e11 - this.e31 * this.e13) / det;
+	out.e23 = -(this.e23 * this.e11 - this.e21 * this.e13) / det;
+	out.e31 =  (this.e32 * this.e21 - this.e31 * this.e22) / det;
+	out.e32 = -(this.e32 * this.e11 - this.e31 * this.e12) / det;
+	out.e33 =  (this.e22 * this.e11 - this.e21 * this.e12) / det;
+
+	return out;
+}
+
+/** Matrix multiplication.
+ *
+ *	@param op another svg matrix
+ *	@return this * op
+ */
+matrixSVG.prototype.mult = function(op)
+{
+	out = new matrixSVG();
+
+	out.e11 = this.e11 * op.e11 + this.e12 * op.e21 + this.e13 * op.e31;
+	out.e12 = this.e11 * op.e12 + this.e12 * op.e22 + this.e13 * op.e32;
+	out.e13 = this.e11 * op.e13 + this.e12 * op.e23 + this.e13 * op.e33;
+	out.e21 = this.e21 * op.e11 + this.e22 * op.e21 + this.e23 * op.e31;
+	out.e22 = this.e21 * op.e12 + this.e22 * op.e22 + this.e23 * op.e32;
+	out.e23 = this.e21 * op.e13 + this.e22 * op.e23 + this.e23 * op.e33;
+	out.e31 = this.e31 * op.e11 + this.e32 * op.e21 + this.e33 * op.e31;
+	out.e32 = this.e31 * op.e12 + this.e32 * op.e22 + this.e33 * op.e32;
+	out.e33 = this.e31 * op.e13 + this.e32 * op.e23 + this.e33 * op.e33;
+
+	return out;
+}
+
+/** Matrix addition.
+ *
+ *	@param op another svg matrix
+ *	@return this + op
+ */
+matrixSVG.prototype.add = function(op)
+{
+	out = new matrixSVG();
+
+	out.e11 = this.e11 + op.e11;
+	out.e12 = this.e12 + op.e12;
+	out.e13 = this.e13 + op.e13;
+	out.e21 = this.e21 + op.e21;
+	out.e22 = this.e22 + op.e22;
+	out.e23 = this.e23 + op.e23;
+	out.e31 = this.e31 + op.e31;
+	out.e32 = this.e32 + op.e32;
+	out.e33 = this.e33 + op.e33;
+
+	return out;
+}
+
+/** Matrix mixing.
+ *
+ *	@param op another svg matrix
+ *	@parma contribOp contribution of the other matrix (0 &lt;= contribOp &lt;= 1)
+ *	@return (1 - contribOp) * this + contribOp * op
+ */
+matrixSVG.prototype.mix = function(op, contribOp)
+{
+	contribThis = 1.0 - contribOp;
+	out = new matrixSVG();
+
+	out.e11 = contribThis * this.e11 + contribOp * op.e11;
+	out.e12 = contribThis * this.e12 + contribOp * op.e12;
+	out.e13 = contribThis * this.e13 + contribOp * op.e13;
+	out.e21 = contribThis * this.e21 + contribOp * op.e21;
+	out.e22 = contribThis * this.e22 + contribOp * op.e22;
+	out.e23 = contribThis * this.e23 + contribOp * op.e23;
+	out.e31 = contribThis * this.e31 + contribOp * op.e31;
+	out.e32 = contribThis * this.e32 + contribOp * op.e32;
+	out.e33 = contribThis * this.e33 + contribOp * op.e33;
+
+	return out;
+}
+
+/** Trimming function for strings.
+*/
+String.prototype.trim = function()
+{
+	return this.replace(/^\s+|\s+$/g, '');
+}
+
+/** SVGElement.getTransformToElement polyfill */
+SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement || function(elem) {
+    return elem.getScreenCTM().inverse().multiply(this.getScreenCTM());
+};
+</script>
+</svg>

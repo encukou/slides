@@ -1,0 +1,6 @@
+*.pyz
+*.zip
+__pycache__/
+__venv__/
+/demo.py
+/.mypy_cache/
