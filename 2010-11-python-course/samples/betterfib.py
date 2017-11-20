@@ -1,1 +1,1 @@
-/home/petr/school/python/slides/samples/07betterfib.py
+07betterfib.py

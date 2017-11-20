@@ -1,1 +1,1 @@
-/home/petr/school/python/slides/samples/02firstprogram.py
+02firstprogram.py
