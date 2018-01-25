@@ -1,0 +1,215 @@
+
+UČENÍ
+
+Teaching / Learning
+
+Co je to "učit se Python"?
+Python je nástroj
+- Kladivo na univerzitě:
+  - historie a vývoj kladiv
+    - https://www.rrncommunity.org/items/295646
+  - návrh kladiv
+    - https://en.wikipedia.org/wiki/File:Steel_pd.svg
+  - klasifikace kladiv
+    - http://www.finedictionary.com/hammer.html
+  - buchary a lisy
+    - https://www.alibaba.com/product-detail/Pneumatic-Forging-Hammer-Air-Hammer-_121345052.html
+  - co já chci: jak postavit ptačí budku
+    - https://en.wikipedia.org/wiki/File:Iso_linnunpontto.jpg
+
+    ono se tak nějak předpokládá že to už umíš, a chceš vít víc;
+    dělat to správně, ve velkém
+
+- Python:
+  - https://www.fi.muni.cz/IB111/slidy/programovaci-jazyky.pdf  (19-20)
+
+
+
+- Jirka Vejražka - The 20 lines of Python code I'm most proud of
+  - https://www.youtube.com/watch?v=XNUzPivqyFs&t=16m47s
+  - 50000 - 80000 LOC in life
+  - written for a doctor to automate DNA matching (4 hours a week -> 0.2s)
+    - slow, inefficient, uncommented code
+
+
+
+Já jsem začal
+- učit se - jako děcko
+- učit - doučování ... kurzu Pythonu na univerzitě ...
+  - algoritmy a hříčky, v Pythonu 2
+
+  - předpoklad, že člověk ví o co jde
+
+Co to vlastně znamená, učit (se) programovat?
+Každý si pod tím představí něco jiného.
+
+  - informatika -- algoritmy, teorie (složitost, OOP, překladače)
+  - analýza dat, databáze
+  - náročné výpočty, poč.vidění  (...předpověď počasí)
+  - správa systémů / sysadmin, devops
+  - infrastruktura / generování  (... Pixar?)
+  - automatizace úkolů na počítači, scraping
+  - testování SW
+  - webové aplikace
+  - desktopové aplikace
+  - hry
+  - embedded
+  - robotika / IoT, raspberry pi
+
+
+    Increasingly, the people who are seeking out programming knowledge are
+    not looking to become full-time software developers or data scientists.
+
+    - Alexus Strong,  http://news.codecademy.com/why-learn-python/
+
+Ptačí budky nejsou moc praktické,
+ale otevírají to dveře všemu ostatnímu.
+
+
+
+Kde se ty základy?
+- V UK mají Micro:bity na základce (u nás je "informatika" na ZŠ/SŠ word a excel)
+- Online - CodeCademy (2011), Khan Academy (2006), naucse (2017)
+- Software Carpentry (1998)
+- ČR - kroužky programování, Engeto Academy (2016)
+- 2014 - Czechitas, DjangoGirls, české PyLadies
+
+budu kecat o kurzech pro PyLadies, protože ty znám nejlíp
+
+Na začátku
+- zveřejnil jsem poznámky, pak jsem jel podle nich
+- v Praze to chtěli taky... tak našli organizátorku
+
+Jak fungují PyLadies?
+
+Organizace PyLadies (ideální):
+   účastnice -> organizátorka -> koučka -> hlavní koučka
+                                    -> programátorka
+   + koučové
+   + úpravy materiálů
+
+   preventing burnout
+
+Kdo jsou ti koučové?  Ideálně lidi, co už něco umí
+- problém: "kdo neumí, učí ... kdo umí, neumí učit"
+
+- DjangoGirls -- je metakouč => koučovat může každý
+  - "kdo prošel DjangoGirls, může koučovat" -- Honza Král
+Co z toho dostanou?
+- Naučí se učit
+- porozumí začátečníkům...
+  => snad budou umět psát kód přístupný méně zkušeným lidem (!!!)
+- poznají lidi (pyva jsou super, ale svět po nich není zas o tolik lepší)
+- myslím si, že má smysl, aby takovouhle aktivitu podporovali i zaměstnavatelé,
+  z podobných důvodů jako vysílají lidi na konference.
+  Koneckonců, Red Hat i Kiwi.com učení dost podporují, a nevypadá to že by se
+  jim to nevyplácelo.
+
+++ diversity of workloads
+  ++ education - not just for users
+
+A protože je to pro společnosti v konečném důsledku výhodné, nemám zas
+takový strach o nedostatek učitelů, mentorů a koučů na komunitních kurzech.
+Co mi nedá spát je, podle čeho budou učit.
+Vytvořit učební plán je celkem dost práce.
+Na druhou stranu to ale nemusí dělat každý celé sám.
+
+
+Otevřené materiály
+
+PyLadies mají sdílené materiály. Stejný základ, ale každé město trochu jiné
+  -> inovace
+  -> nejen pro nás (každý se podle toho může naučit, nebo učit vlastní kurz)
+        ... to se teda moc neděje,
+        ale lidi aspoň nemají důvod fňukat že je to jen pro holky ...
+
+Existuje „základní“ verze kurzu, kterou doporučujeme pro samostudium.
+A vím o několika lidech, kteří kurzem takhle sami prošli!
+(I když bohužel nikdo nehlásí chyby, když něčemu nerozumí. Tak nemůžu vědět
+jak moc je to užitečné.
+Kdybyste někdo věděli jak říct lidem, že se mají ozvat když něčemu nerozumí,
+tak mi prosím poraďte. Je to těžké i osobně na kurzech.)
+
+Zkusili jsme otevřené materiály použít i na pokročilý univerzitní kurz
+za kredity.
+Funguje to dobře, jen s domácímy úkoly a hodnocením to moc nepomáhá.
+
+Mimochodem, tenhle pokročilý kurz budeme nejspíš za chvíli otevírat v Brně,
+kde bude trochu přizpůsobený začátečníkům.
+A podobně si může rozjet kdokoli jiný.
+
+...
+
+Každopádně, je to celé otevřené. Repozitář plný Markdown souborů,
+na zprovoznění jsou potřeba docela minimální závislosti (je tam nějaký Jupyter
+Notebook, ale žádný Docker),
+a je to statická stránka, takže na hostování snad nejjednoduší co může být.
+Chci, aby to lidi používali, ať už z toho budu já něco mít nebo ne.
+(jen ponámka -- To co píšu já má „virální“ Share-Alike licenci, takže by to
+mělo zůstat otevřené, i když to změníte.)
+
+Je spousta paralel otevřených materiálů s open-source softwarem.
+Je to zadarmo, pro všechny a bez omezení -- ale nejvíc benefitů získá ten,
+kdo se zapojí ... a čím víc se člověk zapojí, tím větší je nebezpečí že vyhoří;
+práce je ještě moc.
+Já jsem to založil, napsal první verzi, a teď jsem maintainer, který
+se snaží starat o to, aby příspěvky ostatních do sebe zapadaly. ... a hlavně
+o vylepšování způsobů, jak se dá zapojit.
+
+Aktuálně na naucse píše Miky z Prahy diplomku, která by to měla posunout
+hodně dopředu: implementace fork-and-merge modelu, jako má GitHub, tedy že
+každý učitel si bude moct materiály co nejjednodušeji přizpůsobit, použít,
+a pokud se změna osvědčí, začlenit zpátky.
+
+To si myslím že na dostupných kurzech chybí: aktuálně vidím dva druhy
+otevřených materiálů:
+- buď si je vymyslí instruktor na svůj konkrétní kurz, a pak když už je
+  zveřejní, tak není dobrá možnost přispět zpátky -- takže vzniká nepřehledná
+  hromada kopií,
+- nebo existuje jen jedna „posvěcená“ sdílená verze s dobře udělaným systémem
+  zapracování změn, ale bez možnosti na konkrétním kurzu udělat experiment
+  bez předchozího „posvěcení“.
+
+Když jsem se nad tím zamyslel, došlo mi, že podobnou situaci už jsem někdy viděl:
+takhle fungoval Open Source software před nástupem GitHubu.
+A proto pomalu buduju GitHub pro učební materiály.
+
+Ale budu jen rád, když přispějete už teď.
+- Projděte si kurz, ať už začátečnický nebo pokročilý, a něco v něm opravte
+  (pomocí pull requestu) nebo pošlete připomínku (mailem nebo GitHub issue),
+- Zorganizujte si vlastní kurz podle našich materiálů:
+        - http://pyvec-guide.readthedocs.io/
+- A nebo se zapojte jinak!
+
+
+
+A to je ode mě skoro všechno.
+Jen jsem ještě neřekl proč se vlastně učit zrovna Python.
+
+        The Python community is [...] welcoming to novice programmers.
+        [...] the language itself and the community
+        surrounding it “have that attitude of, ‘Don’t worry, we’ll protect
+        you if something goes wrong.’”
+
+    - Alexus Strong quoting Hillary Green-Lerman, http://news.codecademy.com/why-learn-python/
+
+...
+
+A tohle si, myslím, je nutné zachovat i pro příští generace.
+Nevím jak je zrovna teď politicky korektní mluvit o hodnotách,
+ale věřím, že to, že o Pythonu vím víc než mnozí jiní, mi spíš než právo se
+povyšovat dává povinnost ty znalosti předávat dál.
+
+Jestli i přes to chcete taky vědět víc, rád je předám.
+
+
+
+
+
+
+
+
+
+
+
+
