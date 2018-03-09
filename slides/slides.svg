@@ -11,14 +11,14 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="1920"
-   height="1080"
-   viewBox="0 0 507.99995 285.75001"
+   width="507.99359"
+   height="285.7464"
+   viewBox="0.9 0 507.99359 285.7464"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
    sodipodi:docname="slides.svg"
-   enable-background="new">
+   style="enable-background:new">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -26,11 +26,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.41321553"
-     inkscape:cx="1127.2847"
-     inkscape:cy="650.0441"
+     inkscape:zoom="1.16875"
+     inkscape:cx="224.70801"
+     inkscape:cy="-11.156549"
      inkscape:document-units="px"
-     inkscape:current-layer="layer7"
+     inkscape:current-layer="layer11"
      showgrid="true"
      units="px"
      inkscape:window-width="1920"
@@ -46,19 +46,33 @@
      inkscape:bbox-nodes="true"
      inkscape:snap-text-baseline="true"
      inkscape:snap-global="true"
-     inkscape:snap-bbox-edge-midpoints="true"
-     inkscape:snap-others="false">
+     inkscape:snap-bbox-edge-midpoints="false"
+     inkscape:snap-others="true"
+     viewbox-x="0.9"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
     <inkscape:grid
        type="xygrid"
        id="grid873"
        spacingx="31.749999"
        spacingy="35.718749"
-       empspacing="4" />
+       empspacing="4"
+       empcolor="#3f51ff"
+       empopacity="0.49803922"
+       originx="2.3841858e-08"
+       originy="-794.2536" />
     <inkscape:grid
        type="xygrid"
        id="grid6557"
        spacingx="15.874999"
-       spacingy="17.859374" />
+       spacingy="17.859374"
+       empspacing="1000"
+       color="#3f3fff"
+       opacity="0.10196078"
+       originx="2.3841858e-08"
+       originy="-794.2536" />
   </sodipodi:namedview>
   <defs
      id="defs2">
@@ -79,7 +93,7 @@
        inkscape:collect="always"
        style="color-interpolation-filters:sRGB"
        id="filter5377"
-       x="-0.00092093752"
+       x="-0.00092093751"
        width="1.0018419"
        y="-0.0017217137"
        height="1.0034434">
@@ -255,7 +269,7 @@
       <path
          inkscape:connector-curvature="0"
          id="path18"
-         d="M 0,90 330,90 330,0 0,0 0,90 Z" />
+         d="M 0,90 H 330 V 0 H 0 Z" />
     </clipPath>
   </defs>
   <metadata
@@ -271,11 +285,11 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(0,-11.249983)"
+     transform="translate(2.3841858e-8,-11.249991)"
      id="layer1"
      inkscape:groupmode="layer"
      inkscape:label="PyLadies"
-     style="display:none">
+     style="display:inline">
     <image
        sodipodi:absref="/home/pviktori/dev/slides/2018-03-09-pycon-sk/slides/pyladies_MS06453.jpg"
        xlink:href="pyladies_MS06453.jpg"
@@ -290,8 +304,8 @@
        d="m -234.40855,-135 c -2.09386,0 -3.7793,16.85633 -3.7793,37.794922 V 1177.2051 c 0,20.9386 1.68544,37.7949 3.7793,37.7949 H 2153.3636 c 2.0939,0 3.7793,-16.8563 3.7793,-37.7949 V -97.205078 C 2157.1429,-118.14367 2155.4575,-135 2153.3636,-135 Z M 3.359375,0 H 1916.6406 C 1918.5018,0 1920,13.485451 1920,30.236328 V 1049.7637 c 0,16.7508 -1.4982,30.2363 -3.3594,30.2363 H 3.359375 C 1.4981666,1080 0,1066.5145 0,1049.7637 V 30.236328 C 0,13.485451 1.4981666,0 3.359375,0 Z"
        id="rect4755"
        inkscape:connector-curvature="0"
-       transform="matrix(0.26458332,0,0,0.26458332,0,11.249983)"
-       sodipodi:nodetypes="ssssssssssssssssss" />
+       sodipodi:nodetypes="ssssssssssssssssss"
+       transform="matrix(0.26458332,0,0,0.26458332,0,11.249983)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.36409569px;line-height:1.25;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.68410236"
@@ -339,7 +353,8 @@
      inkscape:label="Doučování"
      id="layer2"
      inkscape:groupmode="layer"
-     style="display:none">
+     style="display:none"
+     transform="translate(2.3841858e-8,-7.999899e-6)">
     <rect
        style="fill:#e9eaed;fill-opacity:1;stroke-width:0.26458332"
        id="rect4896"
@@ -352,20 +367,14 @@
     <image
        sodipodi:absref="/home/pviktori/dev/slides/2018-03-09-pycon-sk/slides/pyladies-fb-post.png"
        xlink:href="pyladies-fb-post.png"
-       inkscape:transform-center-y="913.51859"
-       inkscape:transform-center-x="-255.59588"
-       width="506.79459"
-       height="1830.3647"
+       inkscape:transform-center-y="891.74897"
+       inkscape:transform-center-x="-249.5049"
+       width="494.71741"
+       height="1786.7462"
        preserveAspectRatio="none"
        id="image4893"
-       x="1.2053978"
-       y="35.718746" />
-    <path
-       style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.83668596"
-       d="m -62.500059,-35.71875 c -0.554,0 -0.999939,4.45991 -0.999939,9.999909 V 311.46884 c 0,5.54 0.445939,9.9999 0.999939,9.9999 H 569.26467 c 0.55398,0 0.99994,-4.4599 0.99994,-9.9999 V -25.718841 c -3e-5,-5.539999 -0.44596,-9.999909 -0.99994,-9.999909 z M 0.4093698,1.5974986e-6 H 506.63171 c 0.49242,0 0.88881,3.5680249025014 0.88881,8.0000289025014 V 277.74997 c 0,4.43198 -0.39639,8.00002 -0.88881,8.00002 H 0.4093698 c -0.49244299,0 -0.88883399,-3.56804 -0.88883399,-8.00002 V 8.0000305 c 0,-4.432004 0.396391,-8.0000289025014 0.88883399,-8.0000289025014 z"
-       id="rect4755-3"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ssssssssssssssssss" />
+       x="4.715528"
+       y="15.950448" />
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
        id="rect4913"
@@ -375,12 +384,22 @@
        y="58.036362"
        rx="1.0000006"
        ry="1.0000006" />
+    <rect
+       ry="0.12220249"
+       rx="1.0000006"
+       y="250.83066"
+       x="0"
+       height="34.919342"
+       width="507.99997"
+       id="rect7017"
+       style="fill:#e9eaed;fill-opacity:1;stroke-width:0.09249161" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Inspirace"
-     style="display:none">
+     style="display:none"
+     transform="translate(2.3841858e-8,-7.999899e-6)">
     <path
        style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.83668596"
        d="m -61.264688,-35.71875 c -0.554,0 -0.99994,4.45991 -0.99994,9.99991 v 337.18768 c 0,5.54 0.44594,9.9999 0.99994,9.9999 H 570.50004 c 0.55399,0 0.99994,-4.4599 0.99994,-9.9999 V -25.71884 c -2e-5,-5.54 -0.44595,-9.99991 -0.99994,-9.99991 z M 1.644742,-6.2501329e-8 H 507.86709 C 508.3595,-6.2501329e-8 508.7559,3.5680199 508.7559,8.0000299 V 277.74997 c 0,4.43198 -0.3964,8.00002 -0.88881,8.00002 H 1.644742 c -0.49244,0 -0.88884,-3.56804 -0.88884,-8.00002 V 8.0000299 c 0,-4.43201 0.3964,-8.000029962501328 0.88884,-8.000029962501328 z"
@@ -419,7 +438,8 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="Materials*"
-     style="display:none">
+     style="display:none"
+     transform="translate(2.3841858e-8,-7.999899e-6)">
     <image
        y="-1.0625014e-06"
        x="95.25"
@@ -5756,7 +5776,8 @@ CJET/wdAoryEZrnfkQAAAABJRU5ErkJggg==
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="What it is"
-     style="display:none">
+     style="display:none"
+     transform="translate(2.3841858e-8,-7.999899e-6)">
     <image
        sodipodi:absref="/home/pviktori/dev/slides/2018-03-09-pycon-sk/slides/asteroids-screenshot.png"
        xlink:href="asteroids-screenshot.png"
@@ -5875,7 +5896,7 @@ CJET/wdAoryEZrnfkQAAAABJRU5ErkJggg==
          id="text3004"
          inkscape:connector-curvature="0" />
       <path
-         d="m 110.46717,132.28575 a 48.948285,8.6066808 0 1 1 -97.896571,0 48.948285,8.6066808 0 1 1 97.896571,0 z"
+         d="m 110.46717,132.28575 a 48.948285,8.6066907 0 1 1 -97.896571,0 48.948285,8.6066907 0 1 1 97.896571,0 z"
          transform="matrix(0.73406,0,0,0.809524,16.24958,27.00935)"
          style="opacity:0.44382019;fill:url(#radialGradient1480);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="path1894"
@@ -5886,7 +5907,8 @@ CJET/wdAoryEZrnfkQAAAABJRU5ErkJggg==
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="What it's not"
-     style="display:none;opacity:0.93999999">
+     style="display:none;opacity:0.93999999"
+     transform="translate(2.3841858e-8,-7.999899e-6)">
     <path
        style="display:inline;fill:#f9f9f9;fill-opacity:1;stroke-width:0.83668596"
        d="m -62.215421,-36.308132 c -0.554,0 -0.99994,4.45991 -0.99994,9.99991 V 310.87946 c 0,5.54 0.44594,9.9999 0.99994,9.9999 H 569.54931 c 0.55399,0 0.99994,-4.4599 0.99994,-9.9999 V -26.308222 c -2e-5,-5.54 -0.44595,-9.99991 -0.99994,-9.99991 z M 0.69400963,-0.58938203 H 506.91636 c 0.49241,0 0.88881,3.56802003 0.88881,8.00003003 V 277.16059 c 0,4.43198 -0.3964,8.00002 -0.88881,8.00002 H 0.69400963 c -0.49244,0 -0.88883,-3.56804 -0.88883,-8.00002 V 7.410648 c 0,-4.43201 0.39639,-8.00003003 0.88883,-8.00003003 z"
@@ -6017,7 +6039,9 @@ CJET/wdAoryEZrnfkQAAAABJRU5ErkJggg==
   <g
      inkscape:groupmode="layer"
      id="layer7"
-     inkscape:label="Other formats">
+     inkscape:label="Other formats*"
+     style="display:inline"
+     transform="translate(2.3841858e-8,-7.999899e-6)">
     <image
        sodipodi:absref="/home/pviktori/dev/slides/2018-03-09-pycon-sk/slides/CTU_-_New_Building_Dejvice,_an_entrance.jpg"
        xlink:href="CTU_-_New_Building_Dejvice,_an_entrance.jpg"
@@ -6353,6 +6377,264 @@ CJET/wdAoryEZrnfkQAAAABJRU5ErkJggg==
        id="image6976"
        x="396.87497"
        y="220.60825" />
+    <image
+       sodipodi:absref="/home/pviktori/dev/slides/2018-03-09-pycon-sk/slides/rtd-home-logo.png"
+       xlink:href="rtd-home-logo.png"
+       width="63.499992"
+       height="74.941437"
+       preserveAspectRatio="none"
+       id="image7276"
+       x="428.625"
+       y="160.73438" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="Open Courses"
+     style="display:none"
+     transform="translate(2.3841858e-8,-7.999899e-6)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="254"
+       y="89.29689"
+       id="text7025"><tspan
+         sodipodi:role="line"
+         id="tspan7023"
+         x="254"
+         y="89.29689"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;text-anchor:middle;stroke-width:0.26458332">“Given enough eyeballs, all <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Oxygen;-inkscape-font-specification:'Oxygen Bold'"
+   id="tspan7133">bugs</tspan> are shallow”</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:45.15555573px;line-height:1.25;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="291.75851"
+       y="320.70111"
+       id="text7051"><tspan
+         sodipodi:role="line"
+         id="tspan7049"
+         x="291.75851"
+         y="320.70111"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:45.15555573px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';stroke-width:0.26458332">?</tspan></text>
+    <text
+       id="text7127"
+       y="196.45312"
+       x="254"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         y="196.45312"
+         x="254"
+         id="tspan7125"
+         sodipodi:role="line">“<tspan
+   id="tspan7147"
+   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Oxygen;-inkscape-font-specification:'Oxygen Light'">Open</tspan><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Oxygen;-inkscape-font-specification:'Oxygen Bold'"
+   id="tspan7129"> </tspan><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Oxygen;-inkscape-font-specification:'Oxygen Bold'"
+   id="tspan7145">unlocks</tspan> the world's potential”</tspan></text>
+    <text
+       id="text7139"
+       y="142.875"
+       x="254"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         y="142.875"
+         x="254"
+         id="tspan7137"
+         sodipodi:role="line">“<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Oxygen;-inkscape-font-specification:'Oxygen Bold'"
+   id="tspan7141">Create</tspan> more value than you capture”</tspan></text>
+    <image
+       sodipodi:absref="/home/pviktori/dev/slides/2018-03-09-pycon-sk/slides/rtd-home-logo.png"
+       xlink:href="rtd-home-logo.png"
+       width="39.158333"
+       height="46.21389"
+       preserveAspectRatio="none"
+       id="image7211"
+       x="727.47968"
+       y="86.065514" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer12"
+     inkscape:label="Fork &amp; Merge"
+     style="display:none"
+     transform="translate(2.3841858e-8,-7.999899e-6)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.23333311;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 31.75,142.875 c 63.499996,0 63.499988,35.71875 126.99999,35.71875 h 190.5"
+       id="path7054"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path7056"
+       d="M 15.875,142.875 H 492.12498"
+       style="fill:none;stroke:#000000;stroke-width:4.23333311;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="csc"
+       inkscape:connector-curvature="0"
+       id="path7058"
+       d="m 476.25,142.875 c -63.5,0 -63.49999,35.71875 -126.99999,35.71875 h -190.5"
+       style="fill:none;stroke:#000000;stroke-width:4.23333311;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.23333308, 8.46666616;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="47.250172"
+       y="214.05894"
+       id="text7062"><tspan
+         sodipodi:role="line"
+         id="tspan7060"
+         x="47.250172"
+         y="214.05894"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;stroke-width:0.26458332">fork</tspan></text>
+    <text
+       id="text7066"
+       y="214.3125"
+       x="174.625"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;stroke-width:0.26458332"
+         y="214.3125"
+         x="174.625"
+         id="tspan7064"
+         sodipodi:role="line">fix</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="381"
+       y="214.3125"
+       id="text7074"><tspan
+         sodipodi:role="line"
+         id="tspan7072"
+         x="381"
+         y="214.3125"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;stroke-width:0.26458332">merge</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:45.15555573px;line-height:1.25;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="41.301464"
+       y="89.296883"
+       id="text7123"><tspan
+         sodipodi:role="line"
+         id="tspan7121"
+         x="41.301464"
+         y="89.296883"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:45.15555573px;font-family:'Bree Serif';-inkscape-font-specification:'Bree Serif';stroke-width:0.26458332">Git/GitHub workflow</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="285.52951"
+       y="214.3125"
+       id="text7350"><tspan
+         sodipodi:role="line"
+         id="tspan7348"
+         x="285.52951"
+         y="214.3125"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;stroke-width:0.26458332">test</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer13"
+     inkscape:label="Sjednocení znalostí #"
+     style="display:none"
+     transform="translate(2.3841858e-8,-7.999899e-6)" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer9"
+     inkscape:label="People # and Benefits"
+     style="display:none;opacity:0.91000001"
+     transform="translate(2.3841858e-8,-7.999899e-6)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;enable-background:new"
+       x="64.399994"
+       y="89.296883"
+       id="text7062-7"><tspan
+         sodipodi:role="line"
+         id="tspan7060-0"
+         x="64.399994"
+         y="89.296883"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;text-anchor:middle;stroke-width:0.26458332">Účastník</tspan></text>
+    <text
+       id="text7373"
+       y="89.296883"
+       x="191.39999"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;enable-background:new"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         y="89.296883"
+         x="191.39999"
+         id="tspan7371"
+         sodipodi:role="line">Lektor</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;enable-background:new"
+       x="318.39999"
+       y="89.296883"
+       id="text7377"><tspan
+         sodipodi:role="line"
+         id="tspan7375"
+         x="318.39999"
+         y="89.296883"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;text-anchor:middle;stroke-width:0.26458332">Organizátor</tspan></text>
+    <text
+       id="text7381"
+       y="89.296883"
+       x="445.39999"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;enable-background:new"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         y="89.296883"
+         x="445.39999"
+         id="tspan7379"
+         sodipodi:role="line">Mentor</tspan></text>
+    <text
+       id="text7385"
+       y="232.17188"
+       x="254.89998"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;enable-background:new"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         y="232.17188"
+         x="254.89998"
+         id="tspan7383"
+         sodipodi:role="line">Přispěvatel do materiálů</tspan></text>
+    <text
+       id="text7401"
+       y="35.718765"
+       x="254.89999"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:1.25;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;enable-background:new"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Oxygen;-inkscape-font-specification:Oxygen;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         y="35.718765"
+         x="254.89999"
+         id="tspan7399"
+         sodipodi:role="line">Osoby a obsazení</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer10"
+     inkscape:label="Udržitelnost #"
+     style="display:none"
+     transform="translate(2.3841858e-8,-7.999899e-6)" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer11"
+     inkscape:label="Proč Python #"
+     style="display:inline"
+     transform="translate(2.3841858e-8,-7.999899e-6)">
+    <rect
+       style="opacity:0.88999999;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:4.24844456;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:4.24844449, 8.49688897;stroke-dashoffset:0"
+       id="rect7471"
+       width="507.99359"
+       height="285.7464"
+       x="0.89999998"
+       y="7.999899e-06" />
   </g>
   <script
      ns1:version="1.5.5"
