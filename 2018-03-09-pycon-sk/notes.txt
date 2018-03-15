@@ -1,0 +1,190 @@
+Když jsem před čtyřmi lety zkusil doučovat Python, netušil jsem, že z toho vznikne samostatný začátečnický kurz, kterým projdou stovky lidí ročně.
+
+Dnes se z mých poznámek vyvinuly učební materiály, do kterých už přispěly desítky lidí, a skupina dobrovolnic a podle nich pod hlavičkou PyLadies organizují bezplatné kurzy po celé republice. Mezitím vzniklo i několik podobných konceptů, jako Django Girls, Beginners' Day na EuroPythonu, nebo Czechitas.
+
+Chtěl bych se podělit o zkušenosti z organizování těchto kurzů, zamyslet se nad paralelami mezi otevřenými kurzy a open-source softwarem, popovídat o překvapivě silném vlivu na komunitu – a hlavně inspirovat organizátory podobných kurzů na Slovensku.
+
+-------------
+
+Is this a startup?
+
+
+-------------
+
+
+[PYLADIES]
+
+Já
+Programátor, Pythonista. Používám a tvořím Open Source.
+Kurzy PyLadies - začátky
+[OPEN MATERIALS]
+Otevřené materiály
+[× STARTING]
+ - poznámky k přednáškám
+ - poznámky pro chybějící
+ - poznámky pro pomocníky
+ - poznámky pro další kurzy
+a je z toho kurz! úspěšný?
+[× OTHERS]
+ - bezplatný
+ - dobrovolnický (viz níže?!)
+
+[20 LINES MOST PROUD OF]
+
+[XXX VEJRAZKA]
+- učím základy programování
+  - Jirka Vejražka - The 20 lines of Python code I'm most proud of
+    - https://www.youtube.com/watch?v=XNUzPivqyFs&t=16m47s
+    - 50000 - 80000 LOC in life
+    - written for a doctor to automate DNA matching (4 hours a week -> 0.2s)
+        - slow, inefficient, uncommented code
+[× WHAT IT IS]
+  - základy, na kterých pak jde stavět -- které by měl umět každý
+    - ne weby; ne datovou analýzu
+  - hry - proč?
+[× WHAT NOT]
+  - ne informatiku (ne rekurzi); ne automatizaci; ne počítačovou gramotnost
+  - ne JavaScript; ne na "zaměstnatelnost"
+
+[× WHY GIRLS]
+- Proč holky?
+  - je to in ⇒ je to jednoduchý
+  - příjemná skupina (stereotyp)
+
+[OTHERS (×8)]
+Ostatní podobné formáty:
+- MI-PYT - 2 běhy
+  - úspěšný
+  - problém s hodnocením, úkoly znovu na každý běh!
+- školy
+  - informatika na střední - word, word, word. pascal?
+  - vysoká - skripta, cvičení; úkoly
+    - hodnocení!
+  - výzkum - odborný i pedagogický
+- Komerční školitelé a školící centra
+  - jaká je kvalita?
+  - jak to můžu pak použít?
+- Django Girls
+  - ♥
+  - víc takových!
+  - motivační – moc energie, složitá organizace, nikdo se nic nenaučí
+  - používají GitBook
+    - překlady materiálů
+      - problémy!!
+  - Beginners' Day; sprinty; mentoring
+    - ad-hoc
+    - složitá příprava?
+- Czechitas
+  - sdílení materiálů?
+    - ne! -- (můžu teda pomoct?)
+  - škálují
+    - škálují?? stejně nestíhají pokrýt zájem, ani z jedné strany!
+  - peníze koučům?
+    - není to zbytečné?
+    - peníze organizátorům (super?!)
+- Firemní hackathony
+  - proč?
+    - nábor lidí
+    - představení technologií/API/dat
+    - ukázání se - logo v novinkách
+- Online tutoriály
+  - žádná zpětná vazba
+  - problém to aktualizovat
+
+- Co je ale špatně s "mým" přístupem?
+  - neškáluje
+    - potřebuje zapálené dobrovolníky
+  - nehodnotí
+
+[OPEN SOURCE]
+- Je to celé založené na open source
+  - To znamená:
+[× OPEN]
+    - otevřené (maximálně inkluzivní)
+[× FORKABLE]
+    - forkování!
+    - dobrovolnické
+  - Proč? -- já
+    - prostě by to tak mělo být
+    - sdílíme se všemi; jinak to nemá cenu
+    - jak zařídit, aby to tak *mohlo* být?
+[× IMPLEMENTATION]
+  - implementace
+    - GitHub, pull requesty
+    - mělo by to jít líp – viz překlady v DjangoGirls
+
+[OPEN COURSES?]
+Otevřené kurzy a open-source software
+[× BEST]
+- nejlepší materiály - každý je může upravovat, vylepšovat
+  - může?
+  - pull requests, maintainování, všechno je složité!
+  - GitHub pro materiály?
+[× SLOVAK TRANSLATIONS]
+  - DjangoGirls mají problém s merge překladu zpátky do ofiko větve..?!
+    - jako FOSS před GitHubem?
+- není vendor lock-in (?)
+[× SHARED EXPECTATIONS – building on top]
+- sjednocení znalostí -- "potřebuješ vědět věci ze začátečnického kurzu"
+  - chceme to rozmělnit? ... ale pořád mít sjednocené jednotlivé oblasti
+
+[THE COURSES THEMSELVES]
+- dobrovolnický kurz
+   - všichni "uživatelé" z toho něco mají
+[× PEOPLE]
+     - účastník
+       - nové informace
+       - kontakty
+     - lektor
+       - trénink přednášení
+       - kontakty
+       - dobrý pocit
+     - organizátor
+       - (důležitý rozdíl!)
+       - šance dát něco zpátky komunitě
+       - zkušenosti z organizování
+     - kouč/mentor
+       - kontakty
+       - zkušenosti
+       - schopnost vysvětlovat
+       - udržitelnost kódu; pokora
+     - přeispěvatel do materiálů
+       - může (ale nemusí) být kdokoli z těch výše!
+         - Lumír je lepší lektor než já – ale do psaní materiálů se nehrne :)
+[× NADŠENCI]
+   - MĚLI by to dělat nadšenci; (ne jen "lidi z praxe")
+[× UDRŽITELNOST/SPONZORING]
+   - udržitelnost? může z toho něco mít i společnost/sponzor?
+     - noví lidé
+     - stávající lidé
+       - udržitelnost kódu viz výše
+       - zastupitelnost
+    - jak vím že něco umím? umím to naučit
+      + kdy je něco nudné? když
+        - jsem expert = umím to naučit
+        - chci aby to dělali ostatní
+   - ALE
+     - potřebuje to "maintainera" - na vyšší úrovni
+     - burnout - jako každý OSS projekt :(
+
+  - komunita++
+    - lidi nechodí jen na Pyvo, můžou i něco dělat
+      - možnost se zapojit na všech úrovních
+      - "přísun" nováčků na srazy; viditelnost nováčků v komunitě – přátelskost;
+      - dostupnost témat
+
+[× PROČ PYTHON]
+- Proč Python?
+
+        The Python community is [...] welcoming to novice programmers.
+        [...] the language itself and the community
+        surrounding it “have that attitude of, ‘Don’t worry, we’ll protect
+        you if something goes wrong.’”
+
+    - Alexus Strong quoting Hillary Green-Lerman, http://news.codecademy.com/why-learn-python/
+
+
+    Věřím, že to, že o Pythonu vím víc než mnozí jiní, mi spíš než právo se
+    povyšovat dává povinnost ty znalosti předávat dál.
+
+    Jestli i přes to chcete taky vědět víc, rád je předám.
