@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128" version="1">
+  <defs>
+    <radialGradient id="d" cx="52" cy="-31" r="136" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient gradientUnits="userSpaceOnUse" r="136" cy="-31" cx="52" id="c">
+      <stop offset="0" stop-color="#c6c6c6"/>
+      <stop offset=".52" stop-color="#EEE"/>
+      <stop offset="1" stop-color="#c6c6c6"/>
+    </radialGradient>
+    <linearGradient id="o" x2="1" y2="1">
+      <stop offset="0" stop-color="#111"/>
+      <stop offset="1" stop-color="#555"/>
+    </linearGradient>
+    <linearGradient id="n" gradientUnits="userSpaceOnUse" x1="55.95" y1="81" x2="55.95" y2="80" gradientTransform="matrix(1.088 0 0 1 3.364 16)">
+      <stop offset="0" stop-color="#FFF"/>
+      <stop offset="1" stop-color="#EEE"/>
+    </linearGradient>
+    <linearGradient id="b" gradientUnits="userSpaceOnUse" x1="44" y1="44" x2="44" y2="40">
+      <stop offset=".5" stop-color="#FFF"/>
+      <stop offset="1" stop-color="#EEEEEC"/>
+    </linearGradient>
+    <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="24" y1="40" x2="24" y2="20">
+      <stop offset=".5" stop-color="#FFF"/>
+      <stop offset="1" stop-color="#EEEEEC"/>
+    </linearGradient>
+    <linearGradient id="h" gradientUnits="userSpaceOnUse" x1="9" y1="24.32" x2="106.56" y2="53.66">
+      <stop offset="0" stop-color="#555753"/>
+      <stop offset=".63" stop-color="#2E2E2E"/>
+      <stop offset="1" stop-color="#2E2E2E"/>
+    </linearGradient>
+    <linearGradient id="g" gradientUnits="userSpaceOnUse" x1="56" y1="81" x2="56" y2="7" gradientTransform="matrix(1.082 0 0 1.014 3.43 7.905)">
+      <stop offset="0" stop-color="#BBB"/>
+      <stop offset=".59" stop-color="#9F9F9F"/>
+      <stop offset="1" stop-color="#888"/>
+    </linearGradient>
+    <linearGradient xlink:href="#a" id="i" gradientUnits="userSpaceOnUse" x1="24" y1="40" x2="24" y2="20" gradientTransform="translate(4 16)"/>
+    <linearGradient xlink:href="#b" id="j" gradientUnits="userSpaceOnUse" x1="44" y1="44" x2="44" y2="40" gradientTransform="translate(4 16)"/>
+    <linearGradient xlink:href="#a" id="l" gradientUnits="userSpaceOnUse" x1="24" y1="40" x2="24" y2="20" gradientTransform="translate(4 16)"/>
+    <filter x="-.1" width="1.12" y="-.2" height="1.48" id="k">
+      <feGaussianBlur stdDeviation=".4"/>
+    </filter>
+    <filter x="-.1" width="1.22" y="-.1" height="1.17" id="m">
+      <feGaussianBlur stdDeviation=".72"/>
+    </filter>
+    <linearGradient xlink:href="#c" id="f" gradientUnits="userSpaceOnUse" x1="8" y1="40.67" x2="120" y2="64" gradientTransform="matrix(1 0 0 1.08 0 -9.188)"/>
+    <filter id="e">
+      <feGaussianBlur stdDeviation="2.08"/>
+    </filter>
+    <linearGradient xlink:href="#d" id="p" gradientUnits="userSpaceOnUse" x1="64" y1="17.36" x2="64" y2="65.87" gradientTransform="matrix(1 0 0 1.08 0 -9.188)"/>
+  </defs>
+  <path d="M3 0C1.4 0 0 1.4 0 3v90c0 1.6 1.4 3 3 3h106c1.6 0 3-1.4 3-3V3c0-1.6-1.4-3-3-3H3z" transform="matrix(1.036 0 0 1.135 6 7)" opacity=".5" filter="url(#e)"/>
+  <path d="M11 8c-1.6 0-3 1.5-3 3.3v97c0 2 1.4 3.4 3 3.4h106c1.6 0 3-1.5 3-3.3v-97c0-2-1.4-3.3-3-3.3H11z" fill="url(#f)"/>
+  <path d="M12 15c-.5 0-1 .5-1 1v73c0 .6.5 1 1 1h104c.5 0 1-.5 1-1V16c0-.6-.5-1-1-1H12z" fill="url(#g)"/>
+  <path d="M12 16h104v80H12z"/>
+  <path d="M103 76c0 1.6-1.4 3-3 3H12c-1.6 0-3-1.4-3-3V12c0-1.6 1.4-3 3-3h88c1.6 0 3 1.4 3 3v64z" fill="url(#h)" transform="matrix(1.085 0 0 1.114 3.234 6.97)"/>
+  <path d="M13 53c42-22.4 82.2-27.6 102-28.7V17H13v36z" opacity=".05" fill="#fff"/>
+  <path d="M36 48l-16 8v-4.3L30.7 46 20 40.3V36l16 8.3V48z" opacity=".9" fill="url(#i)"/>
+  <path d="M56 60H40v-4h16v4z" opacity=".9" fill="url(#j)"/>
+  <path d="M60 60H44v-4h16v4z" transform="matrix(1.125 0 0 1.5 -10.5 -29)" opacity=".2" fill="#fff" filter="url(#k)"/>
+  <path d="M36 48l-16 8v-4.3L30.7 46 20 40.3V36l16 8.3V48z" opacity=".4" fill="url(#l)" filter="url(#m)"/>
+  <path d="M117.2 96.7l-.6-.7H12l-.8.6c.2.2.5.4.8.4h104.5c.3 0 .5 0 .7-.3z" fill="url(#n)"/>
+  <g transform="translate(8 15)" fill="url(#o)">
+    <circle r="1" cy="86" cx="101"/>
+    <circle r="1" cy="89" cx="104"/>
+    <circle r="1" cy="92" cx="103"/>
+    <circle r="1" cy="86" cx="97"/>
+    <circle r="1" cy="89" cx="100"/>
+    <circle r="1" cy="86" cx="93"/>
+    <circle r="1" cy="92" cx="99"/>
+    <circle r="1" cy="89" cx="96"/>
+    <circle r="1" cy="92" cx="95"/>
+    <circle r="1" cy="86" cx="89"/>
+    <circle r="1" cy="89" cx="92"/>
+    <circle r="1" cy="86" cx="85"/>
+    <circle r="1" cy="92" cx="91"/>
+    <circle r="1" cy="89" cx="88"/>
+    <circle r="1" cy="92" cx="87"/>
+    <circle r="1" cy="86" cx="81"/>
+    <circle r="1" cy="89" cx="84"/>
+    <circle r="1" cy="86" cx="77"/>
+    <circle r="1" cy="92" cx="83"/>
+    <circle r="1" cy="89" cx="80"/>
+    <circle r="1" cy="92" cx="79"/>
+    <circle r="1" cy="86" cx="73"/>
+    <circle r="1" cy="89" cx="76"/>
+    <circle r="1" cy="86" cx="69"/>
+    <circle r="1" cy="92" cx="75"/>
+    <circle r="1" cy="89" cx="72"/>
+    <circle r="1" cy="92" cx="71"/>
+    <circle r="1" cy="86" cx="65"/>
+    <circle r="1" cy="89" cx="68"/>
+    <circle r="1" cy="86" cx="61"/>
+    <circle r="1" cy="92" cx="67"/>
+    <circle r="1" cy="89" cx="64"/>
+    <circle r="1" cy="92" cx="63"/>
+    <circle r="1" cy="86" cx="57"/>
+    <circle r="1" cy="89" cx="60"/>
+    <circle r="1" cy="86" cx="53"/>
+    <circle r="1" cy="92" cx="59"/>
+    <circle r="1" cy="89" cx="56"/>
+    <circle r="1" cy="92" cx="55"/>
+    <circle r="1" cy="86" cx="49"/>
+    <circle r="1" cy="89" cx="52"/>
+    <circle r="1" cy="86" cx="45"/>
+    <circle r="1" cy="92" cx="51"/>
+    <circle r="1" cy="89" cx="48"/>
+    <circle r="1" cy="92" cx="47"/>
+    <circle r="1" cy="86" cx="41"/>
+    <circle r="1" cy="89" cx="44"/>
+    <circle r="1" cy="86" cx="37"/>
+    <circle r="1" cy="92" cx="43"/>
+    <circle r="1" cy="89" cx="40"/>
+    <circle r="1" cy="92" cx="39"/>
+    <circle r="1" cy="86" cx="33"/>
+    <circle r="1" cy="89" cx="36"/>
+    <circle r="1" cy="86" cx="29"/>
+    <circle r="1" cy="92" cx="35"/>
+    <circle r="1" cy="89" cx="32"/>
+    <circle r="1" cy="92" cx="31"/>
+    <circle r="1" cy="86" cx="25"/>
+    <circle r="1" cy="89" cx="28"/>
+    <circle r="1" cy="86" cx="21"/>
+    <circle r="1" cy="92" cx="27"/>
+    <circle r="1" cy="89" cx="24"/>
+    <circle r="1" cy="92" cx="23"/>
+    <circle r="1" cy="86" cx="17"/>
+    <circle r="1" cy="89" cx="20"/>
+    <circle r="1" cy="86" cx="13"/>
+    <circle r="1" cy="92" cx="19"/>
+    <circle r="1" cy="89" cx="16"/>
+    <circle r="1" cy="92" cx="15"/>
+    <circle r="1" cy="86" cx="9"/>
+    <circle r="1" cy="89" cx="12"/>
+    <circle r="1" cy="92" cx="11"/>
+    <circle r="1" cy="89" cx="8"/>
+  </g>
+  <path d="M11 8c-1.6 0-3 1.5-3 3.3v97c0 1 .4 2 1 2.6V12.3c0-1.8 1.3-3.2 3-3.2h104c1.7 0 3 1.4 3 3.2.7 25 0 98.2 0 98.2v.3c.6-.7 1-1.6 1-2.5V11.3c0-1.8-1.4-3.2-3-3.2H11z" opacity=".9" fill="url(#p)"/>
+</svg>
