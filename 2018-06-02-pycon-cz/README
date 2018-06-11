@@ -1,0 +1,9 @@
+Bytecodes and stacks: A look at CPython’s compiler and its execution model 
+
+Live-demo talk for PyCon CZ: https://cz.pycon.org/2018/programme/detail/talk/16/ 
+
+The underscore-prefixed notebooks weren't part of the final presentation.
+
+License: CC-BY-SA 3.0,
+http://creativecommons.org/licenses/by-sa/3.0/
+
