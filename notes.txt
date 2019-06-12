@@ -1,0 +1,6 @@
+Using an event loop (with frameworks like asyncio and trio for network services, or PyQt or GTK for GUI applications) is not that hard once you “get” the concept, but it does take some time and thought to get to that point.
+
+The usual async tutorials focus on how to use it and what you can do. This session explores a different angle: I'll build an event loop and a time-based scheduler from scratch, explaining the concept on actual code.
+
+This is a live coding session and isn't suitable for beginners. To follow along, you will need some experience reading (and writing) classes, functions and loops.
+
