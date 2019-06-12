@@ -42,12 +42,6 @@ async def anim_wide_mouth(blinky):
     await blinky.show_face('(o_o)', 0.8)
 
 
-async def anim_dead(blinky):
-    await blinky.show_face('(O.O)', 0.2)
-    await blinky.show_face('(×.×)', 5)
-    await anim_blink2(blinky)
-
-
 async def anim_blank(blinky):
     await blinky.show_face('(o.o)', 2)
 

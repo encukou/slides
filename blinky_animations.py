@@ -68,8 +68,14 @@ async def anim_smile_u2(blinky):
 
 async def anim_dead(blinky):
     await blinky.show_face('(O.O)', 0.2)
-    await blinky.show_face('(×.×)', 5)
-    await anim_blink2(blinky)
+    await blinky.show_face('(×.×)', 10)
+    await blinky.show_face(' (.) ', 0.3)
+    await blinky.show_face('  †  ', 2)
+    await blinky.show_face('     ', 1)
+    await blinky.show_face('  o  ', 0.3)
+    await blinky.show_face('  O  ', 0.3)
+    await blinky.show_face(' (.) ', 0.3)
+    await blinky.show_face('(-.-)', 0.3)
 
 
 async def anim_blank(blinky):
@@ -125,7 +131,7 @@ async def anim_sleep(blinky):
 
 async def anim_robot(blinky):
     for i in range(5):
-        await blinky.show_face('[#.#]', 0.1)
+        await blinky.show_face('[0.0]', 0.1)
         await blinky.show_face('(O.O)', 0.1)
     await blinky.show_face('[0.0]', 0.3)
     for a in range(10):
@@ -133,7 +139,7 @@ async def anim_robot(blinky):
             await blinky.show_face(f'[{a}.{b}]', 0.02)
     await blinky.show_face('[9.9]', 0.3)
     for i in range(5):
-        await blinky.show_face('(#.#)', 0.1)
+        await blinky.show_face('(9.9)', 0.1)
         await blinky.show_face('[o.o]', 0.1)
 
 
