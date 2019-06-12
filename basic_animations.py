@@ -85,10 +85,6 @@ all_animations = [
 ]
 
 async def animation(blinky):
-    try:
-        func = random.choice(all_animations)
-        await blinky.show_face('(o.o)', random.uniform(1, 1.5))
-        await func(blinky)
-    except:
-        blinky.face = '(×.×)'
-        raise
+    await blinky.show_face('(o.o)', random.uniform(1, 1.5))
+    func = random.choice(all_animations)
+    await func(blinky)

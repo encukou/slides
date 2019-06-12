@@ -1,5 +1,4 @@
-#! /bin/bash
+#! /bin/bash -ex
 while true; do
-    echo "Running $@ with live-reload..."
-    ls *.py | entr -dr -- $@
+    ls *.py | entr -dr -- /bin/bash -c "clear; date; echo 'Running with live-reload: $*'; echo; $*"
 done

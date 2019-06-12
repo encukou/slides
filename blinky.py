@@ -28,7 +28,6 @@ async def animation(blinky):
     """Basic blinking animation"""
     await blinky.show_face('(-.-)', 0.1)
     await blinky.show_face('(o.o)', random.uniform(0.1, 1.5))
-from blinky_animations import animation
 
 
 async def run_all_blinkies():
@@ -60,3 +59,4 @@ print()
 # More fun:
 from blinky_animations import animation
 import demo as async_library
+from philosophers import Philosopher as Blinky
