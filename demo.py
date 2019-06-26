@@ -1,6 +1,6 @@
 from presentation import Array, Vector, Scalar, sin, cos, draw
 
-xy = Scalar(0)
+xy = Scalar(0.0)
 
 m = Array([[1, 0, xy],
            [1, 2, xy],
@@ -8,10 +8,29 @@ m = Array([[1, 0, xy],
 
 point = Vector([3, 2, 1])
 
+draw.arrow(point, m @ point)
+exit()
+m @ m
+
+point = Vector([-2, -8, 2, 1])
+
+θ = Scalar(3.141/2)
+
+m = Array([[1, 0, 0, 0],
+           [0, 1, 0, 0],
+           [0, 0, 1, 0],
+           [0, 0, 0, 1]])
+
+m @ m
+m @ point
+
+exit()
+
 print(m @ point)
 
 draw(point)
 draw.arrow(point, m @ point)
+exit()
 draw.polygon(point, m @ point, [-1,5, 0, 1])
 
 θ = Scalar(3.141/2)
