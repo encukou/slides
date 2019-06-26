@@ -6,9 +6,10 @@ m = Array([[1, 0, xy],
            [1, 2, xy],
            [0, 0, 1]])
 
-point = Vector([3, 2, 1])
+point = Vector([3, xy+1, 1])
 
-draw.arrow(point, m @ point)
+draw.arrow(point, m @ m @ point)
+#draw(point+point)
 exit()
 m @ m
 

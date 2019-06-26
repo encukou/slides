@@ -8,6 +8,8 @@ import traceback
 import sys
 import contextvars
 import ctypes
+import weakref
+import operator
 
 
 draw_instructions_var = contextvars.ContextVar('draw_instructions_var')
@@ -15,17 +17,38 @@ operations_var = contextvars.ContextVar('operations_var')
 
 
 class Array:
-    def __init__(self, values):
+    def __init__(self, values, pedigree=None):
+        self.descendants = weakref.WeakSet()
+        self.pedigree = pedigree
+        if pedigree:
+            self.pedigree = pedigree
+            self.refresh()
+        else:
+            self._set_values(values)
+
+    def _set_values(self, values):
         self.values = tuple(
             tuple(v if isinstance(v, Scalar) else Scalar(v) for v in row)
             for row in values
         )
+        for row in self.values:
+            for s in row:
+                s.descendants.add(self)
 
     def to_numpy(self):
         return numpy.array(self.values, dtype=float)
 
+    def refresh(self):
+        if self.pedigree:
+            a, op, b = self.pedigree
+            self._set_values(op(a.to_numpy(), b.to_numpy()))
+        for d in self.descendants:
+            d.refresh()
+
     def __matmul__(self, other):
-        result = type(other)(self.to_numpy() @ other.to_numpy())
+        result = type(other)(None, pedigree=(self, operator.matmul, other))
+        self.descendants.add(result)
+        other.descendants.add(result)
         operations = operations_var.get(None)
         if operations:
             operations.append(MatmulOperation(self, other, result))
@@ -48,10 +71,26 @@ class Array:
         pyglet.gl.glPopMatrix()
 
 class Vector:
-    def __init__(self, values):
+    def __init__(self, values, pedigree=None):
+        self.descendants = weakref.WeakSet()
+        self.pedigree = pedigree
+        if pedigree:
+            self.pedigree = pedigree
+            self.refresh()
+        else:
+            self._set_values(values)
+
+    def _set_values(self, values):
         self.values = (
             tuple(v if isinstance(v, Scalar) else Scalar(v) for v in values)
         )
+
+    def refresh(self):
+        if self.pedigree:
+            a, op, b = self.pedigree
+            self._set_values(op(a.to_numpy(), b.to_numpy()))
+        for d in self.descendants:
+            d.refresh()
 
     def __len__(self):
         return len(self.values)
@@ -81,8 +120,35 @@ class Vector:
         return Vector(-c for c in self)
 
 class Scalar:
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, value=None, pedigree=None):
+        self.descendants = weakref.WeakSet()
+        if pedigree:
+            op, *args = self.pedigree = pedigree
+            self.refresh()
+            for arg in args:
+                if isinstance(arg, Scalar):
+                    arg.descendants.add(self)
+        else:
+            self.value = value
+
+    def refresh(self):
+        if self.pedigree:
+            op, *args = self.pedigree
+            self.value = op(*(
+                a.value if isinstance(a, Scalar) else a for a in args
+            ))
+        for d in self.descendants:
+            d.refresh()
+
+    @property
+    def value(self):
+        return self.__value
+
+    @value.setter
+    def value(self, value):
+        self.__value = value
+        for d in self.descendants:
+            d.refresh()
 
     def __repr__(self):
         return str(self.value)
@@ -94,40 +160,58 @@ class Scalar:
         return round(float(self.value), n)
 
     def __sub__(self, other):
-        return self.value - other
+        return Scalar(pedigree=(operator.sub, self, other))
 
     def __rsub__(self, other):
-        return other - self.value
+        return Scalar(pedigree=(operator.sub, other, self))
 
     def __add__(self, other):
-        return self.value + other
+        return Scalar(pedigree=(operator.add, self, other))
 
     def __radd__(self, other):
-        return other + self.value
+        return Scalar(pedigree=(operator.add, other, self))
 
     def __pow__(self, other):
-        return self.value ** other
+        return Scalar(pedigree=(operator.pow, self, other))
 
     def __truediv__(self, other):
-        return self.value / other
+        return Scalar(pedigree=(operator.truediv, self, other))
 
     def __rtruediv__(self, other):
-        return other / self.value
+        return Scalar(pedigree=(operator.truediv, other, self))
 
     def __mul__(self, other):
-        return self.value * other
+        return Scalar(pedigree=(operator.mul, self, other))
 
     def __rmul__(self, other):
-        return other * self.value
+        return Scalar(pedigree=(operator.mul, other, self))
 
     def __neg__(self):
-        return -self.value
+        return Scalar(pedigree=(operator.neg, self))
 
     def __format__(self, spec):
         return format(self.value, spec)
 
     def __abs__(self):
-        return abs(self.value)
+        return Scalar(pedigree=(abs, self))
+
+    def __lt__(self, other):
+        return Scalar(pedigree=(operator.lt, self, other))
+
+    def __gt__(self, other):
+        return Scalar(pedigree=(operator.gt, self, other))
+
+    def __le__(self, other):
+        return Scalar(pedigree=(operator.le, self, other))
+
+    def __ge__(self, other):
+        return Scalar(pedigree=(operator.ge, self, other))
+
+    def __int__(self):
+        return int(self.value)
+
+    def __bool__(self):
+        return bool(self.value)
 
 class sin(Scalar):
     def __init__(self, angle):
@@ -198,11 +282,12 @@ def _arrow(vert, a, b):
         x1, y1, *_ = a
         x2, y2, *_ = bb = b - unit * 0.2
         x3, y3, *_ = unit
+        tip_len = min(0.5, absab/3)
         pyglet.gl.glVertex3f(*vert(a), 0)
         pyglet.gl.glVertex3f(*vert(bb), 0)
-        pyglet.gl.glVertex3f(*vert([x2-x3+y3/2, y2-y3-x3/2]), 0)
+        pyglet.gl.glVertex3f(*vert([x2-(x3+y3)*tip_len, y2-(y3-x3)*tip_len]), 0)
         pyglet.gl.glVertex3f(*vert(bb), 0)
-        pyglet.gl.glVertex3f(*vert([x2-x3-y3/2, y2-y3+x3/2]), 0)
+        pyglet.gl.glVertex3f(*vert([x2-(x3-y3)*tip_len, y2-(y3+x3)*tip_len]), 0)
         pyglet.gl.glVertex3f(*vert(bb), 0)
 
 
@@ -250,6 +335,7 @@ class Presentation:
         self.last_mtime = 0
         self.draw_instructions = []
         self.operations = []
+        self.presentation = 0, 0
 
     def draw(self, window):
         def vert(point):
@@ -295,6 +381,13 @@ class Presentation:
             operation.draw()
             height_so_far += operation.height
             if height_so_far > window.height:
+                break
+
+    def adjust(self, window, x, y, dx, dy):
+        for operation in self.operations:
+            y += operation.height
+            if y > window.height:
+                operation.adjust(x, y - window.height, dy/50+dx/20)
                 break
 
     def tick(self, dt):
@@ -358,6 +451,9 @@ class ScalarOperation:
             (0, 0), f'{self.name} = {_fmt(self.value)}',
             color=(0, 0, 0, 255),
         )
+
+    def adjust(self, x, y, d):
+        self.value.value += d
 
 
 class MatmulOperation:
@@ -500,6 +596,9 @@ class MatmulOperation:
         pyglet.gl.glPopMatrix()
         pyglet.gl.glTranslatef(0, -self.height, 0)
 
+    def adjust(self, x, y, d):
+        ...
+
 
 class ErrorOperation:
     def __init__(self, error):
@@ -518,6 +617,9 @@ class ErrorOperation:
             if line.startswith('    '):
                 color = 100, 100, 100, 255
             _label((0, 0), line, color=color)
+
+    def adjust(self, x, y, d):
+        ...
 
 
 if __name__ == '__main__':
@@ -560,6 +662,17 @@ if __name__ == '__main__':
         presentation.draw_operations(oper_window)
         pyglet.gl.glLoadIdentity()
         oper_fps_display.draw()
+
+    mouse_pos = 0, 0
+
+    @oper_window.event
+    def on_mouse_press(x, y, button, mod):
+        presentation.mouse_pos = x, y
+
+    @oper_window.event
+    def on_mouse_drag(x, y, dx, dy, button, mod):
+        x, y = presentation.mouse_pos
+        presentation.adjust(oper_window, x, y, dx, dy)
 
     pyglet.clock.schedule_interval(presentation.tick, 1/30)
 
