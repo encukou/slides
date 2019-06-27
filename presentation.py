@@ -19,7 +19,7 @@ operations_var = contextvars.ContextVar('operations_var')
 labels_var = contextvars.ContextVar('labels_var')
 
 
-class Array:
+class Matrix:
     def __init__(self, values, pedigree=None):
         self.descendants = weakref.WeakSet()
         self.pedigree = pedigree
@@ -78,6 +78,7 @@ class Array:
 
     def _exit(self, passn, vert):
         pyglet.gl.glPopMatrix()
+Array = Matrix
 
 class Vector:
     def __init__(self, values, pedigree=None):
@@ -123,6 +124,12 @@ class Vector:
 
     def __sub__(self, other):
         return Vector(a - b for a, b in zip(self, other))
+
+    def __add__(self, other):
+        result = Vector(None, pedigree=(self, operator.add, other))
+        self.descendants.add(result)
+        other.descendants.add(result)
+        return result
 
     def __truediv__(self, other):
         return Vector(c / other for c in self)
@@ -267,19 +274,24 @@ class _Draw:
         if label:
             self._draw(draw_label, point, position=0, doit=label)
 
+    __call__ = point
+
     def arrow(self, a, b, points=True, **kwargs):
         if points:
             self.point(a, **kwargs)
             self.point(b, **kwargs)
         self._draw(draw_arrow, a, b)
 
-    def line(self, a, b, points=True, **kwargs):
+    def line(self, a, b, points=False, label='depends', **kwargs):
         self._draw(draw_line, a, b)
         if points:
-            self.point(a, **kwargs)
-            self.point(b, **kwargs)
+            self.point(a, **kwargs, label=False)
+            self.point(b, **kwargs, label=False)
+        if label:
+            self._draw(draw_label, a, position=0, doit=label)
+            self._draw(draw_label, a, position=0, doit=label)
 
-    def polygon(self, *pts, points=True, color=(0.5, 0.5, 0.5, 1), **kwargs):
+    def polygon(self, *pts, points=False, color=(0.5, 0.5, 0.5, 1), **kwargs):
         self._draw(draw_polygon, *pts, color=color)
         if points:
             for point in pts:
@@ -488,7 +500,7 @@ class Presentation:
 
 class FunkyNamespace:
     def __init__(self):
-        self.dict = {}
+        self.dict = {'print': functools.partial(explain, is_print=True)}
 
     def __setitem__(self, key, value):
         self.dict[key] = value
@@ -501,18 +513,24 @@ class FunkyNamespace:
         return self.dict[key]
 
 
-def explain(thing):
-    if isinstance(thing, Scalar):
-        operations_var.get().append(ScalarOperation(thing))
-        return
-    if isinstance(thing, (Array, Vector)) and thing.pedigree:
-        a, op, b = thing.pedigree
-        if op == operator.matmul:
-            operations_var.get().append(MatmulOperation(a, b, thing))
-            return
-    elif isinstance(thing, Array):
-        operations_var.get().append(MatmulOperation(thing, None, None))
-    operations_var.get().append(TextOperation(thing))
+
+def explain(thing, *args, is_print=False, **kwargs):
+    if kwargs:
+        return print(thing, *args, **kwargs)
+    if args:
+        explain(' '.join(str(s) for s in (thing, *args)))
+    if not is_print:
+        if isinstance(thing, Scalar):
+            return operations_var.get().append(ScalarOperation(thing))
+        elif isinstance(thing, (Array, Vector)) and thing.pedigree:
+            a, op, b = thing.pedigree
+            if op == operator.matmul:
+                return operations_var.get().append(MatmulOperation(a, b, thing))
+        if isinstance(thing, Array):
+            return operations_var.get().append(MatmulOperation(thing, None, None))
+
+    for line in str(thing).splitlines():
+        operations_var.get().append(TextOperation(line))
 
 
 class TextOperation:
@@ -526,7 +544,7 @@ class TextOperation:
         paint_label((0, 0), self.text, color=(0, 0, 0, 100))
 
     def adjust(self, x, y, d):
-        self.value.value += d
+        ...
 
 
 class ScalarOperation:
