@@ -296,9 +296,11 @@ class _Draw:
 
 draw = _Draw()
 
+font_size = 18
+
 @functools.lru_cache()
 def _label(point, text, color=(10, 150, 200, 150), anchor_x='left'):
-    label = pyglet.text.Label(' ', font_size=18, font_name='Mali')
+    label = pyglet.text.Label(' ', font_size=font_size, font_name='Mali')
     x, y, *_ = point
     label.x = x + 3
     label.y = y + 5
@@ -508,6 +510,8 @@ def explain(thing):
         if op == operator.matmul:
             operations_var.get().append(MatmulOperation(a, b, thing))
             return
+    elif isinstance(thing, Array):
+        operations_var.get().append(MatmulOperation(thing, None, None))
     operations_var.get().append(TextOperation(thing))
 
 
@@ -634,10 +638,13 @@ class MatmulOperation:
             pyglet.gl.glEnd()
 
         pyglet.gl.glPushMatrix()
-        if hasattr(self.result, 'name'):
+        name = getattr(self.result, 'name', None)
+        if not self.result and hasattr(self.left, 'name'):
+            name = self.left.name
+        if name:
             adj = self.height/2 + line_height/2
             pyglet.gl.glTranslatef(0, -adj, 0)
-            label = _label((0, 0), f'{self.result.name} = ', color=black)
+            label = _label((0, 0), f'{name} = ', color=black)
             label.draw()
             pyglet.gl.glTranslatef(label.content_width, adj, 0)
             self._name_width = label.content_width
@@ -651,7 +658,7 @@ class MatmulOperation:
                 0,
             )
             pyglet.gl.glEnd()
-        else:
+        elif self.right:
             draw_matrix(self.right.values)
             pyglet.gl.glTranslatef(
                 bracket_width * 2 + number_width * len(self.right.values[0]) + eq_width/2,
@@ -668,11 +675,12 @@ class MatmulOperation:
             bracket_width * 2 + number_width * len(self.left.values[0]) + eq_width,
             0, 0,
         )
-        paint_label(
-            (-eq_width, -line_height * (len(self.left)+1) / 2),
-            '  =  ',
-            color=black,
-        )
+        if self.result:
+            paint_label(
+                (-eq_width, -line_height * (len(self.left)+1) / 2),
+                '  =  ',
+                color=black,
+            )
         if isinstance(self.result, Vector):
             for i, number in enumerate(self.result):
                 paint_label(
@@ -700,7 +708,7 @@ class MatmulOperation:
             pyglet.gl.glVertex2f(number_width, y2)
             pyglet.gl.glVertex2f(number_width, y1)
             pyglet.gl.glEnd()
-        else:
+        elif self.result:
             draw_matrix(self.result.values)
         pyglet.gl.glPopMatrix()
         pyglet.gl.glTranslatef(0, -self.height, 0)
@@ -725,7 +733,7 @@ class MatmulOperation:
                 if x < len(self.right.values):
                     self.right.values[int(x)].adjust(d)
                 return
-        else:
+        elif self.right:
             if x < len(self.right.values[0]) * number_width:
                 adjust_matrix(self.right)
                 return
@@ -817,13 +825,16 @@ if __name__ == '__main__':
     @window.event
     @oper_window.event
     def on_mouse_scroll(x, y, scroll_x, scroll_y):
+        global font_size
+        _label.cache_clear()
+        presentation.last_mtime = None
         if scroll_y < 0:
             for i in range(-scroll_y):
-                if label.font_size > 3:
-                    label.font_size /= 1.5
+                if font_size > 3:
+                    font_size /= 1.5
         else:
             for i in range(scroll_y):
-                label.font_size *= 1.5
+                font_size *= 1.5
 
     @window.event
     @oper_window.event

@@ -9,6 +9,10 @@ rm = Array([[1, 0, 0, 0],
             [0, -sin(θ), cos(θ), 0],
             [0, 0, 0, 1]])
 
+explain(rm)
+
+explain(rm@rm)
+
 m = Array([[1, 0, 0, 0],
            [0, 1, 0, 0],
            [0, 0, 1, 0],
@@ -21,7 +25,7 @@ explain(m)
 from eevee import triangles
 
 print(len(triangles))
-if 1:#with m:
+if 0:#with m:
     for a, b, c, n in triangles[:400]:
         draw.polygon(m@a, m@b, m@c, points=False)
 
