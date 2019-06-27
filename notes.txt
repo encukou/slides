@@ -71,7 +71,7 @@ for point in points:
 Makes sense?
 
     Let me show off a nifty feature of this demo: I can change the numbers
-    with my mouse to meke the points move around... temporarily.
+    with my mouse to make the points move around... temporarily.
     When I save the file, it all resets.
 
 Say I want to ad 2 to the y-coordinate of each of these vectors.

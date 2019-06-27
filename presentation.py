@@ -25,18 +25,24 @@ class Array:
             self.refresh()
         else:
             self._set_values(values)
+            for row in self.values:
+                for s in row:
+                    s.descendants.add(self)
 
     def _set_values(self, values):
         self.values = tuple(
             tuple(v if isinstance(v, Scalar) else Scalar(v) for v in row)
             for row in values
         )
-        for row in self.values:
-            for s in row:
-                s.descendants.add(self)
 
     def to_numpy(self):
         return numpy.array(self.values, dtype=float)
+
+    def __str__(self):
+        return '[' + ', '.join(
+            '[' + ', '.join(_fmt(c) for c in row) + ']'
+            for row in self.values
+        ) + ']'
 
     def refresh(self):
         if self.pedigree:
@@ -49,9 +55,6 @@ class Array:
         result = type(other)(None, pedigree=(self, operator.matmul, other))
         self.descendants.add(result)
         other.descendants.add(result)
-        operations = operations_var.get(None)
-        if operations:
-            operations.append(MatmulOperation(self, other, result))
         return result
 
     def __len__(self):
@@ -79,6 +82,8 @@ class Vector:
             self.refresh()
         else:
             self._set_values(values)
+            for s in self.values:
+                s.descendants.add(self)
 
     def _set_values(self, values):
         self.values = (
@@ -101,6 +106,9 @@ class Vector:
     def __repr__(self):
         return f'<{self.values}>'
 
+    def __str__(self):
+        return '[' + ', '.join(_fmt(c) for c in self.values) + ']'
+
     def __iter__(self):
         return iter(self.values)
 
@@ -120,6 +128,7 @@ class Vector:
         return Vector(-c for c in self)
 
 class Scalar:
+    adjusted = False
     def __init__(self, value=None, pedigree=None):
         self.descendants = weakref.WeakSet()
         if pedigree:
@@ -149,6 +158,10 @@ class Scalar:
         self.__value = value
         for d in self.descendants:
             d.refresh()
+
+    def adjust(self, d):
+        self.value += d
+        self.adjusted = True
 
     def __repr__(self):
         return str(self.value)
@@ -213,28 +226,28 @@ class Scalar:
     def __bool__(self):
         return bool(self.value)
 
-class sin(Scalar):
-    def __init__(self, angle):
-        self.angle = angle
+def sin(s):
+    return Scalar(pedigree=(math.sin, s))
 
-    @property
-    def value(self):
-        return math.sin(self.angle)
-
-class cos(Scalar):
-    def __init__(self, angle):
-        self.angle = angle
-
-    @property
-    def value(self):
-        return math.cos(self.angle)
+def cos(s):
+    return Scalar(pedigree=(math.cos, s))
 
 class _Draw:
+    red = 1, 0, 0, 1
+    green = 0, 1, 0, 1
+    blue = 0, 0, 1, 1
+    black = 0, 0, 0, 1
+    white = 1, 1, 1, 1
+    yellow = 1, 1, 0, 1
+    cyan = 0, 1, 1, 1
+    magenta = 1, 0, 1, 1
+    gray = 1/2, 1/2, 1/2, 1
+
     def _draw(self, func, *args, **kwargs):
         draw_instructions_var.get().append((func, args, kwargs))
 
-    def __call__(self, point):
-        self._draw(draw_point, point)
+    def __call__(self, point, **kwargs):
+        self._draw(draw_point, point, **kwargs)
 
     def arrow(self, a, b):
         self._draw(draw_arrow, a, b)
@@ -263,13 +276,13 @@ def _fmt(number):
         return str(int(round(number)))
     return format(number, '.2f')
 
-def draw_point(npass, vert, point):
-    pyglet.gl.glColor4f(0, 0, 0, 1)
+def draw_point(npass, vert, point, color=(0, 0, 0, 1)):
+    pyglet.gl.glColor4f(*color)
     pyglet.gl.glBegin(pyglet.gl.GL_POINTS)
     pyglet.gl.glVertex3f(*vert(point), 0)
     pyglet.gl.glEnd()
 
-    if npass == 0:
+    if npass == 0 and draw_labels:
         px, py, *rest = point
         frest = ''.join(', ' + _fmt(v) for v in rest)
         _label(vert(point), f'[{px:.2f}, {py:.2f}{frest}]')
@@ -430,16 +443,43 @@ class FunkyNamespace:
 
     def __setitem__(self, key, value):
         self.dict[key] = value
-        if isinstance(value, Scalar):
-            operations_var.get().append(ScalarOperation(key, value))
+        if isinstance(value, (Scalar)):
+            operations_var.get().append(ScalarOperation(value))
+        if isinstance(value, (Scalar, Vector, Array)):
+            value.name = key
 
     def __getitem__(self, key):
         return self.dict[key]
 
 
+def explain(thing):
+    if isinstance(thing, Scalar):
+        operations_var.get().append(ScalarOperation(thing))
+        return
+    if isinstance(thing, (Array, Vector)) and thing.pedigree:
+        a, op, b = thing.pedigree
+        if op == operator.matmul:
+            operations_var.get().append(MatmulOperation(a, b, thing))
+            return
+    operations_var.get().append(TextOperation(thing))
+
+
+class TextOperation:
+    def __init__(self, text):
+        self.text = str(text)
+        label.text = self.text
+        self.height = label.content_height
+
+    def draw(self):
+        pyglet.gl.glTranslatef(0, -self.height, 0)
+        _label((0, 0), self.text, color=(0, 0, 0, 100))
+
+    def adjust(self, x, y, d):
+        self.value.value += d
+
+
 class ScalarOperation:
-    def __init__(self, name, value):
-        self.name = name
+    def __init__(self, value):
         self.value = value
         self.height = label.content_height
 
@@ -447,16 +487,36 @@ class ScalarOperation:
         pyglet.gl.glPointSize(6)
         pyglet.gl.glEnable(pyglet.gl.GL_POINT_SMOOTH)
         pyglet.gl.glTranslatef(0, -self.height, 0)
+        if hasattr(self.value, 'name'):
+            text = f'{self.value.name} = '
+        else:
+            text = 'Scalar: '
+        _label((0, 0), text, color=(0, 0, 0, 255))
         _label(
-            (0, 0), f'{self.name} = {_fmt(self.value)}',
-            color=(0, 0, 0, 255),
+            (label.content_width, 0), _fmt(self.value),
+            color=numcolor(self.value),
         )
 
     def adjust(self, x, y, d):
-        self.value.value += d
+        self.value.adjust(d)
+
+
+
+def numcolor(number):
+    if abs(number) > 9.5:
+        return 200, 50, 10, 255
+    if getattr(number, 'adjusted'):
+        return 50, 200, 10, 255
+    if abs(number-1) < 0.01:
+        return 10, 100, 150, 255
+    elif abs(number) >= 0.01:
+        return 0, 0, 0, 255
+    else:
+        return 10, 50, 100, 100
 
 
 class MatmulOperation:
+    _name_width = 0
     def __init__(self, left, right, result):
         self.left = left
         self.right = right
@@ -465,27 +525,20 @@ class MatmulOperation:
         if isinstance(right, Vector):
             self.height += label.content_height * 2
 
-    def draw(self):
+    def _sizes(self):
         label.text = '['
-        bracket_width = label.content_width
+        yield label.content_width
         label.text = '  =  '
-        eq_width = label.content_width
+        yield label.content_width
         label.text = '-0.00,'
-        number_width = label.content_width
-        line_height = label.content_height
+        yield label.content_width
+        yield label.content_height
+
+    def draw(self):
+        bracket_width, eq_width, number_width, line_height = self._sizes()
 
         black = 0, 0, 0, 255
         pyglet.gl.glColor4i(*black)
-
-        def numcolor(number):
-            if abs(number) > 9.5:
-                return 200, 50, 10, 255
-            if abs(number-1) < 0.01:
-                return 10, 100, 150, 255
-            elif abs(number) >= 0.01:
-                return black
-            else:
-                return 10, 50, 100, 100
 
         def draw_line(numbers, y=0):
             for i, number in enumerate(numbers):
@@ -531,6 +584,12 @@ class MatmulOperation:
             pyglet.gl.glEnd()
 
         pyglet.gl.glPushMatrix()
+        if hasattr(self.result, 'name'):
+            adj = self.height/2 + line_height/2
+            pyglet.gl.glTranslatef(0, -adj, 0)
+            _label((0, 0), f'{self.result.name} = ', color=black)
+            pyglet.gl.glTranslatef(label.content_width, adj, 0)
+            self._name_width = label.content_width
         if isinstance(self.right, Vector):
             pyglet.gl.glTranslatef(0, -line_height * 1.25, 0)
             draw_vector(self.right)
@@ -597,7 +656,34 @@ class MatmulOperation:
         pyglet.gl.glTranslatef(0, -self.height, 0)
 
     def adjust(self, x, y, d):
-        ...
+        bracket_width, eq_width, number_width, line_height = self._sizes()
+        x -= self._name_width
+        x -= bracket_width * 2
+
+        def adjust_matrix(mat):
+            nx = x / number_width
+            ny = y / line_height
+            if (
+                0 <= ny < len(mat.values)
+                and 0 <= nx < len(mat.values[0])
+            ):
+                print(nx, ny)
+                mat.values[-int(ny)-1][int(nx)].adjust(d)
+
+        if isinstance(self.right, Vector):
+            if y > len(self.result) * line_height:
+                x /= number_width
+                if x < len(self.right.values):
+                    self.right.values[int(x)].adjust(d)
+                return
+        else:
+            if x < len(self.right.values[0]) * number_width:
+                adjust_matrix(self.right)
+                return
+            x -= bracket_width * 2 + number_width * len(self.right.values[0]) + eq_width/2
+        if x < len(self.left.values[0]) * number_width:
+            adjust_matrix(self.left)
+            return
 
 
 class ErrorOperation:
@@ -621,6 +707,7 @@ class ErrorOperation:
     def adjust(self, x, y, d):
         ...
 
+draw_labels = True
 
 if __name__ == '__main__':
     sys.modules['presentation'] = sys.modules['__main__']
@@ -648,7 +735,7 @@ if __name__ == '__main__':
 
     oper_height = window.get_location()[1]+window.height
     oper_window = pyglet.window.Window(
-        resizable=True, caption='Operations',
+        resizable=True, caption='Explain',
         width=screen.width//2, height=screen.height-oper_height)
     oper_window.set_location(screen.width//2, oper_height)
 
@@ -686,6 +773,13 @@ if __name__ == '__main__':
         else:
             for i in range(scroll_y):
                 label.font_size *= 1.5
+
+    @window.event
+    @oper_window.event
+    def on_key_press(key, mod):
+        global draw_labels
+        if key == pyglet.window.key.L:
+            draw_labels = not draw_labels
 
 
     pyglet.app.run()
