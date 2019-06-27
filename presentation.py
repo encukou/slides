@@ -14,6 +14,7 @@ import operator
 
 draw_instructions_var = contextvars.ContextVar('draw_instructions_var')
 operations_var = contextvars.ContextVar('operations_var')
+labels_var = contextvars.ContextVar('labels_var')
 
 
 class Array:
@@ -61,6 +62,7 @@ class Array:
         return len(self.values)
 
     def __enter__(self):
+        labels_var.set(False)
         draw_instructions_var.get().append((self._enter, (), {}))
 
     def _enter(self, passn, vert):
@@ -243,20 +245,46 @@ class _Draw:
     magenta = 1, 0, 1, 1
     gray = 1/2, 1/2, 1/2, 1
 
-    def _draw(self, func, *args, **kwargs):
-        draw_instructions_var.get().append((func, args, kwargs))
+    def _draw(self, func, *args, position=None, **kwargs):
+        entry = func, args, kwargs
+        instructions = draw_instructions_var.get()
+        if position is None:
+            instructions.append(entry)
+        else:
+            instructions.insert(0, entry)
 
-    def __call__(self, point, **kwargs):
+    def point(self, point, label='depends', **kwargs):
+        if label == 'depends':
+            label = labels_var.get()
         self._draw(draw_point, point, **kwargs)
+        if label:
+            self._draw(draw_label, point, position=0, doit=label, **kwargs)
 
-    def arrow(self, a, b):
+    def arrow(self, a, b, points=True, **kwargs):
+        if points:
+            self.point(a, **kwargs)
+            self.point(b, **kwargs)
         self._draw(draw_arrow, a, b)
 
-    def line(self, a, b):
+    def line(self, a, b, points=True, **kwargs):
         self._draw(draw_line, a, b)
+        if points:
+            self.point(a, **kwargs)
+            self.point(b, **kwargs)
 
-    def polygon(self, *points):
-        self._draw(draw_polygon, *points)
+    def polygon(self, *pts, points=True, **kwargs):
+        self._draw(draw_polygon, *pts)
+        if points:
+            for point in pts:
+                self.point(point, **kwargs)
+
+    @property
+    def labels(self):
+        return labels_var.get()
+
+    @labels.setter
+    def labels(self, new):
+        return labels_var.set(new)
 
 
 draw = _Draw()
@@ -270,7 +298,6 @@ def _label(point, text, color=(10, 150, 200, 150)):
     label.color = color
     label.draw()
 
-
 def _fmt(number):
     if abs(round(number) - number) < 0.01:
         return str(int(round(number)))
@@ -282,10 +309,14 @@ def draw_point(npass, vert, point, color=(0, 0, 0, 1)):
     pyglet.gl.glVertex3f(*vert(point), 0)
     pyglet.gl.glEnd()
 
-    if npass == 0 and draw_labels:
-        px, py, *rest = point
-        frest = ''.join(', ' + _fmt(v) for v in rest)
-        _label(vert(point), f'[{px:.2f}, {py:.2f}{frest}]')
+def draw_label(npass, vert, point, doit=True):
+    if doit == 'depends':
+        doit = draw_labels
+    if not doit:
+        return
+    px, py, *rest = point
+    frest = ''.join(', ' + _fmt(v) for v in rest)
+    _label(vert(point), f'[{px:.2f}, {py:.2f}{frest}]')
 
 
 def _arrow(vert, a, b):
@@ -305,14 +336,10 @@ def _arrow(vert, a, b):
 
 
 def draw_arrow(npass, vert, a, b):
-    if npass == 0:
-        pyglet.gl.glColor4f(0.5, 0.5, 0.5, 1)
-        pyglet.gl.glBegin(pyglet.gl.GL_LINES)
-        _arrow(vert, a, b)
-        pyglet.gl.glEnd()
-
-    draw_point(npass, vert, a)
-    draw_point(npass, vert, b)
+    pyglet.gl.glColor4f(0.5, 0.5, 0.5, 1)
+    pyglet.gl.glBegin(pyglet.gl.GL_LINES)
+    _arrow(vert, a, b)
+    pyglet.gl.glEnd()
 
 
 def draw_line(npass, vert, a, b):
@@ -323,9 +350,6 @@ def draw_line(npass, vert, a, b):
         pyglet.gl.glVertex3f(*vert(b), 0)
         pyglet.gl.glEnd()
 
-    draw_point(npass, vert, a)
-    draw_point(npass, vert, b)
-
 
 def draw_polygon(npass, vert, *points):
     if npass == 0:
@@ -334,9 +358,6 @@ def draw_polygon(npass, vert, *points):
         for point in (*points, points[0]):
             pyglet.gl.glVertex3f(*vert(point), 0)
         pyglet.gl.glEnd()
-
-    for point in points:
-        draw_point(npass, vert, point)
 
 
 label = pyglet.text.Label(' ', font_size=18, font_name='Mali')
@@ -360,6 +381,8 @@ class Presentation:
         pyglet.gl.glLoadIdentity()
         pyglet.gl.glTranslatef(window.width/2, window.height/2, 0)
         pyglet.gl.glPointSize(6)
+        six = ctypes.c_float(6)
+        pyglet.gl.glPointParameterfv(pyglet.gl.GL_POINT_SIZE_MIN, ctypes.POINTER(ctypes.c_float)(six))
         pyglet.gl.glEnable(pyglet.gl.GL_POINT_SMOOTH)
         pyglet.gl.glEnable(pyglet.gl.GL_BLEND)
         pyglet.gl.glBlendFunc(pyglet.gl.GL_SRC_ALPHA, pyglet.gl.GL_ONE_MINUS_SRC_ALPHA)
@@ -413,6 +436,7 @@ class Presentation:
             operations = []
             token1 = draw_instructions_var.set(draw_instructions)
             token2 = operations_var.set(operations)
+            token3 = labels_var.set('depends')
             try:
                 demo_ns = FunkyNamespace()
                 try:
@@ -435,7 +459,7 @@ class Presentation:
             finally:
                 draw_instructions_var.reset(token1)
                 operations_var.reset(token2)
-
+                labels_var.reset(token3)
 
 class FunkyNamespace:
     def __init__(self):
@@ -667,7 +691,6 @@ class MatmulOperation:
                 0 <= ny < len(mat.values)
                 and 0 <= nx < len(mat.values[0])
             ):
-                print(nx, ny)
                 mat.values[-int(ny)-1][int(nx)].adjust(d)
 
         if isinstance(self.right, Vector):
@@ -780,6 +803,7 @@ if __name__ == '__main__':
         global draw_labels
         if key == pyglet.window.key.L:
             draw_labels = not draw_labels
+            print(draw_labels)
 
 
     pyglet.app.run()

@@ -17,8 +17,12 @@ m @= rm
 
 explain(m)
 
+##draw.labels = False
+draw.arrow(Vector([0, 0, 1]), Vector([xy, xy+1, 1]))
+draw.point(Vector([1, 0, 1]))
+
 cube_lines = (
-    (Vector([xy, 5, 5, 1]), Vector([-5, 5, 5, 1])),
+    (Vector([5, 5, 5, 1]), Vector([-5, 5, 5, 1])),
     (Vector([5, 5, 5, 1]), Vector([5, -5, 5, 1])),
     (Vector([-5, 5, 5, 1]), Vector([-5, -5, 5, 1])),
     (Vector([5, -5, 5, 1]), Vector([-5, -5, 5, 1])),
