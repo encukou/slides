@@ -1,5 +1,49 @@
 from presentation import Array, Vector, Scalar, sin, cos, draw, explain
 
+draw.point(Vector([1, 1, 1]))
+
+θ = Scalar(0)#3.141/2)
+
+rm = Array([[1, 0, 0, 0],
+            [0, cos(θ), sin(θ), 0],
+            [0, -sin(θ), cos(θ), 0],
+            [0, 0, 0, 1]])
+
+m = Array([[1, 0, 0, 0],
+           [0, 1, 0, 0],
+           [0, 0, 1, 0],
+           [0, 0, 0, 1]])
+
+m = m @ rm
+
+explain(m)
+
+from eevee import triangles
+
+print(len(triangles))
+if 0:#with m:
+    for a, b, c, n in triangles[:400]:
+        draw.polygon(m@a, m@b, m@c, points=False)
+
+m = Array([[1, 0, 0, 0],
+           [0, 1, 0, 0],
+           [0, 0, 1, 0],
+           [0, 0, 0, 1]])@m
+
+with m:
+    for a, b, c, n in triangles[:400]:
+        draw.polygon(a, b, c, points=False, color=draw.red)
+
+draw.point(Vector([1, 1, 1]))
+
+draw.polygon(
+    Vector([1, 1, 1]),
+    Vector([-1, 1, 1]),
+    Vector([-1, -1, 1]),
+)
+exit()
+
+
 xy = Scalar(0.0)
 θ = Scalar(0)
 
@@ -15,7 +59,7 @@ rm = Array([[1, 0, 0, 0],
 
 m @= rm
 
-explain(m)
+#explain(m)
 
 ##draw.labels = False
 draw.arrow(Vector([0, 0, 1]), Vector([xy, xy+1, 1]))
@@ -40,9 +84,9 @@ cube_lines = (
 for a, b in cube_lines:
     ma = m@a
     draw.line(ma, m@b)
-    explain(ma)
+    #explain(ma)
 
-exit()
+#exit()
 
 m = Array([[1, 0, xy],
            [1, 2, xy],
@@ -58,12 +102,12 @@ m = Array([[cos(xy), sin(xy), 0],
 
 point = Vector([3, 1, 1])
 
-explain(point)
+#explain(point)
 
 #draw.arrow(point, m @ point)
 
 mat = m @ tr
-explain(mat)
+#explain(mat)
 
 for point in (
     Vector([7, 7, 1]),
@@ -77,20 +121,20 @@ for point in (
     Vector([5.2, 3, 1]),
     Vector([4.7, 3, 1]),
 ):
-    draw(point, color=draw.gray)
+    draw.point(point, color=draw.gray)
     rotated = mat @ point
-    draw(rotated)
+    draw.point(rotated)
 
-    explain(rotated)
+    #explain(rotated)
 
-explain(m@m)
+#explain(m@m)
 
 #draw(point+point)
 m @ m
 
 point = Vector([-2, -8, 2, 1])
 
-θ = Scalar(3.141/2)
+#θ = Scalar(3.141/2)
 
 m = Array([[1, 0, 0, 0],
            [0, 1, 0, 0],
@@ -100,28 +144,29 @@ m = Array([[1, 0, 0, 0],
 m @ m
 m @ point
 
-explain(m @ point)
+#explain(m @ point)
 
-exit()
+#exit()
 
 print(m @ point)
 
-draw(point)
+draw.point(point)
 draw.arrow(point, m @ point)
-exit()
+#exit()
 draw.polygon(point, m @ point, [-1,5, 0, 1])
 
-θ = Scalar(3.141/2)
+#θ = Scalar(3.141/2)
+point = Vector([3, 1, 1])
 
 rot = Array([[cos(θ), sin(θ), 0],
              [-sin(θ), cos(θ), 0],
              [0, 0, 1]])
 
-draw(rot @ point)
+draw.point(rot @ point)
 
 point = Vector([-2, -8, 2, 1])
 
-draw(point)
+draw.point(point)
 
 m = Array([[1, 0, 0, 0],
            [0, 1, 0, 0],
@@ -142,8 +187,13 @@ m = m @ rm2 @ rm
 
 draw.line(point, m @ point)
 
+draw.labels = False
+
+explain(m)
+
 from eevee import triangles
 
 print(len(triangles))
-for a, b, c, n in triangles[:1]:
-    draw.polygon(m@a, m@b, m@c)
+with m:
+    for a, b, c, n in triangles[:400]:
+        draw.polygon(a, b, c,points=False)

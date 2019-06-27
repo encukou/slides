@@ -10,7 +10,9 @@ import contextvars
 import ctypes
 import weakref
 import operator
+import functools
 
+ZOOM = 20
 
 draw_instructions_var = contextvars.ContextVar('draw_instructions_var')
 operations_var = contextvars.ContextVar('operations_var')
@@ -67,7 +69,13 @@ class Array:
 
     def _enter(self, passn, vert):
         pyglet.gl.glPushMatrix()
-        pyglet.gl.glLoadMatrixf(self.to_numpy().ctypes.data_as(ctypes.POINTER(ctypes.c_float)))
+        m = self.to_numpy().T #* ZOOM
+        m[3, 0] += window.width/2
+        m[3, 1] += window.height/2
+        m[:, 2] /= 10000
+        #m[3, :] /= ZOOM
+        m = m.astype('float32', order='C').flat
+        pyglet.gl.glLoadMatrixf( (pyglet.gl.GLfloat * len(m))(*m) )
 
     def __exit__(self, *exc_info):
         draw_instructions_var.get().append((self._exit, (), {}))
@@ -101,6 +109,9 @@ class Vector:
 
     def __len__(self):
         return len(self.values)
+
+    def __getitem__(self, i):
+        return self.values[i]
 
     def to_numpy(self):
         return numpy.array(self.values, dtype=float)
@@ -258,7 +269,7 @@ class _Draw:
             label = labels_var.get()
         self._draw(draw_point, point, **kwargs)
         if label:
-            self._draw(draw_label, point, position=0, doit=label, **kwargs)
+            self._draw(draw_label, point, position=0, doit=label)
 
     def arrow(self, a, b, points=True, **kwargs):
         if points:
@@ -272,8 +283,8 @@ class _Draw:
             self.point(a, **kwargs)
             self.point(b, **kwargs)
 
-    def polygon(self, *pts, points=True, **kwargs):
-        self._draw(draw_polygon, *pts)
+    def polygon(self, *pts, points=True, color=(0.5, 0.5, 0.5, 1), **kwargs):
+        self._draw(draw_polygon, *pts, color=color)
         if points:
             for point in pts:
                 self.point(point, **kwargs)
@@ -289,14 +300,20 @@ class _Draw:
 
 draw = _Draw()
 
-def _label(point, text, color=(10, 150, 200, 150)):
+@functools.lru_cache()
+def _label(point, text, color=(10, 150, 200, 150), anchor_x='left'):
+    label = pyglet.text.Label(' ', font_size=18, font_name='Mali')
     x, y, *_ = point
     label.x = x + 3
     label.y = y + 5
     label.text = text
     label.size = 1/10
     label.color = color
-    label.draw()
+    label.anchor_x = anchor_x
+    return label
+
+def paint_label(*a, **ka):
+    _label(*a, **ka).draw()
 
 def _fmt(number):
     if abs(round(number) - number) < 0.01:
@@ -316,7 +333,7 @@ def draw_label(npass, vert, point, doit=True):
         return
     px, py, *rest = point
     frest = ''.join(', ' + _fmt(v) for v in rest)
-    _label(vert(point), f'[{px:.2f}, {py:.2f}{frest}]')
+    paint_label(vert(point), f'[{px:.2f}, {py:.2f}{frest}]')
 
 
 def _arrow(vert, a, b):
@@ -351,16 +368,13 @@ def draw_line(npass, vert, a, b):
         pyglet.gl.glEnd()
 
 
-def draw_polygon(npass, vert, *points):
+def draw_polygon(npass, vert, *points, color=(0.5, 0.5, 0.5, 1)):
     if npass == 0:
-        pyglet.gl.glColor4f(0.5, 0.5, 0.5, 1)
+        pyglet.gl.glColor4f(*color)
         pyglet.gl.glBegin(pyglet.gl.GL_LINE_STRIP)
         for point in (*points, points[0]):
             pyglet.gl.glVertex3f(*vert(point), 0)
         pyglet.gl.glEnd()
-
-
-label = pyglet.text.Label(' ', font_size=18, font_name='Mali')
 
 
 class Presentation:
@@ -373,16 +387,23 @@ class Presentation:
 
     def draw(self, window):
         def vert(point):
-            x, y, *rest = point
-            if len(rest) > 1:
-                x *= rest[1]
-                y *= rest[1]
-            return x * 20, y * 20
+            x = float(point[0])
+            y = float(point[1])
+            if len(point) > 2:
+                z = float(point[2])
+            else:
+                z = 0
+            if len(point) > 3:
+                x *= float(point[3])
+                y *= float(point[3])
+                z *= float(point[3])
+            return x * ZOOM, y * ZOOM, z * ZOOM
         pyglet.gl.glLoadIdentity()
         pyglet.gl.glTranslatef(window.width/2, window.height/2, 0)
+        pyglet.gl.glScalef(1, 1, 0)
         pyglet.gl.glPointSize(6)
         six = ctypes.c_float(6)
-        pyglet.gl.glPointParameterfv(pyglet.gl.GL_POINT_SIZE_MIN, ctypes.POINTER(ctypes.c_float)(six))
+        #pyglet.gl.glPointParameterfv(pyglet.gl.GL_POINT_SIZE_MIN, ctypes.POINTER(ctypes.c_float)(six))
         pyglet.gl.glEnable(pyglet.gl.GL_POINT_SMOOTH)
         pyglet.gl.glEnable(pyglet.gl.GL_BLEND)
         pyglet.gl.glBlendFunc(pyglet.gl.GL_SRC_ALPHA, pyglet.gl.GL_ONE_MINUS_SRC_ALPHA)
@@ -402,7 +423,7 @@ class Presentation:
         _arrow(vert, Vector([0, -10]), Vector([0, 11]))
         pyglet.gl.glEnd()
         for x, y, n in (11, -0.4, 'x'), (-0.4, 11, 'y'):
-            _label(vert([x, y]), n)
+            paint_label(vert([x, y]), n)
 
         for func, args, kwargs in self.draw_instructions:
             func(0, vert, *args, **kwargs)
@@ -491,12 +512,12 @@ def explain(thing):
 class TextOperation:
     def __init__(self, text):
         self.text = str(text)
-        label.text = self.text
+        label = _label((0, 0), self.text, color=(0, 0, 0, 100))
         self.height = label.content_height
 
     def draw(self):
         pyglet.gl.glTranslatef(0, -self.height, 0)
-        _label((0, 0), self.text, color=(0, 0, 0, 100))
+        paint_label((0, 0), self.text, color=(0, 0, 0, 100))
 
     def adjust(self, x, y, d):
         self.value.value += d
@@ -505,6 +526,7 @@ class TextOperation:
 class ScalarOperation:
     def __init__(self, value):
         self.value = value
+        label = _label((0, 0), 'Scalar: ', color=(0, 0, 0, 255))
         self.height = label.content_height
 
     def draw(self):
@@ -515,8 +537,9 @@ class ScalarOperation:
             text = f'{self.value.name} = '
         else:
             text = 'Scalar: '
-        _label((0, 0), text, color=(0, 0, 0, 255))
-        _label(
+        label = _label((0, 0), text, color=(0, 0, 0, 255))
+        label.draw()
+        paint_label(
             (label.content_width, 0), _fmt(self.value),
             color=numcolor(self.value),
         )
@@ -545,11 +568,13 @@ class MatmulOperation:
         self.left = left
         self.right = right
         self.result = result
-        self.height = label.content_height * len(left)
+        self.label = _label((0, 0), '[')
+        self.height = self.label.content_height * len(left)
         if isinstance(right, Vector):
-            self.height += label.content_height * 2
+            self.height += self.label.content_height * 2
 
     def _sizes(self):
+        label = self.label
         label.text = '['
         yield label.content_width
         label.text = '  =  '
@@ -567,21 +592,20 @@ class MatmulOperation:
         def draw_line(numbers, y=0):
             for i, number in enumerate(numbers):
                 color = numcolor(number)
-                label.anchor_x = 'right'
-                _label(
+                paint_label(
                     (bracket_width + (i+1) * number_width, y),
                     format(number, '.2f'),
                     color=color,
+                    anchor_x = 'right',
                 )
-                label.anchor_x = 'left'
                 if i < len(numbers) - 1:
-                    _label((bracket_width + (i+1) * number_width, y), ',',
+                    paint_label((bracket_width + (i+1) * number_width, y), ',',
                         color=color)
 
         def draw_vector(vector):
-            _label((0, 0), '[', color=black)
+            paint_label((0, 0), '[', color=black)
             draw_line(vector)
-            _label((bracket_width + len(vector) * number_width, 0), ']',
+            paint_label((bracket_width + len(vector) * number_width, 0), ']',
                    color=black)
             pyglet.gl.glColor4f(0, 0, 0, 1)
 
@@ -611,7 +635,8 @@ class MatmulOperation:
         if hasattr(self.result, 'name'):
             adj = self.height/2 + line_height/2
             pyglet.gl.glTranslatef(0, -adj, 0)
-            _label((0, 0), f'{self.result.name} = ', color=black)
+            label = _label((0, 0), f'{self.result.name} = ', color=black)
+            label.draw()
             pyglet.gl.glTranslatef(label.content_width, adj, 0)
             self._name_width = label.content_width
         if isinstance(self.right, Vector):
@@ -641,21 +666,20 @@ class MatmulOperation:
             bracket_width * 2 + number_width * len(self.left.values[0]) + eq_width,
             0, 0,
         )
-        _label(
+        paint_label(
             (-eq_width, -line_height * (len(self.left)+1) / 2),
             '  =  ',
             color=black,
         )
         if isinstance(self.result, Vector):
-            label.anchor_x = 'right'
             for i, number in enumerate(self.result):
-                _label(
+                paint_label(
                     (number_width,
                         -line_height * (i+1)),
                     format(number, '.2f') + ',',
                     color=numcolor(number),
+                    anchor_x = 'right',
                 )
-            label.anchor_x = 'left'
             start = -0.2 * line_height
             end = -(len(self.result)) * line_height
             y1 = bracket_width * 0.6
@@ -715,17 +739,19 @@ class ErrorOperation:
         self.tb = [line for line in '\n'.join(
             traceback.format_exception(None, error, error.__traceback__)
         ).splitlines() if line.rstrip()]
+        label = _label((0, 0), 'Oh, My!', color=(0, 0, 0, 255))
         self.height = label.content_height * len(self.tb)
 
     def draw(self):
         for line in self.tb:
-            pyglet.gl.glTranslatef(0, -label.content_height, 0)
             color = 255, 100, 25, 255
             if line.startswith('  '):
                 color = 100, 100, 255, 255
             if line.startswith('    '):
                 color = 100, 100, 100, 255
-            _label((0, 0), line, color=color)
+            label = _label((0, 0), line, color=color)
+            pyglet.gl.glTranslatef(0, -label.content_height, 0)
+            label.draw()
 
     def adjust(self, x, y, d):
         ...
@@ -803,7 +829,6 @@ if __name__ == '__main__':
         global draw_labels
         if key == pyglet.window.key.L:
             draw_labels = not draw_labels
-            print(draw_labels)
 
 
     pyglet.app.run()
