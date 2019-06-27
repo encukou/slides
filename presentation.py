@@ -69,13 +69,9 @@ class Array:
 
     def _enter(self, passn, vert):
         pyglet.gl.glPushMatrix()
-        m = self.to_numpy().T #* ZOOM
-        m[3, 0] += window.width/2
-        m[3, 1] += window.height/2
-        m[:, 2] /= 10000
-        #m[3, :] /= ZOOM
+        m = self.to_numpy().T
         m = m.astype('float32', order='C').flat
-        pyglet.gl.glLoadMatrixf( (pyglet.gl.GLfloat * len(m))(*m) )
+        pyglet.gl.glMultMatrixf( (pyglet.gl.GLfloat * len(m))(*m) )
 
     def __exit__(self, *exc_info):
         draw_instructions_var.get().append((self._exit, (), {}))
@@ -326,15 +322,21 @@ def draw_point(npass, vert, point, color=(0, 0, 0, 1)):
     pyglet.gl.glVertex3f(*vert(point), 0)
     pyglet.gl.glEnd()
 
-def draw_label(npass, vert, point, doit=True):
+def draw_label(npass, vert, point, doit=True, text=None):
     if doit == 'depends':
         doit = draw_labels
     if not doit:
         return
-    px, py, *rest = point
+    px, py, *rest = vert(point)
     frest = ''.join(', ' + _fmt(v) for v in rest)
-    paint_label(vert(point), f'[{px:.2f}, {py:.2f}{frest}]')
-
+    if text is None:
+        text = f'[{px:.2f}, {py:.2f}{frest}]'
+    label = _label((0, 0), text)
+    pyglet.gl.glPushMatrix()
+    pyglet.gl.glScalef(1/ZOOM, 1/ZOOM, 1)
+    pyglet.gl.glTranslatef(px * ZOOM, py * ZOOM, 1)
+    label.draw()
+    pyglet.gl.glPopMatrix()
 
 def _arrow(vert, a, b):
     absab = abs(a - b)
@@ -397,10 +399,10 @@ class Presentation:
                 x *= float(point[3])
                 y *= float(point[3])
                 z *= float(point[3])
-            return x * ZOOM, y * ZOOM, z * ZOOM
+            return x, y, z # * ZOOM, y * ZOOM, z * ZOOM
         pyglet.gl.glLoadIdentity()
         pyglet.gl.glTranslatef(window.width/2, window.height/2, 0)
-        pyglet.gl.glScalef(1, 1, 0)
+        pyglet.gl.glScalef(ZOOM, ZOOM, 0)
         pyglet.gl.glPointSize(6)
         six = ctypes.c_float(6)
         #pyglet.gl.glPointParameterfv(pyglet.gl.GL_POINT_SIZE_MIN, ctypes.POINTER(ctypes.c_float)(six))
@@ -422,8 +424,8 @@ class Presentation:
         _arrow(vert, Vector([-10, 0]), Vector([11, 0]))
         _arrow(vert, Vector([0, -10]), Vector([0, 11]))
         pyglet.gl.glEnd()
-        for x, y, n in (11, -0.4, 'x'), (-0.4, 11, 'y'):
-            paint_label(vert([x, y]), n)
+        for x, y, text in (11, -0.4, 'x'), (-0.4, 11, 'y'):
+            draw_label(0, vert, [x, y], text=text)
 
         for func, args, kwargs in self.draw_instructions:
             func(0, vert, *args, **kwargs)

@@ -21,11 +21,11 @@ explain(m)
 from eevee import triangles
 
 print(len(triangles))
-if 0:#with m:
+if 1:#with m:
     for a, b, c, n in triangles[:400]:
         draw.polygon(m@a, m@b, m@c, points=False)
 
-m = Array([[1, 0, 0, 0],
+m = Array([[1, 0, 0, 1],
            [0, 1, 0, 0],
            [0, 0, 1, 0],
            [0, 0, 0, 1]])@m
