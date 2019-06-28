@@ -1,0 +1,290 @@
+Using an event loop (with frameworks like asyncio and trio for network services, or PyQt or GTK for GUI applications) is not that hard once you “get” the concept, but it does take some time and thought to get to that point.
+
+The usual async tutorials focus on how to use it and what you can do. This session explores a different angle: I'll build an event loop and a time-based scheduler from scratch, explaining the concept on actual code.
+
+This is a live coding session and isn't suitable for beginners. To follow along, you will need some experience reading (and writing) classes, functions and loops.
+
+
+------------------------------------------------------------------------------
+
+##  Building an async[^io] event loop (for Blinky!)
+
+I assume that if you're at this presentation, you already know a bit about async,
+but I'll start with my usual introduction. Meet Blinky.
+
+> 010_blinky.py  (start with this code!)
+
+Blinky's problem is that he's alone. He wants friends. He wants a family.
+So, create a bunch of blinkies.
+
+> 020_blinkies.py
+
+But these are dummies. How do we run them?
+
+> 030_blinkies_threading.py
+
+Using threads! That's the easiest way. The problem with threads is that
+they all run at once, and if you're not careful, things break.
+This code has a bug, and if you let it run for a long time, it'll misbehave.
+If the print takes just a little more time, imperceptibly more time,
+the print-all-blinkies code will run in several copies concurrently,
+and overwrite each other's output.
+[insert the sleep(0.01)]
+
+But even without this extra sleep, the bug is there -- it'll just take
+longer to misbehave. Maybe months, maybe years.
+But when it does misbehave, it'll probably do so at 3 AM at night and bring
+down the server.
+
+There are two ways to solve this.
+The first is locking: you identify the part where no one should interrupt,
+and mark it with a lock.
+The problem is that if you miss one place that should use a lock, you have a
+bug, and a few years from now at 3 AM, the server will crash.
+
+The second way to solve these issues is to use async.
+It's more tedious to write, but it's better at preventing concurrency errors.
+
+> 050_blinkies_async.py: ...
+
+Let's use "asyncio", the most well know library for that.
+
+In the async world , we need to use special "await" constructs for any
+blocking operation: any place where we're waiting for something, where our
+task is not running.
+Here, it's the "sleep" required for our animation.
+The problem is that any function that uses "await" must be an "async" function,
+and all "async" functions need "await" when called -- so any function that
+calls them needs "await" as well.
+Async "infects" your code; you can't use regular libraries, with async functions.
+The good part, though, is that you can see at first glance where other tasks are
+allowed to run: only in the places marked with "await".
+There's no await in the print-all-blinkies code, so there'll be no interference.
+There's no lock to be forgotten.
+Instead of thinking hard about concurrency in every little piece of code,
+and being punished for forgetting to do so,
+we're forced to write more, but concurrency is explicit.
+And unlike with threads, no one can sneak any new concurrency without us having to 
+mark all the callers as "async".
+
+Now, how do we start several tasks at once?
+In asyncio, the API so start a new task is called ensure_future.
+This function starts a new task, and it returns a "future" object that we can
+use to control the task and get its result back.
+
+> 060_blinkies_async_fanin.py: ...
+
+But that doesn't yet give us the results.
+We just started these animation tasks.
+We also need to, at some point, wait for each task we start -- if only to
+make sure it completed successfully. We wouldn't want to lose any exceptions!
+So, we "await" for each of these futures.
+But, we need to put each "await" in an async function!
+And to run this one function, we can use "asyncio.run" -- the bridge from
+the synchronous world to the asynchronous world.
+This will run a event loop, and make sure all tasks are carried out to
+completion.
+
+Of course, our Blinkies never run to completion. But if we add in some planned
+obsolescence to our Blinky units, we can see the async world is exited after
+"run_all" is done.
+
+Let's not do that. [revert for loop to "while True"]
+
+Instead, let's use `create_task`, which has a better name and better semantics.
+
+> 070_blinkies_animations.py: ...
+
+Let's get rid of the artificial delay, and load in some more interesting
+animations I've prepared (basic_animations.py).
+They're quite trivial async functions as far as programming is concerned;
+plus there's a function to select one at random and await it.
+Let's not get into details in this talk.
+[basic_animations.py]
+
+Where I would like to get into details is, how does this asyncio work inside?
+Let's build our own version of asyncio that can run all this.
+I'll start by replacing asyncio with something generic, and letting each Blinky
+use this generic thing.
+
+> 080_blinkies_custom.py: ...
+
+Still works.
+Now, let's change asyncio to our own thing. Let's name it: unio.
+
+> 090_blinkies_custom.py: ...
+
+Let's create unio, and for now, temporarily, make it exit as soon as it's
+imported, so we get rid of this error.
+
+------------------------------------------------------------------------------
+
+Now, the main feature of an async functions is that it can be stopped in the
+middle, to let other tasks run, and later resumed exactly where it left off.
+This is something Python supported for a long time, with a feature called
+generators.
+Let's do a generator.
+
+> 100_unio_fib.py
+
+Now, let's imagine this generator needs some time to compute each task.
+
+> 101_unio_fib_sleep.py
+
+At this point, we might want to run several of these at the same time.
+Let's make each one update a number in a shared list.
+
+> 102_unio_fib_sequential.py: ...
+
+How to make them run at the same time? To answer that, we'll need to take
+a closer look at iterators.
+
+> 103_unio_fib_iterator.py: ...
+
+An iterators are what a function with "yield" returns when called.
+In this case, it's a generator-iterator.
+When we have an iterator, I can ask for its next value using "next()".
+What this does is run the generator function until the first yield, and
+gives me the yielded value. Note that this includes the sleep.
+The next "next()" call resumes from where the
+last one stopped, runs the function to the next "yield", and gives that
+value. And so on.
+
+So, let's convert a for loop to a while loop!
+
+At the end, when there are no more yields, the "next()" function raises
+an exception, StopIteration. When we get that, we need to end the loop.
+
+And this is a for loop converted to a while loop!
+It's quite generic, too.
+
+Now, how do we make these things run at the same time?
+With the unrolled loops, we can alternate between them!
+
+> 105_unio_alternating.py
+
+And what do you know, this actually does two tasks at the same time!
+The animation is a bit wonky, though.
+Let's get rid of the limits to let it run longer.
+
+The problem here is that each task sleeps as if it was the only thing running.
+Before each an update of the first number, the whole program sleeps for
+a tenth of a second.
+Before updating the second, the whole program sleeps for a third.
+This sleeping should be somehow coordinated.
+Let's get rid of the time.sleep(), and use the yielded delay.
+
+> 106_unio_tasks.py: ...
+
+We'll coordinate it using scheduling: keeping track what action we need to do
+next, and when this next action should take place.
+Actions, for us, will be the "next()" calls -- that's where the waiting will
+happen.
+The put these scheduled actions in a "tasks" list.
+Each time, we'll pop off a task, unpack it, and use it.
+This gets us to the first two actions being run!
+To do the rest, we need to re-schedule the rest of the iterator once its
+first action is run. 
+
+> 107_unio_reschedule.py: ...
+
+When will we schedule it? The yielded value is the delay, we add that to
+our current time, and that's when the next action should run. [...explain?]
+
+What's the current time? Let's say it starts at zero.
+That gets us to all the actions being run! But we don't yet have any waiting.
+
+When we get an action that is scheduled for the future, we need to warp to
+that future.
+Sleep for the difference between now and then, and set the current time
+to the point we arrived at.
+
+Now there's actual sleeping! But the animation is still jerky. Why is that?
+
+> 108_unio_sort.py: ...
+
+We need to pop off the action scheduled soonest -- for the *lowest* time.
+Currently, the actions might not be added in sorted order.
+Normally this is done with a heap data structure, but we'll do with a sort().
+Now, the problem is with two actions scheduled at the same time, as with
+these two.
+You can't compare generator-iterators, so you can't sort this list.
+A simple solution is just to give each task a unique number, to help sorting.
+And with that, we have two tasks running beautifully in parallel!
+
+This is very similar to what asyncio used to look like before await was added
+to the language.
+
+------------------------------------------------------------------------------
+
+And then, await was added. Let's try that. We'll get some errors:
+A coroutine object can't be iterated.
+
+> 110_unio_explore.py: ...
+
+What's a coroutine? That's what you get when an async function is called.
+Let's explore; I'll add an exit here to ignore the rest of the module.
+What does it have? Lots of magic methods; one of them is __await__.
+Let's check the docs: https://docs.python.org/3/reference/datamodel.html#awaitable-objects
+Ha! It returns an iterator. Let's call it, and see what it yields!
+
+This actually calls the async function, and gets to the line `await delay`,
+which is invalid: you can't await a number.
+Let's try to await asyncio's sleep (which you can await). What does that have?
+Lots of stuff, one of which is __await__ again.
+
+> 111_unio_awaitable.py: ...
+
+At this point, let's write our own class for sleep objects: something with an
+__await__ method, which will yield the values our loop needs: how long
+to wait.
+The class is not that complicated. And we can use it instead of asyncio's
+sleep!
+The await in fib() will yield from sleep's __await__, and give our loop
+a number.
+All that we need now is to extract an iterator from the coroutine
+by calling __await__ at the right moment.
+
+And that gives us an event loop that can use async functions!
+
+> 112_unio_aioapi.py: ...
+
+Now, this way of scheduling tasks is not very friendly.
+Let's have a function, let's call it "create_task", that constructs
+the tuple automatically.
+    task = ...
+There's no harm in scheduling events in the past -- they'll just get run ASAP,
+so let's schedule new tasks for time 0; some unique task number, and the
+task coroutine's iterator.
+The task number will be based on a global counter, and incremented with each
+use.
+
+Fun! Still works!
+Let's get rid of the fibonacci generator now, and get bask to Blinky,
+who's been waiting this whole time.
+Remember that we're using this module, unio, as a replacement for asyncio?
+What are we missing?
+The main function, "run".
+Let's wrap the logic in a function, which takes the main task to be started,
+schedules it, and then runs the loop. We can get rid of the Fibonacci numbers.
+And we need to take care of the global variable, current_time.
+
+What's next?
+
+> 113_unio_aioapi_hack.py: ...
+
+The create_task function needs to actually return some awaitable task, so we
+can track its completion. Let's cheat here for now; we don't need to track
+the task, so let's just return something awaitable.
+
+And... That's it! An async loop for Blinky, in 40 lines of code!
+
+There are two nasty hacks: the global variables, and the create_task result.
+But, it works for Blinky, and it works for us!
+
+===============================================================================
+
+
+
+
+

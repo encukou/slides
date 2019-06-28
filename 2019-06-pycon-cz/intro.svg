@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1920"
+   height="1080"
+   viewBox="0 0 507.99999 285.75001"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (unknown)"
+   sodipodi:docname="intro.svg"
+   inkscape:export-filename="/home/pviktori/dev/slides/2019-06-pycon-cz/intro.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.0831439"
+     inkscape:cx="1228.1778"
+     inkscape:cy="511.22777"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:snap-page="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="990"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="true"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true">
+    <sodipodi:guide
+       position="169.03725,152.54879"
+       orientation="1,1"
+       id="guide887"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       inkscape:locked="false"
+       id="guide889"
+       orientation="1,-1"
+       position="169.15938,164.02964" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid898" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-11.249983)">
+    <rect
+       style="opacity:1;fill:#d2c6ad;fill-opacity:1;stroke-width:0.26458335;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect815"
+       width="508"
+       height="285.75"
+       x="0"
+       y="11.249983"
+       ry="0" />
+    <rect
+       ry="0"
+       y="242.33269"
+       x="0"
+       height="54.667294"
+       width="508"
+       id="rect920"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke-width:0.1157266;stroke-miterlimit:4;stroke-dasharray:none" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444494px;line-height:1.25;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335"
+       x="253.62793"
+       y="92.705765"
+       id="text838"><tspan
+         sodipodi:role="line"
+         id="tspan836"
+         x="253.62793"
+         y="92.705765"
+         style="font-size:50.79999924px;text-align:center;text-anchor:middle;stroke-width:0.26458335">BUILDING</tspan></text>
+    <text
+       id="text842"
+       y="153.90372"
+       x="253.16905"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444494px;line-height:1.25;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335"
+       xml:space="preserve"><tspan
+         style="font-size:50.79999924px;text-align:center;text-anchor:middle;stroke-width:0.26458335"
+         y="153.90372"
+         x="253.16905"
+         id="tspan840"
+         sodipodi:role="line">IAN ASYNCIO</tspan></text>
+    <text
+       id="text846"
+       y="215.10117"
+       x="252.77217"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444494px;line-height:1.25;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335"
+       xml:space="preserve"><tspan
+         style="font-size:50.79999924px;text-align:center;text-anchor:middle;stroke-width:0.26458335"
+         y="215.10117"
+         x="252.77217"
+         id="tspan844"
+         sodipodi:role="line">EVENT LOOP</tspan></text>
+    <rect
+       ry="0"
+       y="90.725784"
+       x="361.74878"
+       height="76.180931"
+       width="147.4726"
+       id="rect869"
+       style="opacity:0.775;fill:#d2c6ad;fill-opacity:1;stroke-width:0.07360653;stroke-miterlimit:4;stroke-dasharray:none" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444494px;line-height:1.25;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458335"
+       x="254.32521"
+       y="278.14954"
+       id="text873"><tspan
+         sodipodi:role="line"
+         id="tspan871"
+         x="254.32521"
+         y="278.14954"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:'Roboto Slab';-inkscape-font-specification:'Roboto Slab';text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.26458335">Petr Viktorin, PyCon CZ 2019</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444494px;line-height:1.25;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff8800;fill-opacity:1;stroke:none;stroke-width:0.26458335"
+       x="316.57135"
+       y="283.02917"
+       id="text918"
+       transform="rotate(-6.7640863)"><tspan
+         sodipodi:role="line"
+         id="tspan916"
+         x="316.57135"
+         y="283.02917"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.79999924px;font-family:'Sedgwick Ave Display';-inkscape-font-specification:'Sedgwick Ave Display';text-align:center;text-anchor:middle;fill:#ff8800;fill-opacity:1;stroke-width:0.26458335">for Blinky</tspan></text>
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke-width:0.07571466;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect922"
+       width="508"
+       height="23.40029"
+       x="0"
+       y="11.249961"
+       ry="0" />
+    <rect
+       style="opacity:1;fill:#d2c6ad;fill-opacity:1;stroke-width:0.05903795;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect932"
+       width="114.73995"
+       height="62.990162"
+       x="-8.8817842e-16"
+       y="102.78172"
+       ry="0" />
+    <text
+       transform="matrix(-0.56642199,0.59413918,0.9351868,0.78451913,0,0)"
+       id="text943"
+       y="336.30975"
+       x="-182.18599"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.90140486px;line-height:1.25;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff8800;fill-opacity:1;stroke:none;stroke-width:0.32350335"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.11263657px;font-family:'Sedgwick Ave Display';-inkscape-font-specification:'Sedgwick Ave Display';text-align:center;text-anchor:middle;fill:#ff8800;fill-opacity:1;stroke-width:0.32350335"
+         y="336.30975"
+         x="-182.18599"
+         id="tspan941"
+         sodipodi:role="line">l</tspan></text>
+  </g>
+</svg>
