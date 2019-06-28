@@ -1,3 +1,13 @@
+# This one-off code was written for a presentation, as a welcome respite from
+# writing highly maintainable code.
+#
+# It has served its purpose.
+#
+# Don't try to read it; it hurts.
+
+# Needs the playful "Mali" font installed system-wide:
+# https://fonts.google.com/specimen/Mali
+
 from pathlib import Path
 import inspect
 import numpy
@@ -536,12 +546,12 @@ def explain(thing, *args, is_print=False, **kwargs):
 class TextOperation:
     def __init__(self, text):
         self.text = str(text)
-        label = _label((0, 0), self.text, color=(0, 0, 0, 100))
+        label = _label((0, 0), self.text, color=(0, 0, 0, 200))
         self.height = label.content_height
 
     def draw(self):
         pyglet.gl.glTranslatef(0, -self.height, 0)
-        paint_label((0, 0), self.text, color=(0, 0, 0, 100))
+        paint_label((0, 0), self.text, color=(0, 0, 0, 200))
 
     def adjust(self, x, y, d):
         ...
