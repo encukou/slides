@@ -126,6 +126,11 @@ Here's a Youtube playlist with recordings of my talks:
       - [en] Bytecodes and stacks: A look at CPython’s compiler and its execution model
         https://cz.pycon.org/2018/programme/detail/talk/16/
 
+2019-06-15
+    - PyCon CZ
+      - [en] Building an Async Event Loop (for Blinky)
+        https://cz.pycon.org/2019/programme/talks/18/
+
 2019-06-27
     - Pyvo
       - [en] The Transformation Matrix
