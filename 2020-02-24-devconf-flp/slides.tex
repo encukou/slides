@@ -1,0 +1,309 @@
+\documentclass[20pt,aspectratio=169]{beamer}
+\usepackage{fontspec}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{fontawesome}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[export]{adjustbox}
+\usepackage{colortbl}
+\usepackage{stmaryrd}
+\usepackage{arev}
+\usepackage{epigraph}
+\usepackage{pgfplots}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{math}
+
+\pgfplotsset{compat=1.3}
+
+\newcommand\attributionnode[1]{
+    \node[above right,fill=black,fill opacity=0.2,text opacity=1,inner sep=2pt]
+        at(current page.south west)
+    {\textcolor{white}{\xtiny #1}};
+}
+\newcommand\sk{\par\bigskip\bigskip\par}
+
+\definecolor{flpblue}{rgb}{0, 0.3411764705882353, 0.5568627450980392} % #00578e
+\definecolor{flpbg}{rgb}{0.8941176470588236, 0.9019607843137255, 0.9098039215686274} %#e4e6e8
+\newfontface\flpfont{Open Sans Bold}
+\newfontface\headfont{Open Sans Bold}[WordSpace=2,LetterSpace=1]
+\newfontface\flptext{Open Sans}
+\setmainfont{Open Sans}
+
+\newcommand\aheader[1]{{\headfont\MakeUppercase{#1}}}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=flpblue}
+\setbeamercolor{palette secondary}{bg=flpblue}
+\setbeamercolor{palette tertiary}{bg=flpblue}
+\setbeamercolor{palette quaternary}{bg=flpblue}
+\setbeamercolor{background canvas}{bg=flpbg}
+
+\setbeamertemplate{footline}{}
+\setbeamertemplate{frametitle}[default][center]
+\setbeamerfont{frametitle}{family=\headfont,size={\fontsize{20}{24}}}
+\newcommand\ftitle[1]{\frametitle{\MakeUppercase{#1}}}
+\setbeamertemplate{itemize items}[circle]
+
+% table column C: centered & sized
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+
+\setbeamersize{text margin left=0pt,text margin right=0pt}
+
+\newcommand\xxxbig{\fontsize{140}{200}\selectfont}
+\newcommand\xtiny{\fontsize{6}{7}\selectfont}
+
+\begin{document}
+%\fontspec[Numbers={Lining, Monospaced}]{TeX Gyre Pagella}
+\fontspec[Numbers={Lining, Monospaced}]{Open Sans}
+
+\begin{center}
+\title{FLP}
+\author{Petr Viktorin}
+\date{\today}
+
+\frame{
+    \frametitle{\smash{\raisebox{0.5em}{\includegraphics[valign=t,width=5em]{fedora-loves-python}}}}
+    \sk
+    \textcolor{flpblue}{\flpfont FEDORA LOVES PYTHON}
+
+    \textcolor{black}{\small the distro \& the language ecosystem}
+    \sk\sk
+    \textcolor{black}{Petr Viktorin}\\[-0.25cm]
+    \textcolor{black}{\tiny pviktori@redhat.com}
+    \sk
+    \textcolor{black}{\tiny DevConf CZ, 2020-22-24}
+}
+
+\frame{
+    \ftitle{A Concrete Example}
+    \begin{tabular}{ r l }
+        \aheader{Fedora} & Distro \\
+        \aheader{Python} & Ecosystem \\
+        \aheader{RPM} & Distro packages \\
+        \aheader{DNF} & Package manager \\
+        \aheader{wheel} & Upstream format \\
+        \aheader{pip} & Upstream Installer \\
+    \end{tabular}
+}
+
+\frame{
+    \ftitle{A Fedora Packager's Role}
+    \pause
+    \begin{itemize}
+        \item Produces RPMs
+        \\\pause \quad {\small (specfile copy \& paste)}
+        \pause
+        \item Helps w/ specialized tasks
+        \pause
+        \begin{itemize}
+            \item Legal review
+            \pause
+            \item Security response
+            \pause
+            \item Integration \pause\aheader{!}
+                % XXX Debundling; updates
+                % Alignment
+        \end{itemize}
+    \end{itemize}
+}
+
+% \frame{
+%     \ftitle{Distro Integration}
+%     Link between projects
+% }
+
+\frame{
+    \ftitle{Too fast — Too Slow}
+}
+
+\newcommand\addd[1]{{\smash{\hspace{1em}\raisebox{0.6em}{\llap{\shortleftarrow}\rlap{#1}}}}}
+\frame{
+    \ftitle{Too Fast — Too Slow}
+    \begin{tabular}{ c c l }
+    \aheader{Fast} & & \phantom{\aheader{Fast}} \\
+    & App & \onslide<3->{\addd{Fedora user}} \\
+    & Django & \onslide<3->{\addd{Py web dev}} \\
+    & Python & \onslide<2->{\addd{Python dev}} \\
+    & libc & \onslide<3->{\addd{Core dev}} \\
+    & Kernel & \onslide<3->{\addd{GCC dev}} \\
+    \aheader{Slow} & & \phantom{\aheader{Slow}} \\
+    \end{tabular}
+}
+
+\frame{
+    \ftitle{Too Fast — Too Slow}
+    \noindent
+    \begin{tabular}{ C{0.4\textwidth} C{0.4\textwidth} }\arrayrulecolor{flpblue}
+        \aheader{Fast} & \aheader{Slow} \pause\\
+        Exciting & Boring \pause\\
+        Cherry-picked & Prepackaged \pause\\
+        Co-maintained & \smash{\raisebox{0.2em}{\tiny$\hbox{Taken}\atop\hbox{for}$}} Granted \pause\\[0.3em]
+        \hline\\[-0.7em]
+        Involvement & Trust \\
+    \end {tabular}
+}
+
+\newcommand\wb[1]{\colorbox{white}{#1}}
+\frame{
+    \ftitle{Not just a spectrum}
+    \begin{tabular}{ c c c }
+    \aheader{Fast} & & \phantom{\aheader{Fast}} \\
+    \multirow{6}{*}{\rule{.1pt}{\fill}}
+    & \wb{App} & JS minifier \\
+    & \wb{Django} & Babel \\
+    & Python & Node.js \\
+    & \multicolumn{2}{c}{libc} \\
+    & \multicolumn{2}{c}{\wb{Kernel}} \\
+    \aheader{Slow} & & \phantom{\aheader{Slow}} \\
+    \end{tabular}
+}
+
+\frame{
+    \ftitle{Cohesive Whole}
+}
+
+\frame{
+    \ftitle{How Fedora loves Python}
+    \begin{itemize}
+        \item Patches are issues
+        \item All the pythons
+        \item Pre-release rebuilds
+    \end{itemize}
+}
+
+\frame{
+    \ftitle{Patches are Issues}
+
+    A downstream patch
+    \\is like
+    \\an open bug.
+}
+
+\definecolor{ubuntu}{HTML}{DD4814}
+\definecolor{suse}{HTML}{73ba25}
+\definecolor{arch}{HTML}{1793D1}
+\frame{
+    \ftitle{Patches are Issues}
+
+    \begin{tikzpicture}
+    \begin{axis}[
+        symbolic x coords={py2, py3, py3 Ubuntu, py3 SuSE, py3 Arch},
+        nodes near coords,
+        ylabel style={align=center},
+        ylabel={\tiny Number of downstream patches\\[-0.7em]\tiny (a biased metric)},
+        ylabel shift=-0.8em,
+        ymax=50,
+        xtick={py2, py3, py3 Ubuntu, py3 SuSE, py3 Arch},
+        yticklabels={},
+        xticklabels={
+            {\tiny \includegraphics[width=1em]{Fedora_logo} py2},
+            \includegraphics[width=1em]{Fedora_logo},
+            \includegraphics[width=1em]{Logo-ubuntu_cof-orange-hex},
+            \includegraphics[width=1em]{OpenSUSE_Logo},
+            \includegraphics[width=1em]{Arch_Linux_logo-arch},
+        }
+        ]
+        \addplot[ybar,fill=white] coordinates {
+            (py2, 40)
+        };
+        \addplot[ybar,fill=flpblue] coordinates {
+            (py3, 7)
+        };
+        \addplot[ybar,fill=ubuntu] coordinates {
+            (py3 Ubuntu, 41)
+        };
+        \addplot[ybar,fill=suse] coordinates {
+            (py3 SuSE, 14)
+        };
+        \addplot[ybar,fill=arch] coordinates {
+            (py3 Arch, 1)
+        };
+    \end{axis}
+    \end{tikzpicture}
+}
+
+\frame{
+    \ftitle{Pythons in Fedora 31}
+    \small
+    \vspace{-0.5em}
+    \begin{itemize}
+        \setlength\itemsep{-0.5em}
+        \item CPython 2.6 {\color{flpblue}{\skull}}
+        \item CPython 2.7
+        \item CPython 3.4 {\color{flpblue}{\skull}}
+        \item CPython 3.5
+        \item CPython 3.6
+        \item CPython 3.7 + \aheader{libraries}
+        \item CPython 3.8
+        \item CPython 3.9-a1
+        \item PyPy 2
+        \item PyPy 3
+        \item MicroPython
+        \item Jython {\color{flpblue}\aheader{?}}
+    \end{itemize}
+}
+
+\frame{
+    \ftitle{Pre-release Rebuilds}
+    \begin{minipage}{\dimexpr\textwidth-3em\relax}
+        All Python packages are \textcolor{flpblue}{rebuilt} before
+        Fedora's Python is updated.
+
+        \sk
+        \small Starting with pre-releases.
+    \end{minipage}
+}
+
+\frame{
+    \ftitle{Pre-release Rebuilds}
+    \begin{minipage}{\dimexpr\textwidth-3em\relax}
+    \raggedright
+    {\small
+        [Fedora has] been historically very helpful in early finding regressions
+        not only in core Python but also in third-party libraries, helping moving
+        the community forward.
+    }
+    \\\hfill{–Lukasz Łanga}
+    \\\hfill{\small\textit{Python 3.8 release manager}}
+    \end{minipage}
+}
+
+\frame{
+    \ftitle{Questions}
+    \vskip0pt plus 1filll
+    {\xxxbig\aheader?}
+
+    \vskip0pt plus 1filll
+    \raggedright\xtiny\quad
+    Slides under \textcolor{flpblue}{\href{https://creativecommons.org/licenses/by-sa/4.0/}{CC-BY-SA 4.0}}.
+    Logos belong to the respective distros/projects.
+}
+
+% \frame{
+%     \small
+%     \rd{1}{Zdroje} \& odkazy\\[0.25cm]
+%     \bigskip\bigskip
+%     \tiny
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\bigskip
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\tx{1}{\url{}}\\[0.25cm]
+% }
+
+\end{center}
+\end{document}
+

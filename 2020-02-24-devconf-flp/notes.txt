@@ -1,0 +1,136 @@
+
+Fedora loves Python
+
+concrete example of "Distros love software"
+- I like concrete examples! Too much generalization doesn't lead to useful systems. But hopefully this'll make sense to other distros and software ecosystems -- please learn from us!
+
+Where this is just a concrete example:
+Distro - Fedora
+Distro packaging - RPM
+Package manager - DNF
+Upstream distribution format - wheel
+Upstream Installer - PIP
+
+We have a team of wonderful people for Python on Fedora, thinking about what packaging should be like and also making it a reality.
+→ I think that makes us very fortunate, but also obliges us to share our findings with everyone else.
+python-maint --- Python SIG
+
+Where Python is special:
+- Multiple Pythons on one system
+  - python2
+  - python3
+  - /opt/my-own/
+  - venv
+- You need to know the executable; it points everywhere else (modules, shared libraries)
+  - It's usually wrong to assume there is "the Python", named "/usr/bin/python"
+  - running "pip" by itself is dangerous: the "pip" and "python" commands might not correspond to each other. Better to run "python -m pip"
+
+Too Fast -- Too slow
+--------------------
+Boring -- Exciting
+Taken for Granted -- Secret Sauce
+Maintained by someone else -- Co-maintained
+
+Using other people's code
+- keep up with the changelogs, deprecations
+- trust the other project
+- make sure your goals align -- esp. re. support effort & time scales
+
+If using other people's code means you need to trust and understand that project, it makes sense to use a distro for the boring stuff -- you only need to trust and understand one project for everything that's provided.
+
+
+What does distro maintenance mean?
+- writing specfiles (by copying and pasting)?!
+- Helping smaller projects with specialized tasks:
+  - legal
+  - security
+  - standardization
+- Aligning foundational projects with smaller ones
+- Making it all work together Creating a cohesive whole
+  - when you venture beyond -- beyond Fedora -- but you're on your own
+- Caring about dependent software (incl. being able to enumerate it)
+
+Taking software for granted means you're at the whim of the maintainer.
+Make sure your goals are aligned!
+- latest *Fedora* provides an up-to-date Python stack, release about current at Fedora release time
+- Rawhide has *pre-releases* when they're stable enough for "most" software
+- we also have older/newer Pythons for *testing*
+
+What does a distro do for users^W developers?
+- Provide a boring base
+- Let you work on top of that
+
+- Develop for Python
+  - in a venv
+  - test with multiple configurations
+- Deploy on Fedora (maybe?)
+  - DNF, GIMP
+    - don't ask too much of Python; can live with it being changed underneath
+  - Containers
+    - A Rebuild fast
+
+How do we do it?
+*Vanilla is our specialty*
+Sometimes, we need to patch software to make it work in Fedora.
+After a quick fix, the software works, but that's just the first part of
+solving the issue: we also need upstream to agree with the fix, have it reviewed
+and documented, have the other distros disagree and present their arguments,
+come to a consensus.
+That's sometimes a long and hard process.
+But -- each dist-git directory is a bug tracker where each patch is an issue. Some have low priority, but it's technical debt all the same.
+
+Once, when requesting funding for F♥P stickers, I got the question: How is Fedora
+good for Python? What specific Fedora-specific changes and configs make it better?
+The answer is: we're not special. And that means we're doing a good job. The ideal state is that if you test on Fedora, your library will work on Ubuntu, Arch, OS X, or even Windows -- assuming you don't run into their special config. Fedora's Python is just Python, so if your library works on Python on Fedora, it will work on Python.
+
+How are we doing?
+- Python 2 on Fedora Rawhide: 40 patches (~before this effort)
+- Python 3 on Fedora Rawhide: 7 patches
+- Python 3 on Ubuntu: 41 patches
+- Python 3 on SuSE: 14 patches
+- Python 3 on Arch: 1 patch
+    (Is Arch better? Well, if dist-git repo is like a bug tracker,
+    zero patches is like one bug on the bug tracker. We want to be active
+    contributors, not just consumers: some patches are works-in-progress features!)
+
+(Of course, judging these distros by a metric I invented for Fedora is hugely
+unfair. They're not bad distros, they'd be bad Fedoras.)
+
+Doing our part, but only that
+- Wide support for interpreter versions: CPython, PyPy, MicroPython
+  - with *just enough* to use ecosystem tools (venv & pip) to set up everything else
+  - not supported for anything but testing
+- Deep support for one interpreter -- the whole Python stack in Fedora
+- We can't do much more with the resources we have!
+
+Does that help the ecosystem? Here's a quote from Łukasz Langa, the Python 3.8 release manager:
+    [Fedora has] been historically very helpful in early finding regressions not only in core Python but also in third-party libraries, helping moving the community forward.
+
+We build early alphas of Python 3.9, and all of the Fedora software that uses it.
+If a piece of software is packaged in Fedora, and set up to run tests, it will be tested with new Python versions -- and regressions will be reported to the project or to Python itself.
+So, when Python 3.9 finally comes out, unintended incompatibilities will already be ironed out, and we'll all have a better idea on the impact of *intended* incompatibilities.
+
+There have been efforts to do something like this as part of the Python CI -- test against the major projects that use Python, and investigate the issues.
+There are certainly efforts to use Python pre-releases in the larger dependent projects like NumPy.
+But I argue that, actually, a distro like Fedora is actually the *best* place to do this. It's a big collection of interoperable projects, with all the important software and resources to find and fix issues -- at least if "importance" can be approximated by whether a package has a maintainer and how active the maintainer is.
+It's a place where people care not only about their software working, but also about it working with everything else. And it being OK licence-wise, and not being hard build on a generic system.
+
+It is what I think distro packagers should be: integrators; watching at the interfaces between several projects, making sure everything meshes together into a cohesive, useful whole.
+
+
+
+Too Fast/Too Slow
+ -- ecosystem
+
+
+
+
+
+
+
+At the Fedora's Python SIG and at Red Hat's python-maint, we try to make Fedora the best OS for Python developers: to do what a distro needs to do and get out of your way.
+
+We integrate the Python interpreter and major libraries into a cohesive whole. The goal is not to have a Python with Fedora-specific bells and whistles, but to solve problems in Python itself.
+We make libraries like NumPy, Requests or Sphinx available to Fedora users, but also test to make sure they work with each other, and with new Python versions, even outside Fedora.
+
+Come hear about the value of distro packages in a world of containers and virtual environments, about what we're doing now and what are the plans for the future -- and how you could get involved, if it makes sense to you. 
