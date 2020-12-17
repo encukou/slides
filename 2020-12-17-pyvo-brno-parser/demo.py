@@ -9,7 +9,7 @@ discriminant = b*b - 4*a*c
 
 if discriminant < 0: error!
 
-x1 = (0-b + sqrt(STOP_HERE)) / 2
+x1 = (0-b + sqrt(discriminant)) / 2
 x2 = (0-b - sqrt(discriminant)) / 2
 """
 
