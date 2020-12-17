@@ -1,0 +1,22 @@
+# For updatable examples
+
+echo /etc/passwd | entr -c xsel
+
+
+# For demo(input):
+
+python notes.py
+
+
+# For live reload:
+
+ls|entr -cr python notes.py
+
+
+
+# Links:
+
+https://www.desmos.com/calculator
+https://docs.python.org/3.8/reference/grammar.html
+https://docs.python.org/3/library/ast.html
+https://medium.com/@gvanrossum_83706/peg-parsers-7ed72462f97c
