@@ -1,0 +1,13 @@
+# For updatable examples
+
+echo /etc/passwd | entr -c xsel
+
+
+# For demo(input):
+
+python notes.py
+
+
+# For live reload:
+
+ls|entr -cr python notes.py
