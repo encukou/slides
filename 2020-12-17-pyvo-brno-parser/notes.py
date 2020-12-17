@@ -25,11 +25,13 @@ import hr
 
 
 tokenizer = Tokenizer(main_example)
-#tokenizer.demo(input)
+tokenizer.demo(input)
+#####
 tokenizer.demo(print)
 
 print(tokenizer.token_types)
 
+# :30
 hr.____________________________________________________________________________
 
 
@@ -53,6 +55,8 @@ node = parse_simple_assign(token_stream)
 print(node)
 my_ast.dump(node)
 
+
+# 1:30
 hr.____________________________________________________________________________
 
 token_stream = Tokenizer('1 + 2')
@@ -77,6 +81,7 @@ print(node)
 my_ast.dump(node)
 print(node.eval({}))
 
+# 2:30
 hr.____________________________________________________________________________
 # Modify the above!
 
@@ -102,6 +107,7 @@ print(node)
 my_ast.dump(node)
 print(node.eval({}))
 
+# 3:00
 hr.____________________________________________________________________________
 
 
@@ -115,7 +121,6 @@ grammar = """
 simple_assign: NAME '=' NUMBER
 program: (NEWLINE | simple_assign NEWLINE)* EOF
 """
-# See Python grammar: https://docs.python.org/3/reference/grammar.html
 
 def parse_program(tokens):
     # program: (NEWLINE | simple_assign NEWLINE)* EOF
@@ -136,6 +141,7 @@ my_ast.dump(node)
 
 print('result:', my_ast.exec(node))
 
+# 4:00
 hr.____________________________________________________________________________
 
 
@@ -144,12 +150,11 @@ program: (NEWLINE | statement NEWLINE)* EOF
 statement: if_statement | assignment | ERROR
 assignment: expr ['=' expr]
 expr: term ('+' term | '-' term)*
-term: atom ('*' term | '/' term)*
+term: atom ('*' atom | '/' atom)*
 atom: NAME | NUMBER | '(' expr ')' | sqrt
 sqrt: SQRT '(' expr ')'
 if_statement: IF expr '<' expr ':' statement
 """
-# See Python grammar: https://docs.python.org/3.8/reference/grammar.html
 
 # start: NEWLINE, EOF, start(statement)
 def parse_program(tokens):
@@ -168,12 +173,14 @@ def parse_program(tokens):
 # start: IF, NAME, NUMBER, '(', SQRT, ERROR
 def parse_statement(tokens):
     # statement: if_statement | assignment | ERROR
-    if tokens.match('IF'):
-        return parse_if_statement(tokens)
-    elif tokens.try_read('ERROR'):
+    if tokens.try_read('ERROR'):
         return my_ast.Error()
+    elif tokens.match('IF'):
+        return parse_if_statement(tokens)
     else:
         return parse_assignment(tokens)
+
+# LL(1) grammar
 
 # start: NAME, NUMBER, '(', SQRT
 def parse_assignment(tokens):
@@ -201,7 +208,7 @@ def parse_expr(tokens):
 
 # start: NAME, NUMBER, '(', SQRT
 def parse_term(tokens):
-    # term: atom ('*' term | '/' term)*
+    # term: atom ('*' atom | '/' atom)*
     expression = parse_atom(tokens)
     while True:
         if tokens.try_read('OP', '*'):
@@ -261,6 +268,7 @@ print(my_ast.exec(node))
 # Desmos: https://www.desmos.com/calculator
 
 # my_ast --- "ast" is the same but for Python!
+# https://docs.python.org/3/library/ast.html
 
 # New Python parser:
 # https://medium.com/@gvanrossum_83706/peg-parsers-7ed72462f97c
