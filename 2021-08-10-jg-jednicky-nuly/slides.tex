@@ -1,0 +1,875 @@
+\documentclass[20pt]{beamer}
+\usepackage{fontspec}
+\usepackage{amsfonts}
+\usepackage{tangocolors}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{fontawesome}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{math}
+
+% thanks http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+\newcommand\normallistingstyle{\lstset{ %
+  language=Python,                % the language of the code
+  basicstyle=\footnotesize,
+                                   % the size of the fonts that are used for the code
+  %numbers=left,                   % where to put the line-numbers
+  %numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  %stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  %numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  %frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  %captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\ ,
+  emph={[2]__import__,range,input,raw_input,NameError,dir,dict},
+  keywordstyle=\color{ta3chocolate},          % keyword style
+  commentstyle=\color{ta3orange},       % comment style
+  stringstyle=\color{ta3orange},         % string literal style
+  emphstyle={[2]\color{ta2orange}},
+  escapeinside=\$\$,            % if you want to add LaTeX within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+  aboveskip=0pt,
+  belowskip=0pt,
+}}
+\beamertemplatenavigationsymbolsempty
+\newcommand\biglistingstyle{\lstset{ %
+    basicstyle=\small,
+}}
+\newcommand\altlistingstyle{\lstset{ %
+    backgroundcolor=\color{black},
+    basicstyle=\small\color{white},
+    keywordstyle=\color{tachocolate},
+    commentstyle=\color{tachameleon},
+    stringstyle=\color{tachameleon},
+    emphstyle={[2]\color{tabutter}},
+    emphstyle={[3]\color{taorange}},
+}}
+\normallistingstyle
+\newcommand\topshade{
+    \begin{tikzpicture}[remember picture,overlay]
+    \fill[black] (current page.west) rectangle +(100cm, -100cm);
+    \end{tikzpicture}
+    \vspace{-50pt}
+    \biglistingstyle
+}
+\newcommand\halfshadenopause{
+    \altlistingstyle\bigskip\bigskip\bigskip
+}
+\newcommand\halfshade{
+    \pause\halfshadenopause
+}
+\newcommand\bottomshade{
+    \normallistingstyle
+}
+\newcommand\sk{\par\bigskip\bigskip\par}
+\newcommand\wh[1]{\only<#1>{\color{white}}}
+\newcommand\tx[2]{\alt<#1>{\textcolor{ta3gray}}{\textcolor{ta3gray}}{\uncover<#1->{#2}}}
+\newcommand\rd[2]{\alt<#1>{\textcolor{ta2plum}}{\textcolor{ta3gray}}{#2}}
+\renewcommand\emph[1]{\textcolor{ta2plum}{#1}}
+
+\newcommand\xxhuge{\fontsize{150}{160}\selectfont}
+\newcommand\xhuge{\fontsize{120}{130}\selectfont}
+\newcommand\xtiny{\fontsize{6}{7}\selectfont}
+
+\newcommand\xcoord[1]{\paperwidth*(-(1/2)+#1/100)}
+
+\newcommand\nodey[1]{\begin{tikzpicture}[baseline=(X.base)] \node[white,fill=black,draw=white] (X) {#1}; \end{tikzpicture}}
+\newcommand\noden[1]{\begin{tikzpicture}[baseline=(X.base)] \node[black,fill=white,draw=black] (X) {#1}; \end{tikzpicture}}
+
+\newcommand\attributionnode[1]{
+    \node[above right,fill=black,fill opacity=0.2,text opacity=1,inner sep=2pt]
+        at(current page.south west)
+    {\textcolor{white}{\xtiny #1}};
+}
+
+\begin{document}
+\fontspec[Numbers={Lining, Monospaced}]{TeX Gyre Pagella}
+\color{ta3gray}
+
+\begin{center}
+\title{eval()}
+\author{Petr Viktorin}
+\date{\today}
+
+\frame{\color{ta3gray}
+    \sk
+    \textcolor{ta2gray}{Jak postavit slovník \\ z jedniček a nul}
+    \sk\sk
+    \textcolor{ta2gray}{Petr Viktorin}\\[-0.25cm]
+    \textcolor{ta2gray}{\tiny encukou.cz}\\[-0.5cm]
+    \textcolor{ta2gray}{\tiny encukou@gmail.com}
+    \sk
+    \textcolor{ta2gray}{\tiny 2021-08-10}
+}
+
+\include{part-intro}
+
+\frame[plain]{
+
+    \bigskip
+
+    Nejen písmena
+
+    \bigskip
+
+    \small
+    \begin{tabular}{ccccc}
+     00101110 & = & 46 & = & ? \\
+     & & ... & & \\
+     01000001 & = & 64 & = & ? \\
+     01000010 & = & 65 & = & ? \\
+     01000011 & = & 66 & = & ? \\
+     & & ... & & \\
+     01111011 & = & 193 & = & ? \\
+    \end{tabular}
+}
+
+\newcommand\dummy{
+    \node[white,ellipse callout,draw=white, callout relative pointer={(0, -3mm)}]{\phantom{\flag{cz}}};
+}
+\newcommand\stor[1]{
+    \node[black,ellipse callout,draw=black, callout relative pointer={(0, -3mm)}]{#1};
+}
+\newcommand\load[1]{
+    \node[black,ellipse callout,draw=black, callout relative pointer={(0, 3mm)}]{#1};
+}
+\newcommand\dummyt{
+    \node[white,ellipse callout,draw=white, callout relative pointer={(0, 3mm)}]{\phantom{\flag{cz}}};
+}
+\newcommand\dummyx{
+    \node[white,ellipse callout,draw=white, callout relative pointer={(0, 3mm)}]{\phantom{J}};
+}
+\newcommand\bbdef{\useasboundingbox (0,0) -- (1mm, 1mm);}
+\newcommand\flag[1]{\includegraphics[height=0.9em]{flags/#1}}
+\newcommand\colr[1]{\textcolor{#1}\faCircle}
+
+\newcommand\colorizebox[2]{{\smash{\colorbox{#1}{#2\vphantom{Ýy}}}\vphantom{1}}}
+\newcommand\colorize[8]{{\fboxsep=0pt\colorizebox{red!30!white}{#1#2}\colorizebox{green!30!white}{#3#4}\colorizebox{blue!30!white}{#5#6}#7#8}}
+
+\begin{frame}[fragile]
+    \tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        \dummyt; \\
+        \node[white]{0};
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[ta3aluminium,draw=black] {00000000}; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    \tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        & \stor{34}; \\
+        \node[white]{0};
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[draw=black] {00100010}; &
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[ta3aluminium,draw=black] {00000000}; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    \tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        & \stor{34}; & \stor{'P'}; \\
+        \node[white]{0};
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[draw=black] {00100010}; &
+        \node[draw=black] {01010000}; &
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[ta3aluminium,draw=black] {00000000}; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    \tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        & \stor{34}; & \stor{'P'}; & \stor{\includegraphics[height=0.9em]{flags/cz}}; \\
+        \node[white]{0};
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[draw=black] {00100010}; &
+        \node[draw=black] {01010000}; &
+        \node[draw=black] {00101110}; &
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[ta3aluminium,draw=black] {00000000}; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    \tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        & \stor{34}; & \stor{'P'}; & \stor{\includegraphics[height=0.9em]{flags/cz}}; & 
+        \stor{{\textcolor{yellow}\faCircle}};
+        \\
+        \node[white]{0};
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[draw=black] {00100010}; &
+        \node[draw=black] {01010000}; &
+        \node[draw=black] {00101110}; &
+        \node[draw=black] {\colorize 11110011}; &
+        \node[ta3aluminium,draw=black] {00000000}; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+      };
+      \bbdef
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    \tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+     \bbdef
+     \matrix {
+        & \stor{34}; & \stor{'P'}; & \stor{\includegraphics[height=0.9em]{flags/cz}}; & 
+        \stor{{\textcolor{yellow}\faCircle}};
+        \\
+        \node[white]{0};
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[draw=black] {00100010}; &
+        \node[draw=black] {01010000}; &
+        \node[draw=black] {00101110}; &
+        \node[draw=black] {11110011}; &
+        \node[ta3aluminium,draw=black] {00000000}; \\
+        \dummyt; & \load{34}; & \load{80}; & \load{46}; & \load{60}; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        & \stor{34}; & \stor{'P'}; & \stor{\includegraphics[height=0.9em]{flags/cz}}; & 
+        \stor{{\textcolor{yellow}\faCircle}};
+        \\
+        \node[white]{0};
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[draw=black] {00100010}; &
+        \node[draw=black] {01010000}; &
+        \node[draw=black] {00101110}; &
+        \node[draw=black] {11110011}; &
+        \node[ta3aluminium,draw=black] {00000000}; \\
+        \dummyt; & \load{34}; & \load{80}; & \load{46}; & \load{60}; \\
+        \dummyt; & \load{'\faArrowsH'}; & \load{'P'}; & \load{'.'}; & \load{'<'}; \\
+        \dummyt; \\
+        \dummyt; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        & \stor{34}; & \stor{'P'}; & \stor{\flag{cz}}; & 
+        \stor{{\textcolor{yellow}\faCircle}};
+        \\
+        \node[white]{0};
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[draw=black] {00100010}; &
+        \node[draw=black] {01010000}; &
+        \node[draw=black] {00101110}; &
+        \node[draw=black] {11110011}; &
+        \node[ta3aluminium,draw=black] {00000000}; \\
+        \dummyt; & \load{34}; & \load{80}; & \load{46}; & \load{60}; \\
+        \dummyt; & \load{'\faArrowsH'}; & \load{'P'}; & \load{'.'}; & \load{'<'}; \\
+        \dummyt; & \load{\flag{cv}}; & \load{\flag{ir}}; & \load{\flag{cz}}; & \load{\flag{fr}}; \\
+        \dummyt; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\definecolor{sampledataa}{rgb}{0,.6,0}
+\definecolor{sampledatab}{rgb}{.6,.6,0}
+\definecolor{sampledatac}{rgb}{.6,1,0}
+
+%\definecolor{sampledataa}{rgb}{0.142, 0,     0.666}
+%\definecolor{sampledatab}{rgb}{0.285, 0.571, 0}
+%\definecolor{sampledatac}{rgb}{0.142, 0.428, 0.666}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        & \stor{34}; & \stor{'P'}; & \stor{\flag{cz}}; & 
+        \stor{\colr{yellow}};
+        \\
+        \node[white]{0};
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[draw=black] {\colorize 00100010}; &
+        \node[draw=black] {\colorize 01010000}; &
+        \node[draw=black] {\colorize 00101110}; &
+        \node[draw=black] {\colorize 11110011}; &
+        \node[ta3aluminium,draw=black] {00000000}; \\
+        \dummyt; & \load{34}; & \load{80}; & \load{46}; & \load{60}; \\
+        \dummyt; & \load{'\faArrowsH'}; & \load{'P'}; & \load{'.'}; & \load{'<'}; \\
+        \dummyt; & \load{\flag{cv}}; & \load{\flag{ir}}; & \load{\flag{cz}}; & \load{\flag{fr}}; \\
+        \dummyt; & \load{\colr{sampledataa}}; & \load{\colr{sampledatab}}; & \load{\colr{sampledatac}}; & \load{\colr{yellow}}; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    \tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+     \bbdef
+     \matrix {
+        & \stor{34}; & \stor{'P'}; & \stor{\includegraphics[height=0.9em]{flags/cz}}; & 
+        \stor{{\textcolor{yellow}\faCircle}};
+        \\
+        \node[white]{0};
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[draw=black] {00100010}; &
+        \node[draw=black] {01010000}; &
+        \node[draw=black] {00101110}; &
+        \node[draw=black] {11110011}; &
+        \node[ta3aluminium,draw=black] {00000000}; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+        \dummyt; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\bignumber[1]{{\fontsize{3.7pt}{4.4pt}\selectfont #1}}
+\newcommand\straddr{\bignumber{\parbox[t]{1.65cm}{…111111 10000010 10010010 \\ 10100000 01000101 10100000}}}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        \node[white]{11-18}; & \node[white]{19}; & \node{20}; & \node{21}; & \node{22};  & \node{23}; & \node[white]{24}; \\
+        \node[draw=white,white] (strstart) {\straddr}; \draw (strstart.north west) -- (strstart.north east) -- (strstart.south east) -- (strstart.south west); &
+        \node[ta3aluminium,draw=black] {00000004}; &
+        \node[draw=black] {01000001}; &
+        \node[draw=black] {01101000}; &
+        \node[draw=black] {00111100}; &
+        \node[draw=black] {01101111}; &
+        \node[ta3aluminium,draw=black] {00000000}; &
+        \node[white] (endnode) {000}; \draw (endnode.north east) -- (endnode.north west) -- (endnode.south west) -- (endnode.south east); \\
+         && \load{65}; & \load{104}; & \load{111}; & \load{106}; \\
+         && \load{'A'}; & \load{'h'}; & \load{'o'}; & \load{'j'}; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        \node[white]{11-18}; & \node[white]{19}; & \node{20}; & \node{21}; & \node{22};  & \node{23}; & \node{24}; \\
+        \node[draw=white,white] (strstart) {\straddr}; \draw (strstart.north west) -- (strstart.north east) -- (strstart.south east) -- (strstart.south west); &
+        \node[ta3aluminium,draw=black] {00000004}; &
+        \node[draw=black] {01000001}; &
+        \node[draw=black] {01101000}; &
+        \node[draw=black] {00111100}; &
+        \node[draw=black] {01101111}; &
+        \node[draw=black] {00000000}; &
+        \node[white] (endnode) {000}; \draw (endnode.north east) -- (endnode.north west) -- (endnode.south west) -- (endnode.south east); \\
+         && \load{65}; & \load{104}; & \load{111}; & \load{106}; & \load{0}; \\
+         && \load{'A'}; & \load{'h'}; & \load{'o'}; & \load{'j'}; & \node{konec}; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        \node[white]{11-18}; & \node{19}; & \node{20}; & \node{21}; & \node{22};  & \node{23}; & \node{24}; \\
+        \node[draw=white,white] (strstart) {\straddr}; \draw (strstart.north west) -- (strstart.north east) -- (strstart.south east) -- (strstart.south west); &
+        \node[draw=black] {00000004}; &
+        \node[draw=black] {01000001}; &
+        \node[draw=black] {01101000}; &
+        \node[draw=black] {00111100}; &
+        \node[draw=black] {01101111}; &
+        \node[draw=black] {00000000}; &
+        \node[white] (endnode) {000}; \draw (endnode.north east) -- (endnode.north west) -- (endnode.south west) -- (endnode.south east); \\
+         & \load{4}; & \load{65}; & \load{104}; & \load{111}; & \load{106}; & \load{0}; \\
+         & \node{délka}; & \load{'A'}; & \load{'h'}; & \load{'o'}; & \load{'j'}; & \node{konec}; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix {
+        \node[white]{11-18}; & \node{19}; & \node{20}; & \node{21}; & \node{22};  & \node{23}; & \node{24}; \\
+        \node[draw=white,white] (strstart) {\straddr}; \draw (strstart.north west) -- (strstart.north east) -- (strstart.south east) -- (strstart.south west); &
+        \node[draw=black] {00000004}; &
+        \node[draw=black] {01000001}; &
+        \node[draw=black] {01101000}; &
+        \node[draw=black] {00111100}; &
+        \node[draw=black] {01101111}; &
+        \node[draw=black] {00000000}; &
+        \node[white] (endnode) {000}; \draw (endnode.north east) -- (endnode.north west) -- (endnode.south west) -- (endnode.south east); \\
+         & \load{4}; & \load{65}; & \load{104}; & \load{111}; & \load{106}; & \load{0}; \\
+        \load{\texttt{str}} & \node{délka}; & \load{'A'}; & \load{'h'}; & \load{'o'}; & \load{'j'}; & \node{konec}; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix[use as bounding box] {
+        \node{11-18}; & \node{19}; & \node{20}; & \node{21}; & \node{22};  & \node{23}; & \node{24}; \\
+        \node[draw=white] (strstart) {\straddr}; \draw (strstart.north west) -- (strstart.north east) -- (strstart.south east) -- (strstart.south west); &
+        \node[draw=black] {00000004}; &
+        \node[draw=black] {01000001}; &
+        \node[draw=black] {01101000}; &
+        \node[draw=black] {00111100}; &
+        \node[draw=black] {01101111}; &
+        \node[draw=black] {00000000}; &
+        \node[white] (endnode) {000}; \draw (endnode.north east) -- (endnode.north west) -- (endnode.south west) -- (endnode.south east); \\
+        \load{\bignumber{140198782453152}} & \load{4}; & \load{65}; & \load{104}; & \load{111}; & \load{106}; & \load{0}; \\
+        \load{\texttt{str}} & \node{délka}; & \load{'A'}; & \load{'h'}; & \load{'o'}; & \load{'j'}; & \node{konec}; \\
+      };
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}
+      \bbdef
+      \matrix[use as bounding box] {
+        \node{11-18}; & \node{19}; & \node{20}; & \node{21}; & \node{22};  & \node{23}; & \node{24}; \\
+        \node[draw=white] (strstart) {\straddr}; \draw (strstart.north west) -- (strstart.north east) -- (strstart.south east) -- (strstart.south west); &
+        \node[draw=black] {00000004}; &
+        \node[draw=black] {01000001}; &
+        \node[draw=black] {01101000}; &
+        \node[draw=black] {00111100}; &
+        \node[draw=black] {01101111}; &
+        \node[draw=black] {00000000}; &
+        \node[white] (endnode) {000}; \draw (endnode.north east) -- (endnode.north west) -- (endnode.south west) -- (endnode.south east); \\
+        \load{\bignumber{140198782453152}} & \load{4}; & \load{65}; & \load{104}; & \load{111}; & \load{106}; & \load{0}; \\
+        \load{\texttt{str}} & \node{délka}; & \load{'A'}; & \load{'h'}; & \load{'o'}; & \load{'j'}; & \node{konec}; \\
+      };
+
+      \matrix[overlay] at (0, -3cm) {
+        & \node{\bignumber{140198782453152}}; & \node{\bignumber{140198782453153}}; & \node{\bignumber{140198782453154}}; & \node{\bignumber{...}};  \\
+        \node[draw=white,white] (strstarta) {000}; \draw (strstarta.north west) -- (strstarta.north east) -- (strstarta.south east) -- (strstarta.south west); &
+        \node[draw=black] (typestart) {10011010}; &
+        \node[ta3aluminium,draw=black] {11101100}; &
+        \node[ta3aluminium,draw=black] {11001111}; &
+        \node[white,draw=black] (ovl) {11001100}; \node at (ovl.center) {...}; &
+        \node[ta3aluminium,draw=black] {11011010}; &
+        \node[ta3aluminium,draw=black] {11100011}; &
+        \node[ta3aluminium,draw=black] {10101101}; &
+        \node[white] (endnoded) {000}; \draw (endnoded.north east) -- (endnoded.north west) -- (endnoded.south west) -- (endnoded.south east); \\
+        % \load{154} & \load{236}; & \load{207}; & \load{204}; & \load{218}; & \load{227}; & \load{173}; \\
+        & \load{\texttt{type}} & \node {...}; & \node {...}; & \node {}; & \load {+}; & \node {...}; \\
+      };
+      \draw[thick,overlay] (strstart.south west) edge[bend right=15,->] (typestart.north west);
+    \end{tikzpicture}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\ld[1]{
+    \node[draw opacity=0,minimum size=1mm] {#1};
+}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+
+      \matrix {
+        \ld{A} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{B} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{C} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{D} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{F} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{G} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{H} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+&\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+      };
+      \node[align=left,draw opacity=0,white,below right] at (5cm, 7cm)
+         {A0: "Ahoj"};
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+
+      \matrix {
+        \ld{A} & \node {str}; & \node {4}; & \node {'A'}; & \node {'h'}; & \node {'o'}; & \node {'j'}; & \node {\faRemove}; & \node {}; \\
+        \ld{B} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{C} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{D} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{F} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{G} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{H} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+&\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+      };
+      \node[align=left,draw opacity=0,below right] at (5cm, 7cm)
+         {A0: "Ahoj"};
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    {}\tiny
+
+    \leftskip-0.8in
+    \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+
+      \matrix {
+        \ld{A} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{B} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{C} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{D} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{F} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{G} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+        \ld{H} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+&\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+      };
+      \node[align=left,draw opacity=0,white,below right] at (5cm, 7cm)
+         {A0: "Ahoj"};
+    \end{tikzpicture}
+\end{frame}
+
+% % % 
+% % % \begin{frame}[fragile]
+% % %     {}\tiny
+% % % 
+% % %     \leftskip-0.8in
+% % %     \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+% % % 
+% % %       \matrix {
+% % %         \ld{A} & \node {\textit{G0}}; & \node {4}; & \node {'A'}; & \node {'h'}; & \node {'o'}; & \node {'j'}; & \node {\faRemove}; & \node {}; \\
+% % %         \ld{B} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+% % %         \ld{C} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+% % %         \ld{D} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+% % %         \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+% % %         \ld{F} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+% % %         \ld{G} & \node {\textit{H0}}; & \node {str}; & \node {...}; & \node {...}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+% % %         \ld{H} & \node {\textit{H0}}; & \node {type}; & \node {...}; & \node {...}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+% % %         &\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+% % %       };
+% % %     \end{tikzpicture}
+% % % \end{frame}
+
+% \begin{frame}[fragile]
+%     {}\tiny
+% 
+%     \leftskip-0.8in
+%     \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+% 
+%       \matrix {
+%         \ld{A} & \node {str}; & \node {4}; & \node {'A'}; & \node {'h'}; & \node {'o'}; & \node {'j'}; & \node {\faRemove}; & \node {}; \\
+%         \ld{B} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{C} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{D} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{F} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{G} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{H} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         &\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+%       };
+%       \node[align=left,draw opacity=0,below right,minimum size=3cm] at (4cm, 7cm)
+%         {A0: "ahoj"};
+%     \end{tikzpicture}
+% \end{frame}
+% 
+% \begin{frame}[fragile]
+%     {}\tiny
+% 
+%     \leftskip-0.8in
+%     \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+% 
+%       \matrix {
+%         \ld{A} & \node {str}; & \node {4}; & \node {'A'}; & \node {'h'}; & \node {'o'}; & \node {'j'}; & \node {\faRemove}; & \node {}; \\
+%         \ld{B} & \node {int}; & \node {1}; & \node {0}; & \node {}; & \node {int}; & \node {1}; & \node {1}; & \node {}; \\
+%         \ld{C} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{D} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{F} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{G} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{H} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         &\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+%       };
+%       \node[align=left,draw opacity=0,below right,minimum size=3cm] at (4cm, 7cm)
+%         {A0: "ahoj" \\ B0: 0 \\ B4: 1};
+%     \end{tikzpicture}
+% \end{frame}
+% 
+% \begin{frame}[fragile]
+%     {}\tiny
+% 
+%     \leftskip-0.8in
+%     \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+% 
+%       \matrix {
+%         \ld{A} & \node {str}; & \node {4}; & \node {'A'}; & \node {'h'}; & \node {'o'}; & \node {'j'}; & \node {\faRemove}; & \node {}; \\
+%         \ld{B} & \node {int}; & \node {1}; & \node {0}; & \node {}; & \node {int}; & \node {1}; & \node {1}; & \node {}; \\
+%         \ld{C} & \node {tupl}; & \node {2}; & \node {\textit{B0}}; & \node {\textit{B4}}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{D} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{F} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{G} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{H} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         &\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+%       };
+%       \node[align=left,draw opacity=0,below right,minimum size=3cm] at (4cm, 7cm)
+%         {A0: "ahoj" \\ B0: 0 \\ B4: 1 \\ C0: (0, 1)};
+%     \end{tikzpicture}
+% \end{frame}
+% 
+% \begin{frame}[fragile]
+%     {}\tiny
+% 
+%     \leftskip-0.8in
+%     \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+% 
+%       \matrix {
+%         \ld{A} & \node {str}; & \node {4}; & \node {'A'}; & \node {'h'}; & \node {'o'}; & \node {'j'}; & \node {\faRemove}; & \node {}; \\
+%         \ld{B} & \node {int}; & \node {1}; & \node {0}; & \node {}; & \node {int}; & \node {1}; & \node {1}; & \node {}; \\
+%         \ld{C} & \node {tupl}; & \node {2}; & \node {\textit{B0}}; & \node {\textit{B4}}; & \node {}; & \node {int}; & \node {1}; & \node {2}; \\
+%         \ld{D} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{F} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{G} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{H} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         &\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+%       };
+%       \node[align=left,draw opacity=0,below right,minimum size=3cm] at (4cm, 7cm)
+%         {A0: "ahoj" \\ B0: 0 \\ B4: 1 \\ C0: (0, 1) \\ C5: 2};
+%     \end{tikzpicture}
+% \end{frame}
+% 
+% \begin{frame}[fragile]
+%     {}\tiny
+% 
+%     \leftskip-0.8in
+%     \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+% 
+%       \matrix {
+%         \ld{A} & \node {str}; & \node {4}; & \node {'A'}; & \node {'h'}; & \node {'o'}; & \node {'j'}; & \node {\faRemove}; & \node {}; \\
+%         \ld{B} & \node {int}; & \node {1}; & \node {0}; & \node {}; & \node {int}; & \node {1}; & \node {1}; & \node {}; \\
+%         \ld{C} & \node {tupl}; & \node {2}; & \node {\textit{B0}}; & \node {\textit{B4}}; & \node {}; & \node {int}; & \node {1}; & \node {2}; \\
+%         \ld{D} & \node {lst}; & \node {3}; & \node {\textit{E4}}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {\textit{B0}}; & \node {\textit{B4}}; & \node {\textit{C5}}; & \node {\faRemove}; \\
+%         \ld{F} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{G} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{H} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         &\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+%       };
+%       \node[align=left,draw opacity=0,below right,minimum size=3cm] at (4cm, 7cm)
+%         {A0: "ahoj" \\ B0: 0 \\ B4: 1 \\ C0: (0, 1) \\ C5: 2 \\ D0: [0, 1, 2]};
+%     \end{tikzpicture}
+% \end{frame}
+% 
+% \begin{frame}[fragile]
+%     {}\tiny
+% 
+%     \leftskip-0.8in
+%     \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+% 
+%       \matrix {
+%         \ld{A} & \node {str}; & \node {4}; & \node {'A'}; & \node {'h'}; & \node {'o'}; & \node {'j'}; & \node {\faRemove}; & \node {}; \\
+%         \ld{B} & \node {int}; & \node {1}; & \node {0}; & \node {}; & \node {int}; & \node {1}; & \node {1}; & \node {}; \\
+%         \ld{C} & \node {tupl}; & \node {2}; & \node {\textit{B0}}; & \node {\textit{B4}}; & \node {}; & \node {int}; & \node {1}; & \node {2}; \\
+%         \ld{D} & \node {lst}; & \node {4}; & \node {\textit{F1}}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {{\textcolor{ta3aluminium}{\textit B0}}}; & \node {{\textcolor{ta3aluminium}{\textit B4}}}; & \node {{\textcolor{ta3aluminium}{\textit C5}}}; & \node {{\textcolor{ta3aluminium}{\faRemove}}}; \\
+%         \ld{F} & \node {}; & \node {\textit{B0}}; & \node {\textit{B4}}; & \node {\textit{C5}}; & \node {\textit{B0}}; & \node {\faRemove}; & \node {}; & \node {}; \\
+%         \ld{G} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{H} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         &\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+%       };
+%       \node[align=left,draw opacity=0,below right,minimum size=3cm] at (4cm, 7cm)
+%         {A0: "ahoj" \\ B0: 0 \\ B4: 1 \\ C0: (0, 1) \\ C5: 2 \\ D0: [0,1,2,0]};
+%     \end{tikzpicture}
+% \end{frame}
+% 
+% \begin{frame}[fragile]
+%     {}\tiny
+% 
+%     \leftskip-0.8in
+%     \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+% 
+%       \matrix {
+%         \ld{A} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{B} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{C} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{D} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{F} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{G} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{H} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         &\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+%       };
+%     \end{tikzpicture}
+% \end{frame}
+% 
+% \begin{frame}[fragile]
+%     {}\tiny
+% 
+%     \leftskip-0.8in
+%     \begin{tikzpicture}[every node/.style={minimum size=1cm,draw,anchor=base,text height=.8em,text depth=.2em}]
+% 
+%       \matrix {
+%         \ld{A} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{B} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{C} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{D} & \node {dict}; & \node {4}; & \node {8}; & \node {\textit{F0}}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{E} & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; & \node {}; \\
+%         \ld{F} & \node (s) {0}; & \node {1}; & \node {2}; & \node {}; & \node {}; & \node {17}; & \node {}; & \node {}; \\
+%         \ld{G} & \node {→ 0}; & \node {→ 1}; & \node {→ 2}; & \node {}; & \node {}; & \node {→ 17}; & \node {}; & \node {}; \\
+%         \ld{H} & \node {→ 'a'}; & \node {→ 'b'}; & \node {→ 'c'}; & \node {}; & \node {}; & \node {→ 'd'}; & \node {}; & \node (e) {}; \\
+%         &\ld{0}&\ld{1}&\ld{2}&\ld{3}&\ld{4}&\ld{5}&\ld{6}&\ld{7}\\
+%       };
+%       \node[align=left,draw opacity=0,below right,minimum size=3cm] at (4cm, 7cm)
+%         {D0: \{ \\~~0: 'a', \\ ~~1: 'b',\\ ~~2: 'c', \\ ~~17: 'd'\}};
+%       \path[draw opacity=0,fill opacity=0.2,fill=black] (s.north west) rectangle (e.south east);
+%     \end{tikzpicture}
+% \end{frame}
+% 
+% \frame{
+% 
+%     \bigskip\bigskip
+%     \bigskip\bigskip
+%     \bigskip\bigskip
+% 
+%     {\huge ?}
+% 
+%     \bigskip\bigskip
+%     \bigskip
+% 
+%     {\tiny
+%     Petr Viktorin\\[10pt]%
+%     \href{http://encukou.cz}{@\rd{1}{encukou}.cz}\\%
+%     \href{mailto:encukou@gmail.com}{\rd{1}{encukou}@gmail.com}\\%
+%     \href{http://twitter.com/encukou}{@\rd{1}{encukou}}\\%
+%     \href{http://github.com/encukou}{github.com/\rd{1}{encukou}}\\%
+%     \sk
+%     \tx{1}{Licence: \\ Creative Commons Attribution-ShareAlike 4.0 \url{http://creativecommons.org/licenses/by-sa/4.0/}}\\
+%     }
+% 
+% }
+
+% \frame{
+%     \small
+%     \rd{1}{Zdroje} \& odkazy\\[0.25cm]
+%     \bigskip\bigskip
+%     \tiny
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\bigskip
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\tx{1}{\url{}}\\[0.25cm]
+%     %\tx{1}{\url{}}\\[0.25cm]
+% }
+
+\end{center}
+\end{document}
+

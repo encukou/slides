@@ -1,0 +1,259 @@
+Asi jste slyšeli, že v počítači jsou jen jedničky a nuly.
+Je to pravda? Co to přesně znamená?
+
+Dnešní počítače komunikují elektrickými signály: na určitém místě – „nožičce”
+procesoru, drátku v USB kabelu – může buď nebýt napětí vůči zemi, nebo být.
+Dvě možnosti, které rozlišují mezi dvěma možnými stavy – odpovídají na
+zjišťovací otázku: ano, nebo ne.
+Ony dvě možnosti nemusí být nutně různé úrovně napětí: stejnou informaci jde
+zapsat na děrnou pásku (na určitém místě je díra nebo není díra),
+magnetické diskety (určité místo je zmagnetizováno jedním nebo druhým směrem),
+nebo optické médium (určité místo odráží světlo nebo neodráží).
+Stejně jako můžu stejný text napsat na papír nebo vytesat do kamene,
+význam nul a jedniček nezávisí na „materiálu”, na tom, mezi jakými možnostmi
+si vybírám, když je chci zaznamenat.
+Význam závisí na tom, jakou otázku pokládám.
+
+    Má se rozsvítit světýlko?
+    Žiješ?
+    Mám koupit jablka?
+    Do nebíčka, nebo do peklíčka?
+    Máš mě ráda?
+    Bude zítra pršet?
+
+Samozřejmě, ne na všechny otázky se dá odpovědět jen „ano” nebo „ne”.
+Někdy na takovou zjišťovací otázku člověk odpoví „nevím”, nebo „na 30% ne”,
+nebo dokonce „myslíš tady v Brně?”
+Programátorům známá nutnost všechno přesně specifikovat a počítat se všemi
+možnostmi holt začíná už na téhle úrovni.
+Jak to udělat, když chceme počítat s více možnostmi?
+Využijeme toho, že nul a jedniček je víc, a zeptáme se na víc otázek.
+
+    Umíš odpovědět „ano” nebo „ne” na otázku „Bude zítra pršet?”?
+
+    ano – Bude zítra pršet?
+    ne – Aha... a je to tím že to nevíš přesně?
+
+U té druhé možnosti pak začnou otázky připomínat spíš detektivní hru,
+jako Černé historky, kdy je cíl vymyslet správné otázky, na které se dá
+odpovědět jen „ano” nebo „ne”.
+
+Existuje jiná taková hra: myslím číslo, hádej jaké to je. Po každém pokusu
+ti řeknu, jestli hádáš moc nízko, nebo moc vysoko.
+
+Taková hra se dá použít na zodpovězení zajímavějších otázek než ano/ne:
+funguje pro jakákoliv čísla. Třeba:
+
+    A: Kolik je mi let?
+
+Tahle hra se dá hrát tak, že hádáte postupně – je ti 1 rok? 2 roky? 3 roky?
+– ale tak by to trvalo moc dlouho.
+Efektivnější postup je – no, efektivnější postup je se na mě podívat
+a hádat podle toho, ale kdybych se zeptal mailem a vy o mě nic nevděli, tak
+je efektivnější se napřed zeptat zhruba na 50 let, čímž se zbavím půlky možných
+odpovědí – buď od 0 do 50, nebo od 50 nahoru.
+
+    B: je ti víc než 50?
+    A: ne
+
+A další otázkou zase rozdělím zbylé možnosti na dvě půlky, a jedné půlky
+se zbavím, a tak dál.
+
+    B: je ti víc než 25? A: ano
+    B: je ti víc než 35? A: ne
+    B: je ti víc než 30? A: ne
+    B: je ti víc než 27? A: ano
+    B: je ti víc než 29? A: ne
+    B: je ti víc než 28? A: ano
+
+V „opravdové” hře jsou tři možné odpovědi – „víc”, „míň”, a „uhodl jsi!”,
+takže by hra skončila u 29. Ve světě černobílých odpovědí musíme hádat dál.
+
+Na téhle strategii je zajímavé, že každá další odpověď celkem drasticky
+zvyšuje počet možností, které nakonec můžou vyjít: s jednou otázkou máme
+dvě možnosti, se dvěma otázkami už čtyři, tři otázky nám dají osm možností,
+čtyři 16, pět 23, šest 64, a sedm už 128.
+Počet možností je vždycky mocnina dvojky.
+
+Na zjištění věku člověka nám tedy stačí sedm otázek.
+
+Další co je na této strategii zajímavé je, že je docela nudná. Vymýšlení
+otázek není kreativní záležitost jako u Černých historek, ale otázka
+celkem jednoduché matematiky. Na stejné otázky přijde každý, kdo se touhe
+strategií řídí – takže samotné pokládání otázek je vlastně zbytečné.
+Hra se dá hrát i takto:
+
+    A: Kolik mi je let?   ne ne ano ano ano ne ano
+    B: ... aha.
+
+Existuje i jednodušší způsob jak takovou informaci „přečíst” než vymýšlet
+otázky. Každá odpověď má svoji „hodnotu”, vždycky dvakrát vyšší než ta
+následující, jsou to tedy mocniny dvojky.
+Začínáme od nuly, a každé „ano” znamená přičíst danou hodnotu:
+
+    64 - ne
+    32 - ne
+    16 - ano   16
+     8 - ano    8
+     4 - ano    4
+     2 - ne
+     1 - ano    1
+              ----
+               29
+
+A to je základ takzvané dvojkové soustavy. Když počítač chce zjistit informaci,
+kde je 128 možností odpovědi – tedy třeba číslo od 0 do 127 – tak se ve
+výsledku zeptá na sedm otázek, kde je každá odpověď ano nebo ne: nula
+nebo jednička.
+Každé takové odpovědi ano/ne se říká „bit”.
+
+A nemusíme se omezit jen na čísla, i když ty jsou takhle kódované asi
+nejjednodušeji.
+Můžeme různé kombinace bitů přiřadit písmenům:
+
+    0 = A
+    1 = B
+    ...
+    25 = Z
+
+A na zjištění písmena abecedy nám stačí 5 otázek – a ještě zbyde 7 pozic,
+26 až 31, třeba na zakódování mezery.
+
+Nebo se dají očíslovat, čili přiřadit kombinacím bitů, třeba barvy,
+úrovně hlasitosti, a tak dále.
+
+A protože procesor má víc než jednu „nožičku”, na které může nastavovat
+„nulové” nebo „jedničkové” napětí, a i vevnitř má víc „drátků”, „ptá” se
+vždycky na několik „otázek” najednou. Kolik je to otázek – tedy kolik „drátků”
+nebo „nožiček” potřebují na jedno číslo – je základní vlastnost každého
+procesoru, která se historicky zvyšovala:
+
+Staré osmibitové počítače se ptaly na 8 otázek – pracovaly s čísly od 0 do 255.
+
+Samozřemě mohly počítat i s většími čísly, ale musely je rozdělit:
+na zpracování většího čísla musely napřed zpracovat prvních osm bitů,
+potom druhých osm bitů, atd.
+
+Šestnáctibitové počítače pracovaly s čísly od 0 do 65535.
+Třicetidvoubitové počítače pracovaly s čísly od 0 do 4294967295.
+A dnešní 64-bitové počítače pracují s čísly od 0 do 18446744073709551615. To je
+18 triliónů.
+
+Všechno jsou to násobky osmi bitů, což je 1 byte, hodnota, která se
+z praktických i historických důvodů používá jako jednotka počítačové paměti.
+Taková paměť sestává z mnoha osmibitových „pozic”, kam lze nahrát data
+nebo je později číst.
+Aby se dalo určit, na kterou pozici zapisovat, nebo ze které číst, jsou
+očíslovány.
+Vezměme si zjednodušený model paměti, s pozicemi 0 až 7.
+Můžu si na pozici 1 nahrát svůj věk (29 = 00011101), na dvojku svoji
+oblíbenou barvu (žlutá = 00111100), na další dvě iniciály (P = 01010000,
+V = 01010110), a nakonec státní příslušnost (ČR = řekněme 00101110).
+
+     0          1          2          3          4          5          6          7
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+    | ........ | 00011101 | 00111100 | 01010000 | 01010110 | 00101110 | ........ | ........ |
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+
+Musím si ale pamatovat, co jsem kam uložil! Kdybych se teď snažil přečíst věk
+z pozice číslo jedna, vyšlo by mi, že mi je 60 let. A pořád přednáším!
+Stejně jako u jednotlivých ano/ne, význam každé hodnoty v paměti počítače
+závisí na tom, na co se ptáme, co s tou hodnotou děláme, jak ji interpretujeme.
+Vevnitř jsou opravdu jen jedničky a nuly.
+Jen správný úhel pohledu – správné zpracování – z nich může udělat smysluplná
+čísla, písmenka, nebo barvy.
+
+     0          1          2          3          4          5          6          7
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+    | ........ | 00011101 | 00111100 | 01010000 | 01010110 | 00101110 | ........ | ........ |
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+
+                        29         60         80         86         46
+                 sv.zelená      žlutá       rudá   sv.modrá   sv.žlutá
+                         ↔          ≤          P          V          .
+                  Kapverdy    Francie      Irsko Kazachstán         ČR
+
+Když potřebuji uložit delší informaci, jako text nebo obrázek, můžu využít
+toho, že jsou byty v paměti poskládané jeden za druhým.
+Třeba tady mám řetězec "Ahoj", který začíná na pozici číslo 3.
+Jednotlivé znaky jdou za sebou, a končí speciální hodnotou, nulou, která říká
+že dál řetězec nepokračuje:
+
+     0          1          2          3          4          5          6          7
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+    | ........ | ........ | ........ | 01000001 | 01101000 | 01101111 | 01101010 | 00000000 |
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+
+                                             65        104        111        106          0
+                                              A          h          o          j      konec
+
+Když chci takový řetězec vypsat na obrazovku, začnu na pozici 3, přečtu z ní
+'A', a vypíšu ho. Pak z pozice 4 načtu a vypíšu 'h', pak z 5 'o', z 6 'j', a
+z 7 přečtu nulu, tak dál nepokračuju.
+
+Když chci zjistit délku tohoto řetězce, začnu od začátku – třetí pozice – a pak
+hledám nulu a počítám, kolik znaků jsem mezitím prošel.
+A-H-O-J – čtyři.
+Tohle by u delších textů bylo docela pomalé, a proto si Python ukládá délku
+řetězců bokem: před samotné znaky řetězce:
+
+     0          1          2          3          4          5          6          7
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+    | ........ | ........ | 00000100 | 01000001 | 01101000 | 01101111 | 01101010 | 00000000 |
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+
+                                   4         65        104        111        106          0
+                                   ♦          A          h          o          j      konec
+                             (délka)    (znaky........)
+
+Teď se obejdeme bez té nuly na konci, ale Python ji tam nechává, aby takové
+řetězce mohly číst i knihovny, které délku neukládají.
+
+Tenhle způsob ukládání řetězců by byl celkem limitující: v osmi bitech se dá
+zakódovat číslo od 0 do 255, takže řetězce delší než 255 znaků by nešly uložit.
+Proto na délku Python používá většinou 8 bytů – což stačí na víc znaků než se
+vejde do paměti.
+
+Další nevýhoda je, že na každý znak máme jen 255 možností.
+Anglická abeceda se tam vejde v pohodě, česká koneckonců víceméně taky, ale
+když se chceme domluvit s Japoncem nebo použít emoji, přestává to stačit.
+Na zakódování jakéhokoli znaku by byly potřeba 4 byty.
+Ale to by bylo mrhání pamětí u spousty řetězců, kde se každý znak do jednoho
+bytu vejde – třeba u většiny názvů proměnných.
+A tak si Python ještě ukládá, kolik bytů potřebuje na jeden znak:
+
+
+     0          1          2          3          4          5          6          7
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+    | ........ | 00000001 | 00000100 | 01000001 | 01101000 | 01101111 | 01101010 | 00000000 |
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+
+                        1          4         65        104        111        106          0
+                        ☺          ♦          A          h          o          j      konec
+                (bytů/znak)    (délka)    (znaky........)
+
+     0          1          2          3          4          5          6          7
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+    | ........ | 00000010 | 00000010 | 00000000 | 01101010 | 00000001 | 01101111 | 00000000 |
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+
+                        2          2      ---- 72 ----          ---- 367 ----          ---- 0
+                        ☻          ☻            H                     ů                 konec
+                (bytů/znak)    (délka)    (znaky........)
+
+A pak je ještě jedna věc, kterou si Python u řetězců ukládá – vlastně si ji
+ukládá u úplně všech objektů.
+Je to typ, který kóduje, co všechny tyhle čísla znamenají, a co s nimi lze
+dělat.
+Typ je taky uložen jako číslo, jako každá hodnota, ale význam téhle hodnoty
+je docela speciální.
+
+     0          1          2          3          4          5          6          7
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+    | 10010010 | 00000001 | 00000100 | 01000001 | 01101000 | 01101111 | 01101010 | 00000000 |
+    +----------+----------+----------+----------+----------+----------+----------+----------+
+
+           146          1          4         65        104        111        106          0
+                        ☺          ♦          A          h          o          j      konec
+           str
+         (typ)  (bytů/znak)    (délka)    (znaky........)
