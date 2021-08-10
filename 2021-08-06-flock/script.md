@@ -42,40 +42,35 @@ and so on.
 When the data formats are specified, individual tools can be swapped around.
 `setuptools` becomes one of many choices, and better alternatives get
 a chance to overtake it.
-And `setuptools` itself can be broken into pieces that comminicate
-using well-defined protocols, making it easier to maintain it.
-
-One early win in reducing setuptools' scope is the installer:
-the independent `pip` is now more popular and much better maintained, and
-the `easy_install` command was removed from `setuptools` in January {2021}.
 
 And so, the command to build and install a Python project is no longer
 `setup.py install`.
-Most people use `pip install .`, but it's perfectly fine to run another tool
-that can read the appropriate metadata, install the necessary dependencies
+Most people should use `pip install .`, but it's perfectly fine to run another
+tool that can read the appropriate metadata, install the necessary dependencies
 and run project-specific build system, be it `setuptools`, `flit` or `cmake`.
 
-Fedora's old macros that call `setup.py`, need to be updated,
-so instead of `%py_build` and `%py3_setup`,
+Fedora now has such tools: instead of `%py_build` and `%py3_setup`,
+the old macros that call `setup.py`,
 you can use `%pyproject_build` and `%pyproject_install`.
 
 These are named after the new configuration file, `pyproject.toml`,
 but they fall back to `setuptools` if the file is missing.
 
-Unfortunately, there are some build systems that don't have the newly
+Unfortunately, there are some build systems that do not have the newly
 standardized hooks.
 If your package uses something else than `setuptools`, `flit` or `poetry`,
-we'll be glad to chat about it, but we might not end up with a converted
-specfile.
+we'll be glad to chat about it and see how we can move forward,
+but we might not end up with a refreshed specfile.
 
 
 ## Upstream metadata
 
-As we designed the new macros, we considered what a distro packager *does*.
-Our job as distro packagers is to *integrate software into
-a larger, cohesive system*.
+As we designed the new macros, we considered what a Fedora packager *does*.
 
-Sometimes that means changing the software a bit to fit the other
+Our job as distro packagers is to integrate software into
+a larger, cohesive system.
+
+Sometimes that means patching – changing the software a bit to fit the other
 parts of the distro;
 sometimes a bit of extra configuration is all that's needed.
 
@@ -91,24 +86,30 @@ As part of this system integration, packagers also:
   version numbers that can be compared uniformly,
   and descriptions that fit the distro's style.
 
-In addition, to actually get a piece of software built, they also:
+And to actually get a piece of software built, they also:
 
-* specify *build-time* and *run-time* dependencies,
+* specify build-time and run-time dependencies,
 * write down the commands to build and install software,
 
 The question is, how much of this actually adds value, and how much is
 repeating what upstream projects already do?
 
-Since the requirements of Python projects are now available in
-well-specified formats, there's no reason to repeat it in the spec file.
+[crossing off items from the lists:]
 
-Verifications – running tests – is not officially standardized,
-but the popular `tox` project aims *to automate and standardize testing
-in Python* – and allowing Fedora's use cases fits their mission.
+Since the requirements of Python projects are now available in
+well-specified formats, there's no reason to repeat itthem in the spec file.
 
 Version numbers are now also standardized.
 The mechanics of Python versions are a bit different from what RPM needs,
 but we can convert automatically and use RPM for dependencies.
+
+
+
+Verification – running tests – is not officially standardized,
+but the popular (`tox`)[https://tox.readthedocs.io/en/latest]
+project aims *to automate and standardize testing in Python* – and allowing
+Fedora's use cases fits their mission.
+So, we can automate this for most projects.
 
 Licence checks can't be automated, although there are some efforts in this area.
 Descriptions currently don't Fedora's unique style upstream,
@@ -117,32 +118,35 @@ But still, we can save a lot of the copying data around – and just use
 upstream metadata.
 
 Of course, sometimes the metadata needs to be adapted to Fedora,
-but like with the code itself:
-any patches are technical debt that should be presented upstream
-and eventually fixed there, if that's possible.
+but the metadata should be treated the same as the code itself:
+usually, with patches.
+Any patches are technical debt; they should be presented upstream
+and ideally eventually fixed there, if that's possible.
 
 Since we aim to not have metadata and dependencies in the spec file,
 and each project can use a different build system,
 finding *where* Requires & BuildRequires are listed can be inconvenient,
 especially if you're maintaining many packages.
-Still, a grep will usually answer your questions.
-Once you switch, you're not likely to go back.
+Still, a repoquery or grep will usually answer your questions.
+Once you switch, you're not likely to go back :)
 
 
 ## Names
 
 Now, names.
+
 Naming is hard.
 Python packages have four kinds of names, which you *should* keep as smimilar
 as possible, but sometimes it's not possible.
 
 They are:
-* the Fedora source package name (or component name, %{name}),
+
+[table from https://docs.fedoraproject.org/en-US/packaging-guidelines/Python/#_naming ]
+
+* the Fedora source package name (or component name),
 * the Fedora built RPM name,
 * the project name used on PyPI or by pip, and
-* the importable module name used in Python (a single package may have multiple importable modules).
-
-(table from https://docs.fedoraproject.org/en-US/packaging-guidelines/Python/#_naming )
+* the importable module name used in Python.
 
 Usually, the latter two are the same, and for the Fedora ones you add `python-`
 or `python3-` prefix, but you might run into complications.
@@ -177,6 +181,17 @@ Another new guideline has to do with tests:
 
 ## Let's go!
 
-And that's it 
+And that's it!
+If you're on the workshop, go ahead and show us your package or project.
 
+If you're watching this after the workshop, check out the links:
+
+* The new guidelines:
+  https://docs.fedoraproject.org/en-US/packaging-guidelines/Python/#_macro_reference
+* The *macro reference* in the new guidelines:
+* Fedora Change, with a "before & after" spec file example:
+  https://fedoraproject.org/wiki/Changes/PythonPackagingGuidelines202x
+
+.. and direct any wuestions to the [Python SIG mailing list](https://lists.fedoraproject.org/archives/list/python-devel@lists.fedoraproject.org/)
+or `#fedora-python` on Libera.chat.
 
