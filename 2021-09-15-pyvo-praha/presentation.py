@@ -59,6 +59,7 @@ class Matrix:
 
     def refresh(self):
         if self.pedigree:
+            print('ref', getattr(self, 'name', None))
             a, op, b = self.pedigree
             self._set_values(op(a.to_numpy(), b.to_numpy()))
         for d in self.descendants:
@@ -162,7 +163,7 @@ class Vector:
 
 class Scalar:
     adjusted = False
-    def __init__(self, value=None, pedigree=None):
+    def __init__(self, value=0, pedigree=None):
         self.descendants = weakref.WeakSet()
         if pedigree:
             op, *args = self.pedigree = pedigree
@@ -172,6 +173,7 @@ class Scalar:
                     arg.descendants.add(self)
         else:
             self.value = value
+        self.orig_value = value
 
     def refresh(self):
         if self.pedigree:
@@ -179,6 +181,7 @@ class Scalar:
             self.value = op(*(
                 a.value if isinstance(a, Scalar) else a for a in args
             ))
+            self.adjusted = False
         for d in self.descendants:
             d.refresh()
 
@@ -195,6 +198,15 @@ class Scalar:
     def adjust(self, d):
         self.value += d
         self.adjusted = True
+
+    def reset(self):
+        if self.value != self.orig_value and self.orig_value is not None:
+            self.value = self.orig_value
+        elif self.value != 0:
+            self.value = 0
+        else:
+            self.value = 1
+        self.adjusted = (self.value != self.orig_value)
 
     def __repr__(self):
         return str(self.value)
@@ -284,12 +296,13 @@ class _Draw:
         else:
             instructions.insert(0, entry)
 
-    def point(self, point, label='depends', **kwargs):
+    def point(self, *points, label='depends', **kwargs):
         if label == 'depends':
             label = labels_var.get()
-        self._draw(draw_point, point, **kwargs)
-        if label:
-            self._draw(draw_label, point, position=0, doit=label)
+        for point in points:
+            self._draw(draw_point, point, **kwargs)
+            if label:
+                self._draw(draw_label, point, position=0, doit=label)
 
     __call__ = point
 
@@ -417,6 +430,7 @@ class Presentation:
         self.draw_instructions = []
         self.operations = []
         self.presentation = 0, 0
+        self.mouse_pos = 0, 0
 
     def draw(self, window):
         def vert(point):
@@ -427,9 +441,10 @@ class Presentation:
             else:
                 z = 0
             if len(point) > 3:
-                x *= float(point[3])
-                y *= float(point[3])
-                z *= float(point[3])
+                p = float(point[3])
+                x /= p
+                y /= p
+                z /= p
             return x, y, z # * ZOOM, y * ZOOM, z * ZOOM
         pyglet.gl.glLoadIdentity()
         pyglet.gl.glTranslatef(window.width/2, window.height/2, 0)
@@ -478,6 +493,13 @@ class Presentation:
             y += operation.height
             if y > window.height:
                 operation.adjust(x, y - window.height, dy/50+dx/20)
+                break
+
+    def reset(self, window, x, y):
+        for operation in self.operations:
+            y += operation.height
+            if y > window.height:
+                operation.reset(x, y - window.height)
                 break
 
     def tick(self, dt):
@@ -535,7 +557,7 @@ def explain(thing, *args, is_print=False, **kwargs):
     if kwargs:
         return print(thing, *args, **kwargs)
     if args:
-        explain(' '.join(str(s) for s in (thing, *args)))
+        return explain(' '.join(str(s) for s in (thing, *args)))
     if not is_print:
         if isinstance(thing, Scalar):
             return operations_var.get().append(ScalarOperation(thing))
@@ -570,6 +592,9 @@ class TextOperation:
     def adjust(self, x, y, d):
         ...
 
+    def reset(self, x, y):
+        ...
+
 
 class ScalarOperation:
     def __init__(self, value):
@@ -594,6 +619,9 @@ class ScalarOperation:
 
     def adjust(self, x, y, d):
         self.value.adjust(d)
+
+    def reset(self, x, y):
+        self.value.reset()
 
 
 
@@ -756,6 +784,11 @@ class MatmulOperation:
         pyglet.gl.glTranslatef(0, -self.height, 0)
 
     def adjust(self, x, y, d):
+        self._adjust_or_reset(x, y, lambda e:e.adjust(d))
+    def reset(self, x, y):
+        self._adjust_or_reset(x, y, lambda e:e.reset())
+
+    def _adjust_or_reset(self, x, y, func):
         bracket_width, eq_width, number_width, line_height = self._sizes()
         x -= self._name_width
         x -= bracket_width * 2
@@ -767,13 +800,13 @@ class MatmulOperation:
                 0 <= ny < len(mat.values)
                 and 0 <= nx < len(mat.values[0])
             ):
-                mat.values[-int(ny)-1][int(nx)].adjust(d)
+                func(mat.values[-int(ny)-1][int(nx)])
 
         if isinstance(self.right, Vector):
             if y > len(self.result) * line_height:
                 x /= number_width
                 if x < len(self.right.values):
-                    self.right.values[int(x)].adjust(d)
+                    func(self.right.values[int(x)])
                 return
         elif self.right:
             if x < len(self.right.values[0]) * number_width:
@@ -806,6 +839,9 @@ class ErrorOperation:
             label.draw()
 
     def adjust(self, x, y, d):
+        ...
+
+    def reset(self, x, y):
         ...
 
 draw_labels = True
@@ -851,16 +887,19 @@ if __name__ == '__main__':
         pyglet.gl.glLoadIdentity()
         oper_fps_display.draw()
 
-    mouse_pos = 0, 0
-
     @oper_window.event
     def on_mouse_press(x, y, button, mod):
-        presentation.mouse_pos = x, y
+        y -= 10
+        if button == pyglet.window.mouse.LEFT:
+            presentation.mouse_pos = x, y
+        elif button == pyglet.window.mouse.RIGHT:
+            presentation.reset(oper_window, x, y)
 
     @oper_window.event
     def on_mouse_drag(x, y, dx, dy, button, mod):
         x, y = presentation.mouse_pos
-        presentation.adjust(oper_window, x, y, dx, dy)
+        if button == pyglet.window.mouse.LEFT:
+            presentation.adjust(oper_window, x, y, dx, dy)
 
     pyglet.clock.schedule_interval(presentation.tick, 1/30)
 

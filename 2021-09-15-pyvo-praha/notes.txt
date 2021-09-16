@@ -2,9 +2,11 @@ What is a matrix?
 It's a grid of numbers, with several interesting ways to rearrange and combine those numbers.
 Let's say I have a matrix like this:
 
-m = Array([[1, 0, 0],
-           [1, 2, 0],
-           [0, 0, 1]])
+m = Array([
+    [1, 1, 0],
+    [3,-1, 0],
+    [0, 0, 1],
+])
 
 I call my class Array instead of Matrix, because that's the name to use if you
 import `numpy.array`. Which you should, if you're not giving a custom demo.
@@ -65,8 +67,7 @@ points = (
 )
 for point in points:
     print(pt, m @ pt)
-    draw(pt)
-    draw(m @ pt)
+    draw(pt, m @ pt)
 
 Makes sense?
 

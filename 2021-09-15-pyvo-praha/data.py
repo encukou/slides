@@ -1,6 +1,15 @@
 from presentation import Vector
 from readstl import read_stl
 
+black = 0, 0, 0, 1
+gray = .75, .75, .75, 1
+red = 1, 0, 0, 1
+green = 0, 1, 0, 1
+blue = 0, 0, 1, 1
+yellow = 1, 1, 0, 1
+cyan = 1, 0, 1, 1
+magenta = 0, 1, 1, 1
+white = 1, 1, 1, 1
 
 face_points = (
     Vector([7, 7, 1]),
@@ -31,12 +40,12 @@ cube_lines = (
 
     (Vector([5, 5, -5, 1]), Vector([-5, 5, -5, 1])),
     (Vector([5, 5, -5, 1]), Vector([5, -5, -5, 1])),
-    (Vector([-5, 5, -5, 1]), Vector([-5, -5, -5, 1])),
+    (Vector([-5, -5, -5, 1]), Vector([-5, 5, -5, 1])),
     (Vector([5, -5, -5, 1]), Vector([-5, -5, -5, 1])),
 
     (Vector([5, 5, 5, 1]), Vector([5, 5, -5, 1])),
     (Vector([5, -5, 5, 1]), Vector([5, -5, -5, 1])),
-    (Vector([-5, 5, 5, 1]), Vector([-5, 5, -5, 1])),
+    (Vector([-5, 5, -5, 1]), Vector([-5, 5, 5, 1])),
     (Vector([-5, -5, 5, 1]), Vector([-5, -5, -5, 1])),
 )
 
