@@ -1,0 +1,145 @@
+What is a matrix?
+It's a grid of numbers, with several interesting ways to rearrange and combine those numbers.
+Let's say I have a matrix like this:
+
+m = Array([
+    [1, 1, 0],
+    [3,-1, 0],
+    [0, 0, 1],
+])
+
+I call my class Array instead of Matrix, because that's the name to use if you
+import `numpy.array`. Which you should, if you're not giving a custom demo.
+
+What can I do with a matrix? I can add a few together, or multiply them,
+or find determinants. I learned that in school, and it sure wasn't very
+interesting.
+
+So, let's make matrices interesting (hopefully).
+We'll do that by applying them to something you can draw: points!
+
+point = Vector([3, 2, 1])
+
+draw(point)
+
+Now, what does this point have?
+It has an x-coordinate, which tells us how much to the left from the 0 line the
+point is.
+It has an y-coordinate, which tells us how much up from the 0 line the point is.
+And then it has this one at the end. Pay no attention to the one for now,
+it's there to make the math work.
+
+One of the interesting point about matrices is that I can multiply
+a vector with a matrix, using an operation called the dot product, or
+matrix multiplication.
+In Python, it's spelled matrix `@` vector. The `@` is mATrix multiplication:
+
+print(m @ point)
+
+The result is a vector. Let's draw it!
+
+draw(m @ point)
+
+Now, how does this matrix multiplication work?
+
+Each line of the matrix corresponds to one number in the output.
+Each of the three numbers says how much the corresponding input number
+influences the result.
+[go through demo]
+
+Clear?
+
+Now, let's make a matrix that leaves the vector unchanged.
+For "x" output, we need one times the original "x", for "y" output, we
+need one original "y", and for the one, one original one.
+
+m = Array([[1, 0, 0],
+           [0, 1, 0],
+           [0, 0, 1]])
+
+No matter what vector you multiply this array with, it'll give you back the
+original vector.
+
+points = (
+    Vector([-3, 2, 1]),
+    Vector([3, -2, 1]),
+    Vector([0, 0, 1]),
+)
+for point in points:
+    print(pt, m @ pt)
+    draw(pt, m @ pt)
+
+Makes sense?
+
+    Let me show off a nifty feature of this demo: I can change the numbers
+    with my mouse to make the points move around... temporarily.
+    When I save the file, it all resets.
+
+Say I want to ad 2 to the y-coordinate of each of these vectors.
+How do I do that?
+I want to modify the y-coordinate, so that's the second row.
+I want to add 2, which is 2 times 1 -- I'll use the 1 at the end that all
+my vectors have. ... !
+
+    Let's reset, and do that again. With an arrow this time:
+
+    draw_arrow(pt, m @ pt)
+
+What if I want to move all of them to the right?
+I'll change the third number of the first row!
+
+The matrix lets me modify all the vectors at once.
+Let's add more points, to play around!
+
+So, what do the other numbers do?
+Can you tell me what happens when I change this one? [0,0]
+That lets me scale all the points along the X axis: the original X
+coordinate is multiplied by this amount.
+
+Where do I scale the other way? [1, 1]
+Does that make sense?
+What if I make it negative?
+
+    Let me show off a bit more of my demo tool: I can define a number,
+    use it in multiple places, and then change it everywhere at once.
+    Now I can zoom 
+
+OK.
+Let's look at the other numbers!
+What does this one do? [0,1]
+That *shears* in the X direction.
+That one shears in the Y direction.
+
+If I tweak them just right, and then zoom a bit, I can rotate the points.
+
+With a bit of math, you could find out the exact formula needed to rotate
+by a given angle: a "sin" there; a "cos" there.
+
+
+With this, I can only rotate around the origin; the [0,0] point.
+What if I wanted to rotate along something else?
+
+I could move the whole image so that the origin is what I want to rotate
+around.
+Then, I could rotate, using the rotation matrix.
+And finally, I could move picture back where I started!
+
+Doing it like this has a disadvantage.
+Calculating all these sums and prodicts takes a long time,
+especially if you have a lot of points.
+
+Fortunately, we can multiply matrices together:
+`m1 @ m2` gives me a matrix, which has the same effect on multiplication
+as multiplying the two individually.
+I don't know exacltly how this is computed, but the important thing is,
+I only have to do this once ... twice ... and then transform ALL the points
+using a single matrix.
+
+That's what your graphics card does when it gets a lot of points to transform:
+it computes one transformation matrix, and then applies it to all the points.
+
+- WHICH WAY IS UP?
+- 3D
+
+
+
