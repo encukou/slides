@@ -1,5 +1,3 @@
-https://www.flickr.com/photos/24402504@N05/8354302511
-https://www.flickr.com/photos/tirrell/111707059
 
 # Python in Fedora: Integrating a language ecosystem in a distro
 
@@ -66,7 +64,7 @@ helps other distros and language ecosystems as well.
 ---
 ---
 
-## Notes
+# Notes
 
 Python in Fedora: Integrating a language ecosystem in a distro
 
@@ -80,19 +78,37 @@ this is a specific account, but should be usable for anyone interested in:
 
 We are distro packagers: we integrate software into a cohesive whole.
 
-  * patching
-  * quality control
-  * handle user reports
-  * curate metadata
+We take software released by developers, and:
 
-  * specify how software is built
-    * dependencies
-    * build instructions/scripts
+  * (**patching**)
+    adapt it to the platform we're building,
+    so it works well with all the other parts;
+  * (**quality control**)
+    run the test suite, tests of dependent packages, and additional checks
+    to *ensure* everything works together;
+  * we **handle user reports**: these are often specific to the distro,
+    and even if not, users might not know who develops the software
+    and how to contact them;
+  * (**curate metadata**)
+    we provide consistent naming, descriptions and links to help users
+    find software
+  * (**licence checks**) we check licences so users know they can use,
+    modify and distribute the open-source software
 
-  * long-term maintenance
+  * We **specify how software is built**:
+    * we document **dependencies** and
+    * **build instructions** in machine-readable formats and scripts.
+      Anyone can rebuild the software to check our work or to extend it.
+
+  * And we can provide **long-term maintenance**, caring for old versions
+    or whole projects even after the authors move on.
+
+Fedora's a volunteer-driven project, so there are no guarantees on reaching
+those goals, but the same principles work with paid distros with contracts
+on all of that.
 
 
-cut:
+mostly cut:
 
     Fedora is a RPM-based distro.
     RPM is just a container format;
@@ -112,7 +128,7 @@ cut:
     ### PYTHON
 
     There are other talks in this conference about the long and varied history
-    of Python packaging, going back to FTP'ing tarballs (which was a pain, so the
+    of Python packaging, which goes back to FTP'ing tarballs (which was a pain, so the
     standard library contained most of what you needed), through the hegemony
     of Setuptools (and the failed idea of "eggs" - installing a single zip file),
     standardized installations and the Python Package Index, to the current
@@ -143,91 +159,215 @@ cut:
 
 ### DIFFERENCES
 
-* PyPI -- distributed
-  * free for all, published directly by developers
-  * simple to publish a package
-* Distro -- integrated
-  * everything should work together
-  * simple to use a package
+We are distro packagers: we integrate <ins>Python</ins> software into a cohesive whole.
+
+Python software is generally distributed through a repository
+called the *PythonPackage Index*, or PyPI.
+Like a distro, PyPI is a collection of packages, but there are significant
+differences between the two.
+
+
+* PyPI is *distributed*:
+  * It's free for all, software is published directly by developers.
+  * It's designed to make it simple to publish a package.
+* A Distro is *integrated*:
+  * Everything in it should work together;
+  * it includes a curated set of software.
+  * It's harder to maintain, but it's simpler to *use* a package from it.
 
 ---
 
-* PyPI -- one language ecosystem
-  * non-Python dependencies installed manually
-  * better handles Python-specific issues (venvs, noarch)
-* Distro -- covers all languages and packaging mechanisms
-  * no tight support
-  * better handling of general packaging issues (weak deps, dep solving,
-    builds correspond to source, license info, audit tools)
+* PyPI covers *one language ecosystem*:
+  * Non-Python dependencies installed manually or vendored – duplicated;
+  * and PyPI better handles Python-specific issues like virtual environments
+    or files that don't depend on the CPU architecture.
+* A Distro, on the other hand, covers all languages and packaging mechanisms:
+  * Cross-ecosystem dependencies are normal;
+  * general packaging issues are handled better: some features the Python
+    ecosystem recently added or still has in progress (weak deps, dep solving,
+    builds correspond to source, license info, audit tools, or
+    hand-over of packages whose maintainer went away).
 
 ---
 
-* PyPI -- cross-platform
-* Distro -- is one platform
+* PyPI is *cross-platform*;
+* a Distro is, obviously, one platform.
 
 ---
 
-* PyPI -- installs to "virtual environments"
-* Distro -- typically system-wide
-  * manual pages
-  * desktop "launcher" icons
-  * system-wide config (`/etc`)
+* PyPI packages can be installed into various environments;
+  usually you'll have several separate environments on a machine,
+  which encourages *pinning* specific versions of dependencies
+  and *vendoring* – copying a dependency into a project.
+* Distro packages are typically installed system-wide,
+  and must be compatible with everything else on the system.
+  Strict version pinning prevents updating a dependency
+  across the system, so we try to avoid that.
+  Also, vendoring is problematic for long-term support.
+  For example, applying security patches across all distro
+  versions and all vendored copies of a library is a major pain.
+  
+  (leave out mention of:
+    * manual pages
+    * desktop "launcher" icons
+    * system-wide config (`/etc`)
+    )
 
 ---
 
-* PyPI -- designed for virtual environments, pinning
-* Distro -- each package in one version, coordinated updates
+To summarize,
 
+* PyPI's audience is *developers*.
+  If you want to install a Python library, or a tool written in Python,
+  it's a great choice.
+  If you're a Python developer, we actually recomennd *not* using the
+  distro-packaged libraries for your work. We give you tools
+  to create a virtualenv and install into it from PyPI, and then
+  get out of your way.
+* Distros are targeted for *users*.
+  If you want to install an app, and don't care much about how it's being developed,
+  learning `pip` for Python, `npm` for JavaScript apps,
+  and Web downloads for browsers is suboptimal.
 
-### MAPPING THE TWO
+That makes it worth the time to repackage projects from PyPI as RPMs.
 
 We are distro packagers: we ~~integrate software into a cohesive whole.~~
 take stuff from PyPI and rebuild as RPM.
 
-Traditionally, this meant looking at the upstream package and transcribing
-the info into a RPM spec file.
+And the way we do that is changing.
+
+
+### PYTHON - TOOLS & STANDARDS
+
+There are other talks in this conference about the history
+of Python packaging, and its painful journey from the hegemony
+of a single packaging tool, `Setuptools`, to the current state (and/or future dream)
+of multiple tools interoperating via well-defined standards.
+
+Setuptools, which handles package creation, dependency solving, downloads,
+installation, runtime introspection and a dozen other tasks, is hard to
+maintain, but also hard to replace. That's why individual tasks are isolated
+and standardized, so they can be done by a variety of other tools: ones
+that are better at a single task.
+We have `build` for building, `installer` for installing, `importlib.metadata`
+for runtime introspection, `flit` or `poetry` for project maintenance,
+and `pip` as a generic frontend calling the other tools -- but any of these
+can be replaced by a different implementation.
+
+One such implementation is `pyproject-rpm-macros` – tools we're building to
+teach `RPMbuild` to understand the Python-specific standards.
+
+
+### MAPPING THE TWO
+
+Traditionally, packaging a Python project meant looking at the upstream package
+and transcribing the info into a RPM spec file.
 There were tools to help, but with no standards and everything
-defined by the labyrinthine `Setuptools` implementation, they were fragile
-and needed lots of hand-holding.
+defined only by the labyrinthine `Setuptools` implementation, tools had to rely
+on heuristics and guesswork. They needed lots of hand-holding.
 
 Now, with everything standardized, creating RPMs from Python projects
 can be automated like never before.
-The Python packaging ecosystem is explicitly built for multiple interoperating
-tools; *`rpmbuild` with `pyproject-rpm-macros`* is one of them.
+`pyproject-rpm-macros` follows standards; any guesswork that's still necessary
+is an omission or bug in the standards.
+We can fix Fedora's issue in the standards, so everyone else benefits as well.
 
 Automating the manual drudge leaves distro maintainers free to focus
-on tasks that really matter:
+on tasks that really matter. Rather than spend time
+transcribing vaguely specified metadata, we spend time on *integration* –
+adapting software to the larger collection and verifying that it works.
 
   * adapting to the target platform ("patching")
   * quality control  (* tests aren't standardized *yet*)
   * handling user reports
   * ~~curating metadata~~ (excl. description, upstream ones are unsuitable)
-
+  * licence checks
+  
   * specify how software is built
     * ~~dependencies~~ (only non-Python ones)
     * ~~build instructions/scripts~~
 
+If Fedora can use upstream data directly, any issues we find
+can be contributed to the upstream project directly, helping all other users.
+We've been reporting and fixing issues like:
+* packages mistakenly depending on non-standard implementation details: `pytz>dev`
+* undeclared dependencies on a package *almost* everyone already has installed – `setuptools`/`pkg_resources`
+* bespoke specification of test dependencies, which is hard to reuse
+* removing unneeded dependencies (`importlib.metadata`)
 
+If any metadata changes are necessary, they should be treated the same way
+as code patches: explicit downstream modifications.
+
+(XXX give a specific example? or is this too much detail:)
+For example, the graphics library Pyglet comes bundled with a simple image
+backend, `pypng`. The alternatives are more powerful, but hard to build
+or platform-specific.
+On Fedora, bundling is discouraged -- it makes long-term maintenance
+harder -- but being hard to build or platform specific isn't a problem.
+So instead of `pypng`, the Fedora package depends on a full-featured backend,
+`Pillow`, instead.
+
+This change is explicit, like any other patches or tweaks.
+
+The *upstream*'s list of dependencies isn't duplicated in the RPM spec,
+so if a dependency or a description is changed upstream, the change
+should automatically appear the next time there's a Fedora update.
+And it should go through the usual testing and review we do for code.
+
+To make this possible, we must be able to *automatically* convert
+upstream metadata to the format that RPM expects.
 
 
 ### ISSUES
 
-But the mapping is not always straightforward.
+This isn't always straightforward.
+Since RPM supports many ecosystems and languages, the metadata
+is necessarily different, and the mapping is not always straightforward.
 
-* Naming
+
+* (Naming)
+
+  We need to map names.
+  We add a `python` prefix to prevent conflicts with other ecosystems:
 
   * `requests` → `python-requests`
   * `python-ldap` → `python-ldap`
 
+  But this isn't always straightforward:
+
   * `bugzilla` → `python-bugzilla`
   * `python-bugzilla` → `python-bugzilla`  !?!
- 
+
+  * `u-msgpack-python` →`python-u-msgpack-python` ?
+
+  Sometimes, when Python is just an implementation detail, we don't want 
+  the prefix:
+
   * `ansible` → `ansible`
+
+  This is so messy, we decided the Fedora package name is arbitrary
+  (though there are best practices for it).
+  We took advantage of RPM's' *virtual provides* – essentially, additional
+  package names, and created a secondary, machine-friendly naming scheme:
+  
+  * `requests` → `python3dist(requests)`
+  * ...
+
+  This is ugly, but automated dependency solvers don't care.
+  And the human-friendly Fedora names can still be used for manual specification.
+  
+  Note that by using names from PyPI, Fedora uses the PyPI *namespace*,
+  which Fedora doesn't control. This takes away some of Fedora's "sovereignity".
+  But that's inevitable: when a Python packager puts `requests` in the dependency
+  field, they specifically want the package that's named `requests` on PyPI.
 
 * Versioning
 
   Python and RPM use different versioning schemes; versions and comparisons
   must be adapted to make RPM work like Python.
+  With things like pre-releases and unusual operators, the results sometimes
+  look as messy as the names.
+  And some of the comparisons need relatively recent versions of RPM.
 
   a few examples from https://github.com/gordonmessmer/pyreq2rpm/blob/master/tests/test_convert.py:
   * `(['foobar', '<=', '0.0'], 'foobar <= 0'),`
@@ -236,24 +376,29 @@ But the mapping is not always straightforward.
   * `(['foobar', '~=', '2.0.post1'], '(foobar >= 2^post1 with foobar < 3)'),`
   * `(['foobar', '<', '2.4.8.0'], 'foobar < 2.4.8~~'),`
 
-* Licenses
-
-  *Including* license files in Python wheels was an afterthought;
-  let alone specifying which files are the license.
-
-  note?
-    Popular minimal licenses essentially only require that the license 
-    and author name to accompany the software; the fact that this isn't done
-    tells you something about the state of licensing on developer-focused
-    repositories like PyPI.
-    This isn't a problem for developers: it's the *user* that can get sued
-    if a malicious megacorp buys the copyright.
-
-* Optional dependencies work very differently:
+* Optional dependencies, in particular, work very differently:
 
   Python uses *extras* while RPM uses *weak dependencies*.
-  Thankfully ~~RPM is general enough to allow extras~~
-  we can twist and bend RPM enough to allow extras.
+  Thankfully ~~RPM is general enough~~... well, we can we can twist and bend
+  RPM enough to allow extras, through autogenerated metadata-only subpackages.
+
+* XXX Dependency hells & pinning
+
+* Licenses
+
+  Names and versions are critical in making the software *work*,
+  but it's only part of the story.
+  Licencing is another.
+
+  *Including* license files in Python wheels was an afterthought;
+  let alone specifying which files are the license -- that option was only
+  added 3 years ago (in PEP 639).
+
+  Popular minimal licenses essentially only require that the license 
+  and author name to accompany the software; the fact that this isn't
+  always done is another example of PyPI focusing on developers.
+  Licencing isn't a problem for developers: it's the *user* that can get sued
+  if a malicious megacorp buys the copyright.
 
 * Building *documentation* is not standardized at all.
 
@@ -274,9 +419,13 @@ But the mapping is not always straightforward.
   * the main test suite should pass anywhere: on the upstream CI, in a distro,
     on a developer machine, (more?).
     (Some tests might be skipped)
-  * linters and code checkers are fragile (depend on specific versions),
+    Many projects make it hard to run the test suite outside a single isolated,
+    pinned-down environment; this makes a project difficult to integrate into any larger system.
+  * linters and code quality checkers are fragile (depend on specific versions),
     and only help the developers.
-    They should only run in the upstream CI (and on developer machines).
+    These *should* only run in an isolated, pinned-down environment:
+    if a newer version of a linter changes its mind on how many blank lines
+    should be between functions, we don't care.
 
   There's interesting work to do in these area.
 
@@ -284,7 +433,9 @@ But the mapping is not always straightforward.
 
   Fedora's package descriptions usually are a few paragraphs at most;
   on PyPI people put README files with CI badges and changelogs.
-
+  
+  But if that's the only thing a Fedora packager needs to edit to make
+  a first-class Fedora package, we'll be happy.
 
 ### Back to big picture
 
@@ -293,8 +444,14 @@ well-defined standards.
 Using those standards, as mindlessly and automatically as possible,
 is a nice stress test of how general they are.
 
-It also frees Fedora packagers to *adapt* and *verify* software,
-rather than 
+If we can reuse upstream metadata as automatically as possible,
+we can do what we do for code: check and improve it for everyone, and
+treat any adjustments as deliberate patches.
+
+
+
+
+
 
 
 
