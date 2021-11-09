@@ -1,0 +1,184 @@
+/* Adapted from https://fedoralovespython.org/ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    font-style: normal;
+    font-weight: normal;
+}
+html {
+    --highlight-color: #001122;
+    --gray: #848688;
+    --text-color: #00578e;
+    --head-color: #51a2da;
+    --background-color: #e4e6e8;
+    --background-comp: #c6c6c6;
+    --header-comp: var(--highlight-color);
+    --header-background-color: #00578e;
+    --blktext-color: #101418;
+
+    background-color: var(--background-color);
+    font-size: 32px;
+    font-family: Open Sans, sans;
+    overflow: hidden;
+}
+body {
+    background-color: var(--background-color);
+    line-height: 1.5rem;
+    font-size: 1rem;
+    color: var(--blktext-color);
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+header {
+    background-color: var(--header-background-color);
+    height: 4rem;
+    padding-top: 2rem;
+    margin-bottom: 5rem;
+    text-align: center;
+    flex-shrink: 0;
+    color: var(--head-color);
+}
+header img.fedora-loves-python {
+    height: 8rem;
+    max-width: 85%;
+}
+header h1 {
+    margin-top: -1rem;
+    color: var(--head-color);
+}
+main {
+    flex: 1 0 auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-self: flex-center;
+    font-size: 2rem;
+    line-height: 3rem;
+    color: var(--text-color);
+}
+flex-hack {
+    display: block;
+    flex-grow: 0.25;
+}
+footer {
+    padding: 0.5rem;
+    text-align: right;
+    background-color: var(--blktext-color);
+    color: var(--gray);
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+footer a {
+    color: var(--gray);
+}
+h1 {
+    font-size: 3rem;
+    line-height: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: bold;
+}
+h2 {
+    font-size: 2rem;
+    line-height: 3rem;
+    color: #00578e;
+}
+em {
+    color: var(--highlight-color);
+    text-transform: uppercase;
+}
+a {
+    color: #00578e;
+}
+slide-columns {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+slide-column {
+    flex: 1 0 25%;
+    height: 100%;
+}
+slide-column.comp-base {
+    background-color: var(--background-comp);
+}
+col-header {
+    display: block;
+    background-color: #00578e;
+    color: var(--head-color);
+    height: 4rem;
+    padding-top: 2rem;
+    margin-bottom: 5rem;
+    text-align: center;
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+slide-column.comp-base col-header {
+    background-color: var(--header-comp);
+    color: var(--head-color);
+}
+ul {
+    text-align: left;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+li {
+    list-style: none;
+    margin-bottom: 1rem;
+}
+li .fas, li .fab {
+    display: inline-block;
+    margin-left: 3rem;
+    width: 0;
+    direction: rtl;
+}
+main .hero-logo {
+    height: 75%;
+    margin-bottom: 3rem;
+}
+
+gray-out {
+    line-height: 0em;
+    opacity: 50%;
+    -x-color: var(--gray);
+    display: inline-block;
+    width: 0;
+    white-space: nowrap;
+    text-align: right;
+    margin-right: auto;
+}
+gray-out[data-l] {
+    direction: rtl;
+}
+.sticker {
+    background-color: white;
+    border: 3px solid black;
+    width: max-content;
+    padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    transform: rotate(-5deg);
+}
+
+pre {
+    background-color: #e4e6e8;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: -0.5em;
+    margin-right: -0.5em;
+}
+
+code {
+    font-family: monospace;
+}

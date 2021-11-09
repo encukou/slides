@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Slide {{ n }}</title>
+    <link href="/static/style.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic&amp;subset=latin' rel='stylesheet' type='text/css'>
+    {% if n > 0 %}<link rel="prev prefetch" href="{{ url_for('slide', n=n-1) }}">{% endif %}
+    {% if n < num_slides-1 %}<link rel="next prefetch" href="{{ url_for('slide', n=n+1) }}">{% endif %}
+    <link rel="icon" href="{{ url_for('static', filename='fedoralovespython.svg') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='bundled/fontawesome-free-5.15.4-web/css/all.min.css') }}"> 
+  </head>
+  <body class='title-slide'>
+    {% block header %}
+    <header>
+      <img src="{{ url_for('static', filename='fedoralovespython.svg') }}"
+           alt=""
+           loading="eager"
+           class="fedora-loves-python">
+    </header>
+    {% endblock header %}
+    {% block main %}
+    <main>
+        ...
+    </main>
+    {% endblock main %}
+    {% block footer %}
+    <footer>
+        <div>
+            <licence-icons>
+                <i class="fab fa-creative-commons"></i>
+                <i class="fab fa-creative-commons-by"></i>
+                <i class="fab fa-creative-commons-sa"></i>
+            </licence-icons>
+            Petr Viktorin &amp; Miro Hrončok
+        </div>
+        <div>PackagingCon 2021</div>
+    </footer>
+    {% endblock footer %}
+  </body>
+  <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
+</html>
