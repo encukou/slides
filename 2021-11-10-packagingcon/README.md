@@ -19,7 +19,7 @@ To see the slides:
 For example on Fedora:
 
 ```console
-$ git clone https://github.com/encukou/slides.git
+$ git clone --depth 1 https://github.com/encukou/slides.git
 $ cd slides/2021-11-10-packagingcon
 $ python3 -m venv venv
 $ . venv/bin/activate
