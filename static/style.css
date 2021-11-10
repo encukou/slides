@@ -24,6 +24,7 @@ html {
     font-size: 32px;
     font-family: Open Sans, sans;
     overflow: hidden;
+    cursor: url(dot-cursor.png), auto;
 }
 body {
     background-color: var(--background-color);
