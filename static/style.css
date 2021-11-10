@@ -113,6 +113,7 @@ slide-columns {
 slide-column {
     flex: 1 0 25%;
     height: 100%;
+    background-size: cover, cover;
 }
 slide-column.no-head {
     padding-top: 2rem;
@@ -152,6 +153,9 @@ col-header img {
 }
 col-header.short {
    margin-bottom: 2rem;
+}
+col-header.skip-bg {
+    background: transparent;
 }
 slide-column.comp-base col-header {
     background-color: var(--header-comp);
@@ -211,6 +215,41 @@ gray-out[data-l] {
     margin-left: auto;
     margin-right: auto;
     transform: rotate(-5deg);
+}
+.legal-wot {
+    font-size: 40%;
+    line-height: 1.2em;
+    overflow-y: hidden;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-style: italic;
+    color: var(--blktext-color);
+}
+table.like-slide-columns {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    vertical-align: text-top;
+    font-size: 2rem;
+    height: 100%;
+    color: var(--text-color);
+}
+table.like-slide-columns tr {
+    border: 0;
+}
+table.like-slide-columns th {
+    font-weight: bold;
+}
+table.like-slide-columns td {
+    width: 50%;
+    border: 0;
+    text-align: center;
+    margin: 0;
+}
+table.like-slide-columns td.comp-base {
+    background-color: var(--background-comp);
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 pre {

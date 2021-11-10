@@ -1,8 +1,6 @@
 {% extends "slide.html" %}
 
 {% block header %}
-<header>
-</header>
 {% endblock header %}
 
 {% block footer %}
@@ -10,6 +8,20 @@
 
 {% block main %}
 <main>
-    <img src="{{ url_for('static', filename='fedora-loves-platypus.svg') }}" class="hero-logo">
+    <slide-columns>
+        <slide-column class="comp-base righty centery">
+            <col-header><img src="{{ url_for('static', filename='pypi-logo-small.svg') }}"></col-header>
+            <ul>
+                <li>Pinning</li>
+            </ul>
+        </slide-column>
+        <slide-column class="centery">
+            <col-header><img src="{{ url_for('static', filename='fedora-logo.svg') }}"></col-header>
+            <ul>
+                <li>Dependency hell</li>
+                <li>Coordination</li>
+            </ul>
+        </slide-column>
+    </slide-columns>
 </main>
 {% endblock main %}
