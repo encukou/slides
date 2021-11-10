@@ -59,6 +59,8 @@
         <fragment-link rel="prev prefetch" href="{{ url_for('slide', slide_num=slide_num, fragment_num=g.fragment_num-1) }}"></link>
         <seq-link      rel="prev prefetch" href="{{ url_for('slide', slide_num=slide_num, fragment_num=g.fragment_num-1) }}"></link>
     {% endif %}
+    <fraglim-link rel="prev prefetch" href="{{ url_for('slide', slide_num=slide_num, fragment_num=0) }}"></link>
+    <fraglim-link rel="next prefetch" href="{{ url_for('slide', slide_num=slide_num, fragment_num=g._current_fragment) }}"></link>
   </body>
   <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
 </html>

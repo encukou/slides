@@ -4,6 +4,8 @@
     margin: 0;
     padding: 0;
     box-sizing: content-box;
+}
+h1, h2, em {
     font-style: normal;
     font-weight: normal;
 }
@@ -98,6 +100,7 @@ h2 {
 em {
     color: var(--highlight-color);
     text-transform: uppercase;
+    font-weight: bold;
 }
 a {
     color: #00578e;
@@ -119,6 +122,16 @@ slide-column.comp-base {
 }
 slide-column.righty ul {
     text-align: right;
+}
+slide-column.centery ul {
+    text-align: center;
+}
+slide-column.narrow ul {
+    padding-left: 25%;
+}
+slide-column.narrow.righty ul {
+    padding-right: 25%;
+    padding-left: 0;
 }
 col-header {
     display: block;
@@ -155,7 +168,7 @@ li {
 }
 li .fas, li .fab, li .logo {
     display: inline-block;
-    margin-left: 3rem;
+    margin-left: 2rem;
     width: 0;
     direction: rtl;
 }

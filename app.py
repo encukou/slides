@@ -43,3 +43,8 @@ def slide(slide_num, fragment_num):
 def next_fragment():
     g._current_fragment += 1
     return g._current_fragment <= g.fragment_num
+
+@app.template_global()
+def reset_fragment(value=0):
+    g._current_fragment = value
+    return ''

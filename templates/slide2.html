@@ -2,7 +2,7 @@
 
 {% block header %}
 <header>
-    <h1>We are distro packagers</h1>
+    <h1>Distro packager job<span {% if g.fragment_num < 0 %}style="visibility:hidden"{% endif %}>s</span></h1>
 </header>
 {% endblock header %}
 
@@ -15,17 +15,31 @@
         <slide-column class="righty">
             <ul>
                 <li>Adapting</li>
+                {% if next_fragment() %}
                 <li>Testing</li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li>User reports</li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li>Long-term maint</li>
+                {% endif %}
             </ul>
         </slide-column>
         <slide-column>
             <ul>
+                {% if next_fragment() %}
                 <li>Metadata</li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li>Licensing</li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li>Dependencies</li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li>Build scripts</li>
+                {% endif %}
             </ul>
         </slide-column>
     </slide-columns>

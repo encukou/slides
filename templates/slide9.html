@@ -9,24 +9,47 @@
 {% block main %}
 <main>
     <slide-columns>
-        <slide-column class="comp-base righty">
+        <slide-column class="comp-base centery">
             <col-header class="short"><img src="{{ url_for('static', filename='pypi-logo-small.svg') }}"></col-header>
-            <ul>
-                <li><code>foo &lt;= 1.0</code></li>
-                <li><code>foo &lt;= 2.0post1</code></li>
-                <li><code>foo ~= 2.0</code></li>
+            <ul class="center">
+                <li><code>foo > 1.4</code></li>
+                {% if next_fragment() %}
+                <li><code>foo > 1.0</code></li>
+                {% endif %}
+                {% if next_fragment() %}
+                <li><code>foo >= 2.0post1</code></li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li><code>foo >= 2.4.0b5</code></li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li><code>foo &lt; 2.4</code></li>
+                {% endif %}
+                {% if next_fragment() %}
+                <li><code>foo ~= 2.0</code></li>
+                {% endif %}
             </ul>
         </slide-column>
-        <slide-column>
+        {{ reset_fragment() }}
+        <slide-column class="centery">
             <col-header class="short"><img src="{{ url_for('static', filename='fedora-logo.svg') }}"></col-header>
             <ul>
-                <li><code>foo &lt;= 1</code></li>
+                <li><code>foo > 1.4</code></li>
+                {% if next_fragment() %}
+                <li><code>foo > 1</code></li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li><code>foo >= 2^post1</code></li>
-                <li><code>foo >= 2 with foo &lt; 3</code></li>
-                <li><code>foo >= 2~b5</code></li>
+                {% endif %}
+                {% if next_fragment() %}
+                <li><code>foo >= 2.4~b5</code></li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li><code>foo &lt; 2.4~~</code></li>
+                {% endif %}
+                {% if next_fragment() %}
+                <li><code>foo >= 2 with foo &lt; 3~~</code></li>
+                {% endif %}
             </ul>
         </slide-column>
     </slide-columns>

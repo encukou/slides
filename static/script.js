@@ -16,6 +16,8 @@ function keydown(e) {
     if (e.key == "ArrowUp") return follow_link('fragment-link[rel~=prev]');
     if (e.key == " ") return follow_link('seq-link[rel~=next]');
     if (e.key == "Backspace") return follow_link('seq-link[rel~=prev]');
+    if (e.key == "Home") return follow_link('fraglim-link[rel~=prev]');
+    if (e.key == "End") return follow_link('fraglim-link[rel~=next]');
 }
 
 document.addEventListener('keydown', keydown);

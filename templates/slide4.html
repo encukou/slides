@@ -10,54 +10,71 @@
 {% block main %}
 <main>
     <slide-columns>
-        <slide-column class="comp-base">
-            <col-header>PyPI</col-header>
+        <slide-column class="comp-base righty narrow">
+            <col-header><img src="{{ url_for('static', filename='pypi-logo-small.svg') }}"></col-header>
             <ul>
                 <li>
-                    <i class="fas fa-project-diagram"></i>
-                    Distributed
+                    Free-for-all
+                    <i class="fas fa-flag"></i>
                 </li>
+                {% if next_fragment() %}
                 <li>
-                    <i class="fab fa-python"></i>
                     One Ecosystem
+                    <i class="fab fa-python"></i>
                 </li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li>
-                    <i class="fas fa-globe"></i>
                     Cross-platform
+                    <i class="fas fa-globe"></i>
                 </li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li>
-                    <i class="fas fa-chess-rook"></i>
                     Environments
+                    <i class="fas fa-chess-rook"></i>
                 </li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li>
-                    <i class="fas fa-tools"></i>
                     Developers
+                    <i class="fas fa-tools"></i>
                 </li>
+                {% endif %}
             </ul>
         </slide-column>
-        <slide-column>
-            <col-header>Fedora</col-header>
+        {{ reset_fragment() }}
+        <slide-column class="narrow">
+            <col-header><img src="{{ url_for('static', filename='fedora-logo.svg') }}"></col-header>
             <ul>
                 <li>
                     <i class="fas fa-archive"></i>
                     Integrated
                 </li>
+                {% if next_fragment() %}
                 <li>
                     <i class="fas fa-globe"></i>
                     Everything
                 </li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li>
                     {{ fedora_logo() }}
                     A platform
                 </li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li>
                     <i class="fas fa-cog"></i>
                     System-wide
                 </li>
+                {% endif %}
+                {% if next_fragment() %}
                 <li>
                     <i class="fas fa-user"></i>
                     Users
                 </li>
+                {% endif %}
             </ul>
         </slide-column>
     </slide-columns>
