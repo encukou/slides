@@ -17,13 +17,13 @@
                 <li><code>foo > 1.0</code></li>
                 {% endif %}
                 {% if next_fragment() %}
-                <li><code>foo >= 2.0post1</code></li>
+                <li><code>foo >= 1.0post1</code></li>
                 {% endif %}
                 {% if next_fragment() %}
-                <li><code>foo >= 2.4.0b5</code></li>
+                <li><code>foo >= 1.4.0b5</code></li>
                 {% endif %}
                 {% if next_fragment() %}
-                <li><code>foo &lt; 2.4</code></li>
+                <li><code>foo &lt; 1.4</code></li>
                 {% endif %}
                 {% if next_fragment() %}
                 <li><code>foo ~= 2.0</code></li>
@@ -39,13 +39,13 @@
                 <li><code>foo > 1</code></li>
                 {% endif %}
                 {% if next_fragment() %}
-                <li><code>foo >= 2^post1</code></li>
+                <li><code>foo >= 1^post1</code></li>
                 {% endif %}
                 {% if next_fragment() %}
-                <li><code>foo >= 2.4~b5</code></li>
+                <li><code>foo >= 1.4~b5</code></li>
                 {% endif %}
                 {% if next_fragment() %}
-                <li><code>foo &lt; 2.4~~</code></li>
+                <li><code>foo &lt; 1.4~~</code></li>
                 {% endif %}
                 {% if next_fragment() %}
                 <li><code>foo >= 2 with foo &lt; 3~~</code></li>

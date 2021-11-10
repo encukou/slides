@@ -16,9 +16,11 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic&amp;subset=latin' rel='stylesheet' type='text/css'>
     {{ next_slide_link('link') }}
     {{ prev_slide_link('link') }}
+    <link rel="index" href="{{ url_for('index') }}"></link>
     <link rel="icon" href="{{ url_for('static', filename='fedoralovespython.svg') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='bundled/fontawesome-free-5.15.4-web/css/all.min.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='bundled/fontawesome-free-5.15.4-web/css/all.min.css') }}">
+    <meta name="turbo-root" content="../..">
   </head>
   <body {% block body_extra %}{% endblock %}>
     {% block header %}

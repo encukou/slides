@@ -17,7 +17,7 @@ print(f'There are {i} slides')
 
 @app.route('/')
 def index():
-    return redirect(url_for('slide', slide_num=0, fragment_num=0))
+    return render_template("index.html")
 
 @app.route('/<int:slide_num>')
 def first_fragment(slide_num):

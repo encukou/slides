@@ -13,15 +13,14 @@
             <col-header><img src="{{ url_for('static', filename='pypi-logo-small.svg') }}"></col-header>
             <ul>
                 <li>Pinning</li>
+                <li>Vendoring</li>
             </ul>
         </slide-column>
         <slide-column class="centery">
             <col-header><img src="{{ url_for('static', filename='fedora-logo.svg') }}"></col-header>
             <ul>
                 <li>Dependency hell</li>
-                {% if next_fragment() %}
                 <li>Coordination</li>
-                {% endif %}
             </ul>
         </slide-column>
     </slide-columns>

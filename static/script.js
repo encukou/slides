@@ -18,6 +18,8 @@ function keydown(e) {
     if (e.key == "Backspace") return follow_link('seq-link[rel~=prev]');
     if (e.key == "Home") return follow_link('fraglim-link[rel~=prev]');
     if (e.key == "End") return follow_link('fraglim-link[rel~=next]');
+    if (e.key == "Escape") follow_link('link[rel~=index]');
+    console.log(e.key);
 }
 
 document.addEventListener('keydown', keydown);
