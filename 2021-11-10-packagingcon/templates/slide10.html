@@ -1,0 +1,26 @@
+{% extends "slide.html" %}
+
+{% block header %}
+{% endblock header %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block main %}
+<main>
+    <slide-columns>
+        <slide-column class="comp-base righty centery">
+            <col-header><img src="{{ url_for('static', filename='pypi-logo-small.svg') }}"></col-header>
+            <ul>
+                <li>Extras</li>
+            </ul>
+        </slide-column>
+        <slide-column class="centery">
+            <col-header><img src="{{ url_for('static', filename='fedora-logo.svg') }}"></col-header>
+            <ul>
+                <li>Weak dependencies</li>
+            </ul>
+        </slide-column>
+    </slide-columns>
+</main>
+{% endblock main %}

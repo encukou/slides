@@ -1,0 +1,29 @@
+{% extends "slide.html" %}
+
+{% block header %}
+<header>
+    <h1>We are distro packagers</h1>
+</header>
+{% endblock header %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block main %}
+<main>
+    <p>
+        We <em>integrate</em> software<br>
+        into a cohesive whole.
+    </p>
+    {% if next_fragment() %}
+    <p class="sticker" style="margin-top:-4rem;">
+        We <em>take stuff</em> from PyPI<br>
+        and rebuild as <em>RPM</em>s.
+    </p>
+    {% endif %}
+</main>
+{% endblock main %}
+
+{% block body_extra %}
+style="background:linear-gradient(to bottom, #e4e6e8EE, #e4e6e888), url({{ url_for('static', filename='d-preacher-disassembled-laptop.jpg') }}) 100%/100%;position:relative;"
+{% endblock %}

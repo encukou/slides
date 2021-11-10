@@ -1,0 +1,36 @@
+{% extends "slide.html" %}
+
+{% block header %}
+<header>
+    <h1>Distro packager jobs</h1>
+</header>
+{% endblock header %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block main %}
+<main>
+    <slide-columns>
+        <slide-column class="righty">
+            <ul>
+                <li>Adapting</li>
+                <li>Testing</li>
+                <li>User reports</li>
+                <li>Long-term maint</li>
+            </ul>
+        </slide-column>
+        <slide-column>
+            <ul>
+                <li><todo-strike>Metadata</todo-strike></li>
+                <li><todo-strike>Licensing</todo-strike></li>
+                <li><todo-strike>Dependencies</todo-strike></li>
+                <li><todo-strike>Build scripts</todo-strike></li>
+                {% if next_fragment() %}
+                <li><todo-strike>Code</todo-strike></li>
+                {% endif %}
+            </ul>
+        </slide-column>
+    </slide-columns>
+</main>
+{% endblock main %}
