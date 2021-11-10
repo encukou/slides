@@ -1,10 +1,15 @@
 {% extends "slide.html" %}
 
+{% block header %}
+<header>
+</header>
+{% endblock header %}
+
 {% block footer %}
 {% endblock footer %}
 
 {% block main %}
 <main>
-    <img src="{{ url_for('static', filename='platypus.png') }}" class="hero-logo">
+    <img src="{{ url_for('static', filename='fedora-loves-platypus.svg') }}" class="hero-logo">
 </main>
 {% endblock main %}
