@@ -27,13 +27,14 @@ html {
 }
 body {
     background-color: var(--background-color);
-    line-height: 1.5rem;
+    line-height: 1.5;
     font-size: 1rem;
     color: var(--blktext-color);
     text-align: center;
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-size: cover, cover;
 }
 header {
     background-color: var(--header-background-color);
@@ -64,8 +65,8 @@ main {
     margin-bottom: auto;
     align-self: flex-center;
     font-size: 2rem;
-    line-height: 3rem;
     color: var(--text-color);
+    background-size: cover, cover;
 }
 flex-hack {
     display: block;
@@ -85,7 +86,6 @@ footer a {
 }
 h1 {
     font-size: 3rem;
-    line-height: 4rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
     text-transform: uppercase;
@@ -94,7 +94,6 @@ h1 {
 }
 h2 {
     font-size: 2rem;
-    line-height: 3rem;
     color: #00578e;
 }
 em {
@@ -220,8 +219,6 @@ gray-out[data-l] {
     font-size: 40%;
     line-height: 1.2em;
     overflow-y: hidden;
-    margin-left: 15%;
-    margin-right: 15%;
     font-style: italic;
     color: var(--blktext-color);
 }
@@ -237,6 +234,12 @@ table.like-slide-columns {
 table.like-slide-columns tr {
     border: 0;
 }
+table.like-slide-columns tr:first-child > * {
+    padding-top: 1rem;
+}
+table.like-slide-columns tr:last-child > * {
+    padding-bottom: 1rem;
+}
 table.like-slide-columns th {
     font-weight: bold;
 }
@@ -248,8 +251,8 @@ table.like-slide-columns td {
 }
 table.like-slide-columns td.comp-base {
     background-color: var(--background-comp);
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 pre {

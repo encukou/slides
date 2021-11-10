@@ -19,7 +19,9 @@
             <col-header><img src="{{ url_for('static', filename='fedora-logo.svg') }}"></col-header>
             <ul>
                 <li>Dependency hell</li>
+                {% if next_fragment() %}
                 <li>Coordination</li>
+                {% endif %}
             </ul>
         </slide-column>
     </slide-columns>

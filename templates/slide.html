@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"> 
     <link rel="stylesheet" href="{{ url_for('static', filename='bundled/fontawesome-free-5.15.4-web/css/all.min.css') }}"> 
   </head>
-  <body class='title-slide'>
+  <body {% block body_extra %}{% endblock %}>
     {% block header %}
     <header>
       <img src="{{ url_for('static', filename='fedoralovespython.svg') }}"

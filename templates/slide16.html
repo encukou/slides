@@ -1,15 +1,26 @@
 {% extends "slide.html" %}
 
-{% block hearder %}
-<header>
-</header>
-{% endblock hearder %}
-
 {% block footer %}
+<footer style="font-size: 50%;">
+    <div>
+        <licence-icons>
+            <i class="fab fa-creative-commons"></i>
+            <i class="fab fa-creative-commons-by"></i>
+            <i class="fab fa-creative-commons-sa"></i>
+        </licence-icons> CC-BY-SA-4.0
+    </div>
+    <div>“Laptop in Pieces” by <a href="https://www.flickr.com/photos/dpreacher/106889272">Diabolic Preacher on Flickr</a></div>
+    <div>“Abandoned Library” by <a href="https://www.flickr.com/photos/24402504@N05/8354302511">Andy Bagley on Flickr</a></div>
+    <div>“Packaging Platypus” from <a href="https://monotreme.club/">https://monotreme.club/</a></div>
+    <div>Icons from <a href="https://fontawesome.com/">Font Awesome 5</a> and <a href="https://devicon.dev/">Devicon</a></div>
+    <div>Fedora, Python, PyPI logos belong to the respective projects/owners</div>
+</footer>
 {% endblock footer %}
 
 {% block main %}
 <main>
+    {% if next_fragment() %}
     <img src="{{ url_for('static', filename='fedora-loves-platypus.svg') }}" class="hero-logo">
+    {% endif %}
 </main>
 {% endblock main %}
