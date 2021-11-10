@@ -1,4 +1,5 @@
 {% extends "slide.html" %}
+{% from 'macros.html' import fedora_logo %}
 
 {% block main %}
 <main>
@@ -7,20 +8,29 @@
         <gray-out data-l>Integrating a </gray-out>
         <em>language ecosystem</em>
         <gray-out>
+            {% if next_fragment() %}
             <i class="devicon-python-plain"></i>
+            {% endif %}
+            {% if next_fragment() %}
             <i class="devicon-ruby-plain"></i>
             <i class="devicon-npm-original-wordmark"></i>
             <i class="fas fa-ellipsis-h"></i>
+            {% endif %}
         </gray-out>
         <br>
         <gray-out data-l>in a
         </gray-out> <em>distro</em>
         <gray-out>
-            <i class="fab fa-fedora"></i>
+            {% if next_fragment() %}
+            {{ fedora_logo() }}
+            {% endif %}
+            {% if next_fragment() %}
+            <i class="fab fa-suse"></i>
             <i class="devicon-debian-plain"></i>
             <i class="fab fa-ubuntu"></i>
-            <i class="fab fa-suse"></i>
+            <i class="devicon-nixos-plain"></i>
             <i class="fas fa-ellipsis-h"></i>
+            {% endif %}
         </gray-out>
     </p>
 </main>

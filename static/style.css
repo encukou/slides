@@ -42,6 +42,12 @@ header {
     flex-shrink: 0;
     color: var(--head-color);
 }
+header.short {
+   margin-bottom: 0;
+}
+header.halved {
+    background: linear-gradient(to right, var(--header-comp) 50%, var(--header-background-color) 50%);
+}
 header img.fedora-loves-python {
     height: 8rem;
     max-width: 85%;
@@ -105,8 +111,14 @@ slide-column {
     flex: 1 0 25%;
     height: 100%;
 }
+slide-column.no-head {
+    padding-top: 2rem;
+}
 slide-column.comp-base {
     background-color: var(--background-comp);
+}
+slide-column.righty ul {
+    text-align: right;
 }
 col-header {
     display: block;
@@ -119,6 +131,14 @@ col-header {
     font-size: 3rem;
     text-transform: uppercase;
     font-weight: bold;
+}
+col-header img {
+    height: 4rem;
+    margin-top: -1rem;
+    display: inline-block;
+}
+col-header.short {
+   margin-bottom: 2rem;
 }
 slide-column.comp-base col-header {
     background-color: var(--header-comp);
@@ -133,7 +153,7 @@ li {
     list-style: none;
     margin-bottom: 1rem;
 }
-li .fas, li .fab {
+li .fas, li .fab, li .logo {
     display: inline-block;
     margin-left: 3rem;
     width: 0;
@@ -142,6 +162,19 @@ li .fas, li .fab {
 main .hero-logo {
     height: 75%;
     margin-bottom: 3rem;
+}
+.corner {
+    display: inline-block;
+    height: 4rem;
+    margin-top: -1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.corner-right {
+    float: right;
+}
+.corner-left {
+    float: left;
 }
 
 gray-out {
@@ -180,5 +213,6 @@ pre {
 }
 
 code {
-    font-family: monospace;
+    font-family: Fira Mono,monospace;
+    font-size: 85%;
 }

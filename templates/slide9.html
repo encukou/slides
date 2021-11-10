@@ -1,0 +1,34 @@
+{% extends "slide.html" %}
+
+{% block header %}
+{% endblock header %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block main %}
+<main>
+    <slide-columns>
+        <slide-column class="comp-base righty">
+            <col-header class="short"><img src="{{ url_for('static', filename='pypi-logo-small.svg') }}"></col-header>
+            <ul>
+                <li><code>foo &lt;= 1.0</code></li>
+                <li><code>foo &lt;= 2.0post1</code></li>
+                <li><code>foo ~= 2.0</code></li>
+                <li><code>foo >= 2.4.0b5</code></li>
+                <li><code>foo &lt; 2.4</code></li>
+            </ul>
+        </slide-column>
+        <slide-column>
+            <col-header class="short"><img src="{{ url_for('static', filename='fedora-logo.svg') }}"></col-header>
+            <ul>
+                <li><code>foo &lt;= 1</code></li>
+                <li><code>foo >= 2^post1</code></li>
+                <li><code>foo >= 2 with foo &lt; 3</code></li>
+                <li><code>foo >= 2~b5</code></li>
+                <li><code>foo &lt; 2.4~~</code></li>
+            </ul>
+        </slide-column>
+    </slide-columns>
+</main>
+{% endblock main %}

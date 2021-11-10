@@ -1,10 +1,21 @@
+{% macro next_slide_link(tag) %}
+    {% if slide_num < slide_count-1 %}
+        <{{tag}} rel="next prefetch" href="{{ url_for('slide', slide_num=slide_num+1, fragment_num=0) }}"></{{tag}}>
+    {% endif %}
+{% endmacro %}
+{% macro prev_slide_link(tag) %}
+    {% if slide_num > 0 %}
+        <{{tag}} rel="prev prefetch" href="{{ url_for('slide', slide_num=slide_num-1, fragment_num=0) }}"></{{tag}}>
+    {% endif %}
+{% endmacro %}
+
 <html>
   <head>
-    <title>Slide {{ n }}</title>
+    <title>Slide {{ slide_num }}</title>
     <link href="/static/style.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic&amp;subset=latin' rel='stylesheet' type='text/css'>
-    {% if n > 0 %}<link rel="prev prefetch" href="{{ url_for('slide', n=n-1) }}">{% endif %}
-    {% if n < num_slides-1 %}<link rel="next prefetch" href="{{ url_for('slide', n=n+1) }}">{% endif %}
+    {{ next_slide_link('link') }}
+    {{ prev_slide_link('link') }}
     <link rel="icon" href="{{ url_for('static', filename='fedoralovespython.svg') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"> 
     <link rel="stylesheet" href="{{ url_for('static', filename='bundled/fontawesome-free-5.15.4-web/css/all.min.css') }}"> 
@@ -26,16 +37,28 @@
     {% block footer %}
     <footer>
         <div>
-            <licence-icons>
+            {#<licence-icons>
                 <i class="fab fa-creative-commons"></i>
                 <i class="fab fa-creative-commons-by"></i>
                 <i class="fab fa-creative-commons-sa"></i>
-            </licence-icons>
+            </licence-icons>#}
             Petr Viktorin &amp; Miro Hrončok
         </div>
         <div>PackagingCon 2021</div>
     </footer>
     {% endblock footer %}
+    {% if g._current_fragment <= g.fragment_num %}
+        {{ next_slide_link('seq-link') }}
+    {% else %}
+        <fragment-link rel="next prefetch" href="{{ url_for('slide', slide_num=slide_num, fragment_num=g.fragment_num+1) }}"></link>
+        <seq-link      rel="next prefetch" href="{{ url_for('slide', slide_num=slide_num, fragment_num=g.fragment_num+1) }}"></link>
+    {% endif %}
+    {% if g.fragment_num <= 0 %}
+        {{ prev_slide_link('seq-link') }}
+    {% else %}
+        <fragment-link rel="prev prefetch" href="{{ url_for('slide', slide_num=slide_num, fragment_num=g.fragment_num-1) }}"></link>
+        <seq-link      rel="prev prefetch" href="{{ url_for('slide', slide_num=slide_num, fragment_num=g.fragment_num-1) }}"></link>
+    {% endif %}
   </body>
   <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
 </html>

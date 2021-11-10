@@ -1,4 +1,5 @@
 {% extends "slide.html" %}
+{% from 'macros.html' import fedora_logo %}
 
 {% block header %}
 {% endblock header %}
@@ -22,7 +23,7 @@
                 </li>
                 <li>
                     <i class="fas fa-globe"></i>
-                    Cross-Platform
+                    Cross-platform
                 </li>
                 <li>
                     <i class="fas fa-chess-rook"></i>
@@ -38,7 +39,7 @@
             <col-header>Fedora</col-header>
             <ul>
                 <li>
-                    <i class="fas fa-cog"></i>
+                    <i class="fas fa-archive"></i>
                     Integrated
                 </li>
                 <li>
@@ -46,12 +47,12 @@
                     Everything
                 </li>
                 <li>
-                    <i class="fab fa-fedora"></i>
-                    A Platform
+                    {{ fedora_logo() }}
+                    A platform
                 </li>
                 <li>
                     <i class="fas fa-cog"></i>
-                    System-Wide
+                    System-wide
                 </li>
                 <li>
                     <i class="fas fa-user"></i>

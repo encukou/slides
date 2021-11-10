@@ -1,7 +1,7 @@
 from pathlib import Path
 from itertools import count
 
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, g
 
 app = Flask(__name__)
 
@@ -11,23 +11,35 @@ for i in count():
     path = (template_path / f'slide{i}.html')
     print(path)
     if not path.exists():
-        NUM_SLIDES = i
+        SLIDE_COUNT = i
         break
-print(f'There are{i} slides')
+print(f'There are {i} slides')
 
 @app.route('/')
 def index():
-    return redirect(url_for('slide', n=0))
+    return redirect(url_for('slide', slide_num=0, fragment_num=0))
 
-@app.route('/<int:n>')
-def slide(n):
-    if n < 0:
-        return redirect(url_for('slide', n=0))
-    if n >= NUM_SLIDES:
-        return redirect(url_for('slide', n=NUM_SLIDES-1))
+@app.route('/<int:slide_num>')
+def first_fragment(slide_num):
+    return redirect(url_for('slide', slide_num=slide_num, fragment_num=0))
+
+@app.route('/<int:slide_num>/<int:fragment_num>')
+def slide(slide_num, fragment_num):
+    if slide_num < 0:
+        return redirect(url_for('slide', slide_num=0, fragment_num=fragment_num))
+    if slide_num >= SLIDE_COUNT:
+        return redirect(url_for('slide', slide_num=SLIDE_COUNT-1, fragment_num=fragment_num))
+    if fragment_num < 0:
+        return redirect(url_for('slide', slide_num=0, fragment_num=0))
+    g._current_fragment = 0
+    g.fragment_num = fragment_num
     return render_template(
-        f'slide{n}.html',
-        n=n,
-        num_slides=NUM_SLIDES,
+        f'slide{slide_num}.html',
+        slide_num=slide_num,
+        slide_count=SLIDE_COUNT,
     )
 
+@app.template_global()
+def next_fragment():
+    g._current_fragment += 1
+    return g._current_fragment <= g.fragment_num

@@ -12,6 +12,10 @@ function keydown(e) {
     // https://www.w3.org/TR/uievents-key/#keys-navigation
     if (e.key == "ArrowRight") return follow_link('link[rel~=next]');
     if (e.key == "ArrowLeft") return follow_link('link[rel~=prev]');
+    if (e.key == "ArrowDown") return follow_link('fragment-link[rel~=next]');
+    if (e.key == "ArrowUp") return follow_link('fragment-link[rel~=prev]');
+    if (e.key == " ") return follow_link('seq-link[rel~=next]');
+    if (e.key == "Backspace") return follow_link('seq-link[rel~=prev]');
 }
 
 document.addEventListener('keydown', keydown);
