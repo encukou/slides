@@ -74,13 +74,13 @@
 
         <div class="container">
         <div class=col>
-        <div><var>a</var>×<var>b</var></div>
+        <div>Element-wise multiplication</div>
 
         <div class="fragment"><code>a * b</code></div>
 
        </div>
        <div class=col>
-       <var>a</var>·<var>b</var>
+       <var>Matrix Multiplication</var>
         <div class="fragment"><code>a @ b</code></div>
        </div>
        </div>
