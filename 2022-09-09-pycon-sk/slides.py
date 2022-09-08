@@ -31,7 +31,7 @@ def highlight_code(code, name, attrs):
 
     lexer = get_lexer_by_name(name)
 
-    return highlight(code, lexer, formatter)
+    return '<div class="highlight">' + highlight(code, lexer, formatter) + '</div>'
 
 md = (
     MarkdownIt('commonmark', {'highlight': highlight_code})

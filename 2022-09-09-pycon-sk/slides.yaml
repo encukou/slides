@@ -359,11 +359,45 @@
 
 - - text: |
 
-        ### 3. Fine-grained Error Locations (PEP 657)
+        ### Fine-grained Error Locations (PEP 657)
+
+        ```pytb
+        Traceback (most recent call last):
+        File "test.py", line 14, in <module>
+            lel3(x)
+            ^^^^^^^
+        File "test.py", line 12, in lel3
+            return lel2(x) / 23
+                   ^^^^^^^
+        File "test.py", line 9, in lel2
+            return 25 + lel(x) + lel(x)
+                        ^^^^^^
+        File "test.py", line 6, in lel
+            return 1 + foo(a,b,c=x['z']['x']['y']['z']['y'], d=e)
+                                 ~~~~~~~~~~~~~~~~^^^^^
+        TypeError: 'NoneType' object is not subscriptable
+        ```
+
+  - text: |
+
+        - Pablo (new parser expert, added many error message improvements) 2018
+        - Batuhan Taskaya (core dev for AST) 2020
+        - Ammar Askar (core dev after) 2021
 
 - - text: |
 
         ### 4. Speedups
+
+        - Shannon mail (2020): https://mail.python.org/archives/list/python-dev@python.org/thread/RDXLCH22T2EZDRCBM6ZYYIUTBWQVVVWH/#M2F2NL3YSNOYKW2AELBIHYTCNC2SOCSJ
+          - Shannon - Vectorcall, HotPy, PhD in optimization
+        - Asked for PSF funding - https://github.com/markshannon/faster-cpython/blob/master/funding.md
+        - Microsoft team (Mark, Guido, Eric Snow, *)
+        - PEP 659 (informational) - Specializing Adaptive Interpreter
+          - replacing instructions
+        - much other work
+          -  Zero overhead exception handling
+        - IO or extension code won't benefit
+        - Guido's presentation: https://github.com/faster-cpython/ideas/blob/main/FasterCPythonDark.pdf
 
 
 
