@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/reveal.js/reset.css">
+<link rel="stylesheet" href="/reveal.js/reveal.css">
+<link rel="stylesheet" href="/reveal.js/theme/white.css">
+<link rel="stylesheet" href="/reveal.js/plugin/highlight/monokai.css">
+<link rel="stylesheet" href="/pygments.css">
+<style>
+var {
+    font-style: italic;
+}
+.container{
+    display: flex;
+}
+.col{
+    flex: 1;
+}
+:root {
+    --r-heading-font: Fertigo Pro;
+    --r-heading-text-transform: none;
+    --r-main-font: Fertigo Pro;
+    --r-code-font: DejaVu Sans Mono;
+}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+{% for slide in slides %}
+    <section>
+        {% for subslide in slide %}
+            {% if 'hide' not in subslide %}
+                <section class="{{ subslide.get('class', '') }}" {{ subslide.get('attr', '') }}>
+                    {{ subslide['text'].text | md }}
+                </section>
+            {% endif %}
+        {% endfor %}
+    </section>
+{% endfor %}
+
+</div>
+</div>
+<script src="/live.js/live.js#html"></script>
+<script src="reveal.js/reveal.js"></script>
+<script src="reveal.js/plugin/notes/notes.js"></script>
+<script>Reveal.initialize({
+    hash: true,
+    plugins: [RevealNotes],
+    controlsTutorial: false,
+    slideNumber: "c/t",
+    showSlideNumber: 'speaker',
+    hideCursorTime: 1000,
+    //autoAnimate: false,
+    autoAnimateDuration: 0.2,
+    transition: 'none',
+    backgroundTransition: 'none',
+    width: 1280,
+    height: 720,
+});</script>
+</body>
+</html>

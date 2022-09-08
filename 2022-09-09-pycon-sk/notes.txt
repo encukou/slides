@@ -1,0 +1,17 @@
+The stories of Python features
+
+Python 3.11 is almost ready. The Release Candidate is available, all
+features are in, and fixes for serious bugs are the only changes
+allowed before the final release in October. So you can already play
+with better traceback inforrmation, exception groups, performance
+improvements, tomllib, and so on.
+
+But have you ever wondered how these features get into the language?
+If you have an idea of an improvement, what needs to happen before
+it's implemented and released to the world? Who needs to be convinced
+that it's a good idea? What kind of questions do you need to ask and
+answer?
+Find out in this talk.
+
+-------------------------------------------------------------------------------
+

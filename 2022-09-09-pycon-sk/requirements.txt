@@ -1,0 +1,7 @@
+markdown-it-py[plugins]
+flask
+jinja2
+werkzeug
+strictyaml
+pygments
+httpx

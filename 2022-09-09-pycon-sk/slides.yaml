@@ -1,0 +1,369 @@
+- - text: |
+
+        ## Stories of Features
+
+        3.11 - planned for 2022 October 3rd
+        
+        [What's New](https://docs.python.org/3.11/whatsnew/3.11.html)?
+
+        * Exception Groups (PEP 654)
+        * `tomllib` (PEP 680)
+        * Fine-grained Error Locations (PEP 657)
+        * Speedups (PEP 659??)
+
+- - attr: data-auto-animate
+    text: |
+
+        ### `math.cbrt()`
+
+        [gh-88523](https://github.com/python/cpython/issues/88523)
+
+        Added by Ajith Ramachandran
+
+        <div class="fragment">
+
+        `math.sqrt(x)` → √<var>x</var>  <br>
+        `math.cbrt(x)` → ∛<var>x</var>
+
+        </div>
+
+  - attr: data-auto-animate
+    text: |
+        ### `math.cbrt()`
+
+        <div class="fragment">
+
+        fits into `math`
+
+        </div>
+        <div class="fragment">
+
+        straightforward & limited
+
+        </div>
+        <div class="fragment">
+
+        C, Numpy, JS, Java, R
+
+        </div>
+        <div class="fragment">
+
+        `x**(1/3)` subtly wrong
+
+        </div>
+        <div class="fragment">
+
+        Why wasn't this done before?
+
+        </div>
+
+  - text: |
+
+        New C standard
+
+        * PEP7 - Style Guide for C Code:
+
+          * Python 3.11+ uses C11
+          * Python 3.6 to 3.10 uses C89 with several select C99 features
+
+        * PEP 11 – CPython platform support
+
+- - text: |
+
+       ### Operator for matrix multiplication (PEP 465, Python 3.5, 2014)
+
+        <div class="container">
+        <div class=col>
+        <div><var>a</var>×<var>b</var></div>
+
+        <div class="fragment"><code>a * b</code></div>
+
+       </div>
+       <div class=col>
+       <var>a</var>·<var>b</var>
+        <div class="fragment"><code>a @ b</code></div>
+       </div>
+       </div>
+
+  - hide:
+    text: |
+
+       <!--
+
+       <var>S</var> = (<var>H</var><var>β</var> − <var>r</var>)<sup><var>T</var></sup>(<var>H</var><var>V</var><var>H</var><sup><var>T</var></sup>)<sup> −1</sup>(<var>H</var><var>β</var> − <var>r</var>)
+
+       <div class="fragment">
+       <code class="r-fit-text">S = (H @ beta - r).T @ inv(H @ V @ H.T) @ (H @ beta - r)</code>
+       </div>
+
+       <div class="fragment">
+       <code class="r-fit-text">S = (H.dot(beta) - r).T.dot(inv(H.dot(V).dot(H.T))).dot(H.dot(beta) - r)</code>
+       </div>
+
+       -->
+
+       https://mail.python.org/archives/list/python-ideas@python.org/thread/BA6O7UILVMPCH77T433A2W3GI3GOCRVE/#NVULX6LDTNJNZY3R6IJCK4FHO44QMHLV
+       d51374ed78a3e3145911a16cdf3b9b84b3ba7d15
+       (PEPs 221, 225 previously)
+       (195 loc docs, 428 impl, 106 test)
+       [1382 PEP]
+       Nathaniel - core dev in 2018
+       implemented by Benjamin Peterson - https://bugs.python.org/issue21176
+
+- - text: |
+
+        ### 1. Exception Groups (PEP 654)
+
+        - `yield from` (PEP 380, 2009, 3.3)
+        - rejected  - 2009, 3.3 PEP 3152 – Cofunctions
+        - `asyncio` (PEP 3156, 2012, 3.3) - about *unification*
+          - Twisted
+          - gevent
+          - Tornado
+          - asyncore
+        - async, await, async for , async with (PEP 492, 2015 - 3.5)
+        - PEP 530 – Asynchronous Comprehensions (2016 - 3.6)
+        - PEP 525 – Asynchronous Generators (2016 - 3.6)
+        - 3.7 - `async`, `await` reserved
+        - 3.7 - `contextvars` (557)
+
+        - asyncio first focused a lot on the `io` part
+          - though there are better libraries for io
+            - asyncio *does* to include platform-specific bits
+              - although not all of them: sockets/processes, not files
+          - better libraries for IO, but also file handling. not too much animation
+
+        - 2015 - `curio` released - familiar, small, fast, and fun
+
+        - 2017 - `trio` released
+          - njs, Ph.D
+        - 2018 - Structured concurrency: https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/
+          - (interesting: https://250bpm.com/blog:71/)
+          - GOTO considered harmful
+        - major new academic idea.
+
+        - asyncio evolving toward trio, but with historical baggage...
+
+  - text: |
+
+        ```python run
+        import httpx
+
+        async def get_response_start(client, url):
+            print(url)
+            response = await client.get(url, follow_redirects=True)
+            response.raise_for_status()
+            return response.text[:100]
+
+        async with httpx.AsyncClient() as client:
+            async with asyncio.TaskGroup() as group:
+                tasks = [
+                    group.create_task(get_response_start(
+                        client,
+                        f'https://www.python.org/{page}/',
+                    ))
+                    for page in ('docs', 'download', 'braces', 'spam', 'about')
+                ]
+                results = await asyncio.gather(*tasks)
+        ```
+
+        --> PEP 678 – Enriching Exceptions with Notes
+
+
+  - text: |
+
+        ```text
+        + Exception Group Traceback (most recent call last):
+        |   File "<console>", line 2, in <module>
+        |   File "/usr/lib64/python3.11/asyncio/taskgroups.py", line 135, in __aexit__
+        |     raise me from None
+        | ExceptionGroup: unhandled errors in a TaskGroup (2 sub-exceptions)
+        +-+---------------- 1 ----------------
+          | Traceback (most recent call last):
+          |   File "<console>", line 10, in <module>
+          |   File "<console>", line 3, in get_response_start
+          |   File ".../httpx/_models.py", line 736, in raise_for_status
+          |     raise HTTPStatusError(message, request=request, response=self)
+          | httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://www.python.org/braces/'
+          | For more information check: https://httpstatuses.com/404
+          +---------------- 2 ----------------
+          | Traceback (most recent call last):
+          |   File "<console>", line 10, in <module>
+          |   File "<console>", line 3, in get_response_start
+          |   File ".../httpx/_models.py", line 736, in raise_for_status
+          |     raise HTTPStatusError(message, request=request, response=self)
+          | httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://www.python.org/spam/'
+          | For more information check: https://httpstatuses.com/404
+          +------------------------------------
+          ```
+
+- - text: |
+
+        ### 2. `tomllib` - TOML parser (PEP 680)
+
+        A new format joins JSON, INI, CSV, plist, …
+
+  - text: |
+
+        pyproject.toml
+
+        ```toml
+        [build-system]
+        requires = []
+        build-backend = "flit_core.buildapi"
+        backend-path = ["."]
+
+        [project]
+        name="flit_core"
+        authors=[
+            {name = "Thomas Kluyver & contributors", email = "thomas@kluyver.me.uk"},
+        ]
+        description = "Distribution-building parts of Flit. See flit package for more information"
+        dependencies = []
+        ...
+        ```
+
+        PEP 518 (2016)
+
+        setuptools, flit, poetry, PDM, ...
+
+  - text: |
+
+        <table class="docutils align-default">
+        <thead>
+        <tr class="row-odd"><th class="head">Feature</th>
+        <th class="head">TOML</th>
+        <th class="head">YAML</th>
+        <th class="head">JSON</th>
+        <th class="head">CFG/INI</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="row-even"><td>Well-defined</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td></td>
+        </tr>
+        <tr class="row-odd"><td>Real data types</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td></td>
+        </tr>
+        <tr class="row-even"><td>Reliable Unicode</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td></td>
+        </tr>
+        <tr class="row-odd"><td>Reliable comments</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr class="row-even"><td>Easy for humans to edit</td>
+        <td>✔</td>
+        <td>??</td>
+        <td></td>
+        <td>??</td>
+        </tr>
+        <tr class="row-odd"><td>Easy for tools to edit</td>
+        <td>✔</td>
+        <td>??</td>
+        <td>✔</td>
+        <td>??</td>
+        </tr>
+        <tr class="row-even"><td>In standard library</td>
+        <td></td>
+        <td></td>
+        <td>✔</td>
+        <td>✔</td>
+        </tr>
+        <tr class="row-odd"><td>Easy for pip to vendor</td>
+        <td>✔</td>
+        <td></td>
+        <td>n/a</td>
+        <td>n/a</td>
+        </tr>
+        </tbody>
+        </table>
+
+  - text: |
+
+        - pyproject.toml: (2016)
+        - TOML 1.0: January 2021
+
+  - text: |
+
+        TOML libraries
+
+        - `toml`
+        - `tomlkit`
+        - `pytomlpp`
+        - `rtoml`
+        - `tomli`
+
+        Why stdlib?
+
+  - text: |
+
+        Bootstrap loop
+
+        ```toml
+        [project]
+        name = "tomli"
+        ...
+
+        [build-system]
+        requires = ["flit_core>=3.2.0,<4"]
+        ```
+
+        ```toml
+        [project]
+        name="flit_core"
+        ...
+
+        [build-system]
+        requires = []
+        build-backend = "flit_core.buildapi"
+        backend-path = ["."]
+        ```
+
+        setuptools, poetry, PDM, ...
+
+  - text: |
+
+        #### Style-Preserving Edits
+
+        <div class="container">
+        <div class=col>
+
+        ```toml
+        [build-system]
+        requires = ["setuptools", "wheel"]
+        build-backend = "setuptools.build_meta"
+
+        [tool.towncrier]
+        # For finding the __version__
+        package = "pip"
+        package_dir = "src"
+        # For writing into the correct file
+        filename = "NEWS.rst"
+        # For finding the news fragments
+        directory = "news/"
+        ```
+
+        </div>
+
+- - text: |
+
+        ### 3. Fine-grained Error Locations (PEP 657)
+
+- - text: |
+
+        ### 4. Speedups
+
+
+
