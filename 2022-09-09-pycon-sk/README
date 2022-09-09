@@ -1,0 +1,19 @@
+
+Slides for PyCon SK talk, Stories of Python Features.
+
+In a virtualenv, install & run with:
+
+```
+python -m pip install -r requirements.txt
+flask --debug --app slides.py run
+```
+
+License for slides & SVG illustrations:  CC-BY-SA 4.0,
+http://creativecommons.org/licenses/by-sa/4.0/
+
+License for code:  CC-0,
+https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+Bundled JS libraries (live.js & reveal.js) are shared under the MIT licence, see the included files for details.
+
+GitHub user avatars are used for illustration purposes and belong to the respective people.
