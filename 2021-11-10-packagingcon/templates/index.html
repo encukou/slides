@@ -1,0 +1,25 @@
+<html style="--zoom: 5.2;">
+    <head>
+        <meta name="turbo-visit-control" content="reload">
+    </head>
+    <body>
+        {% for i in range(17) %}
+        <div style="width: calc(1920px/var(--zoom)); height: calc(900px/var(--zoom)); display: inline-block; position:relative;left:0;">
+        <div style="transform:scale(calc(1/var(--zoom)));transform-origin: 0 0;">
+        <iframe src="{{ url_for("slide", slide_num=i, fragment_num=90) }}" width="1920" height="900" style="position:absolute;top:0;left:0;z-index=0"></iframe>
+        </div>
+        <a style="position:absolute;width:100%;height:100%;" href="{{ url_for("slide", slide_num=i, fragment_num=0) }}"></a>
+        </div>
+        {% endfor %}
+        <div>
+        Click a slide, then use keyboard controls:
+        <ul>
+            <li><kbd>Space</kbd>/<kbd>Backspace</kbd>: Advance/go back</li>
+            <li><kbd>←</kbd>/<kbd>→</kbd>: Switch whole slides</li>
+            <li><kbd>↑</kbd>/<kbd>↓</kbd>/<kbd>Home</kbd>/<kbd>End</kbd>: Navigate within a slide</li>
+            <li><kbd>Esc</kbd>: Go back to this overview</li>
+        </ul>
+        Made for a full-screen HD display.
+        </div>
+    </body>
+</html>

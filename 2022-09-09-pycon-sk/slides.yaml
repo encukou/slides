@@ -1,0 +1,956 @@
+{%- macro avatar(who) -%}
+<img src="static/avatars/{{who}}.png" class="avatar">
+{%- endmacro -%}
+
+- - text: |
+
+        ## Stories of Features
+
+        <div class="fragment">
+
+        Python 3.{{ll}} - planned for October 2022 
+
+        </div>
+        <div class="fragment">
+
+        [What's New?](https://docs.python.org/3.11/whatsnew/3.11.html)
+
+        </div>
+        <div class="fragment">
+
+        * Exception Groups (PEP 654)
+        * `tomllib` (PEP 680)
+        * Fine-grained Error Locations (PEP 657)
+        * Speedups
+
+        </div>
+        <div class="fragment">
+
+        And much more...
+
+        </div>
+
+- - title: true
+    text: |
+
+        ### `math.cbrt()`
+
+        <div class="fragment">
+
+        `math.sqrt(x)` → <code>√<var>x</var></code>  <br>
+        `math.cbrt(x)` → <code>∛<var>x</var></code>
+
+        </div>
+
+  - text: |
+
+        Add `math.cbrt`: return the cube root of x.
+
+        (Contributed by {{avatar('ajith')}} Ajith Ramachandran in [#88523](https://github.com/python/cpython/issues/88523))
+
+        <div class="fragment">
+
+        > When I needed a function to find cube root, I couldn't find one in the `math` module. 
+        > Also found the `cbrt()` function in C. 
+
+        </div>
+
+  - text: |
+
+        Discussion in [#88523](https://github.com/python/cpython/issues/88523):
+
+        <div class="fragment">
+
+        fits into `math`
+
+        </div>
+        <div class="fragment">
+
+        C, NumPy, JS, Java, R
+
+        </div>
+        <div class="fragment">
+
+        `x**(1/3)` subtly wrong
+
+        </div>
+        <div class="fragment">
+
+        Why wasn't this done before?
+
+        </div>
+
+  - text: |
+
+        `cbrt` is from C{{ll}}
+
+        <table class="no-border tight fragment">
+        <tr><td></td><td></td><td class="fragment">C 20{{l}}7</td></tr>
+        <tr><td>Python 3.{{ll}}</td><td>(2022):</td><td>C 20{{ll}}</td></tr>
+        <tr><td>Python 3.6</td><td>(20{{l}}7):</td><td>C {{l}}989 + some {{l}}999 features</td></tr>
+        <tr><td>Python 2.{{l}}</td><td>(200{{l}}):</td><td>C {{l}}989</td></tr>
+        </table>
+
+        <aside class="notes">
+
+        * 11 years
+        * 18 years
+        * 12 years
+        * Current: C17 - 5 years old
+
+        </aside>
+
+  - text: |
+
+        {{avatar('ajith')}} Ajith was lucky!
+
+  - hide: true
+    text: |
+
+        `math.cbrt`
+
+        <div class="fragment">
+
+        How did {{avatar('ajith')}} Ajith know?
+
+        </div>
+        <div class="fragment">
+
+        How can *you* join?
+
+        </div>
+        <div class="fragment">
+
+        [python.org/dev/core-mentorship/](https://www.python.org/dev/core-mentorship/)
+
+        </div>
+        <div class="fragment">
+
+        `core-mentorship@python.org`
+
+        </div>
+
+
+- - title: true
+    attr: data-auto-animate
+    text: |
+
+        ### Exception Groups (PEP 654)
+
+  - attr: data-auto-animate
+    text: |
+
+        ### Exception Groups (PEP 654)
+
+        For `asyncio` (and more)
+
+  - text: |
+
+        <div class="r-stack">
+        <div class="fragment current-visible" style="width:69%">
+
+        ```python
+        page1 = download('http://page1')
+        page2 = download('http://page2')
+        page3 = download('http://page3')
+        ```
+
+        </div>
+        <div class="fragment current-visible" style="width:69%">
+
+        ```python
+        task1 = start_download('http://page1')
+        task2 = start_download('http://page2')
+        task3 = start_download('http://page3')
+
+        page1 = await task1
+        page2 = await task2
+        page3 = await task3
+        ```
+
+        </div>
+        <div class="fragment" style="width:69%">
+
+        ```python
+        task1 = start_download('http://page1')
+        task2 = start_download('http://page2')
+        task3 = start_download('http://page3')
+        ```
+
+        <div class="r-stack" style="padding-left:30%;padding-right:30%">
+        <img class="ffragment" src="static/aio-threads.svg">
+        <img class="fragment" src="static/aio-threads-coop.svg">
+        </div>
+
+        ```python
+        page1 = await task1
+        page2 = await task2
+        page3 = await task3
+        ```
+
+        </div>
+        </div>
+
+  - text: |
+
+        <table class="no-border tight">
+        <tr class="fragment" data-fragment-index="1"><td>Python 2</td><td>(1999):</td><td><code>asyncore</code></td></tr>
+        <tr class="fragment" data-fragment-index="1"><td></td><td>(2003):</td><td><code>Twisted</code></td></tr>
+        <tr class="fragment" data-fragment-index="1"><td></td><td>(2009):</td><td><code>gevent</code></td></tr>
+        <tr class="fragment" data-fragment-index="1"><td></td><td>(2003):</td><td><code>Tornado</code></td></tr>
+        <tr><td>Python 3.3</td><td>(2012):</td><td><code>asyncio</code></td></tr>
+        <tr class="fragment"><td></td><td>(2015):</td><td><code>curio</code> — {{avatar('dabeaz')}} David Beazley</td></tr>
+        <tr class="fragment" data-fragment-index="0"><td>Python 3.5</td><td>(2015):</td><td><code>async</code>, <code>await</code>, <code>async for</code>/<code>with</code></td></tr>
+        <tr class="fragment" data-fragment-index="0"><td>Python 3.6</td><td>(2016):</td><td>Async Comprehensions & Generators</td></tr>
+        <!--<tr><td>Python 3.7</td><td>(2016):</td><td><code>contextvars</code></td></tr>-->
+        <tr class="fragment"><td></td><td>(2017):</td><td><code>trio</code> — {{avatar('njs')}} Nathaniel J. Smith</td></tr>
+        <tr class="fragment" data-fragment-index="0"><td>Python 3.{{ll}}</td><td>(2022):</td><td>Exception Groups</tr>
+        </table>
+
+        <aside class="notes">
+
+        * yield from - PEP 380
+        * async, await, async for , async with (PEP 492)
+        * PEP 530 – Asynchronous Comprehensions (2016 - 3.6)
+
+        Unified:
+
+          * Twisted
+          * gevent
+          * Tornado
+          * asyncore
+
+        - asyncio first focused a lot on the `io` part
+          - though there are better libraries for io
+            - asyncio *does* to include platform-specific bits
+              - although not all of them: sockets/processes, not files
+          - better libraries for IO, but also file handling. not too much animation
+
+        </aside>
+
+        <!--
+        - rejected  - 2009, 3.3 PEP 3152 – Cofunctions
+        - curio: familiar, small, fast, and fun
+        -->
+
+  - text: |
+
+        ## Task management
+
+        ```python
+        task1 = asyncio.create_task(download('http://page1'))
+        task2 = asyncio.create_task(download('http://page2'))
+        task3 = asyncio.create_task(download('http://page3'))
+        ```
+
+        <img src="static/aio-start.svg" style="width:10%;">
+
+        ```python
+        page1 = await task1
+        page2 = await task2
+        page3 = await task3
+        ```
+
+        <img src="static/aio-end.svg" style="width:10%;">
+
+        <aside class="notes">
+
+        await catches errors!
+
+        </aside>
+
+  - text: |
+
+        ## Task management
+
+        ```python
+        task1 = asyncio.create_task(download('http://page1'))
+        task2 = asyncio.create_task(download('http://page2'))
+        task3 = asyncio.create_task(download('http://page3'))
+        ```
+
+        <img src="static/aio-start.svg" style="width:10%;">
+
+        ```python
+        page1 = await task1
+        page2 = await task2
+        # forget page3
+        ```
+
+        <img src="static/aio-end-oops.svg" style="width:10%;">
+
+  - text: |
+
+        ## Nurseries
+
+        ```python
+        async with trio.open_nursery() as nursery:
+            task1 = nursery.start_soon(download('http://page1'))
+            task2 = nursery.start_soon(download('http://page2'))
+            task2 = nursery.start_soon(download('http://page3'))
+        ```
+
+        <img src="static/aio-group.svg" style="width:10%;">
+
+        <!--
+          - njs, Ph.D
+        - 2018 - Structured concurrency: https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/
+          - (interesting: https://250bpm.com/blog:71/)
+          - GOTO considered harmful
+        - major new academic idea.
+        -->
+
+        <aside class="notes">
+
+        Library by {{avatar('njs')}} Nathaniel J. Smith
+
+        - asyncio evolving toward trio, but with historical baggage...
+
+        </aside>
+
+  - text: |
+
+        ## <span style="opacity:0">Task Groups</span> <strike>Nurseries</strike> Task Groups
+
+        ```python
+        async with asyncio.TaskGroup() as group:
+            task1 = group.create_task(download('http://page1'))
+            task2 = group.create_task(download('http://page2'))
+            task2 = group.create_task(download('http://page3'))
+        ```
+
+        <img src="static/aio-group.svg" style="width:10%;">
+
+
+  - hide: true
+    text: |
+
+        ```python run
+        import httpx
+
+        async def get_response_start(client, url):
+            print(url)
+            response = await client.get(url, follow_redirects=True)
+            response.raise_for_status()
+            return response.text[:100]
+
+        async with httpx.AsyncClient() as client:
+            async with asyncio.TaskGroup() as group:
+                tasks = [
+                    group.create_task(get_response_start(
+                        client,
+                        f'https://www.python.org/{page}/',
+                    ))
+                    for page in ('docs', 'download', 'braces', 'spam', 'about')
+                ]
+                results = await asyncio.gather(*tasks)
+        ```
+
+        --> PEP 678 – Enriching Exceptions with Notes
+
+  - text: |
+
+        ```text
+        + Exception Group Traceback (most recent call last):
+        |   ...
+        | ExceptionGroup: unhandled errors in a TaskGroup (2 sub-exceptions)
+        +-+---------------- 1 ----------------
+          | Traceback (most recent call last):
+          |   ...
+          | httpx.HTTPStatusError: Client error '404 Not Found'
+          +---------------- 2 ----------------
+          | Traceback (most recent call last):
+          |   ...
+          | httpx.HTTPStatusError: Client error '404 Not Found'
+          +------------------------------------
+        ```
+
+  - text: |
+
+        ```python
+        try:
+            async with asyncio.TaskGroup() as group:
+                task1 = group.create_task(download('http://page1'))
+                task2 = group.create_task(download('http://page2'))
+                task2 = group.create_task(download('http://page3'))
+        except* httpx.HTTPStatusError:
+            # Ignore these
+            pass
+        ```
+
+  - text: |
+
+        ### Exception Groups and `except*` (PEP 654)
+
+        * {{avatar('irit')}} Irit Katriel
+        * {{avatar('yury')}} Yury Selivanov
+        * {{avatar('gvr')}} Guido van Rossum
+
+        <div class="fragment">
+
+        > We wish to thank {{avatar('njs')}} Nathaniel J. Smith and the other Trio developers for their work on structured concurrency… <!--We borrowed the idea of constructing an exception tree whose nodes are exceptions from MultiError, and the split() API from the design document for MultiError V2. The discussions on python-dev and elsewhere helped us improve upon the first draft of the PEP in multiple ways, both the design and the exposition. For this we appreciate all those who contributed ideas and asked good questions: Ammar Askar, Matthew Barnett, Ran Benita, Emily Bowman, Brandt Bucher, Joao Bueno, Baptiste Carvello, Rob Cliffe, Nick Coghlan, Steven D’Aprano, Caleb Donovick, Steve Dower, Greg Ewing, Ethan Furman, Pablo Salgado, Jonathan Goble, Joe Gottman, Thomas Grainger, Larry Hastings, Zac Hatfield-Dodds, Chris Jerdonek, Jim Jewett, Sven Kunze, Łukasz Langa, Glenn Linderman, Paul Moore, Antoine Pitrou, Ivan Pozdeev, Patrick Reader, Terry Reedy, Sascha Schlemmer, Barry Scott, Mark Shannon, Damian Shaw, Cameron Simpson, Gregory Smith, Paul Sokolovsky, Calvin Spealman, Steve Stagg, Victor Stinner, Marco Sulla, Petr Viktorin and Barry Warsaw.-->
+
+        </div>
+
+  - text: |
+
+        ### Enriching Exceptions with Notes (PEP 678)
+
+        * {{avatar('zac')}} Zac Hatfield-Dodds
+        * {{avatar('irit')}} Irit Katriel
+
+- - title: true
+    text: |
+
+        ### `tomllib` - a TOML parser (PEP 680)
+
+        A new format joins JSON, INI, CSV, plist, …
+
+  - text: |
+
+        Why TOML?
+
+  - text: |
+
+        pyproject.toml
+
+        ```toml
+        ...
+        [project]
+        name="flit_core"
+        authors=[
+            {name = "Thomas Kluyver & contributors", email = "thomas@kluyver.me.uk"},
+        ]
+        description = "Distribution-building parts of Flit. See flit package for more information"
+        dependencies = []
+        ...
+        ```
+
+        Defined in PEP 518 (2016)
+
+        setuptools, flit, poetry, PDM, ...
+
+  - text: |
+
+        Why TOML?
+
+  - text: |
+
+        <table class="docutils align-default">
+        <thead>
+        <tr class="row-odd"><th class="head">Feature</th>
+        <th class="head">TOML</th>
+        <th class="head">YAML</th>
+        <th class="head">JSON</th>
+        <th class="head">CFG/INI</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="row-even"><td>Well-defined</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td></td>
+        </tr>
+        <tr class="row-odd"><td>Real data types</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td></td>
+        </tr>
+        <tr class="row-even"><td>Reliable Unicode</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td></td>
+        </tr>
+        <tr class="row-odd"><td>Reliable comments</td>
+        <td>✔</td>
+        <td>✔</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr class="row-even"><td>Easy for humans to edit</td>
+        <td>✔</td>
+        <td>??</td>
+        <td></td>
+        <td>??</td>
+        </tr>
+        <tr class="row-odd"><td>Easy for tools to edit</td>
+        <td>✔</td>
+        <td>??</td>
+        <td>✔</td>
+        <td>??</td>
+        </tr>
+        <tr class="row-even"><td>In standard library</td>
+        <td></td>
+        <td></td>
+        <td>✔</td>
+        <td>✔</td>
+        </tr>
+        <tr class="row-odd"><td>Easy for pip to vendor</td>
+        <td>✔</td>
+        <td></td>
+        <td>n/a</td>
+        <td>n/a</td>
+        </tr>
+        </tbody>
+        </table>
+
+  - text: |
+
+        Existing TOML libraries
+
+        - `toml`
+        - `tomlkit`
+        - `pytomlpp`
+        - `rtoml`
+        - `tomli`
+
+        ... Why stdlib?
+
+  - text: |
+
+        Bootstrap loop
+
+        ```toml
+        [project]
+        name = "tomli"
+        ...
+
+        [build-system]
+        requires = ["flit_core>=3.2.0,<4"]
+        ```
+
+        ```toml
+        [project]
+        name="flit_core"
+        ...
+
+        [build-system]
+        requires = []
+        build-backend = "flit_core.buildapi"
+        backend-path = ["."]
+        ```
+
+        in setuptools, flit, poetry, PDM, ...
+
+  - text: |
+
+        <code>pyproject.toml</code>: 20{{l}}6
+
+        Why now?
+
+  - text: |
+
+        <code>pyproject.toml</code>: 20{{l}}6
+
+        TOML {{l}}.0: January 202{{l}}
+
+  - text: |
+
+        Which one?
+
+        - `toml` <span class="fragment">(unmaintained)</span>
+        - `tomlkit` <span class="fragment">(complicated)</span>
+        - `pytomlpp` <span class="fragment">(C++)</span>
+        - `rtoml` <span class="fragment">(Rust)</span>
+        - `tomli` <span class="fragment">(+ `tomli-w`) </span>
+        - A new one?
+
+  - text: |
+
+        TOML libraries are complicated
+
+  - text: |
+
+        Styling & Style-Preserving Edits
+
+        <div contenteditable style="outline:none">
+        
+        ```toml
+        [build-system]
+            requires = ["setuptools", "wheel"]
+            build-backend = "setuptools.build_meta"
+
+        [tool.towncrier]
+            # For finding the __version__
+            package = "pip"
+            package_dir = "src"
+            # For writing into the correct file
+            filename = "NEWS.rst"
+            # For finding the news fragments
+            directory = "news/"
+        ```
+        
+        </div>
+
+  - text: |
+
+        Which one?
+
+        <div class="muted">
+
+        - `toml` (unmaintained)
+        - `tomlkit` (complicated)
+        - `pytomlpp` (C++)
+        - `rtoml` (Rust)
+        - <em><code>`tomli`</code></em> (read only)
+        - A new one?
+
+        </div>
+
+        <p class="fragment">The simple one.</p>
+
+  - text: |
+
+        ### tomllib: Support for Parsing TOML in the Standard Library (PEP 680)
+
+        - {{ avatar('hukkin') }} Taneli Hukkinen (author of `tomli`)
+        - {{ avatar('hauntsaninja') }} Shantanu (author PEP 680)
+        - {{ avatar('eck') }} me (sponsor)
+
+- - title: true
+    text: |
+
+        ### Fine-Grained Error Locations (PEP 657)
+
+  - text: |
+
+        ### Fine-Grained Error Locations (PEP 657)
+
+        <code><pre>{#-#}
+        Traceback (most recent call last):
+          File "demo.py", line 1, in <module>
+            3 / 2 + 1 / 0
+                    <span class="hilite">~~^~~</span>
+        ZeroDivisionError: division by zero
+        </pre></code>
+
+  - text: |
+
+        ### Fine-Grained Error Locations (PEP 657)
+
+        <code><pre>{#-#}
+        Traceback (most recent call last):
+          File "test.py", line 14, in <module>
+            lel3(x)
+          File "test.py", line 12, in lel3
+            return lel2(x) / 23
+                   <em>^^^^^^^</em>
+          File "test.py", line 9, in lel2
+            return 25 + lel(x) + lel(x)
+                        <em>^^^^^^</em>
+          File "test.py", line 6, in lel
+            return 1 + foo(a, b, c=x['z']['x']['y']['z']['y'], d=e)
+                                   <em>~~~~~~~~~~~~~~~~^^^^^</em>
+        TypeError: 'NoneType' object is not subscriptable
+        </pre></code>
+
+        <aside class="notes">
+
+            * Only carets?
+            * Single carets?
+            * Omitting carets?
+
+        </aside>
+
+  - text: |
+
+        ### Fine-Grained Error Locations (PEP 657)
+  
+        - {{ avatar('pablo') }} Pablo Galindo Salgado
+        - {{ avatar('isidentical') }} [Batuhan Taskaya](https://discuss.python.org/t/vote-to-promote-batuhan-taskaya/5592)
+        - {{ avatar('ammar') }} [Ammar Askar](https://discuss.python.org/t/vote-to-promote-ammar-askar/9779)
+
+        <div class="fragment">
+
+        <aside class="notes">
+
+        - {{ avatar('pablo') }} Pablo Galindo Salgado (new parser expert, added many error message improvements) 2018
+        - {{ avatar('isidentical') }}  Batuhan Taskaya (core dev for AST) 2020
+        - {{ avatar('ammar') }}  Ammar Askar (core dev after) 2021
+
+        </aside>
+
+  - text: |
+
+        Better Error Messages
+
+        ```
+        SyntaxError: '{' was never closed
+        SyntaxError: expected ':'
+        SyntaxError: did you forget parentheses around the comprehension target?
+        SyntaxError: invalid syntax. Perhaps you forgot a comma?
+        SyntaxError: ':' expected after dictionary key
+        SyntaxError: cannot assign to attribute here. Maybe you meant '==' instead of '='?
+        NameError: name 'fooo' is not defined. Did you mean: foo?
+        ```
+
+        <aside class="notes">
+        What's Next?
+        </aside>
+
+  - text: |
+
+        ```
+        Traceback (most recent call last):
+          File "demo.py", line 1, in <module>
+            a / b + c / d + e / f
+        ZeroDivisionError: division by zero
+        ```
+
+  - text: |
+        Position information
+
+        <div class="r-stack">
+        <div class="fragment current-visible" data-fragment-index="1">Source → Tokens → AST → Bytecode</div>
+        <div class="fragment current-visible muted" data-fragment-index="2"><em>Source</em> → Tokens → AST → Bytecode</div>
+        <div class="fragment current-visible muted" data-fragment-index="3">Source → <em>Tokens</em> → AST → Bytecode</div>
+        <div class="fragment current-visible muted" data-fragment-index="4">Source → Tokens → <em>AST</em> → Bytecode</div>
+        <div class="fragment current-visible muted" data-fragment-index="5">Source → Tokens → AST → <em>Bytecode</em></div>
+        <div class="fragment current-visible muted" data-fragment-index="6">Source → Tokens → AST → <em>Bytecode</em></div>
+        </div>
+
+        <div class="r-stack">
+        <div class="fragment current-visible" data-fragment-index="2" style="width:30%">
+
+        `1 + 2`
+
+        </div>
+        <div class="fragment current-visible" data-fragment-index="3" style="width:69%">
+
+            $ python -m tokenize expression.py
+            0,0-0,0:            ENCODING       'utf-8'
+            1,0-1,1:            NUMBER         '1'
+            1,2-1,3:            OP             '+'
+            1,4-1,5:            NUMBER         '2'
+            1,5-1,6:            NEWLINE        '\n'
+            2,0-2,0:            ENDMARKER      ''
+
+        </div>
+        <div class="fragment current-visible" data-fragment-index="4" style="width:69%">
+
+        ```
+        $ python -m ast -a expression.py 
+        Module(body=[
+              Expr(
+                 value=BinOp(
+                    left=Constant(
+                       value=1,
+                       lineno=1, col_offset=0,
+                       end_lineno=1, end_col_offset=1),
+                    op=Add(),
+                    right=Constant(
+                       value=2,
+                       lineno=1, col_offset=4,
+                       end_lineno=1, end_col_offset=5),
+                    lineno=1, col_offset=0,
+                    end_lineno=1, end_col_offset=5),
+                 lineno=1, col_offset=0,
+                 end_lineno=1, end_col_offset=5)])
+        ```
+
+        </div>
+        <div class="fragment current-visible" data-fragment-index="5" style="width:69%">
+
+        ```python
+        code = compile('1 + 2', '...', 'eval')  # 3.10
+        ```
+
+        ```
+        ...
+        co_code:  b'd\x00S\x00'
+        co_consts: (3,)
+        ...
+        co_linetable: b'\x04\x00'
+        ...
+        ```
+
+        </div>
+        <div class="fragment current-visible" data-fragment-index="6" style="width:69%">
+
+        ```python
+        code = compile('1 + 2', '...', 'eval')  # 3.11
+        ```
+
+        ```yaml
+        ...
+        co_code: b'…d\x00S\x00'
+        co_consts: (3,)
+        ...
+        co_linetable: b'\xf8\x80\x05\x80\x05'   # +22%
+        ...
+        ```
+
+        </div>
+        </div>
+
+  - text: |
+
+        `*.pyc` file size: +22%
+
+        <div class="fragment">
+
+        Memory for code files: +22%
+
+        </div>
+        <div class="fragment">
+
+        Overall memory: about +{{l}}%
+
+        </div>
+
+  - text: |
+
+        Worth it?
+
+        ```pytb
+        Traceback (most recent call last):
+        File "test.py", line 14, in <module>
+            lel3(x)
+        File "test.py", line 12, in lel3
+            return lel2(x) / 23
+                   ^^^^^^^
+        File "test.py", line 9, in lel2
+            return 25 + lel(x) + lel(x)
+                        ^^^^^^
+        File "test.py", line 6, in lel
+            return 1 + foo(a, b, c=x['z']['x']['y']['z']['y'], d=e)
+                                   ~~~~~~~~~~~~~~~~^^^^^
+        TypeError: 'NoneType' object is not subscriptable
+        ```
+
+        <div class="fragment">
+
+        `PYTHONNODEBUGRANGES=1`
+
+        `python -Xno_debug_ranges`
+
+        </div>
+
+- - title: true
+    text: |
+
+        ### Speedups
+
+  - text: |
+
+        {{ avatar('mark') }} Mark Shannon
+
+        2020 [proposal](https://mail.python.org/archives/list/python-dev@python.org/thread/RDXLCH22T2EZDRCBM6ZYYIUTBWQVVVWH/#M2F2NL3YSNOYKW2AELBIHYTCNC2SOCSJ): *5× faster* in *5 years*
+
+        <div class="fragment">
+
+        Needs full-time work
+
+        </div>
+        <div class="fragment">
+
+        PSF sponsorship?
+
+        </div>
+
+        <aside class="notes">
+
+        Plan feasible:
+        Vectorcall, HotPy, PhD in optimization
+
+        </aside>
+
+  - text: |
+
+        Faster CPython team @ Microsoft
+
+        - {{ avatar('mark') }} Mark Shannon
+        - {{ avatar('gvr') }} Guido van Rossum
+        - {{ avatar('eric') }} Eric Snow
+        - {{ avatar('boom') }} Michael Droettboom
+
+        <aside class="notes">
+
+        Plus contributions from community
+
+        </aside>
+
+  - text: |
+
+        ## Specializing Adaptive Interpreter (PEP 659)
+
+  - text: |
+
+        ```python
+        for x in range(100000):
+            print(x + 1)
+        ```
+
+        * Load `range`
+        * Load `100000`
+        * Call (`range` with `100000`)
+        * Iterate over the result
+          * Store `x`
+          * Load `print`
+          * Load `x`
+          * Load `1`
+          * Add (`x` and `1`)
+          * Call (`print` with `x+1`)
+
+        <aside class="notes">
+
+        replacing instructions
+
+        </aside>
+
+  - text: |
+
+        “Zero overhead” exception handling
+
+        ```python
+        1 try:
+        2     inverse = 1 / x
+        3 except ZeroDivisionError:
+        4     inverse = infinity
+        ```
+
+        <div class="r-stack">
+        <div class="fragment current-visible">
+
+        * Setup error handling block (line 3)
+        * Divide & set `inverse`
+        * Exit error handling block
+
+        <span class="invisible">(Exceptions on line 2 handled in...)</span>
+
+        </div>
+        <div class="fragment current-visible">
+
+        * <strike class="muted">Setup error handling block (line 3)</strike>
+        * Divide & set `inverse`
+        * <strike class="muted">Exit error handling block</strike>
+
+        (Exceptions on line 2 handled in line 3)
+
+        </div>
+        </div>
+
+  - text: |
+
+        ## Faster CPython
+
+        Focus on Python code:<br>
+        IO (`asyncio`) or extension code (NumPy) won't benefit
+
+        <aside class="notes">
+
+        [Guido's presentation](https://github.com/faster-cpython/ideas/blob/main/FasterCPythonDark.pdf)
+
+        </aside>
+
+- - title: true
+    text: |
+
+        ## Q&A
+
+        Read [What's New In Python 3.{{ll}}](https://docs.python.org/3.11/whatsnew/3.11.html)
+
+        Join @ GitHub or [Core Mentorship](https://www.python.org/dev/core-mentorship/)

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/reveal.js/reset.css">
+<link rel="stylesheet" href="/reveal.js/reveal.css">
+<link rel="stylesheet" href="/reveal.js/theme/white.css">
+<link rel="stylesheet" href="/reveal.js/plugin/highlight/monokai.css">
+<link rel="stylesheet" href="/pygments.css">
+<style>
+var {
+    font-style: italic;
+}
+.container{
+    display: flex;
+}
+.col{
+    flex: 1;
+}
+:root {
+    --r-heading-font: Alegreya;
+    --r-heading-text-transform: none;
+    --r-main-font: Alegreya;
+    --r-code-font: Fira Mono;
+    --r-heading-color: #c17d11;
+    --r-selection-background-color: var(--r-heading-color);
+    --r-link-color: #75507b;
+    --r-link-color-dark: #3465a4;
+    --r-link-color-hover: #729fcf;
+    --muted-color: #babdb6;
+    --r-main-color: #2e3436;
+    font-variant-numeric: Lining;
+}
+.reveal .controls {
+    font-size: 5px;
+}
+em, .reveal em {
+    font-style: inherit;
+    color: var(--r-heading-color);
+}
+.muted {
+    color: var(--muted-color);
+}
+img.avatar {
+    height: 1em;
+    border-radius: 0.5em;
+    vertical-align: initial;
+    margin: 0;
+    border: 1px solid #888a85;
+    position: relative;
+    top: 0.3ex;
+}
+.one {
+    font-family: Alegreya;
+    font-size: 125%;
+    line-height: 80%;
+}
+table.no-border td {
+    border-bottom: 0px none;
+}
+table.tight td {
+    padding: 0.25ex;
+}
+.title-slide * {
+    color: var(--r-background-color) !important;
+}
+.title-slide a {
+    font-style: italic;
+}
+.hilite {
+    background-color: #fce94f;
+}
+.invisible {
+    opacity: 0;
+}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+{% for slide in slides %}
+    <section>
+        {% for subslide in slide %}
+            {% if 'hide' not in subslide %}
+                <section
+                    {{ subslide.get('attr', '') }}
+                    {% if 'title' in subslide %}
+                        data-background-color="var(--r-heading-color)"
+                        class="title-slide {{ subslide.get('class', '') }}"
+                    {% else %}
+                        class="{{ subslide.get('class', '') }}"
+                    {% endif %}
+                >
+                    {{ subslide['text'].text | md }}
+                </section>
+            {% endif %}
+        {% endfor %}
+    </section>
+{% endfor %}
+
+</div>
+</div>
+<!--<script src="/live.js/live.js#html"></script>-->
+<script src="reveal.js/reveal.js"></script>
+<script src="reveal.js/plugin/notes/notes.js"></script>
+<script>Reveal.initialize({
+    hash: true,
+    plugins: [RevealNotes],
+    controlsTutorial: false,
+    slideNumber: "c/t",
+    showSlideNumber: 'speaker',
+    hideCursorTime: 1000,
+    //autoAnimate: false,
+    autoAnimateDuration: 0.2,
+    transition: 'none',
+    backgroundTransition: 'none',
+    width: 1280,
+    height: 720,
+});</script>
+</body>
+</html>
