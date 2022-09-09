@@ -41,11 +41,20 @@ md = (
 def md_filter(text):
     return Markup(md.render(text))
 
+
 @app.route('/')
 def index():
-    with open('slides.yaml') as f:
-        slides = strictyaml.load(f.read())
-    return render_template('slides.html', slides=slides)
+    slides_text = render_template(
+        'slides.yaml',
+        ll=Markup('<span class="one">11</span>'),
+        l=Markup('<span class="one">1</span>'),
+    )
+    print(slides_text)
+    slides = strictyaml.load(slides_text)
+    return render_template(
+        'slides.html',
+        slides=slides,
+    )
 
 @app.route('/pygments.css')
 def pygments_style():

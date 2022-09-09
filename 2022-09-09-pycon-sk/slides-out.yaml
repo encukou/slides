@@ -1,0 +1,42 @@
+
+- - text: |
+
+       ### Operator for matrix multiplication (PEP 465, Python 3.5, 2014)
+
+        <div class="container">
+        <div class=col>
+        <div>Element-wise multiplication</div>
+
+        <div class="fragment"><code>a * b</code></div>
+
+       </div>
+       <div class=col>
+       <var>Matrix Multiplication</var>
+        <div class="fragment"><code>a @ b</code></div>
+       </div>
+       </div>
+
+  - hide:
+    text: |
+
+       <!--
+
+       <var>S</var> = (<var>H</var><var>β</var> − <var>r</var>)<sup><var>T</var></sup>(<var>H</var><var>V</var><var>H</var><sup><var>T</var></sup>)<sup> −1</sup>(<var>H</var><var>β</var> − <var>r</var>)
+
+       <div class="fragment">
+       <code class="r-fit-text">S = (H @ beta - r).T @ inv(H @ V @ H.T) @ (H @ beta - r)</code>
+       </div>
+
+       <div class="fragment">
+       <code class="r-fit-text">S = (H.dot(beta) - r).T.dot(inv(H.dot(V).dot(H.T))).dot(H.dot(beta) - r)</code>
+       </div>
+
+       -->
+
+       https://mail.python.org/archives/list/python-ideas@python.org/thread/BA6O7UILVMPCH77T433A2W3GI3GOCRVE/#NVULX6LDTNJNZY3R6IJCK4FHO44QMHLV
+       d51374ed78a3e3145911a16cdf3b9b84b3ba7d15
+       (PEPs 221, 225 previously)
+       (195 loc docs, 428 impl, 106 test)
+       [1382 PEP]
+       Nathaniel - core dev in 2018
+       implemented by Benjamin Peterson - https://bugs.python.org/issue21176
