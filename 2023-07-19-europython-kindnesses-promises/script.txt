@@ -1,0 +1,732 @@
+###################################### INTRO
+
+
+
+###################################### PRIVILEGE
+
+I was born in Czechoslovakia, a country that no longer exists,
+about 200 km that way ---> (east of here) in the city of Brno.
+I was lucky to have a computer in the family, which wasn't common at the time,
+and a dad who knew how to use it.
+I had the perfect environment to start programming -- at six years old.
+·
+{Q} How many of you speak English as a second language?
+I guess most of you know English is pretty much a pre-requisite
+for programming.
+You might find stuff in other languages, but most documentation and tutorials
+are English-first.
+
+If you live in an English-speaking country, you have a head start when you want
+to go into computer programming.
+I was lucky enough to get second best thing:
+When I was ten, my dad got a job in the US,
+and moved there with the whole family.
+I learned English, with basically no effort.
+
+US universities are pretty expensive, so I moved back here for my Bachelor's.
+Then, I joined the Erasmus programme to go to Finland.
+The university I went to had an international Master student programme,
+and I stayed and finished my degree here.
+My Czech university wasn't too happy about that, unfortunately.
+
+Looking back, I realize I've been incredibly lucky.
+I had access to a computer very early on,
+I learned English by no fault of my own,
+I could take risks: when something went wrong, my family had my back:
+I had a safety net.
+Now can return the favour -- be part of a safety net for my family.
+
+So, as talk about my achievements, take them with a grain of salt.                  # ?????
+It's not a fair race; I had an unfair advantage.
+I happened to pick a hobby that can now feed me and my family,
+I got everything I needed to get good at it,
+I always looked like stereotypical computer nerd, and who knows what
+advantages I got that way.
+
+
+
+###################################### MEETUPS
+
+When researching what life would be like in Finland, I found Honza -- someone
+from Brno who went on Erasmus to Finland a few years before me.
+At the time, he was starting to learn Python, today... we'll he'll be on this
+stage on Friday.
+In 2011, he had a conversation that went something like this:
+
+> I've really enjoyed a Ruby meetup!
+> Is there something like a Python meetup? :)
+> No. Organize one, you don't have to be a Python expert for that!
+
+And the rest is history. Sadly, I was still in Finland,
+but I managed to catch the second meetup suring my summer holiday.
+Half a year later, when I returned home for good, I had a talk,
+and some time afterward, when Honza was busy, I started co-organizing.
+That freed Honza's hands to think up crazy ideas, like expand to other cities.
+We literally went to Ostrava to look for a venue, then organized a meetup
+there, and recruited Lumír to organize the next ones.
+We felt like missionaries.
+
+Anyway.
+In Czech, a traditional meeting with friends is called «jít na pivo» – literally,
+go for a beer.
+You can also say «jít na jedno» ­go for one (beer) – that's been called the
+biggest Czech lie, as it's never just one.
+Another Czech lesson: the letters I and Y are pronounced exactly the same.
+Hence, the name of the Czech meetup: Pyvo.
+Our friends of Slovakia thought of it first, but it stuck here, and the
+Prague Python meetup adopted the name in a few months.
+
+Pyvo is too good of a pun, but drinking is not mandatory.
+I don't dring alcohol myself, and I've always felt welcome at the
+meetups -- even the ones I didn't organize.
+If you know the Czech culture, you'll know that is actually pretty special:
+usually you get really annoying questions like “why?” or “so you're driving”
+or worst of all, “are you pregnant?”
+Well, not here. Not so much, anyway.
+For me, that's a tiny sample of how the Python community being welcoming to
+people who are different.
+And I'd like to thank Honza Král for establishing the culture in the
+Prague meetups.
+
+And since I've organized one for many years, I can share a few tips.
+
+* Start.
+  * If you want to meet peope that are interested in something, the best way to do it is join their meeting. If there's no such meething, find a few and start the meeting.
+* Minimalism with bonuses.
+  * It's a meeting of people interested in Python.
+  * Anything else is a bonus:
+    * Other people.
+    * Speakers and talks.
+      * A projector.
+      * Recordings.
+    * Food.
+    * Sponsored food.
+    * A public announcement.
+    * Spreading to other cities
+* Seek help.
+  * You can't do everything alone.
+  * When became too much for Honza, he asked for a co-organizer.
+    At that point I was already back home, so I said yes -- and organized
+    for many years, even after Honza moved to Prague.
+    Eventually I grew tired, I asked for other organizers -- and found them.
+    Now Brno Pyvo is thriving without me, though I try to help whenever they
+    ask me.
+* Own your data
+  * Through the years, Pyvo meetups were advertised on Lanyrd, Facebook, Twitter and Meetup.com. What do these platforms have in common?
+    * You can't export historical data from them.
+      They're gone, unsearchable, or slowly monetizing access.
+  * So, put your info in a Git repository, even if that's not the place you promote.
+    Our website is a very minimal frontent to a bunch of YAML files that started
+    out as a Lanyrd export.
+    By now it records almost a decade of monthly meetups in 3 cities,
+    and less frequent ones elsewhere.
+* Keep it regular.
+  * Pyvo meetups are every month, every last Thursday.
+  * Even if only two people show up, you can have an interesting conversation.
+  * If there's a schedule, people will remind you that *there should be a meetup this month!*
+
+For example, Prague Pyvo is every third Wednesday of the month.
+Always. For more than a decade. They skipped one month when COVID hit.
+As luck would have it, today's a third Wednesday, and so we meet: this
+evening about 500 meters *that way*! You're welcome to join.
+
+XX segue
+
+PYVO: https://www.michaljanik.cz/sites/michaljanik.cz/files/images/clanky_foto/pyvo-2011-06-13-05.jpg
+PYVO LANYRD: https://honzajavorek.cz/images/lanyrd-pyvo-brug.png
+
+
+XXX https://twitter.com/honzajavorek/status/45900504152281088
+
+###################################### TEACHING PYTHON
+
+At this point I worked with Lynn Root, a co-founder of PyLadies,
+who attempted to start a Czech chapter, but didn't find enough interested
+women.
+Sure enough, women were missing from all our meetups.
+We were missing a lot of other types of people, too, but this seemed like
+a good place to start: if there aren't any PyLadies, let's help train some!
+
+It started with this post on Facebook:
+
+XXX FB post
+
+Someone was struggling with a Python course at a university,
+and wanted to pay for a tutor.
+I've just returned from the missionary trips to another city to find more
+people who wanted to talk about Pyhon, and the idea of getting paid for
+such a thing seemed pretty... alien.
+
+I started tutoring, helping them with their homework and preparing for an exam,
+and quickly found out why they were struggling.
+The course was designed for students of information technology, for people who
+were interested in computer science.
+It explored nifty algorithms and interesting mathematical puzzles -- but it
+was taught to future librarians, who weren't interested in that at all.
+
+We used a meeting room at Red Hat, which was empty in the evenings,
+and didn't need much budget or organization.
+
+We had a feedback session when the semester ended, and a few of the attendees
+convinced me to keep teaching. But this time, it wouldn't be helping with
+homework: I'd ask them what they want to do with Python, and explain whatever
+concepts were necessary to get there.
+There was no fixed agenda, no end date, we just continued as long as people
+wanted to come.
+
+Honza had a running joke about what you should use Python for:
+
+Link: https://groups.google.com/g/pyladies-brno/c/yIEAyl_5gOA/m/N3LVJy1zYlIJ
+
+> By the way, you've reached the point where you can download the lunch menu of
+> your favourite restaurant.
+>
+> That is, of course, an important milestone in any programmer's life.
+
+You need to know a lot for that: how variables work, how to save a file,
+install an HTTP library, debugging, and so on.
+
+I think stumbled upon a great way to make such a course:
+* Pick a target audience, and invite them.
+* Start teaching to 3-5 people, with an end result in mind,
+  and explain everything they don't know.
+  It will take more sessions than you think.
+* Write down roughly what you told them, so if someone missed
+  a session they can get back to speed.
+* When done, pick another task.
+
+People gradually dropped out, finding out this wasn't for them or exploring
+other duties, and one day we called the experiment done.
+
+I looked back at the notes, now knowing what people liked to build,
+what I need to explain, and how much time it takes to explain -- and started
+again, this time with a plan and an end date.
+I reached out to some colleagues to come and help the attendees with
+their problems.
+And I improved my notes *before* each lesson, turning them from notes to myself
+into something you could learn from directly -- without an instructor.
+
+The next year, people from Prague took my notes and taught their own course.
+
+The year after that, I stepped down as organizer.
+The former attendees reserved a room, ran registration, and did all the little
+things needed to run a free course for 30 people.
+I just came to teach and improve the written lessons.
+
+There's a lot of things to do to teach a bigger course.
+But now PyLadies CZ manage to do it consistently, on a voluntter basis.
+It's actually pretty hard for company to sponsor this: all they need is
+a meeting room for some evenings.
+
+Here's how it works:
+
+* diagram
+
+And some takeaways:
+
+* Teach!
+  Explaining something to 3 people does wonders to organize your thoughts.
+* Take notes!
+  You'll eventually want to refer back to what you said before.
+* Share notes!
+  Even if they're incomplete -- even an outline of a course can help someone
+  else teach the same thing.
+* Skip the grading
+  You don't need to score anyone's performance.
+  Do assign tasks, 
+
+Suggested reading:
+* *Teaching Tech Together* -- Greg Wilson
+* *The Carpentries* -- https://carpentries.org/
+
+XXX What this isn't -- comp sci, carpentries/djangogirls
+
+
+###################################### IF JUNIORS LEARN
+
+Meanwhile, I found work.
+I joined Red Hat working on identity management -- a Python-based
+interface for managing user accounts and permissions.
+
+I started as a junior, fresh out of school, and had a great onboarding
+experience.
+As a junior, my job was to learn the codebase.
+Consequently, the job of the seniors was to teach.
+In addition to small tasks, I did reviews: checked the work of others,
+asked questions until I understood everything, and tried to improve comments
+or documentation to make information accessible to the next junior.
+
+And that is the way I framed the discussion.
+
+I knew a lot of Python features, and frequently reviews like:
+
+> Did you consider using a list comprehension, like this:
+> (some code)
+
+That leaves the other person free to answer positively:
+* Yes, but I didn't use it because X
+* Yes, but I find the alternative more readable
+* Oh, that sounds better, thanks!
+
+And I get something out of this in each case:
+
+* I now know about feature X in the codebase, or
+* I adjust my understanding of the project's style conventions, or
+* We actually get better code!
+
+everyone wins.
+
+At one point, I've found actual bug.
+This was a review of a very senior person, someone who
+knew the project backwards and forwards.
+I've never seen them make a mistake in a patch. After some study, I said:
+
+> It seems that «bad thing» happens because X is not done at this point.
+> What am I missing?
+
+The reply?
+
+> Oh, thanks for noticing! Here's the fix.
+
+And that's when I've realized what's now very obvious to me:
+
+* Everyone makes mistakes.
+* When you find the mistake, acknowledge it, fix, and move on.
+
+And one thing that I already know:
+
+* When you spot a mistake, avoid blame: it's much nicer to ask
+  “what am I missing?” than “your code is wrong”
+
+Over time, I learned the code, made some contributions, continued to
+learn, and gradually became the team's expert on Python.
+
+XX segue
+
+###################################### COMMUNITY
+
+
+Writing free and open-source software, I dabbled in the question of why
+do this.
+Why do we share the code? Why do we write free and open-source software?
+
+I found two schools of thought. Or ideologies, if you will.
+
+First is *free software*, saying that access to source code is morally right.
+It's similar to the *right to repair* physical goods.
+If you buy, for example, a kitchen blender, and one of the blades breaks off,
+you should be free to make a replacement yourself, if you know how.
+Or buy one, even if the original manufacturer isn't selling them any more.
+Or even get rid of the blades and use the blender as a cordless drill!
+
+And you should definitely be free to open the blender up and remove the hidden
+microphone that's recording everything you say -- what the hell is that
+thing even doing in a blender?
+
+Anyway.
+Free software is the software equivalent of the right to repair.
+In order to be in control of the programs running on your computer,
+you need to be free to run, copy, distribute, study, change and improve it.
+And you need the source code for most of that.
+
+The second school of thought is open-source software:
+giving everyone access to the code is a pragmatic choice.
+It's good to do this because itleads to better software.
+Not necessarily software that's *easier to make*, but, software that,
+in the long term, tends to be of higher quality.
+
+So, where does Python fall?
+Do we make Python because it's morally right, or because it makes Python
+better?
+
+...
+
+It might be something in between, or something a bit different:
+The software is a means to build community.
+
+More important to being morally right or well built is bringing people together. 
+Python wants to be a joy to use, to talk about, to teach and to learn,
+to contribute to -- all activities that get people together, let them
+understand each other better, and make friends --
+or rivals, in the sportsmanlike sense.
+
+That is why I do what I do,
+and that is why I'm here.
+
+Thank you
+
+###################################### KINDNESSES & PROMISES
+
+How many of you heard about Brett Cannon?
+
+Back in 2014, when I was running one of the first courses for PyLadies,
+he said his famous quote:
+
+> I came for the language, but I stayed for the community
+
+He later said a lot more.
+In 2018, he gave a talk and a blog post called
+“Setting expectations in Community Participation”,
+and, I confess, I'll basically take that and condense it into 5 minutes.
+I'm allowed to do that in a lightning talk, right?
+
+Everyone in this community is a volunteer.
+Every open source project you use -- Python itself, NumPy, Django,
+Pytest, Textual -- was made by someone volunteering their spare time.
+Or maybe someone paid them to do it -- but it probably wasn't you paying for it.
+(If it was, *thank you* -- read your contract instead of listening to me.)
+
+Everything you use has a cost: someone chose to spend their time building it.
+Or some company spent its employee's time -- same thing.
+
+And so, everything you use is a *gift*, freely given -- usually with an
+invitation to make it better for everyone.
+And that's the mindset we should 
+
+Everything in open source(community) should be a series of kindnesses
+
+## Using open source
+
+> It *can* be like someone leaving out a pamphlet you **find offensive**.
+
+> It *should* be like sharing a toy at the playground.
+
+## Providing feedback
+
+> It *can* be like someone telling you, "**you're stupid**".
+
+> It *should* be suggesting a better way to do something.
+
+## Submitting a contribution
+
+> It *can* be like someone trying to give you a puppy you didn't ask for
+> or saying, "I'm cleaning up your mess".
+
+> It *should* be more of suggesting a better way to do something.
+
+## Contribution feedback
+
+> It *can* be like someone saying, "**you're doing it wrong**"
+> or reacting with "why don't you love me?!?"
+
+> It *should* be welcoming
+> or a teaching moment
+> or an acknowledgment that you don't have time -- and an invitation to
+  take over the project or start a new fork.
+
+## Maintenance
+
+> It *can* be like **arguing about politics** with friends.
+
+> It *should* be like decorating a house.
+
+---
+
+Most importantly,
+a *kindness* should not come with an expectation of something in return.
+
+If you use software I wrote, you don't have to contribute fixes or provide
+feedback.
+If you provide feedback, I don't have to act on it -- though it's good manners
+to acknowledge that I heard you.
+If you submit a contribution, I don't have to merge it -- though it's good manners to respond, and ideally hint at an acceptable solution for your problem.
+
+And it goes for any other community contribution, not just co
+
+I give this talk as a gift. If you don't like it, leave -- I hope you like the 
+gift, but I'm not forcing you to do that.
+
+I teach courses as a gift. If my way of teaching doesn't suit you, that's fine!
+I'll try to improve, but can't please everyone.
+
+
+###################################### PROMISES
+
+There are times when you *can* expect something:
+
+When I *promise* to do something, then you can expect me to do it.
+It's giving myself an extra challenge.
+It makes it possible to plan your work.
+
+It's quite important that promises -- large and small -- are kept.
+
+For example, I promised to give this keynote. And so I'm here.
+I could have given up when the talk just wasn't coming together
+as I wanted it to.
+The reason I didn't is that I made a promise to the organizers,
+and by extension, to all of you.
+I didn't sign a contract to be here.
+The only thing that would happen if I didn't show up is that this community
+couldn't trust me any more.
+And that is, of course, reason enough.
+
+Of course, there are reasons to break a promise.
+If I broke my leg and was in the hospital, I'd excuse myself
+and you all would have to talk among yourselves for an hour instead of
+listening to me.
+If my wife called and asked me to come back, for any reason, same thing.
+
+But that's about it -- there isn't much else that would make me break
+a promise to the community.
+
+Some promises are even bigger.
+You can promise to organize a conference.
+Or a meetup, or a course.
+You can sign up as a Python release manager,
+or run for the board of the Python Software Foundation.
+All these are big commitments, and failing to keep the promise
+would affect many people.
+Exceptions happen, but they're pretty serious, and if we got
+too many of them the community would fall apart.
+
+And yet, what do you get for making and keeping these promises?
+Well, they're all interactions with the community.
+To use Brett's word, they're kindnesses.
+You can't expect anything in return -- except maybe a warm feeling
+that you did something nice for others.
+
+But there are also smaller promises to make.
+
+If I say “I'll do the review this week”, that's a promise.
+It gives you an idea of what to expect; and if I don't get to it,
+you have every right to be angry at me.
+
+If the maintainer of project you depend on says they'll
+release Tuesday on the 14th,
+you can plan how you'll update and test the dependency to meet your
+own deadlines.
+
+Sometimes, such a promise would be too much of a burden,
+so I'll instead say, “I'll try to get to it this week, no promises”.
+Then, you know your situation.
+You can say -- “OK, no rush!”, and in a month,
+or “please do, it would help to do this early”, at which point I either
+prioritize the work, as a kindness, or tell you shouldn't count on it.
+(Then you might need to bypass me: do anything from finding another reviewer
+to vendoring a patched copy of my project.)
+
+I must be honest: I'm far from perfect in keeping these small promises.
+But I try, and I invite you to try as well: treat comments
+like “I'll get to this tomorrow” as promises.
+Check your calendar before making the comment.
+Mark it in your calendar, so you don't forget.
+And if you don't get to it, treat it as a mistake.
+Apologize, think how you can prevent the mistake in the future,
+and move on.
+
+If you ever catch me breaking a promise without apology,
+please let me know.
+I'd like to learn from my mistakes, but I can't learn from ones I forgot.
+I promise not to get angry at you.
+
+And lastly, make fewer promises.
+If you're not sure you can do something, say stuff like:
+* I'd love to work on that, but I definitely won't get to it this month.
+* I'll put it on my TODO list, but that list is getting pretty long.
+* If anyone beats me to it, go ahead!
+
+Or my favourite:
+* I won't get to it myself, but if you think it's interesting I'd love to help
+  and mentor you.
+
+
+... which is actually a rather big promise -- mentoring someone usually takes
+much more time than doing something yourself.
+But, for me at least, it's also much more rewarding.
+
+Perhaps I like sharing my knowledge even better than sharing my source code.
+If you do too, you're at the right place, at the right time.
+
+And if you don't -- welcome!
+What we share at EuroPython is freely given,
+and we don't expect anything in return.
+
+
+
+
+###################################### Q?
+
+
+Hello EuroPython!
+
+Thank you, Mia, for the introduction.
+
+{me}
+I'll repeat some of that on my slides...
+Well, actually, this whole talk is about me, how I got here, and, crucially, lessons learned along the way. Let's get started!
+
+{map}
+I was born in Czechoslovakia, a country that no longer exists, about 200 km that way ---> (east of here) in the city of Brno.
+I was lucky to have a computer in the family, which wasn't common at the time, and a dad who knew how to use it.
+
+{programming book} XXX Staňkova!
+I had the perfect environment to start programming -- at six years old.
+
+{another map?}
+When I was ten, my dad got a job in the US, and moved there with the whole family. I learned English there, with basically no effort.
+
+XXX (Pokémon back home? -- community)  https://www.pjz.cz/srazy/cundry/04/foto/cundrfoto_2005.jpg
+
+US universities are pretty expensive, so I moved back here for my Bachelor's. Then, I joined the Erasmus programme -- who here knows Erasmus? Who has been on Erasmus?
+So, Erasmus is a cringey acronym ("EuRopean Community Action Scheme for the Mobility of University Students") for the European learner mobility programme: students get to spend a year in another country.
+I chose Finland, and the university I went to happened to have an international Master student programme, I stayed and finished my degree here. My Czech university wasn't too happy about that, unfortunately.
+
+And all this time, I went with the flow.
+I had a loving family that supported me every step of the way. No one ever hinted that I don't look like a programmer. I always had enough cash; I never had to think about survival.
+I live life on easy mode: the only challenges I have to overcome are ones I set up for myself.
+And I like that.
+I think everyone should live like that.
+
+What does this tell you?
+All my achievements are qustionable. I had an unfair advantage.
+A0nd what does it mean for me?
+While I'll not give away everything I have to help you, I can at least try to help level the playing field.
+
+---
+
+Turns out that studying at the Finnish university was a lot easier than the Czech one, but I believe it was more effective: I got the necessary overview, but I was encouraged to explore my own interests, and had the time and resources to do my research properly, however crazy my project was.
+
+Yes, I made a game for my thesis. It combined hardware, user experience design, animation, Python, psychology and statistics. Many thanks to my supervisor, Roman Bednařík, for letting me do that.
+
+And also thank Roman for *not* being there.
+He had to leave for half a year, and I had to extend my studies by half a year. And I had nothing to do in that half year, so I started
+- playing an addictive games (answering StackOverflow)
+- contributing to open-source projects
+  - turns out helping to catalogue Pokémon is a great way to learn databases
+
+This pokémon database was run by a Eevee, who taught me take time to understand how do things *right*. It's OK to take a shortcut, but you should at least have an idea of how a proper solution will look. [eeee... this is  questionable, ugh!]
+Probably not the thing to do in a VC business that needs a MVP and users as soon as possible, but for, something like maintaining a programming language, this is the approach to take.
+
+
+anyway !?
+
+In 2011, Honza Javorek, a PHP programmer whom I followed because he went to Finland a few years before me, was trying to learn Python, found out about a Ruby meetup, and asked if there was something for Python.
+The answer?
+Nope, make one. Doesn't matter everyone else knows more about Python.
+
+And so, the Python meetups started in Brno.
+The second one was in summer 2011, when I had time to visit.
+
+Two years later, these meetups were held *every month* -- and the tradition continues until now.
+
+There are several takeaways from Pyvo meetups.
+
+* Start.
+  * If you want to meet peope that are interested in something, the best way to do it is join their meeting. If there's no such meething, find a few and start the meeting.
+* Keep it regular.
+  * Pyvo meetups are every month, every last Thursday.
+  * Even if only two people show up, you can have an interesting conversation.
+  * If there's a schedule, people will remind you that *there should be a meetup this month!*
+* Minimalism with bonuses.
+  * It's a meeting of people interested in Python.
+  * Anything else is a bonus:
+    * Other people.
+    * Speakers and talks.
+      * A projector.
+      * Recordings.
+    * Food.
+    * Sponsored food.
+    * A public announcement.
+* Seek help.
+  * You can't do everything alone.
+  * When became too much for Honza, he asked for a co-organizer.
+    At that point I was already back home, so I said yes -- and organized for many years, even after Honza moved to Prague.
+    Eventually I grew tired, I asked for other organizers -- and found them. Now Pyvo is thriving without me!
+* Own your data
+  * Who remembers Lanyrd?
+  * Through the years, Pyvo meetups were advertised on Lanyrd, Facebook, Twitter and Meetup.com. What do these platforms have in common?
+    * You can't export historical data from them.
+
+PYVO: https://www.michaljanik.cz/sites/michaljanik.cz/files/images/clanky_foto/pyvo-2011-06-13-05.jpg
+PYVO LANYRD: https://honzajavorek.cz/images/lanyrd-pyvo-brug.png
+
+I got 
+
+
+
+XXX INTRO - living life on easy mode -> achievements questionable
+
+XXX Pokemon???
+
+XXX Erasmus & Masters in Finland
+    - Time for FOSS
+    - Free Software - own your stuff
+    - Open Source - give it out
+    - Brett Cannon - "came for software, stayed for community"
+
+    fun ≠ easy (!)
+    - accomplishments!
+    - Extrinsic vs. Intrinsic Motivation
+    - https://en.wikipedia.org/wiki/Overjustification_effect (works if intrinsic is high)
+    - https://en.wikipedia.org/wiki/Job_characteristic_theory
+
+XXX Brno Pyvo meetups
+XXX Lanyrd/Facebook/Meetup  2015 -- pyvo-data
+    - OWN YOUR DATA. Don't trust Facebook, Discord
+
+XXX PyLadies (2013) -- (2015)
+    - not computer science
+    - 2016 - org. by PyLadies
+
+    Global/local!
+    Mentoring -- hyper-local!!
+    
+    - free! small financial payments reduced volunteer hours among Swiss citizens
+
+XXX python-maint @ Red Hat
+    - $$$ offer @ Google
+    - alignment mismatch!
+    - stay, do CPython dev
+
+-> participating in open source, professionally?
+   - be mindful of the others
+   - participation is a series of kindnesses (these are from Brett)
+     - volunteering their spare time
+       - or someone’s paying them but it probably isn’t you paying them to do this
+       - as soon as anyone feels animosity for one of these groups things just start to fall apart
+       - give and take right on both sides
+       - not knowing people’s backgrounds and where they’re coming from and what they put in
+   - motivations
+     - product (customers, differentiation, support)
+     - fame
+     - scratching an itch
+     - politics/ideology (freedom!)
+     - trolling, destruction
+   - ALIGNMENT - *when* to say no
+     - same goals - obvious
+     - accomodate & help ppl with different goals
+     - don't block people with orthogonal goals
+     - talk to people with goals
+     - keep out people with opposite goals
+       - luckily this isn't politics: they can easily move to a different community
+
+(2017 - the previous presentation)
+
+- PARTICIPATION
+  - Brett:
+      Using open source [8]
+        Brett → Stuart
+            It can be like someone leaving out a pamphlet you find offensive.
+
+      Providing feedback [9]
+        Stuart → Brett
+            It can be like someone telling you, "you're stupid".
+
+      Submitting a contribution [10]
+        Stuart → Brett
+            It can be like someone trying to give you a puppy you didn't ask for or saying, "I'm cleaning up your mess".
+
+      Contribution feedback [11]
+        Brett → Stuart
+            It can be like someone saying, "you're doing it wrong" or reacting with "why don't you love me?!?"
+
+      Maintenance [12]
+        Brett ⇄ Guido
+            It can be like arguing about politics with friends.
+
+    "it takes ten acts of kindness to undo one negative kindness"
+
+To which I add: Promises.
+
+promises - implied promises! (Add a README -- "a library for X --> people helping that goal")
+

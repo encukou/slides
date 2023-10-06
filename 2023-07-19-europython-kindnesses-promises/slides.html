@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>reveal.js</title>
+
+        <link rel="stylesheet" href="reveal.js/dist/reset.css">
+        <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+        <link rel="stylesheet" href="reveal.js/dist/theme/black.css">
+
+        <!-- Theme used for syntax highlighted code -->
+        <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section >
+                    <h2 class="r-fit-text">KINDNESSES &amp; PROMISES</h2>
+                    EuroPython 2023
+                </section>
+                <section class="container">
+                    <div class="container">
+                    <div class="col">
+                        <div>&nbsp;</div>
+                        <img src="img/petr_v.svg" style="width: 100%">
+                        <div>Petr Viktorin</div>
+                    </div>
+                    <div style="flex:0;align-self: center;">
+                        =
+                    </div>
+                    <div class="col">
+                        <div>&nbsp;</div>
+                        <img src="img/eck.svg" style="width: 100%">
+                        <div><code>@encukou</code></div>
+                    </div>
+                    </div>
+                      <aside class="notes" data-markdown>
+                        Thank you, Mia, for the introduction.
+
+                        Hello!
+
+                        I am Petr Viktorin, here's my username on the internet,
+                        and as Mia mentioned, this is my story.
+
+                        First, a little bit about myself.
+                        ... actually, this whole talk will be about myself,
+                        my journey and the lessons learned.
+                        Let's start at the beginning.
+                      </aside>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+
+                        <img class="r-stretch" src="img/brno.svg">
+
+                        Notes:
+                        I was born in Brno, about 200 km that way ---> (east of here) in the city of Brno.
+                        I was lucky to have a computer in the family, which wasn't common at the time,
+                        and a dad who knew how to use it.
+                        I had the perfect environment to start programming -- at six years old.
+                        ·
+
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+
+                        <img class="r-stretch" src="img/world-cz.svg">
+
+                        Notes:
+                        {Q} How many of you speak English as a second language?
+                        I guess most of you know English is pretty much a pre-requisite
+                        for programming.
+                        You might find stuff in other languages, but most documentation and tutorials
+                        are English-first.
+
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+
+                        <img class="r-stretch" src="img/world-cz-us.svg">
+
+                        Notes:
+                        If you live in an English-speaking country, you have a head start when you want
+                        to go into computer programming.
+                        I was lucky enough to get second best thing:
+                        When I was ten, my dad got a job in the US,
+                        and moved there with the whole family.
+                        I learned English, with basically no effort.
+
+                        Looking back, I realize I've been incredibly lucky.
+                        I had access to a computer very early on,
+                        I learned English by no fault of my own,
+                        I could take risks: when something went wrong, my family had my back:
+                        I had a safety net.
+                        Now can return the favour -- be part of a safety net for my family.
+
+                        So, as talk about my achievements, take them with a grain of salt.                  # ?????
+                        It's not a fair race; I had an unfair advantage.
+                        By pure chance I happened to pick a hobby that can now feed me and my family,
+                        I got everything I needed to get good at it,
+                        I always looked like stereotypical computer nerd,
+                        and I can't really understand what
+                        kind of advantages I got that way.
+
+                    </textarea>
+                </section>
+                <section data-background-image="img/oxy_manual.jpg">
+                <div class="r-stretch"></div>
+                <div style="text-align:right;font-size:50%;color:#555;">
+                    Photo by <a href="https://unsplash.com/@callemac?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Calle Macarone</a> on <a href="https://unsplash.com/photos/15wIddvL5dU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+                </div>
+                    <aside class="notes">
+
+                        This will be a talk about helping others.
+                        If you can't do as much as I could, don't feel bad.
+                        Everyone's circumstances are different.
+                        Make sure you're happy yourself before helping others.
+                    </aside>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+
+                        <img class="r-stretch" src="img/world-cz-us.svg">
+
+                        Notes:
+                        US universities are pretty expensive, so I moved back here for my Bachelor's.
+
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+
+                        <img class="r-stretch" src="img/world-cz-us-fi.svg">
+
+                        Notes:
+                        Then, I joined the Erasmus programme to go to Finland.
+
+                        The university I went to had an international Master student programme,
+                        and I stayed and finished my degree here.
+                        My Czech university wasn't too happy about that, unfortunately.
+
+                        Then, I realized where my home is, and moved right back to Brno.
+
+                    </textarea>
+                </section>
+                <section>
+                    <img src="img/honza-2011.jpg" class="stretch">
+                      <aside class="notes" data-markdown>
+                        When researching what life would be like in Finland, I found Honza -- someone
+                        from Brno who went on Erasmus to Finland a few years before me.
+                        At the time, he was starting to learn Python, today... we'll he'll be on this
+                        stage on Friday.
+                        In 2011, he had a conversation that went something like this:
+                      </aside>
+                </section>
+                <section>
+                    <div class="fade-up" style="display:grid;grid-template-columns: 5% 1fr;">
+                        <div style="align-self:center;justify-self:left;">
+                            <img src="img/woot_400x400.jpg" style="width:100%;border-radius: 50%;">
+                        </div>
+                        <div style="align-self:center;justify-self:left;">
+                            Michal
+                        </div>
+                        <div style="align-self:center;justify-self:left;grid-column: 1 / 3;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:-30px;">
+                            I've really enjoyed a Ruby meetup!
+                        </div>
+                    </div>
+
+                    <div class="fragment fade-up" style="display:grid;grid-template-columns: 1fr 5% ;">
+                        <div style="align-self:center;justify-self:right;">
+                            Honza
+                        </div>
+                        <div style="align-self:center;justify-self:left;">
+                            <img src="img/honza-2011.jpg" style="width:100%;border-radius: 50%;">
+                        </div>
+                        <div style="align-self:center;justify-self:right;grid-column: 1 / 4;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:-30px;"">
+                            Is there a Python meetup? :)
+                        </div>
+                    </div>
+
+                    <div class="fragment fade-up" style="display:grid;grid-template-columns: 5% 1fr;">
+                        <div style="align-self:center;justify-self:left;">
+                            <img src="img/woot_400x400.jpg" style="width:100%;border-radius: 50%;">
+                        </div>
+                        <div style="align-self:center;justify-self:left;">
+                            Michal
+                        </div>
+                        <div style="align-self:center;justify-self:left;grid-column: 1 / 4;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:-30px;"">
+                            No, make one!
+                        </div>
+                    </div>
+
+                      <aside class="notes" data-markdown>
+                        > I've really enjoyed a Ruby meetup!
+                        > Is there something like a Python meetup? :)
+                        > No. Organize one, you don't have to be a Python expert for that!
+
+                        And the rest is history. Sadly, I was still in Finland,
+                        but I managed to catch the second meetup suring my summer holiday.
+                      </aside>
+                </section>
+                <section>
+                    <img src="img/pyvo-2011-06-13-05.jpg">
+
+                      <aside class="notes" data-markdown>
+                        Half a year later, when I returned home for good, I had a talk,
+                        and some time afterward, when Honza was busy, I started co-organizing.
+                        That freed Honza's hands to think up crazy ideas, like expand to other cities.
+                        We literally went to Ostrava to look for a venue, then organized a meetup
+                        there, and recruited Lumír to organize the next ones.
+                        We felt like missionaries.
+
+                      </aside>
+                </section>
+                <section>
+                    <h2>A Czech lesson</h2>
+                    <div class="container">
+                    <div class="col">
+
+                    <div style="display:grid;grid-template-columns: 1fr;">
+                    <div style="justify-self: left;">🇬🇧 Meet with friends</div>
+                    <div class="fragment fade-up" style="justify-self: left;">= <span>🇨🇿 Jít na <strong>pivo</strong></span></div>
+                    <div class="fragment fade-up" style="justify-self: left;">&nbsp;&nbsp;&nbsp;&nbsp;= 🇬🇧 Go for a <strong>beer</strong></div>
+                    <div>&nbsp;</div>
+                    <div class="fragment fade-up" style="justify-self: left;"><strong>i</strong>=<strong>y</strong></div>
+                    </div>
+
+                    </div>
+                    <div class="col fragment" style="justify-self: middle;">
+
+                    <img src="img/pyvo-logo-inverted.png" width="25%" style="margin:0;padding:0;">
+                    <div>Pyvo</div>
+
+                    </div>
+                    </div>
+                      <aside class="notes" data-markdown>
+                        Anyway.
+                        In Czech, a traditional meeting with friends is called «jít na pivo» – literally,
+                        go for a beer.
+                        You can also say «jít na jedno» ­go for one (beer) – that's been called the
+                        biggest Czech lie, as it's never just one.
+                        Another Czech lesson: the letters I and Y are pronounced exactly the same.
+                        Hence, the name of the Czech meetup: Pyvo.
+                        Our friends of Slovakia thought of it first, but it stuck here, and the
+                        Prague Python meetup adopted the name in a few months.
+
+                        Pyvo is too good of a pun, but drinking is not mandatory.
+                        I don't dring alcohol myself, and I've always felt welcome at the
+                        meetups -- even the ones I didn't organize.
+                        If you know the Czech culture, you'll know that is actually pretty special:
+                        usually you get really annoying questions like “why?” or “so you're driving”
+                        or worst of all, “are you pregnant?”
+                        Well, not here. Not so much, anyway.
+                        For me, that's a tiny sample of how the Python community being welcoming to
+                        people who are different.
+                      </aside>
+                </section>
+                <section>
+                    <img src="img/pyva-1.svg" class="stretch">
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section>
+                    <img src="img/pyva-2.svg" class="stretch">
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section>
+                    <img src="img/pyva-3.svg" class="stretch">
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section>
+                    <img src="img/pyva-4.svg" class="stretch">
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section>
+                    <img src="img/pyva.svg" class="stretch">
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section>
+                    <h2>Tips for meetups</h2>
+                    <ul style="list-style:none">
+                    <li class="fragment fade-up">Start</li>
+                    <li class="fragment fade-up">Just meet</li>
+                    <li class="fragment fade-up">— Anything else is a bonus</li>
+                    <li class="fragment fade-up">Seek help</li>
+                    <li class="fragment fade-up">Own your records</li>
+                    <li class="fragment fade-up">Keep it regular</li>
+                    </ul>
+
+                      <aside class="notes" data-markdown>
+                        * Other people.
+                        * Speakers and talks.
+                        * A projector.
+                        * Recordings.
+                        * Food.
+                        * Sponsored food.
+                        * A public announcement.
+                        * Spreading to other cities
+
+                        // Lanyrd, Facebook, Twitter and Meetup.com
+
+                        And since I've organized one for many years, I can share a few tips.
+
+                        * Start.
+                            * If you want to meet peope that are interested in something, the best way to do it is join their meeting. If there's no such meething, find a few and start the meeting.
+                        * Minimalism with bonuses.
+                            * It's a meeting of people interested in Python.
+                        * Anything else is a bonus:
+                            * Other people.
+                            * Speakers and talks.
+                            * A projector.
+                            * Recordings.
+                            * Food.
+                            * Sponsored food.
+                            * A public announcement.
+                            * Spreading to other cities
+                        * Seek help.
+                           * You can't do everything alone.
+                           * When became too much for Honza, he asked for a co-organizer.
+                             At that point I was already back home, so I said yes -- and organized
+                             for many years, even after Honza moved to Prague.
+                             Eventually I grew tired, I asked for other organizers -- and found them.
+                             Now Brno Pyvo is thriving without me, though I try to help whenever they
+                             ask me.
+                        * Own your data
+                        * Through the years, Pyvo meetups were advertised on Lanyrd, Facebook, Twitter and Meetup.com. What do these platforms have in common?
+                            * You can't export historical data from them.
+                            They're gone, unsearchable, or slowly monetizing access.
+                        * So, put your info in a Git repository, even if that's not the place you promote.
+                            Our website is a very minimal frontent to a bunch of YAML files that started
+                            out as a Lanyrd export.
+                            By now it records almost a decade of monthly meetups in 3 cities,
+                            and less frequent ones elsewhere.
+                        * Keep it regular.
+                        * Pyvo meetups are every month, every last Thursday.
+                        * Even if only two people show up, you can have an interesting conversation.
+                        * If there's a schedule, people will remind you that *there should be a meetup this month!*
+
+                        For example, Prague Pyvo is every third Wednesday of the month.
+                        Always. For more than a decade. They skipped one month when COVID hit.
+                        As luck would have it, today's a third Wednesday, and so we meet: this
+                        evening about 500 meters *that way*! You're welcome to join.
+                      </aside>
+                </section>
+                <section>
+                    <h2>pyvo.cz</h2>
+                    <iframe data-src="https://pyvo.cz/en/#header" data-preload style="width:100%;height:60vh;"></iframe>
+                </section>
+                <section>
+                    <h2>Teaching Python</h2>
+                    <div class="fragment fade-up" style="display:grid;grid-template-columns: 5% 1fr;">
+                        <div style="align-self:center;justify-self:left;">
+                            <img src="img/maruska.jpg" style="width:100%;border-radius: 50%;">
+                        </div>
+                        <div style="align-self:center;justify-self:left;">
+                            Maruška M.
+                        </div>
+                        <div style="align-self:center;justify-self:left;grid-column: 1 / 3;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:-30px;text-align:left;">
+                            <div>
+                                Hello, we're looking for a tutor for Python.
+                                Ideally from the very beginning. BRNO.
+                            </div>
+                            <div style="padding-top:1ex;">
+                                We're 3 girls, and we're getting lost.
+                                Is anyone is interested?
+                            </div>
+                            <div style="padding-top:1ex;">
+                                Name the price, for us it's important to start
+                                as soon as possible.
+                            </div>
+                        </div>
+                    </div>
+                      <aside class="notes" data-markdown>
+                        At this point I worked with Lynn Root, a co-founder of PyLadies,
+                        who attempted to start a Czech chapter, but didn't find enough interested
+                        women.
+                        Sure enough, women were missing from all our meetups.
+                        We were missing a lot of other types of people, too, but this seemed like
+                        a good place to start: if there aren't any PyLadies, let's help train some!
+
+                        It started with this post on Facebook:
+
+Someone was struggling with a Python course at a university,
+and wanted to pay for a tutor.
+I've just returned from the missionary trips to another city to find more
+people who wanted to talk about Pyhon, and the idea of getting paid for
+such a thing seemed pretty... alien.
+
+I started tutoring, helping them with their homework and preparing for an exam,
+and quickly found out why they were struggling.
+The course was designed for students of information technology, for people who
+were interested in computer science.
+It explored nifty algorithms and interesting mathematical puzzles -- but it
+was taught to future librarians, who weren't interested in that at all.
+
+We used a meeting room at Red Hat, which was empty in the evenings,
+and didn't need much budget or organization.
+
+We had a feedback session when the semester ended, and a few of the attendees
+convinced me to keep teaching. But this time, it wouldn't be helping with
+homework: I'd ask them what they want to do with Python, and explain whatever
+concepts were necessary to get there.
+There was no fixed agenda, no end date, we just continued as long as people
+wanted to come.
+
+Honza had a running joke about what you should use Python for:
+
+Link: https://groups.google.com/g/pyladies-brno/c/yIEAyl_5gOA/m/N3LVJy1zYlIJ
+
+> By the way, you've reached the point where you can download the lunch menu of
+> your favourite restaurant.
+>
+> That is, of course, an important milestone in any programmer's life.
+
+You need to know a lot for that: how variables work, how to save a file,
+install an HTTP library, debugging, and so on.
+                      </aside>
+                </section>
+                <section>
+                    <h2>Share what you know</h2>
+                    <ul>
+                    <li class="fragment fade-up">Pick a target audience</li>
+                    <li class="fragment fade-up">Invite 3-5 people</li>
+                    <li class="fragment fade-up">Have an end result in mind</li>
+                    <li class="fragment fade-up">Explain what they don't know</li>
+                    <li class="fragment fade-up">Keep notes</li>
+                    <li class="fragment fade-up">When done, pick another task</li>
+                    </ul>
+
+                      <aside class="notes" data-markdown>
+I think stumbled upon a great way to make such a course:
+* Pick a target audience, and invite them.
+* Start teaching to 3-5 people, with an end result in mind,
+  and explain everything they don't know.
+  It will take more sessions than you think.
+* Write down roughly what you told them, so if someone missed
+  a session they can get back to speed.
+* When done, pick another task.
+
+People gradually dropped out, finding out this wasn't for them or exploring
+other duties, and one day we called the experiment done.
+
+                      </aside>
+                </section>
+                <section>
+                    <h2>Sharing notes</h2>
+                    <ul>
+                    <li class="fragment fade-up">For recall</li>
+                    <li class="fragment fade-up">For missing people</li>
+                    <li class="fragment fade-up">For helpers</li>
+                    <li class="fragment fade-up">For other courses</li>
+                    <li class="fragment fade-up">For self-learners</li>
+                    </ul>
+
+                      <aside class="notes" data-markdown>
+
+I looked back at the notes, now knowing what people liked to build,
+what I need to explain, and how much time it takes to explain -- and started
+again, this time with a plan and an end date.
+I reached out to some colleagues to come and help the attendees with
+their problems.
+And I improved my notes *before* each lesson, turning them from notes to myself
+into something you could learn from directly -- without an instructor.
+
+The next year, people from Prague took my notes and taught their own course.
+
+                      </aside>
+                </section>
+                <section>
+                    <h2>Dramatis personae</h2>
+                    <ul>
+                        <li class="fragment fade-up">Attendee</li>
+
+                        <li class="fragment fade-up">Organizer</li>
+
+                        <li class="fragment fade-up">Mentor</li>
+
+                        <li class="fragment fade-up">Presenter</li>
+
+                        <li class="fragment fade-up">Author</li>
+
+                        <li class="fragment fade-up">Maintainer</li>
+
+                        <li class="fragment fade-up">Sponsor</li>
+                    </ul>
+                      <aside class="notes" data-markdown>
+
+The year after that, I stepped down as organizer.
+The former attendees reserved a room, ran registration, and did all the little
+things needed to run a free course for 30 people.
+I just came to teach and improve the written lessons.
+
+There's a lot of things to do to teach a bigger course.
+But now PyLadies CZ manage to do it consistently, on a volunteer basis.
+It's actually pretty hard for company to sponsor this: all they need is
+a meeting room for some evenings.
+
+Here's how it works:
+
+* diagram
+
+And some takeaways:
+
+* Teach!
+  Explaining something to 3 people does wonders to organize your thoughts.
+* Take notes!
+  You'll eventually want to refer back to what you said before.
+* Share notes!
+  Even if they're incomplete -- even an outline of a course can help someone
+  else teach the same thing.
+* Skip the grading
+  You don't need to score anyone's performance.
+  Do assign tasks, 
+
+Suggested reading:
+* *Teaching Tech Together* -- Greg Wilson
+* *The Carpentries* -- https://carpentries.org/
+
+XXX What this isn't -- comp sci, carpentries/djangogirls
+                      </aside>
+                </section>
+                <section>
+                    <div>I came for the language,</div>
+                    <div>but stayed for the community</div>
+                    <div>— Brett Cannon, 2014</div>
+
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section>
+                    <div>Why open the source?</div>
+
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section data-background="white">
+                    <img class="r-stretch" src="img/smartstick.webp">
+
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section>
+                    <div>Why open the source?</div>
+
+                    <div class="container">
+                    <div class="col">
+                    <img style="width:100%" src="img/GPLv3_Logo.svg">
+                    </div>
+                    <div class="col fragment fade-up">
+                    <img style="width:50%" src="img/Open_Source_Initiative.svg">
+                    </div>
+                    </div>
+                    <div class="fragment fade-up" style="margin-top:1em;">
+                        <img src="img/python-logo.svg" style="height:1.4em;vertical-align: bottom;padding:0;margin:0;">
+                        Community software?
+                    </div>
+
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section data-auto-animate>
+                    <div>I came for the language,</div>
+                    <div>but stayed for the community</div>
+                    <div><span data-id="brett">— Brett Cannon</span>, 2014</div>
+
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section data-auto-animate>
+                    <div><span data-id="a">Setting expectations for</span> open source <span data-id="b">participation</span></div>
+                    <div><span data-id="brett">— Brett Cannon</span>, 2018</div>
+
+                      <aside class="notes" data-markdown>
+
+He later said a lot more.
+In 2018, he gave a talk and a blog post called
+“Setting expectations in Community Participation”,
+and, I confess, I'll basically take that and condense it into 5 minutes.
+I'm allowed to do that in a lightning talk, right?
+
+                      </aside>
+                </section>
+                <section data-auto-animate>
+                    <div><span data-id="a">Setting expectations for</span> <strong>community</strong> <span data-id="b">participation</span></div>
+                    <div>&nbsp;</div>
+
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section>
+                    <h2>Setting expectations</h2>
+                    <div class="fragment fade-up">Everyone is a volunteer</div>
+                    <div class="fragment fade-up">Everything has a cost.</div>
+                    <div class="fragment fade-up">Everything you use is a gift.</div>
+                    <div class="fragment fade-up">Participation in <strong>the community</strong> should be a <em>series of kindnesses</em>.</div>
+
+
+                      <aside class="notes" data-markdown>
+Everyone in this community is a volunteer.
+Every open source project you use -- Python itself, NumPy, Django,
+Pytest, Textual -- was made by someone volunteering their spare time.
+Or maybe someone paid them to do it -- but it probably wasn't you paying for it.
+(If it was, *thank you* -- read your contract instead of listening to me.)
+
+Everything you use has a cost: someone chose to spend their time building it.
+Or some company spent its employee's time -- same thing.
+
+And so, everything you use is a *gift*, freely given -- usually with an
+invitation to make it better for everyone.
+And that's the mindset we should 
+
+Everything in open source(community) should be a series of kindnesses
+                      </aside>
+                </section>
+                <section>
+                    <h2>Kindnesses</h2>
+                    <div class="fragment fade-up">Using software</div>
+                    <div class="fragment fade-up">Providing feedback</div>
+                    <div class="fragment fade-up">Submitting a contribution</div>
+                    <div class="fragment fade-up">Contribution feedback</div>
+                    <div class="fragment fade-up">Maintenance</div>
+                    <div style="height:1em"></div>
+                    <div class="fragment fade-up">Giving a talk</div>
+                    <div class="fragment fade-up">Organizing a meetup</div>
+                    <div class="fragment fade-up">Teaching a course</div>
+
+                      <aside class="notes" data-markdown>
+
+## Using open source
+
+> It *can* be like someone leaving out a pamphlet you **find offensive**.
+
+> It *should* be like sharing a toy at the playground.
+
+## Providing feedback
+
+> It *can* be like someone telling you, "**you're stupid**".
+
+> It *should* be suggesting a better way to do something.
+
+## Submitting a contribution
+
+> It *can* be like someone trying to give you a puppy you didn't ask for
+> or saying, "I'm cleaning up your mess".
+
+> It *should* be more of suggesting a better way to do something.
+
+## Contribution feedback
+
+> It *can* be like someone saying, "**you're doing it wrong**"
+> or reacting with "why don't you love me?!?"
+
+> It *should* be welcoming
+> or a teaching moment
+> or an acknowledgment that you don't have time -- and an invitation to
+  take over the project or start a new fork.
+
+## Maintenance
+
+> It *can* be like **arguing about politics** with friends.
+
+> It *should* be like decorating a house.
+
+# NOTHING IN RETURN
+
+Most importantly,
+a *kindness* should not come with an expectation of something in return.
+
+## Giving a talk
+
+> It *can* be like **mandatory compliance training** you need to sit through.
+
+> It *should* be sharing ideas.
+
+## Organizing a meetup
+
+> It *can* be like ?
+
+## Teaching a course
+
+> It *can* be like ?
+
+                      </aside>
+                </section>
+                <section>
+                    <div>Don't expect anyone to do more<br>than they already did</div>
+                </section>
+                <section>
+                    <h2>Promises</h2>
+                    <div class="fragment fade-up">This talk</div>
+                    <div class="fragment fade-up">A conference</div>
+                    <div class="fragment fade-up">A meetup</div>
+                    <div class="fragment fade-up">PSF board</div>
+                    <div style="height:1em"></div>
+                    <div class="fragment fade-up">A review</div>
+                    <div class="fragment fade-up">A release</div>
+                    
+                    
+                    
+                      <aside class="notes" data-markdown>
+There are times when you *can* expect something:
+
+When I *promise* to do something, then you can expect me to do it.
+It's giving myself an extra challenge.
+It makes it possible to plan your work.
+
+It's quite important that promises -- large and small -- are kept.
+
+For example, I promised to give this keynote. And so I'm here.
+I could have given up when the talk just wasn't coming together
+as I wanted it to.
+The reason I didn't is that I made a promise to the organizers,
+and by extension, to all of you.
+I didn't sign a contract to be here.
+The only thing that would happen if I didn't show up is that this community
+couldn't trust me any more.
+And that is, of course, reason enough.
+
+Of course, there are reasons to break a promise.
+If I broke my leg and was in the hospital, I'd excuse myself
+and you all would have to talk among yourselves for an hour instead of
+listening to me.
+If my wife called and asked me to come back, for any reason, same thing.
+
+But that's about it -- there isn't much else that would make me break
+a promise to the community.
+
+Some promises are even bigger.
+You can promise to organize a conference.
+Or a meetup, or a course.
+You can sign up as a Python release manager,
+or run for the board of the Python Software Foundation.
+All these are big commitments, and failing to keep the promise
+would affect many people.
+Exceptions happen, but they're pretty serious, and if we got
+too many of them the community would fall apart.
+
+And yet, what do you get for making and keeping these promises?
+Well, they're all interactions with the community.
+To use Brett's word, they're kindnesses.
+You can't expect anything in return -- except maybe a warm feeling
+that you did something nice for others.
+
+But there are also smaller promises to make.
+
+If I say “I'll do the review this week”, that's a promise.
+It gives you an idea of what to expect; and if I don't get to it,
+you have every right to be angry at me.
+
+If the maintainer of project you depend on says they'll
+release Tuesday on the 14th,
+you can plan how you'll update and test the dependency to meet your
+own deadlines.
+</aside>
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="h">No promises</h2>
+                    <div data-id="a" class="fragment fade-up" style="display:grid;grid-template-columns: 5% 1fr;">
+                        <div style="align-self:center;justify-self:left;">
+                            <img src="img/eck.png" style="width:100%;x-border-radius: 50%;">
+                        </div>
+                        <div style="align-self:center;justify-self:left;">
+                            Me
+                        </div>
+                        <div style="align-self:center;justify-self:left;grid-column: 1 / 3;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:-30px;">
+                            I'll try to get to it this week, no promises!
+                        </div>
+                    </div>
+
+                    <div class="fragment fade-up" style="display:grid;grid-template-columns: 1fr 5% ;">
+                        <div style="align-self:center;justify-self:right;">
+                            You
+                        </div>
+                        <div style="align-self:center;justify-self:left;">
+                            <img src="img/black.png" style="width:100%;border-radius: 50%;">
+                        </div>
+                        <div style="align-self:center;justify-self:right;grid-column: 1 / 4;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:-30px;"">
+                            OK, no rush!
+                        </div>
+                    </div>
+
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section n-data-auto-animate>
+                    <h2 data-id="h">No promises</h2>
+                    <div data-id="a" style="display:grid;grid-template-columns: 5% 1fr;">
+                        <div style="align-self:center;justify-self:left;">
+                            <img src="img/eck.png" style="width:100%;x-border-radius: 50%;">
+                        </div>
+                        <div style="align-self:center;justify-self:left;">
+                            Me
+                        </div>
+                        <div style="align-self:center;justify-self:left;grid-column: 1 / 3;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:-30px;">
+                            I'll try to get to it this week, no promises!
+                        </div>
+                    </div>
+
+                    <div class="fade-up" style="display:grid;grid-template-columns: 1fr 5% ;">
+                        <div style="align-self:center;justify-self:right;">
+                            You
+                        </div>
+                        <div style="align-self:center;justify-self:left;">
+                            <img src="img/black.png" style="width:100%;border-radius: 50%;">
+                        </div>
+                        <div style="align-self:center;justify-self:right;grid-column: 1 / 4;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:-30px;"">
+                            Please, it would help me!
+                        </div>
+                    </div>
+
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section>
+                    <h2>Making promises</h2>
+                    <div class="fragment fade-up">Check your calendar</div>
+                    <div class="fragment fade-up">Mark your calendar</div>
+                      <aside class="notes" data-markdown>
+
+I must be honest: I'm far from perfect in keeping these small promises.
+But I try, and I invite you to try as well: treat comments
+like “I'll get to this tomorrow” as promises.
+Check your calendar before making the comment.
+Mark it in your calendar, so you don't forget.
+And if you don't get to it, treat it as a mistake.
+Apologize, think how you can prevent the mistake in the future,
+and move on.
+
+                      </aside>
+                </section>
+                <section>
+                    <h2>Breaking promises</h2>
+                    <div class="fragment fade-up">Apologize</div>
+                    <div class="fragment fade-up">Think</div>
+                    <div class="fragment fade-up">Move on</div>
+                      <aside class="notes" data-markdown>
+                      </aside>
+                </section>
+                <section>
+                    <h2>Call me out</h2>
+                      <aside class="notes" data-markdown>
+
+If you ever catch me breaking a promise without apology,
+please let me know.
+I'd like to learn from my mistakes, but I can't learn from ones I forgot.
+I promise not to get angry at you.
+
+                      </aside>
+                </section>
+                <section>
+                    <h2>Make fewer promises</h2>
+                    <div style="align-self:center;justify-self:left;grid-column: 1 / 3;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:10px;" class="fragment fade-up">I'd love to work on that, but…</div>
+                    <div style="align-self:center;justify-self:left;grid-column: 1 / 3;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:10px;" class="fragment fade-up">I'll put it on my TODO list</div>
+                    <div style="align-self:center;justify-self:left;grid-column: 1 / 3;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:10px;" class="fragment fade-up">If anyone beats me to it, go ahead!</div>
+                    <div style="align-self:center;justify-self:left;grid-column: 1 / 3;background-color:var(--r-main-color);color:var(--r-background-color);border-radius: 50px;padding:25px;margin-top:10px;" class="fragment fade-up">I won't get to it myself, but I can guide you</div>
+                      <aside class="notes" data-markdown>
+
+And lastly, make fewer promises.
+If you're not sure you can do something, say stuff like:
+* I'd love to work on that, but I definitely won't get to it this month.
+* I'll put it on my TODO list, but that list is getting pretty long.
+* If anyone beats me to it, go ahead!
+
+Or my favourite:
+* I won't get to it myself, but if you think it's interesting I'd love to help
+  and mentor you.
+
+
+... which is actually a rather big promise -- mentoring someone usually takes
+much more time than doing something yourself.
+But, for me at least, it's also much more rewarding.
+
+Perhaps I like sharing my knowledge even better than sharing my source code.
+If you do too, you're at the right place, at the right time.
+
+And if you don't -- welcome!
+What we share at EuroPython is freely given,
+and we don't expect anything in return.
+
+                      </aside>
+                </section>
+                <section>
+                    <h2>Thank you</h2>
+                </section>
+            </div>
+        </div>
+
+        <script src="reveal.js/dist/reveal.js"></script>
+        <script src="reveal.js/plugin/notes/notes.js"></script>
+        <script src="reveal.js/plugin/markdown/markdown.js"></script>
+        <script src="reveal.js/plugin/highlight/highlight.js"></script>
+        <style>
+        :root {
+            --r-main-font: Varela Round;
+            --r-heading-font: Varela Round;
+            --r-main-color: #d9ffff;
+            --r-heading-color: #d9ffff;
+            --r-background-color: #000018;
+        }
+        .container{
+            display: flex;
+        }
+        .col{
+            flex: 1;
+        }
+        strong {
+            color: #ffefaa;
+        }
+        ul li {
+        list-style-type: none;
+        }
+        </style>
+        <script>
+            Reveal.initialize({
+                hash: true,
+                defaultTiming: 60,
+                transition: 'none',
+                controls: false,
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+            });
+        </script>
+    </body>
+</html>

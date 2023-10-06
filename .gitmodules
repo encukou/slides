@@ -1,3 +1,6 @@
 [submodule "2022-09-09-pycon-sk/reveal.js"]
 	path = 2022-09-09-pycon-sk/reveal.js
 	url = https://github.com/hakimel/reveal.js
+[submodule "2023-07-19-europython-kindnesses-promises/reveal.js"]
+	path = 2023-07-19-europython-kindnesses-promises/reveal.js
+	url = https://github.com/hakimel/reveal.js.git

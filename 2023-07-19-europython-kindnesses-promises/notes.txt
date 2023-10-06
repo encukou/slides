@@ -1,0 +1,133 @@
+Yeah. The way I always view – when people say “Oh, you’ve been so successful”, usually it’s literally the luck of being at the right place, equipped with the right tools, and the willingness to take the right chance. I think we happened to have all that at all the right points.
+ Brett - https://changelog.com/podcast/318
+
+
+
+
+
+it takes ten acts of kindness to undo one negative kindness
+- Brett
+
+
+
+You can have a community around a dog breed, but you’ve still gotta have that dog breed, for instance, to actually have that initial connection to make these friendships that you have with these people in that community. And the same with Python - if Python doesn’t exist, we’re not gonna have a PyCon U.S. where we’re all gonna get together and hang out, right? So we have to do something to make sure we have our annual excuse to go hang out, to view it one way.
+- Breed
+
+
+
+
+
+
+
+promises - implied promises! (Add a README -- "a library for X --> people helping that goal")
+
+living life on easy mode  ... + challenges (promises)
+
+Freezeyt -- "project" as an excuse
+
+“Have fun, even if it’s not the same kind of fun everyone else is having.”
+-  C.S. Lewis 
+
+
+
+Global/local!
+Mentoring -- hyper-local!!
+
+
+
+fun ≠ easy (!)
+- accomplishments!
+
+
+
+-----
+
+Hello Brett!
+Thank you for your “Setting expectations for open source participation” talks/blogs.
+I'll be giving a keynote at EuroPython, and it's shaping up to be more and more of a “yes, and” reply to you, and to include a few quotes from you to bring everyone up to speed. Hope you don't mind! :)
+
+
+-----
+
+
+
+
+The more applications you build, the more libraries you share,
+the more they become an excuse to meet people and have fun together.
+
+What makes it fun? And how do we keep it fun?
+
+
+
+
+
+
+Brett Cannon, in *Setting expectations for open source participation*,
+
+
+
+Sharing, collaboration, community, 
+
+Open source is more than code, more than a sharing, more than a community.
+
+
+The more people you meet, the more fun you have,
+the more you realize it's the sharing, not the code.
+
+
+
+The best way to have fun? Help everyone else have fun.
+
+
+
+
+The secret to having fun is that everyone else is having fun
+
+Welcome to this puzzle-solving club,
+this co-op game night,
+the secret is that everyone else is having fun.
+
+How can you help?
+
+
+
+
+
+
+Building all those libraries and applications? That's more 
+
+
+
+, but they're more of an excuse to meet people.
+
+
+
+I came for the language, but 
+
+
+Sure, I like building the libraries and the applications, but they're more of an excuse to meet people.
+
+
+Why do we build all the libraries and applications we share with the world?
+
+
+
+A talk on being lucky, kind, 
+A community
+
+
+-----
+
+Petr works at Red Hat, integrating Python into Linux distros.
+
+He started contributing to Python in 2015, answering Nick Coghlan's call for a volunteer to improve extension module loading. After about six PEPs and eight years of work, that project expanded to better support for subinterpreters and maintaining the stable ABI, and helping Eric Snow's effort to break up the GIL.
+
+Last year, after a nomination for Steering Council forced him to look at parts of the project that needed help, Petr revived the Documentation community, and spent time removing roadblocks from contributing to Python's documentation.
+
+To give back to the community, he started teaching free courses to local beginners. But that is a story for his talk at EuroPython.
+
+----
+
+The more applications you build, the more libraries you share, the more they become an excuse to meet people and have fun together.
+
+What makes it fun? And how do we keep it fun?
