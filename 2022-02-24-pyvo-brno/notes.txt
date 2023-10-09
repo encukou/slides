@@ -1,0 +1,73 @@
+
+https://www.python.org/
+ https://docs.python.org/3/
+GitHub (PRs)
+- https://github.com/python/cpython/
+     https://hg.python.org/
+       svn.python.org
+          cvs.python.org
+- bpo
+   https://bugs.python.org/
+   Roundup https://roundup.sourceforge.io/
+- Triagers
+    https://devguide.python.org/triaging/
+- Core Devs
+   https://devguide.python.org/developers/
+- Buildbot
+   https://buildbot.python.org/all/#/
+   https://pyfound.blogspot.com/2019/06/pablo-galindo-salgado-nights-watch-is.html
+Release Manager
+   https://devguide.python.org/#status-of-python-branches
+- Mailing Lists 
+   https://mail.python.org/archives/
+ https://discuss.python.org/
+- PEPs
+   https://www.python.org/dev/peps/pep-0008/
+   https://www.python.org/dev/peps/pep-0680/
+     https://python.github.io/peps/pep-0680/
+      ( infra process, https://python.github.io/peps/pep-0676/ )
+  - Governance PEP: 
+    https://www.python.org/dev/peps/pep-0013/
+- Steering Council
+   https://github.com/python/steering-council/issues
+- Devguide
+
+Documentation
+ https://docs.python.org/3/
+ https://docs.python.org/ja/3/
+
+Python website
+ python.org
+ https://pythondotorg.readthedocs.io/
+
+PSF
+- Legal + Sponsors + Infrastructure
+   https://www.python.org/psf-landing/
+- PyCon US (65% revenue)
+- members:
+   https://www.python.org/psf/members/
+  +you
+- paid staff:
+   https://www.python.org/psf/records/staff/
+  - Director of Operations
+- Developer in Residence (Łukasz)
+
+PyPA
+ https://www.pypa.io/en/latest/
+   https://packaging.python.org/en/latest/
+ https://github.com/orgs/pypa/repositories
+- pip, setuptools, flit, wheel, twine, distutils, pipenv, virtualenv, ...
+- warehouse -> PyPI 
+  https://github.com/pypa/warehouse
+- shared: PEPs
+
+SIGs
+ https://www.python.org/community/sigs/
+- Typing SIG
+   https://typing.readthedocs.io/en/latest/
+
+Django
+  https://www.djangoproject.com/
+  https://www.djangoproject.com/foundation/
+NumFOCUS
+  https://numfocus.org/

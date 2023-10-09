@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>reveal.js</title>
+
+        <link rel="stylesheet" href="reveal.js/dist/reset.css">
+        <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+        <link rel="stylesheet" href="reveal.js/dist/theme/black.css">
+
+        <!-- Theme used for syntax highlighted code -->
+        <link rel="stylesheet" href="highlight-base16-chalk.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h2>A possible future</h2>
+                    <h3>for the C-API</h3>
+                    <br no>
+                    <br no>
+                    <div>Brno, 2023-10</div>
+                </section>
+                <section>
+                    I. My opinions
+                </section>
+                <section id="nonc-langs">
+                    <h2 class="bubbly">1. Non-C languages</h2>
+                    <div class="fragment fade-up">
+                        they should not need to fight decisions<br>
+                        that only make sense for C
+                    </div>
+                </section>
+                <section id="abi-is-api">
+                    <h2 class="bubbly">2. The ABI is our API</h2>
+                    <div class="fragment fade-up">
+                        C preprocessors &amp; parsers<br>
+                        only work for C/C++
+                    </div>
+                    <pre class="fragment fade-up language-c"><code data-trim>
+                        #ifdef PY_SSIZE_T_CLEAN
+                            #define PyObject_CallMethod _PyObject_CallMethod_SizeT
+                        #endif
+                    </code></pre>
+                </section>
+                <section id="api-stable">
+                    <h2 class="bubbly">3. The API should be stable</h2>
+                    <div class="fragment fade-up">
+                        users forced to change working code
+                    </div>
+                    <div class="fragment fade-up">
+                        = we failed
+                    </div>
+                </section>
+                <section>
+                    My opinions
+                    <div class="bubbly">
+                        Support non-C languages
+                    </div>
+                    <div class="bubbly">
+                        The ABI is our API
+                    </div>
+                    <div class="bubbly">
+                        The API should be stable
+                    </div>
+                    <div class="fragment fade-up">
+                        What are yours?
+                    </div>
+                </section>
+                <section>
+                    II. My suggestions
+                </section>
+                <section id="ni">
+                    <h2 class="bubbly"><div class="num">1/7</div>The Split</h2>
+                    <ul class="fragment fade-up">
+                        <li>
+                            Native Interface (NI)
+                        </li>
+                        <ul>
+                            <li class="fragment fade-up">
+                                performant
+                            </li>
+                            <li class="fragment fade-up">
+                                complete
+                            </li>
+                            <li class="fragment fade-up">
+                                language agnostic
+                            </li>
+                            <li class="fragment fade-up">
+                                <strong>not</strong> ergonomic <span class="fragment fade-up">(for C)</span>
+                            </li>
+                        </ul>
+                        <li>
+                            C API
+                        </li>
+                        <ul>
+                            <li class="fragment fade-up">
+                                implements the current API
+                            </li>
+                            <li class="fragment fade-up">
+                                one of many possible language bindings
+                            </li>
+                        </ul>
+                        <li class="fragment fade-up">
+                            <code>ctypes</code>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>C-API wrapper*</h2>
+                    <pre class="language-c"><code data-trim>
+                        static inline PyObject *
+                        PyDict_GetItemStringRef(PyObject *d, const char *key)
+                        {
+                            PyStringObject *key_obj = PyNI_UnicodeFromZString(key);
+                            if (!str) return NULL;
+                            PyObject result;
+                            int err = PyNI_DictGetItem(d, key_obj, &result);
+                            if (err < 0) goto error;
+                            if (err == 0) {
+                                return PyNI_ErrSetObject(KeyError, key_obj);
+                            }
+                            PyNI_DecRef(key_obj);
+                            return result;
+                        }
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>C-API Build Modes</h2>
+                    <div -n-class="fragment fade-up">
+                        <strong><code>abi4</code></strong> – thin NI wrapper; generated
+                    </div>
+                    <div -n-class="fragment fade-up">
+                        <strong><code>cp-3<var>x</var></code></strong> – can reach into internals
+                    </div>
+                    <div class="fragment fade-up">
+                        Selectable at build time
+                    </div>
+                    <div class="fragment fade-up">
+                        Exactly the same API*
+                    </div>
+                </section>
+                <section>
+                    <h2>*Unstable API</h2>
+                    <div>
+                        additions that can't promise ABI stability
+                    </div>
+                    <div>
+                        only available for “CPython 3.<var>x</var>” builds
+                    </div>
+                    <div>
+                        available (but marked) in NI
+                    </div>
+                </section>
+                <section id="consistency">
+                    <h2 class="bubbly"><div class="num">2/7</div>Consistency</h2>
+                    <div>
+                        All new API strictly follows guidelines.
+                    </div>
+                    <div class="fragment fade-up">
+                        Exceptions must be alternatives
+                    </div>
+                    <div class="fragment fade-up">
+                        identifiable by the name.
+                    </div>
+                </section>
+                <section id="versioning">
+                    <h2 class="bubbly"><div class="num">3/7</div>Versioning</h2>
+                    <div>
+                        1. Version built with
+                    </div>
+                    <div>
+                        2. Min. compatible version (<code>Py_LIMITED_API</code>)
+                    </div>
+                    <div class="fragment fade-up">
+                        (these go in the wheel tag)
+                    </div>
+                    <br no>
+                    <div class="fragment fade-up">
+                        3. “Epoch” that hides older deprecated API
+                    </div>
+                </section>
+                <!--
+                <section>
+                    <h2 class="bubbly">Avoiding C-only Types</h2>
+                    <div>
+                        Bad: <code>long</code>, bitfields, enums
+                    </div>
+                    <div class="fragment fade-up">
+                        OK: <code>int</code>, <code>size_t</code>, <code>intptr_t</code>
+                    </div>
+                    <div class="fragment fade-up">
+                        In new C-API too?
+                    </div>
+                    <div class="fragment fade-up">
+                        Exceptions: <code>PyLong_AsLong</code>
+                    </div>
+                    <div class="fragment fade-up">
+                        In existing C-API too?
+                    </div>
+                    <div class="fragment fade-up">
+                        ABI break if <code>long</code> ≠ <code>int32_t</code>?
+                    </div>
+                </section>
+                -->
+                <section id="errors">
+                    <h2 class="bubbly"><div class="num">4/7</div>Errors</h2>
+                    <div>All functions must be able to signal failure.</div>
+                    <div>Users must handle exceptions.</div>
+                    <div class="fragment fade-up">
+                        <code>DeprecationWarning</code> with <code>-Wall</code> raises.
+                    </div>
+                    <div class="fragment fade-up">
+                        <pre class="language-c"><code data-trim>
+                            static inline PyObject *
+                            PyTuple_Size(PyTupleObject *o)
+                            {
+                                size_t result = PyNI_TupleSize(o);
+                                assert(result >= 0);  // this never raises
+                                return result;
+                            }
+                        </code></pre>
+                    </div>
+                </section>
+                <section id="types">
+                    <h2 class="bubbly"><div class="num">5/7</div>Concrete types</h2>
+                    <div class="fragment fade-up">
+                        <code>PyDictObject</code> rather than <code>PyObject</code>
+                    </div>
+                    <div class="fragment fade-up">
+                        <div>C API:</div>
+                        Simple upcasts (<code>PyDictObject</code> → <code>PyObject</code>)
+                    </div>
+                    <div class="fragment fade-up">
+                        Fallible downcasts (<code>PyObject</code> → <code>PyDictObject</code>)
+                    </div>
+                    <div class="fragment fade-up">
+                        C++ overloads &amp; C11 <code>_Generic</code> ?
+                    </div>
+                </section>
+                <section id="blueprint">
+                    <h2 class="bubbly"><div class="num">6/7</div>Blueprint structs</h2>
+                    Think <code>PyModuleDef</code>, <code>PyType_Spec</code>,
+                    …
+                    <div>
+                        <ul>
+                            <li class="fragment fade-up">
+                                versioned
+                            </li>
+                            <li class="fragment fade-up">
+                                read-once
+                            </li>
+                            <li class="fragment fade-up">
+                                extensible<span class="fragment fade-up">: new slots</span>
+                                <ul>
+                                    <li class="fragment fade-up">
+                                        are strongly typed
+                                    </li>
+                                    <li class="fragment fade-up">
+                                        can be marked optional
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="context-arg">
+                    <h2 class="bubbly"><div class="num">7/7</div>Context Argument</h2>
+                    “<code>PyThreadState*</code> argument”
+                    <ul>
+                        <li class="fragment fade-up">
+                            compatibility
+                        </li>
+                        <li class="fragment fade-up">
+                            limited context for destructors?
+                        </li>
+                        <li class="fragment fade-up">
+                            no context arg = pre-init-safe
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    My suggestions
+                    <div class="bubbly small">
+                        Native Interface
+                    </div>
+                    <div class="bubbly small">
+                        Regularity + Alternatives
+                    </div>
+                    <div class="bubbly small">
+                        3 version numbers
+                    </div>
+                    <!--
+                    <div class="bubbly small">
+                        Avoiding C-only types
+                    </div>
+                    -->
+                    <div class="bubbly small">
+                        Always handling errors
+                    </div>
+                    <div class="bubbly small">
+                        Concrete types
+                    </div>
+                    <div class="bubbly small">
+                        Blueprint structs
+                    </div>
+                    <div class="bubbly small">
+                        Context argument
+                    </div>
+                    And more
+                </section>
+
+                <section>
+                    III. What to leave out
+                </section>
+                <section>
+                    <h2 class="bubbly">C-API overhaul?</h2>
+                    <ul>
+                        <li>Should we build a new C-API layer too?</li>
+                        <ul>
+                            <li class="fragment fade-up">
+                                No <code>*_ObjectRefExWithError</code> (for now)
+                            </li>
+                            <li class="fragment fade-up">
+                                Add context argument
+                            </li>
+                        </ul>
+                        <li class="fragment fade-up">
+                            Should current C-API be moved out?
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="bubbly">Leave for later</h2>
+                    <ul>
+                        <li -n-class="fragment fade-up">
+                            C-API overhaul
+                        </li>
+                        <li class="fragment fade-up">
+                            Handles/references
+                        </li>
+                        <li class="fragment fade-up">
+                            Type layout/initialization overhaul
+                        </li>
+                        <li class="fragment fade-up">
+                            Context function table
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    IV. Who will build it?
+                </section>
+                <section>
+                    Thank you
+                </section>
+                <section class="ending">
+                    <div class="container">
+                    <div class="col">
+                        <a href="#/nonc-langs"><div class="bubbly small">Non-C languages</div></a>
+                        <a href="#/abi-is-api"><div class="bubbly small">ABI is API</div></a>
+                        <a href="#/api-stable"><div class="bubbly small">API should be stable</div></a>
+                    </div>
+                    <div class="col">
+                        <a href="#/ni"><div class="bubbly small">Ni!</div></a>
+                        <a href="#/consistency"><div class="bubbly small">Consistency</div></a>
+                        <a href="#/versioning"><div class="bubbly small">3 version №s</div></a>
+                        <a href="#/errors"><div class="bubbly small">Errors</div></a>
+                        <a href="#/types"><div class="bubbly small">Concrete types</div></a>
+                        <a href="#/blueprint"><div class="bubbly small">Blueprint structs</div></a>
+                        <a href="#/context-arg"><div class="bubbly small">Context arg</div></a>
+                    </div>
+                    </div>
+                </section>
+                <!-- Struct versioning -->
+            </div>
+        </div>
+
+        <script src="reveal.js/dist/reveal.js"></script>
+        <script src="reveal.js/plugin/notes/notes.js"></script>
+        <script src="reveal.js/plugin/markdown/markdown.js"></script>
+        <script src="reveal.js/plugin/highlight/highlight.js"></script>
+        <style>
+        :root {
+            --r-main-font: Signika;
+            --r-heading-font: Signika;
+            --r-main-color: #deaf8f;
+            --r-heading-color: #deaf8f;
+            --r-background-color: #151515;
+            --r-selection-background-color: #ffffff;
+            --r-selection-color: #000;
+            --r-code-font: Fragment Mono;
+            font-variant-ligatures: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            text-transform: normal;
+        }
+        .container{
+            display: flex;
+        }
+        .col{
+            flex: 1;
+        }
+        strong {
+            color: #d0d0d0;
+        }
+        ul li {
+            list-style-type: none;
+        }
+        .bubbly {
+            background-color: var(--r-main-color);
+            color: var(--r-background-color) !important;
+            border-radius: 1em;
+            padding: .5em;
+            margin: 1em;
+        }
+        .bubbly.small {
+            background-color: var(--r-main-color);
+            color: var(--r-background-color) !important;
+            border-radius: 1em;
+            padding: .25em;
+            margin: .25em;
+        }
+        h2.bubbly {
+            border-radius: 0em;
+            padding: 55.5em 55.5em .5em;
+            margin: -55em -55em .5em;
+            height: 50%;
+        }
+        .num {
+            font-size: 50%;
+        }
+        .reveal .progress {
+            color: #deaf8f88;
+        }
+        </style>
+        <script>
+            Reveal.initialize({
+                hash: true,
+                defaultTiming: 60,
+                transition: 'none',
+                controls: false,
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+            });
+        </script>
+    </body>
+</html>
+0
